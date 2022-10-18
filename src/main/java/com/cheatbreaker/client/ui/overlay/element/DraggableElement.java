@@ -1,7 +1,7 @@
 package com.cheatbreaker.client.ui.overlay.element;
 
 import com.cheatbreaker.client.ui.mainmenu.AbstractElement;
-import com.sun.javafx.geom.Vec2d;
+import com.cheatbreaker.client.util.javafx.geom.Vec2d;
 import org.lwjgl.input.Mouse;
 
 import java.util.concurrent.atomic.AtomicBoolean;

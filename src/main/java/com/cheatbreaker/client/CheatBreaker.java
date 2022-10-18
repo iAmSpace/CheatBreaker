@@ -47,7 +47,7 @@ import java.util.*;
 
 @Getter
 @Mod(modid = "cheatbreaker", name = "CheatBreaker")
-public class CheatBreaker implements SkinManager.SkinAvailableCallback {
+public class CheatBreaker {
 
     @Getter
     public static CheatBreaker instance;
@@ -96,7 +96,7 @@ public class CheatBreaker implements SkinManager.SkinAvailableCallback {
     public long startTime;
 
     private List<AudioDevice> audioDevices = new ArrayList<>();
-    private final VoiceChatManager voiceChatManager;
+    private VoiceChatManager voiceChatManager;
 
     public static final AudioFormat universalAudioFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 16000.0f, 16, 1, 2, 16000.0f, false);
 
@@ -128,6 +128,16 @@ public class CheatBreaker implements SkinManager.SkinAvailableCallback {
     }
 
     public CheatBreaker() {
+        CheatBreaker.instance = this;
+    }
+
+    public <T> void reverse(Queue<T> queue) {
+        Stack<T> stack = new Stack<>();
+        while(!queue.isEmpty()) stack.push(queue.poll());
+        while(!stack.isEmpty()) queue.add(stack.pop());
+    }
+
+    public void initialize() {
         this.audioDevices = new ArrayList<>();
         this.presetLocations = new ArrayList<>();
         cosmetics = new ArrayList<>();
@@ -139,7 +149,6 @@ public class CheatBreaker implements SkinManager.SkinAvailableCallback {
         System.out.println("[CB] Starting CheatBreaker setup");
         this.createDefaultConfigPresets();
         System.out.println("[CB] Created default configuration presets");
-        CheatBreaker.instance = this;
         this.initAudioDevices();
         this.voiceChatManager = new VoiceChatManager(audioDevices.get(0));
         this.globalSettings = new GlobalSettings();
@@ -155,16 +164,6 @@ public class CheatBreaker implements SkinManager.SkinAvailableCallback {
         cosmetics.add(new Cosmetic("Steve", "CheatBreaker Black Cape", 1.0f, false, "client/defaults/cb_black.png"));
         this.statusEnum = Status.AWAY;
         this.radioManager = new CBDashManager();
-
-    }
-
-    public <T> void reverse(Queue<T> queue) {
-        Stack<T> stack = new Stack<>();
-        while(!queue.isEmpty()) stack.push(queue.poll());
-        while(!stack.isEmpty()) queue.add(stack.pop());
-    }
-
-    public void initialize() {
         this.loadFonts();
         System.out.println("[CB] Loaded all fonts");
         this.loadProfiles();
