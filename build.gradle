@@ -1,0 +1,31 @@
+/** The root of the build. Exposed for flexibility, but you shouldn't edit it
+    unless you have to. Edit project.gradle instead. */
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "https://maven.minecraftforge.net/"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+dependencies {
+    // Dependencies in forge-1.7.gradle
+}
+
+
+apply from: "buildscript/forge-1.7.gradle"

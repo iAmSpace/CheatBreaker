@@ -1,0 +1,10 @@
+{
+    "required": true,
+    "minVersion": "0.6",
+    "package": "com.cheatbreaker.client.mixin",
+    "refmap": "mixins.cheatbreaker.refmap.json",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "ExampleMixin"
+    ]
+}
