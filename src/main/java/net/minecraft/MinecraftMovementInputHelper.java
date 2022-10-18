@@ -108,7 +108,6 @@ public class MinecraftMovementInputHelper extends MovementInputFromOptions {
     }
 
     private static void lIIIIlIIllIIlIIlIIIlIIllI(MovementInputFromOptions movementInputFromOptions, EntityPlayerSP entityPlayerSP, GameSettings gameSettings) {
-//        toggleSprintString = "";
         String string = "";
         boolean flying = entityPlayerSP.capabilities.isFlying;
         boolean riding = entityPlayerSP.isRiding();

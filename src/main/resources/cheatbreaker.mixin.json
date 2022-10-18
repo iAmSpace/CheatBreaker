@@ -5,6 +5,12 @@
     "refmap": "mixins.cheatbreaker.refmap.json",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
-        "ExampleMixin"
+        "client.MixinMinecraft",
+        "client.audio.MixinSoundHandler",
+        "client.audio.MixinSoundManager",
+        "client.gui.MixinFontRenderer",
+        "client.renderer.entity.MixinRender",
+        "client.renderer.entity.MixinRendererLivingEntity",
+        "util.MixinTimer"
     ]
 }
