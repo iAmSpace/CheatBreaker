@@ -84,7 +84,7 @@ public class LoadingScreen extends AbstractGui {
         }
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(x, y, x + loadedWidth, y + height, 8.0, new Color(-2473389).getRGB());
         this.getMenuReady();
-        this.mc.resetSize();
+        this.mc.func_147120_f();
     }
 
     @Override
@@ -92,7 +92,7 @@ public class LoadingScreen extends AbstractGui {
     }
 
     @Override
-    public void onMouseReleased(float mouseX, float mouseY, int button) {
+    public void onmouseMovedOrUp(float mouseX, float mouseY, int button) {
     }
 
 

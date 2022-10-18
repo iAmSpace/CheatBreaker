@@ -126,7 +126,7 @@ public class AccountList extends AbstractElement {
                 float f6 = f5 + (float)16;
                 boolean bl3 = bl2 = f > f3 && f < f4 && f2 - this.IIIlIIllllIIllllllIlIIIll.IllIIIIIIIlIlIllllIIllIII() > f5 && f2 - this.IIIlIIllllIIllllllIlIIIll.IllIIIIIIIlIlIllllIIllIII() < f6 && bl && !this.IIIlIIllllIIllllllIlIIIll.isMouseInside(f, f2) && !this.IIIlIIllllIIllllllIlIIIll.isDragClick();
                 if (bl2) {
-                    Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                    Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                     this.llIlIIIlIIIIlIlllIlIIIIll.login(illIIIllIlIIlIllIIIllllIl.getDisplayName());
                 }
                 ++n2;

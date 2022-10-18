@@ -30,7 +30,6 @@ archivesBaseName = "${project.archives_base}-${project.minecraft_version}"
 minecraft {
     version = "${project.minecraft_version}-${project.forge_version}"
     runDir = "run"
-	mappings = "stable_12"
 	replace '@VERSION@', project.version
 }
 

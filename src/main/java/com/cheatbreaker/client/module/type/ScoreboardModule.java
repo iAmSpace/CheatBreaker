@@ -1,6 +1,5 @@
 package com.cheatbreaker.client.module.type;
 
-import com.cheatbreaker.client.bridge.Ref;
 import com.cheatbreaker.client.config.Setting;
 import com.cheatbreaker.client.event.type.GuiDrawEvent;
 import com.cheatbreaker.client.event.type.RenderPreviewEvent;
@@ -8,6 +7,7 @@ import com.cheatbreaker.client.module.AbstractModule;
 import com.cheatbreaker.client.module.ModuleRule;
 import com.cheatbreaker.client.ui.module.CBGuiAnchor;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.scoreboard.*;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.opengl.GL11;
@@ -32,18 +32,18 @@ public class ScoreboardModule extends AbstractModule {
         if (!this.isRenderHud()) {
             return;
         }
-        if (this.minecraft.theWorld.getScoreboard().getObjectiveInDisplaySlot(1) != null) {
+        if (this.minecraft.theWorld.getScoreboard().func_96539_a(1) != null) {
             return;
         }
         GL11.glPushMatrix();
         this.scaleAndTranslate(renderPreviewEvent.getResolution());
         GL11.glTranslatef(this.isRemoveNumbers() ? (float) -12 : 2.0f, this.height, 0.0f);
         Scoreboard scoreboard = new Scoreboard();
-        ScoreObjective objective = new ScoreObjective(scoreboard, "CheatBreaker", IScoreObjectiveCriteria.DUMMY);
+        ScoreObjective objective = new ScoreObjective(scoreboard, "CheatBreaker", IScoreObjectiveCriteria.field_96641_b);
         objective.setDisplayName(EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD + "Cheat" + EnumChatFormatting.RESET + "" + EnumChatFormatting.WHITE + "Breaker");
-        scoreboard.getValueFromObjective("Steve", objective);
-        scoreboard.getValueFromObjective("Alex", objective);
-        this.drawObjective(objective, this.minecraft.fontRendererObj);
+        scoreboard.func_96529_a("Steve", objective);
+        scoreboard.func_96529_a("Alex", objective);
+        this.drawObjective(objective, this.minecraft.fontRenderer);
         GL11.glPopMatrix();
     }
 
@@ -54,16 +54,16 @@ public class ScoreboardModule extends AbstractModule {
         GL11.glPushMatrix();
         this.scaleAndTranslate(guiDrawEvent.getResolution());
         GL11.glTranslatef(this.isRemoveNumbers() ? (float) -12 : 2.0f, this.height, 0.0f);
-        ScoreObjective objective = this.minecraft.theWorld.getScoreboard().getObjectiveInDisplaySlot(1);
+        ScoreObjective objective = this.minecraft.theWorld.getScoreboard().func_96539_a(1);
         if (objective != null) {
-            this.drawObjective(objective, this.minecraft.fontRendererObj);
+            this.drawObjective(objective, this.minecraft.fontRenderer);
         }
         GL11.glPopMatrix();
     }
 
     private void drawObjective(ScoreObjective objective, FontRenderer fontRenderer) {
         Scoreboard scoreboard = objective.getScoreboard();
-        Collection<Score> collection = scoreboard.getSortedScores(objective);
+        Collection<Score> collection = scoreboard.func_96534_i(objective);
         boolean removeNumbers = isRemoveNumbers();
         if (collection.size() <= 15) {
             int width = fontRenderer.getStringWidth(objective.getDisplayName());
@@ -86,7 +86,7 @@ public class ScoreboardModule extends AbstractModule {
                 if (lineX < numbersX) {
                     lineX = numbersX;
                 }
-                Ref.modified$drawRect(-2 + (removeNumbers ? 14 : 0), lineY, lineX, lineY + fontRenderer.FONT_HEIGHT, 0x50000000);
+                Gui.drawRect(-2 + (removeNumbers ? 14 : 0), lineY, lineX, lineY + fontRenderer.FONT_HEIGHT, 0x50000000);
                 n9 = lineX - (-2 + (removeNumbers ? 14 : 0));
                 fontRenderer.drawString(string, (removeNumbers ? 16 : 0), lineY, 0x20FFFFFF);
                 if (!removeNumbers) {
@@ -94,8 +94,8 @@ public class ScoreboardModule extends AbstractModule {
                 }
                 if (n8 != collection.size()) continue;
                 String string3 = objective.getDisplayName();
-                Ref.modified$drawRect(-2 + (removeNumbers ? 14 : 0), lineY - fontRenderer.FONT_HEIGHT - 1, lineX, lineY - 1, 0x60000000);
-                Ref.modified$drawRect(-2 + (removeNumbers ? 14 : 0), lineY - 1, lineX, lineY, 0x50000000);
+                Gui.drawRect(-2 + (removeNumbers ? 14 : 0), lineY - fontRenderer.FONT_HEIGHT - 1, lineX, lineY - 1, 0x60000000);
+                Gui.drawRect(-2 + (removeNumbers ? 14 : 0), lineY - 1, lineX, lineY, 0x50000000);
                 fontRenderer.drawString(string3, +width / 2 - fontRenderer.getStringWidth(string3) / 2 + (removeNumbers ? 14 : 0), lineY - fontRenderer.FONT_HEIGHT, 0x20FFFFFF);
             }
             this.setDimensions(n9, collection.size() * fontRenderer.FONT_HEIGHT + 12);

@@ -57,7 +57,7 @@ public class CBProfileCreateGui
             ((CBModulesGui) this.guiScreen).currentScrollableElement = ((CBModulesGui) this.guiScreen).profilesElement;
         } else {
             this.IIIllIllIlIlllllllIlIlIII = false;
-            this.lIIIIIIIIIlIllIIllIlIIlIl = new GuiTextField(this.mc.fontRendererObj, this.width / 2 - 70, this.height / 2 - 6, 140, 10);
+            this.lIIIIIIIIIlIllIIllIlIIlIl = new GuiTextField(this.mc.fontRenderer, this.width / 2 - 70, this.height / 2 - 6, 140, 10);
             if (this.profile != null) {
                 this.lIIIIIIIIIlIllIIllIlIIlIl.setText(this.profile.getName());
             }

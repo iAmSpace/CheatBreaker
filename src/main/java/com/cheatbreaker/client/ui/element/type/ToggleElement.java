@@ -66,7 +66,7 @@ public class ToggleElement
             this.IlllIllIlIIIIlIIlIIllIIIl = bl ? 1 : 2;
             this.IlIlllIIIIllIllllIllIIlIl = 0.0f;
             this.displayString = (Boolean) this.setting.getValue() ? "ON" : "OFF";
-            Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.setting.setValue(!((Boolean) this.setting.getValue()));
             if (this.setting == CheatBreaker.getInstance().moduleManager.keyStrokes.replaceNamesWithArrows) {
                 CheatBreaker.getInstance().moduleManager.keyStrokes.initialize();

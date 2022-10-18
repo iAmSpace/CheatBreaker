@@ -51,7 +51,7 @@ public class FriendRequestElement extends AbstractElement {
         if (this.friendRequest.isFriend()) {
             boolean cancelHovered  = f > this.x + (float) 24 && f < this.x + (float) 52 && f2 < this.y + this.height && f2 > this.y + (float) 10;
             if (cancelHovered) {
-                this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                 CheatBreaker.getInstance().getAssetsWebSocket().sentToServer(new WSPacketClientFriendRequestUpdate(false, this.friendRequest.getPlayerId()));
                 OverlayGui.getInstance().getFriendRequestsElement().getFrientRequestElementList().add(this);
             }
@@ -59,11 +59,11 @@ public class FriendRequestElement extends AbstractElement {
             boolean acceptHovered = f > this.x + (float)24 && f < this.x + (float)52 && f2 < this.y + this.height && f2 > this.y + (float)10;
             boolean denyHovered = f > this.x + (float) 52 && f < this.x + (float) 84 && f2 < this.y + this.height && f2 > this.y + (float) 10;
             if (acceptHovered) {
-                this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                 CheatBreaker.getInstance().getAssetsWebSocket().sentToServer(new WSPacketClientFriendRequestUpdate(true, this.friendRequest.getPlayerId()));
                 OverlayGui.getInstance().getFriendRequestsElement().getFrientRequestElementList().add(this);
             } else if (denyHovered) {
-                this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                 CheatBreaker.getInstance().getAssetsWebSocket().sentToServer(new WSPacketClientFriendRequestUpdate(false, this.friendRequest.getPlayerId()));
                 OverlayGui.getInstance().getFriendRequestsElement().getFrientRequestElementList().add(this);
             }

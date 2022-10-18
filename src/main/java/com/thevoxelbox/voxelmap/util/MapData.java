@@ -388,7 +388,7 @@ public class MapData {
 		}
 
 		public void morphologicallyErode() {
-			float labelWidth = Minecraft.getMinecraft().fontRendererObj
+			float labelWidth = Minecraft.getMinecraft().fontRenderer
 					                   .getStringWidth(BiomeGenBase.getBiomeGenArray()[this.biome].biomeName) + 8;
 			float multi = MapData.this.width / 32;
 			float shellWidth = 2.0F;

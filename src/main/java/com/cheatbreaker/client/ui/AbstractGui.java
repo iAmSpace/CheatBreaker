@@ -22,7 +22,7 @@ public abstract class AbstractGui extends GuiScreen {
     @Override
     public void setWorldAndResolution(final Minecraft mc, final int displayWidth, final int displayHeight) {
         this.mc = mc;
-        this.fontRendererObj = mc.fontRendererObj;
+        this.fontRendererObj = mc.fontRenderer;
         this.width = displayWidth;
         this.height = displayHeight;
         this.buttonList.clear();
@@ -53,12 +53,12 @@ public abstract class AbstractGui extends GuiScreen {
     protected abstract void onMouseClicked(float mouseX, float mouseY, int mouseButton);
 
     @Override
-    protected void mouseReleased(int mouseX, int mouseY, int mouseButton) {
+    protected void mouseMovedOrUp(int mouseX, int mouseY, int mouseButton) {
         final float scaleFactor = getScaleFactor();
-        onMouseReleased(mouseX / scaleFactor, mouseY / scaleFactor, mouseButton);
+        onmouseMovedOrUp(mouseX / scaleFactor, mouseY / scaleFactor, mouseButton);
     }
 
-    protected abstract void onMouseReleased(float mouseX, float mouseY, int mouseButton);
+    protected abstract void onmouseMovedOrUp(float mouseX, float mouseY, int mouseButton);
 
     protected void setElementsAndUpdateSize(AbstractElement... elements) {
         this.elements = new ArrayList<>();
@@ -100,7 +100,7 @@ public abstract class AbstractGui extends GuiScreen {
         }
     }
 
-    protected void handleMouseReleased(float f, float f2, int n) {
+    protected void handlemouseMovedOrUp(float f, float f2, int n) {
         AbstractElement element;
         Iterator<AbstractElement> iterator = this.elements.iterator();
         while (!(!iterator.hasNext() || (element = iterator.next()).isMouseInside(f, f2) && element.handleElementMouseRelease(f, f2, n, this.isMouseHovered(element, f, f2)))) {

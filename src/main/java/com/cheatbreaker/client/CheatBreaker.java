@@ -26,6 +26,7 @@ import com.cheatbreaker.client.util.voicechat.VoiceChatManager;
 import com.cheatbreaker.client.util.worldborder.WorldBorderManager;
 import com.cheatbreaker.client.websocket.AssetsWebSocket;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+import cpw.mods.fml.common.Mod;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.client.Minecraft;
@@ -45,6 +46,7 @@ import java.nio.file.Files;
 import java.util.*;
 
 @Getter
+@Mod(modid = "cheatbreaker", name = "CheatBreaker")
 public class CheatBreaker implements SkinManager.SkinAvailableCallback {
 
     @Getter
@@ -409,6 +411,7 @@ public class CheatBreaker implements SkinManager.SkinAvailableCallback {
         this.cosmetics.removeIf(cosmetic -> cosmetic.getPlayerId().equals(playerId));
     }
 
-    public void onSkinAvailable(MinecraftProfileTexture.Type skinPart, ResourceLocation skinLoc) {
+    public void func_152121_a(MinecraftProfileTexture.Type p_152121_1_, ResourceLocation p_152121_2_) {
+        // literally does nothing what is the point of this srsly
     }
 }

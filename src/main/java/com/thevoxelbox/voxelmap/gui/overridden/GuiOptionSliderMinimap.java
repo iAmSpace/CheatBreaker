@@ -26,7 +26,7 @@ public class GuiOptionSliderMinimap
 	}
 
 	protected void mouseDragged(Minecraft par1Minecraft, int par2, int par3) {
-		if (this.hovered) {
+		if (this.field_146123_n) {
 			if (this.dragging) {
 				this.sliderValue = ((par2 - (this.xPosition + 4)) / (this.width - 8));
 				if (this.sliderValue < 0.0F) {
@@ -61,7 +61,7 @@ public class GuiOptionSliderMinimap
 		return false;
 	}
 
-	public void mouseReleased(int par1, int par2) {
+	public void mouseMovedOrUp(int par1, int par2) {
 		this.dragging = false;
 	}
 }

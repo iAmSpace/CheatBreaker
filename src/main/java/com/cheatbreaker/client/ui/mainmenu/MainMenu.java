@@ -91,10 +91,10 @@ public class MainMenu extends MainMenuBase {
         this.singleplayerButton.handleElementMouseClicked(mouseX, mouseY, button, true);
         this.multiplayerButton.handleElementMouseClicked(mouseX, mouseY, button, true);
         if (this.singleplayerButton.isMouseInside(mouseX, mouseY)) {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.mc.displayGuiScreen(new GuiSelectWorld(this));
         } else if (this.multiplayerButton.isMouseInside(mouseX, mouseY)) {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.mc.displayGuiScreen(new GuiMultiplayer(this));
         }
     }

@@ -168,10 +168,10 @@ public class OverlayGui extends AbstractGui {
         this.onMouseClicked(f, f2, n, this.friendsListElement, this.friendRequestsElement);
         boolean bl2 = this.isMouseHovered(this.friendsButton, f, f2);
         if (bl2 && this.friendsButton.isMouseInside(f, f2) && this.selectedElement != this.friendsListElement) {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.selectedElement = this.friendsListElement;
         } else if (bl2 && this.requestsButton.isMouseInside(f, f2) && this.selectedElement != this.friendRequestsElement) {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.selectedElement = this.friendRequestsElement;
         }
         boolean bl = f > 6f && f < 134f && f2 > 6f && f2 < 22f;
@@ -182,24 +182,24 @@ public class OverlayGui extends AbstractGui {
             boolean offlineHovered = f > 78f && f < 94f;
             if (onlineHovered) {
                 CheatBreaker.getInstance().setStatus(Status.ONLINE);
-                this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             } else if (awayHovered) {
                 CheatBreaker.getInstance().setStatus(Status.AWAY);
-                this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             } else if (busyHovered) {
                 CheatBreaker.getInstance().setStatus(Status.BUSY);
-                this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             } else if (offlineHovered) {
                 CheatBreaker.getInstance().setStatus(Status.HIDDEN);
-                this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             }
             CheatBreaker.getInstance().getAssetsWebSocket().updateClientStatus();
         }
     }
 
     @Override
-    public void onMouseReleased(float f, float f2, int n) {
-        this.handleMouseReleased(f, f2, n);
+    public void onmouseMovedOrUp(float f, float f2, int n) {
+        this.handlemouseMovedOrUp(f, f2, n);
     }
 
     @Override

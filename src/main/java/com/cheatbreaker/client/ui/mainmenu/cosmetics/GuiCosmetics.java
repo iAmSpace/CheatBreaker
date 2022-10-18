@@ -73,7 +73,7 @@ public class GuiCosmetics extends MainMenuBase {
     public void onMouseClicked(float f, float f2, int n) {
         super.onMouseClicked(f, f2, n);
         if (this.backButton.isMouseInside(f, f2)) {
-            Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.mc.displayGuiScreen(new GuiMainMenu());
         } else {
             int n2;
@@ -83,10 +83,10 @@ public class GuiCosmetics extends MainMenuBase {
                 boolean bl2 = bl = f > this.getScaledWidth() / 2.0f + 1.0f && f < this.getScaledWidth() / 2.0f + (float)40 && f2 > this.getScaledHeight() / 2.0f + (float)80 && f2 < this.getScaledHeight() / 2.0f + (float)100;
                 if (this.IllIIIIIIIlIlIllllIIllIII > 0 && n2 != 0) {
                     --this.IllIIIIIIIlIlIllllIIllIII;
-                    Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                    Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                 } else if (bl && (float)(this.IllIIIIIIIlIlIllllIIllIII + 1) < (float)this.IIIIllIlIIIllIlllIlllllIl.size() / (float)5) {
                     ++this.IllIIIIIIIlIlIllllIIllIII;
-                    Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                    Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                 }
             }
             n2 = 0;

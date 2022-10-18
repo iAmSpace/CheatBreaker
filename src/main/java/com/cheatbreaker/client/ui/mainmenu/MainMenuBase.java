@@ -168,7 +168,7 @@ public class MainMenuBase extends AbstractGui {
     }
 
     @Override
-    public void onMouseReleased(float mouseX, float mouseY, int mouseButton) {
+    public void onmouseMovedOrUp(float mouseX, float mouseY, int mouseButton) {
 
     }
 
@@ -177,22 +177,22 @@ public class MainMenuBase extends AbstractGui {
         this.exitButton.handleElementMouseClicked(mouseX, mouseY, button, true);
         this.IlllIllIlIIIIlIIlIIllIIIl.handleElementMouseClicked(mouseX, mouseY, button, true);
         if (this.exitButton.isMouseInside(mouseX, mouseY)) {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.mc.shutdown();
         } else if (this.optionsButton.isMouseInside(mouseX, mouseY)) {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.mc.displayGuiScreen(new GuiOptions(this, this.mc.gameSettings));
         } else if (this.languageButton.isMouseInside(mouseX, mouseY)) {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.mc.displayGuiScreen(new GuiLanguage(this, this.mc.gameSettings, this.mc.getLanguageManager()));
         } else if (this.cosmeticsButton.isMouseInside(mouseX, mouseY)) {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.mc.displayGuiScreen(new GuiCosmetics());
         } else {
             boolean bl;
             boolean bl2 = bl = mouseX < this.optionsButton.getX() && mouseY < (float) 30;
             if (bl && !(this.mc.currentScreen instanceof MainMenu)) {
-                this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                 this.mc.displayGuiScreen(new MainMenu());
             }
         }
@@ -353,9 +353,9 @@ public class MainMenuBase extends AbstractGui {
                 if (selectedAccount.getUUID().equalsIgnoreCase(Minecraft.getMinecraft().getSession().getPlayerID())) {
                     return;
                 }
-                Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                 for (Session object2 : CheatBreaker.getInstance().sessions) {
-                    if (!object2.getProfile().getId().toString().replaceAll("-", "").equalsIgnoreCase(selectedAccount.getUUID().replaceAll("-", "")))
+                    if (!object2.func_148256_e().getId().toString().replaceAll("-", "").equalsIgnoreCase(selectedAccount.getUUID().replaceAll("-", "")))
                         continue;
 //                    Minecraft.getMinecraft().setSession(object2);
                     this.IlllIllIlIIIIlIIlIIllIIIl.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getDisplayName());

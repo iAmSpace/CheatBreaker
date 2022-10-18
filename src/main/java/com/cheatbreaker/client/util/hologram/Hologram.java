@@ -27,7 +27,7 @@ public class Hologram {
     }
 
     public static void lIIIIlIIllIIlIIlIIIlIIllI() {
-        FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;
+        FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
         RenderManager renderManager = RenderManager.instance;
         for (Hologram hologram : holograms) {
             if (hologram.IlllIIIlIlllIllIlIIlllIlI() == null || hologram.IlllIIIlIlllIllIlIIlllIlI().length <= 0) continue;

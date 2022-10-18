@@ -72,7 +72,7 @@ public class AliasesElement
         this.scrollContainer.handleElementMouseClicked(f, f2, n, bl);
         this.closeButton.handleElementMouseClicked(f, f2, n, bl);
         if (this.closeButton.isMouseInside(f, f2)) {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             OverlayGui.getInstance().removeElements(this);
             return true;
         }

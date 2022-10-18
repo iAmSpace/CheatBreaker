@@ -295,7 +295,7 @@ public class Map implements Runnable, IMap {
             this.game = mc;
         }
         if (this.fontRenderer == null) {
-            this.fontRenderer = this.game.fontRendererObj;
+            this.fontRenderer = this.game.fontRenderer;
         }
         if (GLUtils.textureManager == null) {
             GLUtils.textureManager = this.game.getTextureManager();
@@ -749,7 +749,7 @@ public class Map implements Runnable, IMap {
 
     public String getServerName() {
         try {
-            ServerData serverData = this.game.getCurrentServerData();
+            ServerData serverData = this.game.func_147104_D();
             if (serverData != null) {
                 boolean isOnLAN = false;
                 if ((serverData.populationInfo == null) && (serverData.serverMOTD == null)) {
@@ -802,7 +802,7 @@ public class Map implements Runnable, IMap {
                         if (checkMe.equals(this.mostRecentLine)) {
                             break;
                         }
-                        String msg = checkMe.getChatComponent().getFormattedText();
+                        String msg = checkMe.func_151461_a().getFormattedText();
 
                         msg = msg.replaceAll("ï¿½r", "");
                         if (msg.contains("ï¿½3 ï¿½6 ï¿½3 ï¿½6 ï¿½3 ï¿½6 ï¿½e")) {

@@ -44,11 +44,11 @@ public class CPSModule extends AbstractModule {
             this.setDimensions(56, 18);
             Ref.modified$drawRect(0.0f, 0.0f, 56, 13, this.backgroundColor.getColorValue());
             String string = this.clicks.size() + " CPS";
-            this.minecraft.fontRendererObj.drawString(string, (int)(this.width / 2.0f - (float)(this.minecraft.fontRendererObj.getStringWidth(string) / 2)), 3, this.textColor.getColorValue());
+            this.minecraft.fontRenderer.drawString(string, (int)(this.width / 2.0f - (float)(this.minecraft.fontRenderer.getStringWidth(string) / 2)), 3, this.textColor.getColorValue());
         } else {
             String string = "[" + this.clicks.size() + " CPS]";
-            this.minecraft.fontRendererObj.drawString(string, (int)(this.width / 2.0f - (float)(this.minecraft.fontRendererObj.getStringWidth(string) / 2)), 3, this.textColor.getColorValue(), true);
-            this.setDimensions(this.minecraft.fontRendererObj.getStringWidth(string), 18);
+            this.minecraft.fontRenderer.drawString(string, (int)(this.width / 2.0f - (float)(this.minecraft.fontRenderer.getStringWidth(string) / 2)), 3, this.textColor.getColorValue(), true);
+            this.setDimensions(this.minecraft.fontRenderer.getStringWidth(string), 18);
         }
         GL11.glPopMatrix();
     }

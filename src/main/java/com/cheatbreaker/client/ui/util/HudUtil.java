@@ -236,9 +236,9 @@ public final class HudUtil {
         if (itemStack != null && (showDamageBar || showCount)) {
             if (itemStack.isItemDamaged() && showDamageBar) {
                 int var11 = (int) Math
-                        .round(13.0D - itemStack.getCurrentDurability() * 13.0D / itemStack.getMaxDurability());
+                        .round(13.0D - itemStack.getItemDamageForDisplay() * 13.0D / itemStack.getMaxDamage());
                 int var7 = (int) Math
-                        .round(255.0D - itemStack.getCurrentDurability() * 255.0D / itemStack.getMaxDurability());
+                        .round(255.0D - itemStack.getItemDamageForDisplay() * 255.0D / itemStack.getMaxDamage());
                 GL11.glDisable(GL11.GL_LIGHTING);
                 GL11.glDisable(GL11.GL_DEPTH_TEST);
                 GL11.glDisable(GL11.GL_TEXTURE_2D);
@@ -259,7 +259,7 @@ public final class HudUtil {
 
                 if (itemStack.getMaxStackSize() > 1) {
                     count = HudUtil.countInInventory(Minecraft.getMinecraft().thePlayer, itemStack.getItem(),
-                            itemStack.getCurrentDurability());
+                            itemStack.getItemDamage());
                 } else if (itemStack.getItem().equals(Items.bow)) {
                     count = HudUtil.countInInventory(Minecraft.getMinecraft().thePlayer, Items.arrow);
                 }
@@ -300,7 +300,7 @@ public final class HudUtil {
         int count = 0;
         for (int i = 0; i < player.inventory.mainInventory.length; i++) {
             if (player.inventory.mainInventory[i] != null && item.equals(player.inventory.mainInventory[i].getItem()) &&
-                    (md == -1 || player.inventory.mainInventory[i].getCurrentDurability() == md)) {
+                    (md == -1 || player.inventory.mainInventory[i].getItemDamage() == md)) {
                 count += player.inventory.mainInventory[i].stackSize;
             }
         }

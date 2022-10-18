@@ -52,7 +52,7 @@ public class CosmeticListElement extends AbstractModulesGuiElement {
         boolean bl;
         boolean bl2 = bl = mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height;
         if (bl) {
-            Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             if (this.cosmetic.isEquipped()) {
                 this.cosmetic.setEquipped(false);
             } else if (this.cosmetic.getName().equals("cape")) {

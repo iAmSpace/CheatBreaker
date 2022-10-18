@@ -132,7 +132,7 @@ public class ConsoleElement extends DraggableElement {
             this.updateDraggingPosition(f, f2);
         }
         if (this.closeButton.isMouseInside(f, f2)) {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             OverlayGui.getInstance().removeElements(this);
             return true;
         }
@@ -153,7 +153,7 @@ public class ConsoleElement extends DraggableElement {
             CheatBreaker.getInstance().getAssetsWebSocket().sentToServer(new WSPacketConsole(string));
         }
         this.textInputElement.setText("");
-        this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+        this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
     }
 
     @Override

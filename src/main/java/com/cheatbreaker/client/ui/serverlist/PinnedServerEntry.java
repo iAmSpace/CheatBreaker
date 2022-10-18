@@ -71,7 +71,7 @@ public class PinnedServerEntry implements GuiListExtended.IGuiListEntry {
                     break block8;
                 } catch (Exception exception) {
                     logger.error("Invalid icon for server " + this.server.serverName + " (" + this.server.serverIP + ")", (Throwable)exception);
-                    this.server.setBase64EncodedIconData(null);
+                    this.server.func_147407_a(null);
                 }
                 finally {
                     byteBuf.release();
@@ -114,7 +114,7 @@ public class PinnedServerEntry implements GuiListExtended.IGuiListEntry {
             this.server.populationInfo = "";
             executor.submit(() -> {
                 try {
-                    PinnedServerEntry.getGuiMultiplayer(PinnedServerEntry.this).getServerList().addServerData(PinnedServerEntry.setServer(PinnedServerEntry.this));
+                    PinnedServerEntry.getGuiMultiplayer(PinnedServerEntry.this).func_146795_p().addServerData(PinnedServerEntry.setServer(PinnedServerEntry.this));
                 } catch (Exception exception) {
                     PinnedServerEntry.setServer(PinnedServerEntry.this).pingToServer = -1L;
                     PinnedServerEntry.setServer(PinnedServerEntry.this).serverMOTD = EnumChatFormatting.DARK_RED + "Can't connect to server.";
@@ -145,17 +145,17 @@ public class PinnedServerEntry implements GuiListExtended.IGuiListEntry {
             GL11.glEnd();
             GL11.glDisable(3042);
         }
-        boolean outOfDateClient = this.server.version > 5;
-        boolean outOfDateServer = this.server.version < 5;
-        boolean outOfDate = (outOfDateClient || outOfDateServer) && this.server.version != -1332;
-        this.mc.fontRendererObj.drawString(this.server.serverName, n2 + 32 + 3, n3 + 1, 0xFFFFFF);
-        List<String> list = this.mc.fontRendererObj.listFormattedStringToWidth(this.server.serverMOTD, n4 - 32 - 2);
+        boolean outOfDateClient = this.server.field_82821_f > 5;
+        boolean outOfDateServer = this.server.field_82821_f < 5;
+        boolean outOfDate = (outOfDateClient || outOfDateServer) && this.server.field_82821_f != -1332;
+        this.mc.fontRenderer.drawString(this.server.serverName, n2 + 32 + 3, n3 + 1, 0xFFFFFF);
+        List<String> list = this.mc.fontRenderer.listFormattedStringToWidth(this.server.serverMOTD, n4 - 32 - 2);
         for (int i = 0; i < Math.min(list.size(), 2); ++i) {
-            this.mc.fontRendererObj.drawString((String)list.get(i), n2 + 32 + 3, n3 + 12 + this.mc.fontRendererObj.FONT_HEIGHT * i, 0x808080);
+            this.mc.fontRenderer.drawString((String)list.get(i), n2 + 32 + 3, n3 + 12 + this.mc.fontRenderer.FONT_HEIGHT * i, 0x808080);
         }
         String string2 = outOfDate ? (Object)((Object)EnumChatFormatting.DARK_RED) + this.server.gameVersion : this.server.populationInfo;
-        int n9 = this.mc.fontRendererObj.getStringWidth(string2);
-        this.mc.fontRendererObj.drawString(string2, n2 + n4 - n9 - 15 - 2, n3 + 1, 0x808080);
+        int n9 = this.mc.fontRenderer.getStringWidth(string2);
+        this.mc.fontRenderer.drawString(string2, n2 + n4 - n9 - 15 - 2, n3 + 1, 0x808080);
         int n10 = 0;
         String string3 = null;
         if (outOfDate) {
@@ -180,18 +180,18 @@ public class PinnedServerEntry implements GuiListExtended.IGuiListEntry {
         }
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         this.mc.getTextureManager().bindTexture(Gui.icons);
-        Gui.drawModalRectWithCustomSizedTexture(n2 + n4 - 15, n3, n10 * 10, 176 + n8 * 8, 10, 8, 256, 256);
+        Gui.func_146110_a(n2 + n4 - 15, n3, n10 * 10, 176 + n8 * 8, 10, 8, 256, 256);
         if (this.server.getBase64EncodedIconData() != null && !this.server.getBase64EncodedIconData().equals(this.lastIconB64)) {
             this.lastIconB64 = this.server.getBase64EncodedIconData();
             this.prepareServerIcon();
-            this.guiMultiplayer.getServerList().saveServerList();
+            this.guiMultiplayer.func_146795_p().saveServerList();
         }
         if (this.icon != null) {
             this.mc.getTextureManager().bindTexture(this.serverIcon);
         } else {
             this.mc.getTextureManager().bindTexture(UNKNOWN_SERVER);
         }
-        Gui.drawModalRectWithCustomSizedTexture(n2, n3, 0.0f, 0.0f, 32, 32, 32.0F, 32.0F);
+        Gui.func_146110_a(n2, n3, 0.0f, 0.0f, 32, 32, 32.0F, 32.0F);
 
         int n11 = n6 - n2;
         int n12 = n7 - n3;
@@ -207,22 +207,22 @@ public class PinnedServerEntry implements GuiListExtended.IGuiListEntry {
             GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
             int n13 = n6 - n2;
             if (n13 < 32) {
-                Gui.drawModalRectWithCustomSizedTexture(n2, n3, 0.0f, 32, 32, 32, 256, 256);
+                Gui.func_146110_a(n2, n3, 0.0f, 32, 32, 32, 256, 256);
             } else {
-                Gui.drawModalRectWithCustomSizedTexture(n2, n3, 0.0f, 0.0f, 32, 32, 256, 256);
+                Gui.func_146110_a(n2, n3, 0.0f, 0.0f, 32, 32, 256, 256);
             }
         }
     }
 
     public boolean mousePressed(int n, int n2, int n3, int n4, int n5, int n6) {
-        this.guiMultiplayer.selectServer(n);
+        this.guiMultiplayer.func_146790_a(n);
         if (Minecraft.getSystemTime() - this.field_148298_f < 250L) {
-            this.guiMultiplayer.connectToSelected();
+            this.guiMultiplayer.func_146796_h();
         }
         this.field_148298_f = Minecraft.getSystemTime();
         if (n5 <= 32) {
             if (n5 < 32) {
-                this.guiMultiplayer.connectToSelected();
+                this.guiMultiplayer.func_146796_h();
                 return true;
             }
         }

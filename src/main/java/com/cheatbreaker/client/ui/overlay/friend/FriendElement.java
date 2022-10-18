@@ -83,14 +83,14 @@ public class FriendElement extends AbstractElement {
         }
         boolean bl2 = this.isMouseInside(f, f2) && f > this.x + this.width - (float) 20;
         if (bl2 && this.lIIIIllIIlIlIllIIIlIllIlI.IIIIllIIllIIIIllIllIIIlIl()) {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             CheatBreaker.getInstance().getAssetsWebSocket().sentToServer(new WSPacketClientFriendRemove(this.friend.getPlayerId()));
             OverlayGui.getInstance().getFriendsListElement().getFriendElements().add(this);
             CheatBreaker.getInstance().getFriendsManager().getFriends().remove(this.friend.getPlayerId());
             return true;
         }
         if (!bl2 && this.isMouseInside(f, f2)) {
-            this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             OverlayGui.getInstance().lIIIIlIIllIIlIIlIIIlIIllI(this.friend);
             CheatBreaker.getInstance().getFriendsManager().readMessages(this.friend.getPlayerId());
             return true;

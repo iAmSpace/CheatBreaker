@@ -56,7 +56,7 @@ public class XRayOptionsElement
             } else if (bl) {
                 Ref.modified$drawRect(n5 - 2, n6 - 2, n5 + 18, n6 + 18, 0x4F0000FF);
             }
-            this.itemRenderer.renderItemIntoGUI(minecraft.fontRendererObj, minecraft.getTextureManager(), new ItemStack(item), n5, n6);
+            this.itemRenderer.renderItemIntoGUI(minecraft.fontRenderer, minecraft.getTextureManager(), new ItemStack(item), n5, n6);
             ++n3;
         }
         RenderHelper.disableStandardItemLighting();
@@ -92,7 +92,7 @@ public class XRayOptionsElement
                     if (CheatBreaker.getInstance().moduleManager.xray.isEnabled()) {
                         Minecraft.getMinecraft().renderGlobal.loadRenderers();
                     }
-                    Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                    Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                 }
                 ++n5;
             }

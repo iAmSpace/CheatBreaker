@@ -103,14 +103,14 @@ public class VoiceChatGui extends AbstractGui {
                 if (this.voiceChannel == cheatBreaker.getNetHandler().getVoiceChannel() || !lIIIllIIIIlIIllIIIIIIIlll3.IlIlllIIIIllIllllIllIIlIl().equals(this.voiceChannel.lIIIIIIIIIlIllIIllIlIIlIl())) continue;
                 lIIIllIIIIlIIllIIIIIIIlll3.IlllIllIlIIIIlIIlIIllIIIl();
             }
-            Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+            Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.voiceChannel = voiceChannel;
             if (this.voiceChannel == cheatBreaker.getNetHandler().getVoiceChannel()) continue;
             randomAssButton.IllIIIIIIIlIlIllllIIllIII();
         }
         if (this.voiceChannel != null) {
             if (this.joinChannelButton.isMouseInside(f, f2)) {
-                Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                 cheatBreaker.getNetHandler().sendPacketToQueue(new PacketVoiceMute(this.voiceChannel.getUUID()));
                 for (GradientTextButton lIIIllIIIIlIIllIIIIIIIlll2 : this.someRandomAssButtons) {
                     lIIIllIIIIlIIllIIIIIIIlll2.IlllIllIlIIIIlIIlIIllIIIl();
@@ -123,7 +123,7 @@ public class VoiceChatGui extends AbstractGui {
             if (this.undeafenButton.isMouseInside(f, f2)) {
                 boolean bl;
                 UUID iterator = this.mc.thePlayer.getGameProfile().getId();
-                Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                 cheatBreaker.getNetHandler().sendPacketToQueue(new PacketVoiceMute(iterator));
                 if (!cheatBreaker.getNetHandler().getUuidList().removeIf(uUID2 -> uUID2.equals(iterator))) {
                     cheatBreaker.getNetHandler().getUuidList().add(iterator);
@@ -135,7 +135,7 @@ public class VoiceChatGui extends AbstractGui {
     }
 
     @Override
-    public void onMouseReleased(float f, float f2, int n) {
+    public void onmouseMovedOrUp(float f, float f2, int n) {
     }
 
     /*
@@ -198,7 +198,7 @@ public class VoiceChatGui extends AbstractGui {
             float f7 = f4 + (float)n * f5;
             boolean bl2 = bl = f > f3 + (float)158 && f < f3 + (float)184 && f2 > f7 && f2 < f7 + f5;
             if (!voiceUser.getUUID().equals(this.mc.thePlayer.getUniqueID()) && bl) {
-                Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+                Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                 cheatBreaker.getNetHandler().sendPacketToQueue(new PacketVoiceMute(voiceUser.getUUID()));
                 if (!cheatBreaker.getNetHandler().getUuidList().removeIf(uUID -> uUID.equals(voiceUser.getUUID()))) {
                     cheatBreaker.getNetHandler().getUuidList().add(voiceUser.getUUID());

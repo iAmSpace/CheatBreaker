@@ -3,16 +3,16 @@ package com.cheatbreaker.client.websocket;
 import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.config.Profile;
 import com.cheatbreaker.client.nethandler.ByteBufWrapper;
-import com.cheatbreaker.client.ui.mainmenu.AbstractElement;
-import com.cheatbreaker.client.ui.overlay.Alert;
-import com.cheatbreaker.client.ui.overlay.OverlayGui;
+import com.cheatbreaker.client.ui.overlay.*;
 import com.cheatbreaker.client.ui.overlay.element.MessagesElement;
 import com.cheatbreaker.client.ui.overlay.friend.FriendRequest;
 import com.cheatbreaker.client.ui.overlay.friend.FriendRequestElement;
 import com.cheatbreaker.client.util.cosmetic.Cosmetic;
+import com.cheatbreaker.client.ui.mainmenu.AbstractElement;
 import com.cheatbreaker.client.util.friend.Friend;
 import com.cheatbreaker.client.util.friend.Status;
 import com.cheatbreaker.client.util.thread.WSReconnectThread;
+import com.cheatbreaker.client.websocket.client.WSPacketClientJoinServerResponse;
 import com.cheatbreaker.client.websocket.client.*;
 import com.cheatbreaker.client.websocket.server.*;
 import com.cheatbreaker.client.websocket.shared.*;
@@ -34,7 +34,6 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ServerHandshake;
 
-import javax.crypto.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -51,6 +50,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import javax.crypto.*;
 
 public class AssetsWebSocket extends WebSocketClient {
     private final Minecraft minecraft = Minecraft.getMinecraft();
@@ -275,7 +275,7 @@ public class AssetsWebSocket extends WebSocketClient {
                 EntityPlayer lIllIIIIlIIlIllIIIlIlIlll2 = this.minecraft.theWorld == null ? null : this.minecraft.theWorld.getPlayerEntityByName(string);
                 if (!cosmetic.isEquipped() || !(lIllIIIIlIIlIllIIIlIlIlll2 instanceof AbstractClientPlayer)) continue;
                 if (cosmetic.getName().equals("cape")) {
-//                    ((AbstractClientPlayer)lIllIIIIlIIlIllIIIlIlIlll2).setLocationOfCape(cosmetic.getLocation());
+//                    ((AbstractClientPlayer)lIllIIIIlIIlIllIIIlIlIlll2).setLocationOfCape(cosmetic.getLocation()); // TODO fix
                     //lIllIIIIlIIlIllIIIlIlIlll2.lIIIIlIIllIIlIIlIIIlIIllI(cosmetic);
                     //continue;
                 }
@@ -316,7 +316,7 @@ public class AssetsWebSocket extends WebSocketClient {
         PublicKey publicKey = packetJoinServer.getPublicKey();
         String string = new BigInteger(CryptManager.getServerIdHash("", publicKey, secretKey)).toString(16);
         try {
-            this.createSessionService().joinServer(this.minecraft.getSession().getProfile(), this.minecraft.getSession().getToken(), string);
+            this.createSessionService().joinServer(this.minecraft.getSession().func_148256_e(), this.minecraft.getSession().getToken(), string);
         }
         catch (AuthenticationUnavailableException authenticationUnavailableException) {
             Alert.displayMessage("Authentication Unavailable", authenticationUnavailableException.getMessage());
@@ -414,7 +414,7 @@ public class AssetsWebSocket extends WebSocketClient {
 
     // crashes the client in obnoxious ways.
     public void handleForceCrash(WSPacketForceCrash packetForceCrash) {
-//        Minecraft.getMinecraft().forceCrash = true;
+//        Minecraft.getMinecraft().forceCrash = true; // NOT TODO: FIX
     }
 
     public void lIIIIlIIllIIlIIlIIIlIIllI(Profile iIlIllllIIlIlIIIlllIIllIl) {

@@ -105,7 +105,7 @@ public class CBModulePlaceGui extends GuiScreen {
         ScaledResolution scaledResolution = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
         CBGuiAnchor cBGuiAnchor = CBAnchorHelper.getAnchor(n, n2, scaledResolution);
         this.module.setAnchor(cBGuiAnchor);
-        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
         this.module.setState(true);
         CBModulesGui modulesGui = new CBModulesGui();
         this.mc.displayGuiScreen(modulesGui);

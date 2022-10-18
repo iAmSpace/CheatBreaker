@@ -34,7 +34,7 @@ public class TitleManager {
             if ((double)f3 <= 0.8611111044883728 * 0.17419354972680576) {
                 f3 = 1.6f * 0.09375f;
             }
-            this.mc.fontRendererObj.drawStringWithShadow(Title.IlIlIIIlllIIIlIlllIlIllIl(title), (int)(((float)(lIllIllIlIIllIllIlIlIIlIl2.getResolution().getScaledWidth() / 2) / f) - (this.mc.fontRendererObj.getStringWidth(Title.IlIlIIIlllIIIlIlllIlIllIl(title)) / 2f)), (int)(((float)(lIllIllIlIIllIllIlIlIIlIl2.getResolution().getScaledHeight() / 2 - this.mc.fontRendererObj.FONT_HEIGHT / 2) + f2) / f), new Color(1.0f, 1.0f, 1.0f, f3).getRGB());
+            this.mc.fontRenderer.drawStringWithShadow(Title.IlIlIIIlllIIIlIlllIlIllIl(title), (int)(((float)(lIllIllIlIIllIllIlIlIIlIl2.getResolution().getScaledWidth() / 2) / f) - (this.mc.fontRenderer.getStringWidth(Title.IlIlIIIlllIIIlIlllIlIllIl(title)) / 2f)), (int)(((float)(lIllIllIlIIllIllIlIlIIlIl2.getResolution().getScaledHeight() / 2 - this.mc.fontRenderer.FONT_HEIGHT / 2) + f2) / f), new Color(1.0f, 1.0f, 1.0f, f3).getRGB());
             GL11.glScalef(1.0f / f, 1.0f / f, 1.0f / f);
         }
         GL11.glDisable(3042);
