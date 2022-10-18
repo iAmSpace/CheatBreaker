@@ -30,6 +30,7 @@ archivesBaseName = "${project.archives_base}-${project.minecraft_version}"
 minecraft {
     version = "${project.minecraft_version}-${project.forge_version}"
     runDir = "run"
+	mappings = "stable_12"
 	replace '@VERSION@', project.version
 }
 
@@ -39,8 +40,8 @@ targetCompatibility = 1.8
 
 repositories {
 	maven {
-		name = "chickenbones"
-		url = "http://chickenbones.net/maven/"
+		name = "ChickenBones"
+		url = "https://chickenbones.net/maven/"
 	}
 }
 

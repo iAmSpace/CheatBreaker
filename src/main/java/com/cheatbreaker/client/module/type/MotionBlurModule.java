@@ -24,12 +24,12 @@ public class MotionBlurModule extends AbstractModule {
 
     public void bindShader() {
 //        if (OpenGlHelper.isFramebufferEnabled() && OpenGlHelper.shadersSupported) {
-//            if (net.minecraft.entityRenderer.theShaderGroup != null) {
-//                net.minecraft.entityRenderer.theShaderGroup.deleteShaderGroup();
+//            if (minecraft.entityRenderer.theShaderGroup != null) {
+//                minecraft.entityRenderer.theShaderGroup.deleteShaderGroup();
 //            }
 //            try {
-//                net.minecraft.entityRenderer.theShaderGroup = new ShaderGroup(net.minecraft.getTextureManager(), net.minecraft.entityRenderer.resourceManager, net.minecraft.getFramebuffer(), new ResourceLocation("shaders/post/motionblur.json"));
-//                net.minecraft.entityRenderer.theShaderGroup.createBindFramebuffers(net.minecraft.displayWidth, net.minecraft.displayHeight);
+//                minecraft.entityRenderer.theShaderGroup = new ShaderGroup(minecraft.getTextureManager(), minecraft.entityRenderer.resourceManager, minecraft.getFramebuffer(), new ResourceLocation("shaders/post/motionblur.json"));
+//                minecraft.entityRenderer.theShaderGroup.createBindFramebuffers(minecraft.displayWidth, minecraft.displayHeight);
 //            }
 //            catch (Exception exception) {
 //                // empty catch block
@@ -39,9 +39,9 @@ public class MotionBlurModule extends AbstractModule {
 
     private void drawShader() {
 //        bindShader();
-//        ShaderGroup shaderGroup = net.minecraft.entityRenderer.getShaderGroup();
+//        ShaderGroup shaderGroup = minecraft.entityRenderer.getShaderGroup();
 //        try {
-//            if (this.net.minecraft.entityRenderer.isShaderActive() && this.net.minecraft.thePlayer != null) {
+//            if (this.minecraft.entityRenderer.isShaderActive() && this.minecraft.thePlayer != null) {
 //                for (Shader shader : shaderGroup.listShaders) {
 //                    ShaderUniform uniform = shader.getShaderManager().func_147991_a("Phosphor");
 //                    if (uniform == null) continue;

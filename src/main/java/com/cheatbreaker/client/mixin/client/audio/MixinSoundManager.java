@@ -35,7 +35,7 @@ public class MixinSoundManager implements SoundManagerBridge {
         SoundSystem returnable = null;
 /*        try {
             SoundHandler soundHandler = Minecraft.getMinecraft().getSoundHandler();
-            Class<?> oclass = Class.forName("net.net.minecraft.client.audio.SoundManager");
+            Class<?> oclass = Class.forName("net.minecraft.client.audio.SoundManager");
             Object object = oclass.getField("sndManager").get(soundHandler);
             returnable = (SoundSystem) oclass.getField("sndSystem").get(object);
         }
