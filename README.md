@@ -29,5 +29,5 @@ No, in all seriousness though, I think making CheatBreaker a Forge mod and open 
 5. Launch Forge 1.7.10 from MultiMC
 
 ---
-*Don't worry, links to CheatBreaker.jar coming soon*
+#### *Don't worry, links to CheatBreaker.jar coming soon*
 ---
