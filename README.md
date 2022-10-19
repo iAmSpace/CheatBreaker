@@ -4,6 +4,10 @@ You can view the base of this [here](https://github.com/Decencies/CheatBreaker).
 
 Forge time!
 
+## Download
+
+The download is currently not available. You can build the repo into a Forge mod by installing IntelliJ and importing the Gradle project. If you do not know how to do this, please search on Google.
+
 ## Why?
 
 funy
