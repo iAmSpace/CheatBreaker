@@ -413,21 +413,21 @@ public class CheatBreaker {
 
     @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
-        Minecraft mc = Minecraft.getMinecraft();
-        ScaledResolution scaledresolution = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
+        if (event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE) {
+            Minecraft mc = Minecraft.getMinecraft();
+            ScaledResolution scaledresolution = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
 
-        if (!mc.gameSettings.showDebugInfo) {
-            CheatBreaker.getInstance().getEventBus().callEvent(new GuiDrawEvent(scaledresolution));
-        }
+            if (!mc.gameSettings.showDebugInfo) {
+                CheatBreaker.getInstance().getEventBus().callEvent(new GuiDrawEvent(scaledresolution));
+            }
 
-        if (mc.currentScreen instanceof CBModulesGui || mc.currentScreen instanceof CBModulePlaceGui) {
-            CheatBreaker.getInstance().getEventBus().callEvent(new RenderPreviewEvent(scaledresolution));
-        }
+            if (mc.currentScreen instanceof CBModulesGui || mc.currentScreen instanceof CBModulePlaceGui) {
+                CheatBreaker.getInstance().getEventBus().callEvent(new RenderPreviewEvent(scaledresolution));
+            }
 
-        if (mc.currentScreen == null) {
-            OverlayGui.getInstance().renderGameOverlay();
+            if (mc.currentScreen == null) {
+                OverlayGui.getInstance().renderGameOverlay();
+            }
         }
     }
-
-
 }

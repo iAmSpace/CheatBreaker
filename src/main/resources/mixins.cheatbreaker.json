@@ -11,12 +11,14 @@
     "client.gui.MixinFontRenderer",
     "client.renderer.entity.MixinRender",
     "client.renderer.entity.MixinRendererLivingEntity",
+    "forge.MixinFMLClientHandler",
     "forge.MixinSplashProgress",
     "util.MixinTimer"
   ],
   "client": [
     "client.entity.MixinAbstractClientPlayer",
     "client.gui.MixinGuiIngame",
+    "client.gui.MixinGuiMultiplayer",
     "client.network.MixinNetHandlerPlayClient",
     "client.renderer.MixinTessellator"
   ]
