@@ -185,8 +185,6 @@ public abstract class MixinMinecraft implements MinecraftBridge {
         }
     }
 
-    private LoadingScreen cbLoadingScreen;
-
     /**
      * @author iAmSpace
      * @reason CheatBreaker init
@@ -305,7 +303,7 @@ public abstract class MixinMinecraft implements MinecraftBridge {
         this.mcSoundHandler = new SoundHandler(this.mcResourceManager, this.gameSettings);
         this.mcResourceManager.registerReloadListener(this.mcSoundHandler);
         this.mcMusicTicker = new MusicTicker(Minecraft.getMinecraft());
-        this.cbLoadingScreen.newMessage("Font Renderers"); // CB
+        CheatBreaker.cbLoadingScreen.newMessage("Font Renderers"); // CB
         this.fontRenderer = new FontRenderer(this.gameSettings, new ResourceLocation("textures/font/ascii.png"), this.renderEngine, false);
 
         if (this.gameSettings.language != null)
@@ -321,9 +319,9 @@ public abstract class MixinMinecraft implements MinecraftBridge {
         this.mcResourceManager.registerReloadListener(new FoliageColorReloadListener());
 //        cpw.mods.fml.common.ProgressManager.ProgressBar bar= cpw.mods.fml.common.ProgressManager.push("Rendering Setup", 9, true);
 //        bar.step("Loading Render Manager");
-        this.cbLoadingScreen.newMessage("Items"); // CB
+        CheatBreaker.cbLoadingScreen.newMessage("Items"); // CB
         RenderManager.instance.itemRenderer = new ItemRenderer(Minecraft.getMinecraft());
-        this.cbLoadingScreen.newMessage("Entities"); // CB
+        CheatBreaker.cbLoadingScreen.newMessage("Entities"); // CB
 //        bar.step("Loading Entity Renderer");
         this.entityRenderer = new EntityRenderer(Minecraft.getMinecraft(), this.mcResourceManager);
         this.mcResourceManager.registerReloadListener(this.entityRenderer);
@@ -361,9 +359,9 @@ public abstract class MixinMinecraft implements MinecraftBridge {
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         this.checkGLError("Startup");
 //        bar.step("Render Global instance");
-        this.cbLoadingScreen.newMessage("World"); // CB
+        CheatBreaker.cbLoadingScreen.newMessage("World"); // CB
         this.renderGlobal = new RenderGlobal(Minecraft.getMinecraft());
-        this.cbLoadingScreen.newMessage("Blocks"); // CB
+        CheatBreaker.cbLoadingScreen.newMessage("Blocks"); // CB
 //        bar.step("Building Blocks Texture");
         this.textureMapBlocks = new TextureMap(0, "textures/blocks", true);
 //        bar.step("Anisotropy and Mipmaps");
@@ -375,13 +373,13 @@ public abstract class MixinMinecraft implements MinecraftBridge {
         this.renderEngine.loadTextureMap(TextureMap.locationItemsTexture, new TextureMap(1, "textures/items", true));
 //        bar.step("Viewport");
         GL11.glViewport(0, 0, this.displayWidth, this.displayHeight);
-        this.cbLoadingScreen.newMessage("Effects"); // CB
+        CheatBreaker.cbLoadingScreen.newMessage("Effects"); // CB
         this.effectRenderer = new EffectRenderer(this.theWorld, this.renderEngine);
 //        cpw.mods.fml.common.ProgressManager.pop(bar);
         FMLClientHandler.instance().finishMinecraftLoading();
         this.checkGLError("Post startup");
         this.ingameGUI = new net.minecraftforge.client.GuiIngameForge(Minecraft.getMinecraft());
-        this.cbLoadingScreen.newMessage("Mods");
+        CheatBreaker.cbLoadingScreen.newMessage("Mods");
         (CheatBreaker.getInstance() == null ? new CheatBreaker() : CheatBreaker.getInstance()).initialize();
         if (this.serverName != null)
         {
