@@ -1,18 +1,17 @@
 package com.cheatbreaker.client.ui.fading;
 
-public class FloatFade
-        extends AbstractFade {
-    public FloatFade(long l) {
-        super(l, 1.0f);
+public class FloatFade extends AbstractFade {
+    public FloatFade(long duration) {
+        super(duration, 1.0f);
     }
 
-    public FloatFade(long l, float f) {
-        super(l, f);
+    public FloatFade(long duration, float f) {
+        super(duration, f);
     }
 
     @Override
     protected float getValue() {
-        return (float)(this.IlllIIIlIlllIllIlIIlllIlI - this.llIIlllIIIIlllIllIlIlllIl()) / (float)this.IlllIIIlIlllIllIlIIlllIlI;
+        return (float)(this.duration - this.llIIlllIIIIlllIllIlIlllIl()) / (float)this.duration;
     }
 }
 

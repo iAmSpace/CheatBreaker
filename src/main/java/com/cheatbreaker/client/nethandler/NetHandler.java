@@ -77,7 +77,7 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
         this.lIIIIlIIllIIlIIlIIIlIIllI();
     }
     public void lIIIIlIIllIIlIIlIIIlIIllI() {
-        CheatBreaker.getInstance().getTitleManager().lIIIIlIIllIIlIIlIIIlIIllI().clear();
+        CheatBreaker.getInstance().getTitleManager().getTitles().clear();
 //        IIIlllIllIIllIllIlIIIllII.lIIIIlIIllIIlIIlIIIlIIllI(null);
         MiniMapModule.state = ModuleRule.MINIMAP_NOT_ALLOWED;
         VoxelMap voxelMap = CheatBreaker.getInstance().getModuleManager().minmap.getVoxelMap();
@@ -255,11 +255,11 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
 
     @Override
     public void handleTitle(PacketTitle packet) {
-        Title.TitleType titleEnum = Title.TitleType.title;
+        Title.TitleType titleEnum = Title.TitleType.TITLE;
         if (packet.getType().toLowerCase().equals("subtitle")) {
-            titleEnum = Title.TitleType.subtitle;
+            titleEnum = Title.TitleType.SUBTITLE;
         }
-        CheatBreaker.getInstance().getTitleManager().lIIIIlIIllIIlIIlIIIlIIllI().add(new Title(packet.getMessage(), titleEnum, packet.getScale(), packet.getDisplayTimeMs(), packet.getFadeInTimeMs(), packet.getFadeOutTimeMs()));
+        CheatBreaker.getInstance().getTitleManager().getTitles().add(new Title(packet.getMessage(), titleEnum, packet.getScale(), packet.getDisplayTimeMs(), packet.getFadeInTimeMs(), packet.getFadeOutTimeMs()));
     }
 
     @Override

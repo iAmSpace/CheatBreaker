@@ -39,15 +39,15 @@ public class GradientTextButton extends AbstractElement {
         boolean bl2;
         boolean bl3 = bl2 = bl && this.isMouseInside(f, f2);
         if (this.IlIlllIIIIllIllllIllIIlIl != null && this.IllIIIIIIIlIlIllllIIllIII.IIIIllIIllIIIIllIllIIIlIl()) {
-            this.IllIIIIIIIlIlIllllIIllIII.lIIIIIIIIIlIllIIllIlIIlIl(this.IlIlllIIIIllIllllIllIIlIl[0]);
-            this.IllIIIIIIIlIlIllllIIllIII.IlllIIIlIlllIllIlIIlllIlI(this.IlIlllIIIIllIllllIllIIlIl[1]);
-            this.lIIIIllIIlIlIllIIIlIllIlI.lIIIIIIIIIlIllIIllIlIIlIl(this.IlIlllIIIIllIllllIllIIlIl[2]);
-            this.lIIIIllIIlIlIllIIIlIllIlI.IlllIIIlIlllIllIlIIlllIlI(this.IlIlllIIIIllIllllIllIIlIl[3]);
-            this.IlllIllIlIIIIlIIlIIllIIIl.lIIIIIIIIIlIllIIllIlIIlIl(this.IlIlllIIIIllIllllIllIIlIl[4]);
-            this.IlllIllIlIIIIlIIlIIllIIIl.IlllIIIlIlllIllIlIIlllIlI(this.IlIlllIIIIllIllllIllIIlIl[5]);
+            this.IllIIIIIIIlIlIllllIIllIII.setStartColor(this.IlIlllIIIIllIllllIllIIlIl[0]);
+            this.IllIIIIIIIlIlIllllIIllIII.setEndColor(this.IlIlllIIIIllIllllIllIIlIl[1]);
+            this.lIIIIllIIlIlIllIIIlIllIlI.setStartColor(this.IlIlllIIIIllIllllIllIIlIl[2]);
+            this.lIIIIllIIlIlIllIIIlIllIlI.setEndColor(this.IlIlllIIIIllIllllIllIIlIl[3]);
+            this.IlllIllIlIIIIlIIlIIllIIIl.setStartColor(this.IlIlllIIIIllIllllIllIIlIl[4]);
+            this.IlllIllIlIIIIlIIlIIllIIIl.setEndColor(this.IlIlllIIIIllIllllIllIIlIl[5]);
             this.IlIlllIIIIllIllllIllIIlIl = null;
         }
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.x, this.y, this.x + this.width, this.y + this.height, this.IllIIIIIIIlIlIllllIIllIII.lIIIIIIIIIlIllIIllIlIIlIl(bl2).getRGB(), this.lIIIIllIIlIlIllIIIlIllIlI.lIIIIIIIIIlIllIIllIlIIlIl(bl2).getRGB(), this.IlllIllIlIIIIlIIlIIllIIIl.lIIIIIIIIIlIllIIllIlIIlIl(bl2).getRGB());
+        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.x, this.y, this.x + this.width, this.y + this.height, this.IllIIIIIIIlIlIllllIIllIII.get(bl2).getRGB(), this.lIIIIllIIlIlIllIIIlIllIlI.get(bl2).getRGB(), this.IlllIllIlIIIIlIIlIIllIIIl.get(bl2).getRGB());
         CheatBreaker.getInstance().robotoRegular13px.drawCenteredString(this.IIIllIllIlIlllllllIlIlIII, this.x + this.width / 2.0f, this.y + 2.0f, -1);
     }
 

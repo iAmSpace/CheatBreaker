@@ -7,26 +7,26 @@ public class Title {
     private final long displayTimeMs;
     private final long fadeInTimeMs;
     private final long fadeOutTimeMs;
-    protected final long currentTimeMillis = System.currentTimeMillis();
+    protected final long startTime = System.currentTimeMillis();
 
-    public Title(String string, TitleType titleEnum, float f, long l, long l2, long l3) {
-        this.message = string;
-        this.scale = f;
-        this.titleEnum = titleEnum;
-        this.displayTimeMs = l == 0L ? 5000L : l;
-        this.fadeInTimeMs = l2;
-        this.fadeOutTimeMs = l3;
+    public Title(String message, TitleType type, float scale, long displayTimeMs, long fadeInTimeMs, long fadeOutTimeMs) {
+        this.message = message;
+        this.scale = scale;
+        this.titleEnum = type;
+        this.displayTimeMs = displayTimeMs == 0L ? 5000L : displayTimeMs;
+        this.fadeInTimeMs = fadeInTimeMs;
+        this.fadeOutTimeMs = fadeOutTimeMs;
     }
 
-    public boolean lIIIIlIIllIIlIIlIIIlIIllI() {
-        return System.currentTimeMillis() < this.currentTimeMillis + this.fadeInTimeMs;
+    public boolean isFadingIn() {
+        return System.currentTimeMillis() < this.startTime + this.fadeInTimeMs;
     }
 
-    public boolean lIIIIIIIIIlIllIIllIlIIlIl() {
-        return System.currentTimeMillis() > this.currentTimeMillis + this.displayTimeMs - this.fadeOutTimeMs;
+    public boolean isFullyVisible() {
+        return System.currentTimeMillis() > this.startTime + this.displayTimeMs - this.fadeOutTimeMs;
     }
 
-    public TitleType getTitleEnum() {
+    public TitleType getType() {
         return this.titleEnum;
     }
 
@@ -50,33 +50,32 @@ public class Title {
         return this.fadeOutTimeMs;
     }
 
-    static TitleType lIIIIlIIllIIlIIlIIIlIIllI(Title llllIlIIIIIllIIlIlllIllll2) {
-        return llllIlIIIIIllIIlIlllIllll2.titleEnum;
+    static TitleType getType(Title title) {
+        return title.titleEnum;
     }
 
-    static float lIIIIIIIIIlIllIIllIlIIlIl(Title llllIlIIIIIllIIlIlllIllll2) {
-        return llllIlIIIIIllIIlIlllIllll2.scale;
+    static float getScale(Title title) {
+        return title.scale;
     }
 
-    static long IlllIIIlIlllIllIlIIlllIlI(Title llllIlIIIIIllIIlIlllIllll2) {
-        return llllIlIIIIIllIIlIlllIllll2.fadeInTimeMs;
+    static long getFadeInTime(Title title) {
+        return title.fadeInTimeMs;
     }
 
-    static long IIIIllIlIIIllIlllIlllllIl(Title llllIlIIIIIllIIlIlllIllll2) {
-        return llllIlIIIIIllIIlIlllIllll2.displayTimeMs;
+    static long getDisplayTime(Title title) {
+        return title.displayTimeMs;
     }
 
-    static long IIIIllIIllIIIIllIllIIIlIl(Title llllIlIIIIIllIIlIlllIllll2) {
-        return llllIlIIIIIllIIlIlllIllll2.fadeOutTimeMs;
+    static long getFadeOutTime(Title title) {
+        return title.fadeOutTimeMs;
     }
 
-    static String IlIlIIIlllIIIlIlllIlIllIl(Title llllIlIIIIIllIIlIlllIllll2) {
-        return llllIlIIIIIllIIlIlllIllll2.message;
+    static String getMessage(Title title) {
+        return title.message;
     }
 
     public enum TitleType {
-        subtitle,
-        title;
-
+        SUBTITLE,
+        TITLE
     }
 }

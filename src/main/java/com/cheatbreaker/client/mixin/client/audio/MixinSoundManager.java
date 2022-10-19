@@ -20,9 +20,9 @@ public class MixinSoundManager implements SoundManagerBridge {
         return null;
     }
 
-    public void playSound(String string, float f) {
+    public void playSound(String sound, float volume) {
         if (this.loaded) {
-            ResourceLocation resourceLocation = new ResourceLocation("client/sound/" + string + ".ogg");
+            ResourceLocation resourceLocation = new ResourceLocation("client/sound/" + sound + ".ogg");
             String string2 = UUID.randomUUID().toString();
 //            this.sndSystem.newStreamingSource(false, string2, getURLForSoundResource(resourceLocation), resourceLocation.toString(), false, 0.0f, 0.0f, 0.0f, 0, SoundSystemConfig.getDefaultRolloff());
 //            this.sndSystem.setPitch(string2, 1.0f);

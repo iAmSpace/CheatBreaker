@@ -15,6 +15,6 @@ public class TextButtonElement extends AbstractElement {
 
     @Override
     protected void handleElementDraw(float f, float f2, boolean bl) {
-        CheatBreaker.getInstance().robotoBold14px.drawString(this.IIIllIllIlIlllllllIlIlIII, this.x + (float)6, this.y + (float)6, this.IllIIIIIIIlIlIllllIIllIII.lIIIIIIIIIlIllIIllIlIIlIl(this.isMouseInside(f, f2) && bl).getRGB());
+        CheatBreaker.getInstance().robotoBold14px.drawString(this.IIIllIllIlIlllllllIlIlIII, this.x + (float)6, this.y + (float)6, this.IllIIIIIIIlIlIllllIIllIII.get(this.isMouseInside(f, f2) && bl).getRGB());
     }
 }

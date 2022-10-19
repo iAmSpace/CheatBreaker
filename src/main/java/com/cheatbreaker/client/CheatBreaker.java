@@ -6,11 +6,14 @@ import com.cheatbreaker.client.config.ConfigManager;
 import com.cheatbreaker.client.config.GlobalSettings;
 import com.cheatbreaker.client.config.Profile;
 import com.cheatbreaker.client.event.EventBus;
+import com.cheatbreaker.client.event.type.GuiDrawEvent;
 import com.cheatbreaker.client.event.type.KeyboardEvent;
 import com.cheatbreaker.client.event.type.PluginMessageEvent;
+import com.cheatbreaker.client.event.type.RenderPreviewEvent;
 import com.cheatbreaker.client.module.AbstractModule;
 import com.cheatbreaker.client.module.ModuleManager;
 import com.cheatbreaker.client.nethandler.NetHandler;
+import com.cheatbreaker.client.ui.module.CBModulePlaceGui;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
 import com.cheatbreaker.client.ui.overlay.Alert;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
@@ -25,15 +28,17 @@ import com.cheatbreaker.client.util.title.TitleManager;
 import com.cheatbreaker.client.util.voicechat.VoiceChatManager;
 import com.cheatbreaker.client.util.worldborder.WorldBorderManager;
 import com.cheatbreaker.client.websocket.AssetsWebSocket;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
-import net.minecraft.client.resources.SkinManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Session;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
 
 import javax.sound.sampled.*;
@@ -46,7 +51,7 @@ import java.nio.file.Files;
 import java.util.*;
 
 @Getter
-@Mod(modid = "cheatbreaker", name = "CheatBreaker")
+@Mod(modid = "cheatbreaker", name = "CheatBreaker", version = "3ac10ce")
 public class CheatBreaker {
 
     @Getter
@@ -110,7 +115,9 @@ public class CheatBreaker {
     private String gitBranch = "?";
 
     private FriendsManager friendsManager;
-    private Status statusEnum;
+    @Getter
+    @Setter
+    private Status status;
 
     @Setter
     private boolean consoleAllowed;
@@ -129,6 +136,8 @@ public class CheatBreaker {
 
     public CheatBreaker() {
         CheatBreaker.instance = this;
+
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     public <T> void reverse(Queue<T> queue) {
@@ -162,7 +171,7 @@ public class CheatBreaker {
         this.titleManager = new TitleManager();
         cosmetics.add(new Cosmetic("Steve", "CheatBreaker Cape", 1.0f, true, "client/defaults/cb.png"));
         cosmetics.add(new Cosmetic("Steve", "CheatBreaker Black Cape", 1.0f, false, "client/defaults/cb_black.png"));
-        this.statusEnum = Status.AWAY;
+        this.status = Status.AWAY;
         this.radioManager = new CBDashManager();
         this.loadFonts();
         System.out.println("[CB] Loaded all fonts");
@@ -309,13 +318,13 @@ public class CheatBreaker {
         }
     }
 
-    public void sendSound(final String s) {
-        this.sendSoundVol(s, 1.0f);
+    public void sendSound(final String sound) {
+        this.sendSound(sound, 1.0f);
     }
 
-    public void sendSoundVol(final String s, final float n) {
+    public void sendSound(final String sound, final float volume) {
         if (!(boolean)this.globalSettings.muteCheatBreakerSounds.getValue())
-            Ref.getMinecraft().bridge$getSoundHandler().bridge$getSoundManager().playSound(s, n);
+            Ref.getMinecraft().bridge$getSoundHandler().bridge$getSoundManager().playSound(sound, volume);
     }
 
     public ResourceLocation getHeadLocation(String displayName, String uuid) {
@@ -374,14 +383,6 @@ public class CheatBreaker {
         return websocket;
     }
 
-    public Status getStatus() {
-        return statusEnum;
-    }
-
-    public void setStatus(Status cbStatusEnum) {
-        this.statusEnum = cbStatusEnum;
-    }
-
     public String getStatusString() {
         String s;
         switch (this.getStatus()) {
@@ -407,10 +408,25 @@ public class CheatBreaker {
 
     public void removeCosmeticsFromPlayer(final String playerId) {
         this.cosmetics.removeIf(cosmetic -> cosmetic.getPlayerId().equals(playerId));
-        this.cosmetics.removeIf(cosmetic -> cosmetic.getPlayerId().equals(playerId));
     }
 
-    public void func_152121_a(MinecraftProfileTexture.Type p_152121_1_, ResourceLocation p_152121_2_) {
-        // literally does nothing what is the point of this srsly
+    @SubscribeEvent
+    public void onRenderGameOverlay(RenderGameOverlayEvent event) {
+        Minecraft mc = Minecraft.getMinecraft();
+        ScaledResolution scaledresolution = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
+
+        if (!mc.gameSettings.showDebugInfo) {
+            CheatBreaker.getInstance().getEventBus().callEvent(new GuiDrawEvent(scaledresolution));
+        }
+
+        if (mc.currentScreen instanceof CBModulesGui || mc.currentScreen instanceof CBModulePlaceGui) {
+            CheatBreaker.getInstance().getEventBus().callEvent(new RenderPreviewEvent(scaledresolution));
+        }
+
+        if (mc.currentScreen == null) {
+            OverlayGui.getInstance().renderGameOverlay();
+        }
     }
+
+
 }

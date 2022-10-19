@@ -1,12 +1,12 @@
 package com.cheatbreaker.client.ui.fading;
 
 public abstract class AbstractFade {
-    protected long lIIIIlIIllIIlIIlIIIlIIllI;
+    protected long startTime;
     protected long lIIIIIIIIIlIllIIllIlIIlIl;
-    protected long IlllIIIlIlllIllIlIIlllIlI;
+    protected long duration;
     protected boolean IIIIllIlIIIllIlllIlllllIl = true;
     protected float IIIIllIIllIIIIllIllIIIlIl;
-    protected long IlIlIIIlllIIIlIlllIlIllIl;
+    protected long timeElapsed;
     protected final float IIIllIllIlIlllllllIlIlIII;
     private boolean IllIIIIIIIlIlIllllIIllIII;
     private int lIIIIllIIlIlIllIIIlIllIlI = 1;
@@ -14,22 +14,22 @@ public abstract class AbstractFade {
     private long IlIlllIIIIllIllllIllIIlIl;
     private boolean llIIlllIIIIlllIllIlIlllIl;
 
-    public AbstractFade(long l, float f) {
-        this.IlllIIIlIlllIllIlIIlllIlI = l;
+    public AbstractFade(long duration, float f) {
+        this.duration = duration;
         this.IIIllIllIlIlllllllIlIlIII = f;
     }
 
     protected abstract float getValue();
 
     public void lIIIIIIIIIlIllIIllIlIIlIl() {
-        this.lIIIIlIIllIIlIIlIIIlIIllI = System.currentTimeMillis();
+        this.startTime = System.currentTimeMillis();
         this.IIIIllIlIIIllIlllIlllllIl = true;
         this.IlIlllIIIIllIllllIllIIlIl = 0L;
     }
 
     public void lIIIIlIIllIIlIIlIIIlIIllI(float f) {
-        this.lIIIIlIIllIIlIIlIIIlIIllI = System.currentTimeMillis();
-        this.IlIlllIIIIllIllllIllIIlIl = f == 0.0f ? 0L : (long)((float)this.IlllIIIlIlllIllIlIIlllIlI * (1.0f - f));
+        this.startTime = System.currentTimeMillis();
+        this.IlIlllIIIIllIllllIllIIlIl = f == 0.0f ? 0L : (long)((float)this.duration * (1.0f - f));
         this.IIIIllIlIIIllIlllIlllllIl = true;
     }
 
@@ -38,7 +38,7 @@ public abstract class AbstractFade {
     }
 
     public boolean IIIIllIlIIIllIlllIlllllIl() {
-        return this.lIIIIlIIllIIlIIlIIIlIIllI != 0L;
+        return this.startTime != 0L;
     }
 
     public boolean IIIIllIIllIIIIllIllIIIlIl() {
@@ -46,7 +46,7 @@ public abstract class AbstractFade {
     }
 
     public void IlIlIIIlllIIIlIlllIlIllIl() {
-        this.lIIIIlIIllIIlIIlIIIlIIllI = 0L;
+        this.startTime = 0L;
         this.lIIIIllIIlIlIllIIIlIllIlI = 1;
     }
 
@@ -58,7 +58,7 @@ public abstract class AbstractFade {
             this.llIIlllIIIIlllIllIlIlllIl = false;
             this.lIIIIlIIllIIlIIlIIIlIIllI(this.IlIIlIIIIlIIIIllllIIlIllI());
         }
-        if (this.lIIIIlIIllIIlIIlIIIlIIllI == 0L) {
+        if (this.startTime == 0L) {
             return 0.0f;
         }
         float f = this.IlIIlIIIIlIIIIllllIIlIllI();
@@ -66,11 +66,11 @@ public abstract class AbstractFade {
     }
 
     public boolean IIIllIllIlIlllllllIlIlIII() {
-        return this.lIIIIlIIllIIlIIlIIIlIIllI != 0L && this.llIIlllIIIIlllIllIlIlllIl() > 0L;
+        return this.startTime != 0L && this.llIIlllIIIIlllIllIlIlllIl() > 0L;
     }
 
     private float IlIIlIIIIlIIIIllllIIlIllI() {
-        if (this.lIIIIlIIllIIlIIlIIIlIIllI == 0L) {
+        if (this.startTime == 0L) {
             return 0.0f;
         }
         if (this.llIIlllIIIIlllIllIlIlllIl() <= 0L) {
@@ -80,7 +80,7 @@ public abstract class AbstractFade {
     }
 
     public float IllIIIIIIIlIlIllllIIllIII() {
-        if (this.lIIIIlIIllIIlIIlIIIlIIllI == 0L) {
+        if (this.startTime == 0L) {
             return 0.0f;
         }
         if (this.IIIIllIIllIIIIllIllIIIlIl()) {
@@ -99,25 +99,25 @@ public abstract class AbstractFade {
     public void lIIIIllIIlIlIllIIIlIllIlI() {
         this.IIIIllIlIIIllIlllIlllllIl = false;
         this.IIIIllIIllIIIIllIllIIIlIl = this.getValue();
-        this.IlIlIIIlllIIIlIlllIlIllIl = System.currentTimeMillis() - this.lIIIIlIIllIIlIIlIIIlIIllI;
+        this.timeElapsed = System.currentTimeMillis() - this.startTime;
     }
 
     public void IlllIllIlIIIIlIIlIIllIIIl() {
-        this.lIIIIlIIllIIlIIlIIIlIIllI = System.currentTimeMillis() - this.IlIlIIIlllIIIlIlllIlIllIl;
+        this.startTime = System.currentTimeMillis() - this.timeElapsed;
         this.IIIIllIlIIIllIlllIlllllIl = true;
     }
 
     public long IlIlllIIIIllIllllIllIIlIl() {
-        long l = this.IIIIllIlIIIllIlllIlllllIl ? this.llIIlllIIIIlllIllIlIlllIl() : System.currentTimeMillis() - this.IlIlIIIlllIIIlIlllIlIllIl + this.IlllIIIlIlllIllIlIIlllIlI - System.currentTimeMillis();
-        return Math.min(this.IlllIIIlIlllIllIlIIlllIlI, Math.max(0L, l));
+        long l = this.IIIIllIlIIIllIlllIlllllIl ? this.llIIlllIIIIlllIllIlIlllIl() : System.currentTimeMillis() - this.timeElapsed + this.duration - System.currentTimeMillis();
+        return Math.min(this.duration, Math.max(0L, l));
     }
 
     protected long llIIlllIIIIlllIllIlIlllIl() {
-        return this.lIIIIlIIllIIlIIlIIIlIIllI + this.IlllIIIlIlllIllIlIIlllIlI - this.IlIlllIIIIllIllllIllIIlIl - System.currentTimeMillis();
+        return this.startTime + this.duration - this.IlIlllIIIIllIllllIllIIlIl - System.currentTimeMillis();
     }
 
     public long lIIlIlIllIIlIIIlIIIlllIII() {
-        return this.lIIIIlIIllIIlIIlIIIlIIllI;
+        return this.startTime;
     }
 
     public long IIIlllIIIllIllIlIIIIIIlII() {
@@ -125,7 +125,7 @@ public abstract class AbstractFade {
     }
 
     public long llIlIIIlIIIIlIlllIlIIIIll() {
-        return this.IlllIIIlIlllIllIlIIlllIlI;
+        return this.duration;
     }
 
     public boolean IIIlIIllllIIllllllIlIIIll() {
@@ -137,7 +137,7 @@ public abstract class AbstractFade {
     }
 
     public long lIIIIIllllIIIIlIlIIIIlIlI() {
-        return this.IlIlIIIlllIIIlIlllIlIllIl;
+        return this.timeElapsed;
     }
 
     public float IIIIIIlIlIlIllllllIlllIlI() {

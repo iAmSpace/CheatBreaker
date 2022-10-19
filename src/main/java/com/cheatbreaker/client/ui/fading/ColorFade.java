@@ -2,53 +2,52 @@ package com.cheatbreaker.client.ui.fading;
 
 import java.awt.*;
 
-public class ColorFade
-        extends ExponentialFade {
-    private int IllIIIIIIIlIlIllllIIllIII;
-    private int lIIIIllIIlIlIllIIIlIllIlI;
-    private boolean IlllIllIlIIIIlIIlIIllIIIl;
-    private Color IlIlllIIIIllIllllIllIIlIl;
-    private Color llIIlllIIIIlllIllIlIlllIl;
+public class ColorFade extends ExponentialFade {
+    private int startColor;
+    private int endColor;
+    private boolean switched;
+    private Color awtStartColor;
+    private Color awtEndColor;
 
-    public ColorFade(long l, int n, int n2) {
-        super(l);
-        this.IllIIIIIIIlIlIllllIIllIII = n;
-        this.lIIIIllIIlIlIllIIIlIllIlI = n2;
+    public ColorFade(long duration, int startColor, int endColor) {
+        super(duration);
+        this.startColor = startColor;
+        this.endColor = endColor;
     }
 
-    public ColorFade(int n, int n2) {
-        this(175L, n, n2);
+    public ColorFade(int startColor, int endColor) {
+        this(175L, startColor, endColor);
     }
 
-    public Color lIIIIIIIIIlIllIIllIlIIlIl(boolean bl) {
-        Color color = new Color(bl ? this.lIIIIllIIlIlIllIIIlIllIlI : this.IllIIIIIIIlIlIllllIIllIII, true);
-        if (bl && !this.IlllIllIlIIIIlIIlIIllIIIl) {
-            this.IlllIllIlIIIIlIIlIIllIIIl = true;
-            this.IlIlllIIIIllIllllIllIIlIl = new Color(this.IllIIIIIIIlIlIllllIIllIII, true);
-            this.llIIlllIIIIlllIllIlIlllIl = new Color(this.lIIIIllIIlIlIllIIIlIllIlI, true);
+    public Color get(boolean shouldSwitch) {
+        Color color = new Color(shouldSwitch ? this.endColor : this.startColor, true);
+        if (shouldSwitch && !this.switched) {
+            this.switched = true;
+            this.awtStartColor = new Color(this.startColor, true);
+            this.awtEndColor = new Color(this.endColor, true);
             this.lIIIIIIIIIlIllIIllIlIIlIl();
-        } else if (this.IlllIllIlIIIIlIIlIIllIIIl && !bl) {
-            this.IlllIllIlIIIIlIIlIIllIIIl = false;
-            this.IlIlllIIIIllIllllIllIIlIl = new Color(this.lIIIIllIIlIlIllIIIlIllIlI, true);
-            this.llIIlllIIIIlllIllIlIlllIl = new Color(this.IllIIIIIIIlIlIllllIIllIII, true);
+        } else if (this.switched && !shouldSwitch) {
+            this.switched = false;
+            this.awtStartColor = new Color(this.endColor, true);
+            this.awtEndColor = new Color(this.startColor, true);
             this.lIIIIIIIIIlIllIIllIlIIlIl();
         }
         if (this.IIIllIllIlIlllllllIlIlIII()) {
             float f = super.IllIIIIIIIlIlIllllIIllIII();
-            int n = (int)Math.abs(f * (float)this.llIIlllIIIIlllIllIlIlllIl.getRed() + (1.0f - f) * (float)this.IlIlllIIIIllIllllIllIIlIl.getRed());
-            int n2 = (int)Math.abs(f * (float)this.llIIlllIIIIlllIllIlIlllIl.getGreen() + (1.0f - f) * (float)this.IlIlllIIIIllIllllIllIIlIl.getGreen());
-            int n3 = (int)Math.abs(f * (float)this.llIIlllIIIIlllIllIlIlllIl.getBlue() + (1.0f - f) * (float)this.IlIlllIIIIllIllllIllIIlIl.getBlue());
-            int n4 = (int)Math.abs(f * (float)this.llIIlllIIIIlllIllIlIlllIl.getAlpha() + (1.0f - f) * (float)this.IlIlllIIIIllIllllIllIIlIl.getAlpha());
-            color = new Color(n, n2, n3, n4);
+            int red = (int)Math.abs(f * (float)this.awtEndColor.getRed() + (1.0f - f) * (float)this.awtStartColor.getRed());
+            int green = (int)Math.abs(f * (float)this.awtEndColor.getGreen() + (1.0f - f) * (float)this.awtStartColor.getGreen());
+            int blue = (int)Math.abs(f * (float)this.awtEndColor.getBlue() + (1.0f - f) * (float)this.awtStartColor.getBlue());
+            int alpha = (int)Math.abs(f * (float)this.awtEndColor.getAlpha() + (1.0f - f) * (float)this.awtStartColor.getAlpha());
+            color = new Color(red, green, blue, alpha);
         }
         return color;
     }
 
-    public void lIIIIIIIIIlIllIIllIlIIlIl(int n) {
-        this.IllIIIIIIIlIlIllllIIllIII = n;
+    public void setStartColor(int startColor) {
+        this.startColor = startColor;
     }
 
-    public void IlllIIIlIlllIllIlIIlllIlI(int n) {
-        this.lIIIIllIIlIlIllIIIlIllIlI = n;
+    public void setEndColor(int endColor) {
+        this.endColor = endColor;
     }
 }
