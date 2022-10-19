@@ -12,7 +12,7 @@ public class Vec2d {
         this.y = y;
     }
 
-    public Vec2d(com.sun.javafx.geom.Vec2d v) {
+    public Vec2d(Vec2d v) {
         this.set(v);
     }
 
@@ -20,7 +20,7 @@ public class Vec2d {
         this.set(v);
     }
 
-    public void set(com.sun.javafx.geom.Vec2d v) {
+    public void set(Vec2d v) {
         this.x = v.x;
         this.y = v.y;
     }
@@ -53,7 +53,7 @@ public class Vec2d {
         return vx * vx + vy * vy;
     }
 
-    public double distanceSq(com.sun.javafx.geom.Vec2d v) {
+    public double distanceSq(Vec2d v) {
         double vx = v.x - this.x;
         double vy = v.y - this.y;
         return vx * vx + vy * vy;
@@ -65,7 +65,7 @@ public class Vec2d {
         return Math.sqrt(vx * vx + vy * vy);
     }
 
-    public double distance(com.sun.javafx.geom.Vec2d v) {
+    public double distance(Vec2d v) {
         double vx = v.x - this.x;
         double vy = v.y - this.y;
         return Math.sqrt(vx * vx + vy * vy);
@@ -81,10 +81,10 @@ public class Vec2d {
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
-        } else if (!(obj instanceof com.sun.javafx.geom.Vec2d)) {
+        } else if (!(obj instanceof Vec2d)) {
             return false;
         } else {
-            com.sun.javafx.geom.Vec2d v = (com.sun.javafx.geom.Vec2d)obj;
+            Vec2d v = (Vec2d)obj;
             return this.x == v.x && this.y == v.y;
         }
     }

@@ -12,12 +12,12 @@ public class Vec2f {
         this.y = y;
     }
 
-    public Vec2f(com.sun.javafx.geom.Vec2f v) {
+    public Vec2f(Vec2f v) {
         this.x = v.x;
         this.y = v.y;
     }
 
-    public void set(com.sun.javafx.geom.Vec2f v) {
+    public void set(Vec2f v) {
         this.x = v.x;
         this.y = v.y;
     }
@@ -45,7 +45,7 @@ public class Vec2f {
         return vx * vx + vy * vy;
     }
 
-    public float distanceSq(com.sun.javafx.geom.Vec2f v) {
+    public float distanceSq(Vec2f v) {
         float vx = v.x - this.x;
         float vy = v.y - this.y;
         return vx * vx + vy * vy;
@@ -57,7 +57,7 @@ public class Vec2f {
         return (float)Math.sqrt((double)(vx * vx + vy * vy));
     }
 
-    public float distance(com.sun.javafx.geom.Vec2f v) {
+    public float distance(Vec2f v) {
         float vx = v.x - this.x;
         float vy = v.y - this.y;
         return (float)Math.sqrt((double)(vx * vx + vy * vy));
@@ -73,10 +73,10 @@ public class Vec2f {
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
-        } else if (!(obj instanceof com.sun.javafx.geom.Vec2f)) {
+        } else if (!(obj instanceof Vec2f)) {
             return false;
         } else {
-            com.sun.javafx.geom.Vec2f v = (com.sun.javafx.geom.Vec2f)obj;
+            Vec2f v = (Vec2f)obj;
             return this.x == v.x && this.y == v.y;
         }
     }
