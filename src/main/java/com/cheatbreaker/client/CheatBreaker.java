@@ -13,6 +13,7 @@ import com.cheatbreaker.client.event.type.RenderPreviewEvent;
 import com.cheatbreaker.client.module.AbstractModule;
 import com.cheatbreaker.client.module.ModuleManager;
 import com.cheatbreaker.client.nethandler.NetHandler;
+import com.cheatbreaker.client.ui.mainmenu.LoadingScreen;
 import com.cheatbreaker.client.ui.module.CBModulePlaceGui;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
 import com.cheatbreaker.client.ui.overlay.Alert;
@@ -57,7 +58,7 @@ public class CheatBreaker {
     @Getter
     public static CheatBreaker instance;
     public static byte[] processBytesAuth = "Decencies".getBytes(); // originally "Vote Trump 2020!" (jhalt's doing LMAO???)
-
+    public static LoadingScreen cbLoadingScreen;
     public List<Profile> profiles;
     public Profile activeProfile;
     public GlobalSettings globalSettings;

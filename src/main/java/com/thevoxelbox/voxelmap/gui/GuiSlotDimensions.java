@@ -1,5 +1,6 @@
 package com.thevoxelbox.voxelmap.gui;
 
+import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import com.thevoxelbox.voxelmap.gui.overridden.GuiSlotMinimap;
 import com.thevoxelbox.voxelmap.interfaces.IDimensionManager;
 import com.thevoxelbox.voxelmap.util.Dimension;
@@ -66,7 +67,7 @@ class GuiSlotDimensions
 	protected void overlayBackground(int par1, int par2, int par3, int par4) {
 	}
 
-	protected void drawSlot(int par1, int par2, int par3, int par4, Tessellator par5Tessellator, int x, int y) {
+	protected void drawSlot(int par1, int par2, int par3, int par4, TessellatorBridge par5Tessellator, int x, int y) {
 		Dimension dim = (Dimension) this.dimensionManager.getDimensions().get(par1);
 		String name = dim.name;
 		if ((name.equals("notLoaded")) || (name.equals("failedToLoad"))) {

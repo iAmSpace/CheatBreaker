@@ -5,6 +5,7 @@ import com.cheatbreaker.client.bridge.client.MinecraftBridge;
 import com.cheatbreaker.client.bridge.client.audio.SoundHandlerBridge;
 import com.cheatbreaker.client.event.type.ClickEvent;
 import com.cheatbreaker.client.event.type.KeyboardEvent;
+import com.cheatbreaker.client.event.type.LoadWorldEvent;
 import com.cheatbreaker.client.event.type.TickEvent;
 import com.cheatbreaker.client.ui.mainmenu.LoadingScreen;
 import com.cheatbreaker.client.ui.mainmenu.MainMenu;
@@ -23,6 +24,7 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.achievement.GuiAchievement;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
+import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.client.particle.EffectRenderer;
@@ -43,12 +45,15 @@ import net.minecraft.client.stream.NullStream;
 import net.minecraft.client.stream.TwitchStream;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.client.C16PacketClientStatus;
 import net.minecraft.profiler.Profiler;
+import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.stats.IStatStringFormat;
+import net.minecraft.stats.StatFileWriter;
 import net.minecraft.util.*;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.chunk.storage.AnvilSaveConverter;
@@ -84,142 +89,85 @@ import java.util.concurrent.FutureTask;
 public abstract class MixinMinecraft implements MinecraftBridge {
     @Shadow public abstract SoundHandler getSoundHandler();
     @Shadow private static int debugFPS;
-
     @Shadow public abstract void displayGuiScreen(GuiScreen guiScreenIn);
-
     @Shadow @Final private static Logger logger;
-
     @Shadow public int displayHeight;
-
     @Shadow public int displayWidth;
-
     @Shadow private boolean fullscreen;
-
     @Shadow public GameSettings gameSettings;
-
     @Shadow @Final public File mcDataDir;
-
     @Shadow protected abstract void updateDisplayMode() throws LWJGLException;
-
     @Shadow private IStream field_152353_at;
-
     @Shadow @Final private Multimap field_152356_J;
-
     @Shadow private Framebuffer framebufferMc;
-
     @Shadow public GuiAchievement guiAchievement;
-
     @Shadow @Final private IMetadataSerializer metadataSerializer_;
-
     @Shadow private ISaveFormat saveLoader;
-
     @Shadow private ResourcePackRepository mcResourcePackRepository;
-
     @Shadow private IReloadableResourceManager mcResourceManager;
-
     @Shadow private LanguageManager mcLanguageManager;
-
     @Shadow @Final private File fileResourcepacks;
-
     @Shadow public DefaultResourcePack mcDefaultResourcePack;
-
     @Shadow @Final private MinecraftSessionService field_152355_az;
-
     @Shadow private List defaultResourcePacks;
-
     @Shadow public TextureManager renderEngine;
-
     @Shadow private SkinManager field_152350_aA;
-
     @Shadow private SoundHandler mcSoundHandler;
-
     @Shadow private MusicTicker mcMusicTicker;
-
     @Shadow public FontRenderer fontRenderer;
-
     @Shadow public abstract boolean func_152349_b();
-
     @Shadow public FontRenderer standardGalacticFontRenderer;
-
     @Shadow public EntityRenderer entityRenderer;
-
     @Shadow public MouseHelper mouseHelper;
-
     @Shadow protected abstract void checkGLError(String p_71361_1_);
-
     @Shadow public RenderGlobal renderGlobal;
-
     @Shadow private TextureMap textureMapBlocks;
-
     @Shadow public EffectRenderer effectRenderer;
-
     @Shadow public WorldClient theWorld;
-
     @Shadow public GuiIngame ingameGUI;
-
     @Shadow private String serverName;
-
     @Shadow private int serverPort;
-
     @Shadow private ResourceLocation field_152354_ay;
-
     @Shadow public LoadingScreenRenderer loadingScreen;
-
     @Shadow public abstract void toggleFullscreen();
-
     @Shadow protected abstract ByteBuffer func_152340_a(InputStream p_152340_1_) throws IOException;
-
     @Shadow @Final private File fileAssets;
-
     @Shadow @Final public Profiler mcProfiler;
-
     @Shadow @Final private Queue field_152351_aB;
-
     @Shadow private int rightClickDelayTimer;
-
     @Shadow private boolean isGamePaused;
-
     @Shadow public PlayerControllerMP playerController;
-
     @Shadow public GuiScreen currentScreen;
-
     @Shadow public EntityClientPlayerMP thePlayer;
-
     @Shadow private int leftClickCounter;
-
     @Shadow private long systemTime;
-
     @Shadow public static long getSystemTime() {
         return 0L;
     }
-
     @Shadow public boolean inGameHasFocus;
-
     @Shadow public abstract void setIngameFocus();
-
     @Shadow private long field_83002_am;
-
     @Shadow public abstract void func_152348_aa();
-
     @Shadow public abstract void displayInGameMenu();
-
     @Shadow public abstract void refreshResources();
-
     @Shadow protected abstract void updateDebugProfilerName(int p_71383_1_);
-
     @Shadow public abstract NetHandlerPlayClient getNetHandler();
-
     @Shadow protected abstract void func_147116_af();
-
     @Shadow protected abstract void func_147121_ag();
-
     @Shadow protected abstract void func_147112_ai();
-
     @Shadow protected abstract void func_147115_a(boolean p_147115_1_);
-
     @Shadow private int joinPlayerCounter;
-
     @Shadow private NetworkManager myNetworkManager;
+
+    @Shadow private IntegratedServer theIntegratedServer;
+
+    @Shadow public EntityLivingBase renderViewEntity;
+
+    @Shadow private boolean integratedServerIsRunning;
+
+    @Shadow public abstract void setServerData(ServerData p_71351_1_);
+
+    @Shadow public abstract void scheduleResourcesRefresh();
 
     public SoundHandlerBridge bridge$getSoundHandler() {
         return (SoundHandlerBridge) this.getSoundHandler();
@@ -353,10 +301,7 @@ public abstract class MixinMinecraft implements MinecraftBridge {
         this.renderEngine = new TextureManager(this.mcResourceManager);
         this.mcResourceManager.registerReloadListener(this.renderEngine);
         this.field_152350_aA = new SkinManager(this.renderEngine, new File(this.fileAssets, "skins"), this.field_152355_az);
-        this.cbLoadingScreen = new LoadingScreen(8); // CB
-        this.cbLoadingScreen.drawMenu(0.0f, 0.0f); // CB
-        this.cbLoadingScreen.newMessage("Sound Handler"); // CB
- //       cpw.mods.fml.client.SplashProgress.drawVanillaScreen();
+        cpw.mods.fml.client.SplashProgress.drawVanillaScreen();
         this.mcSoundHandler = new SoundHandler(this.mcResourceManager, this.gameSettings);
         this.mcResourceManager.registerReloadListener(this.mcSoundHandler);
         this.mcMusicTicker = new MusicTicker(Minecraft.getMinecraft());
@@ -447,8 +392,7 @@ public abstract class MixinMinecraft implements MinecraftBridge {
             this.displayGuiScreen(new GuiMainMenu());
         }
 
-        this.renderEngine.deleteTexture(this.field_152354_ay);
-//        cpw.mods.fml.client.SplashProgress.clearVanillaResources(renderEngine, field_152354_ay);
+        cpw.mods.fml.client.SplashProgress.clearVanillaResources(renderEngine, field_152354_ay);
         this.field_152354_ay = null;
         this.loadingScreen = new LoadingScreenRenderer(Minecraft.getMinecraft());
 
@@ -986,5 +930,103 @@ public abstract class MixinMinecraft implements MinecraftBridge {
 
         this.mcProfiler.endSection();
         this.systemTime = getSystemTime();
+    }
+
+    /**
+     * @author iAmSpace
+     * @reason Event handling
+     */
+    @Overwrite
+    public void loadWorld(WorldClient worldClient, String p_71353_2_)
+    {
+        if (theWorld != null)
+        {
+            net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.world.WorldEvent.Unload(theWorld));
+        }
+
+        if (worldClient == null)
+        {
+            NetHandlerPlayClient nethandlerplayclient = this.getNetHandler();
+
+            if (nethandlerplayclient != null)
+            {
+                nethandlerplayclient.cleanup();
+            }
+
+            if (this.theIntegratedServer != null)
+            {
+                this.theIntegratedServer.initiateShutdown();
+                if (loadingScreen != null)
+                {
+                    this.loadingScreen.resetProgresAndWorkingMessage(I18n.format("forge.client.shutdown.internal"));
+                }
+                while (!theIntegratedServer.isServerStopped())
+                {
+                    try
+                    {
+                        Thread.sleep(10);
+                    }
+                    catch (InterruptedException ie) {}
+                }
+            }
+
+            this.theIntegratedServer = null;
+            this.guiAchievement.func_146257_b();
+            this.entityRenderer.getMapItemRenderer().func_148249_a();
+        }
+
+        this.renderViewEntity = null;
+        this.myNetworkManager = null;
+
+        if (this.loadingScreen != null)
+        {
+            this.loadingScreen.resetProgressAndMessage(p_71353_2_);
+            this.loadingScreen.resetProgresAndWorkingMessage("");
+        }
+
+        if (worldClient == null && this.theWorld != null)
+        {
+            if (this.mcResourcePackRepository.func_148530_e() != null)
+            {
+                this.scheduleResourcesRefresh();
+            }
+
+            this.mcResourcePackRepository.func_148529_f();
+            this.setServerData(null);
+            this.integratedServerIsRunning = false;
+            FMLClientHandler.instance().handleClientWorldClosing(this.theWorld);
+        }
+
+        this.mcSoundHandler.stopSounds();
+        this.theWorld = worldClient;
+
+        if (worldClient != null) {
+            CheatBreaker.getInstance().getEventBus().callEvent(new LoadWorldEvent(worldClient));
+
+            if (this.renderGlobal != null)
+                this.renderGlobal.setWorldAndLoadRenderers(worldClient);
+
+            if (this.effectRenderer != null)
+                this.effectRenderer.clearEffects(worldClient);
+
+            if (this.thePlayer == null) {
+                this.thePlayer = this.playerController.func_147493_a(worldClient, new StatFileWriter());
+                this.playerController.flipPlayer(this.thePlayer);
+            }
+
+            this.thePlayer.preparePlayerToSpawn();
+            worldClient.spawnEntityInWorld(this.thePlayer);
+            this.thePlayer.movementInput = new MovementInputFromOptions(this.gameSettings);
+            this.playerController.setPlayerCapabilities(this.thePlayer);
+            this.renderViewEntity = this.thePlayer;
+        }
+        else
+        {
+            this.saveLoader.flushCache();
+            this.thePlayer = null;
+        }
+
+        System.gc();
+        this.systemTime = 0L;
     }
 }

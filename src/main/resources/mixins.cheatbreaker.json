@@ -16,6 +16,7 @@
   ],
   "client": [
     "client.gui.MixinGuiIngame",
+    "client.network.MixinNetHandlerPlayClient",
     "client.renderer.MixinTessellator"
   ]
 }

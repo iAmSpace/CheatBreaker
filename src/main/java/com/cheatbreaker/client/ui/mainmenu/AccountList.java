@@ -18,6 +18,7 @@ public class AccountList extends AbstractElement {
     private final ColorFade IlllIllIlIIIIlIIlIIllIIIl;
     private final ColorFade IlIlllIIIIllIllllIllIIlIl;
     private final MinMaxFade llIIlllIIIIlllIllIlIlllIl;
+    private float elementHeight;
     private boolean IIIlllIIIllIllIlIIIIIIlII;
     private final MainMenuBase mainMenuBase;
     private final ScrollableElement scrollableElement;
@@ -41,8 +42,11 @@ public class AccountList extends AbstractElement {
     @Override
     public void setElementSize(float x, float y, float width, float height) {
         super.setElementSize(x, y, width, height);
+        if (this.elementHeight == 0.0f) {
+            this.elementHeight = height;
+        }
         this.lllIIIIIlIllIlIIIllllllII = Math.min(this.mainMenuBase.getAccounts().size() * 16 + 12, 120);
-        this.scrollableElement.setElementSize(x + width - (float)5, y + this.height + (float)6, (float)4, this.lllIIIIIlIllIlIIIllllllII - (float)7);
+        this.scrollableElement.setElementSize(x + width - (float)5, y + this.elementHeight + (float)6, (float)4, this.lllIIIIIlIllIlIIIllllllII - (float)7);
         this.scrollableElement.setScrollAmount(this.mainMenuBase.getAccounts().size() * 16 + 4);
     }
 
@@ -54,14 +58,14 @@ public class AccountList extends AbstractElement {
     @Override
     protected void handleElementDraw(float f, float f2, boolean bl) {
         boolean bl2 = bl && this.isMouseInside(f, f2);
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.x, this.y, this.x + this.width, this.y + this.height, this.lIIIIllIIlIlIllIIIlIllIlI.get(bl2).getRGB(), this.IlllIllIlIIIIlIIlIIllIIIl.get(bl2).getRGB(), this.IlIlllIIIIllIllllIllIIlIl.get(bl2).getRGB());
+        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.x, this.y, this.x + this.width, this.y + this.elementHeight, this.lIIIIllIIlIlIllIIIlIllIlI.get(bl2).getRGB(), this.IlllIllIlIIIIlIIlIIllIIIl.get(bl2).getRGB(), this.IlIlllIIIIllIllllIllIIlIl.get(bl2).getRGB());
         float f3 = 6;
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        RenderUtil.drawIcon(this.headLocation, f3, this.x + (float)4, this.y + this.height / 2.0f - f3);
+        RenderUtil.drawIcon(this.headLocation, f3, this.x + (float)4, this.y + this.elementHeight / 2.0f - f3);
         CheatBreaker.getInstance().robotoRegular13px.drawString(this.displayName, this.x + (float)22, this.y + 1.56f * 2.8846154f, -1342177281);
         float f4 = this.llIIlllIIIIlllIllIlIlllIl.lIIIIlIIllIIlIIlIIIlIIllI(this.isMouseInside(f, f2) && bl);
         if (this.llIIlllIIIIlllIllIlIlllIl.IIIllIllIlIlllllllIlIlIII()) {
-            this.setElementSize(this.x, this.y, this.width, this.height + this.lllIIIIIlIllIlIIIllllllII * f4);
+            this.setElementSize(this.x, this.y, this.width, this.elementHeight + this.lllIIIIIlIllIlIIIllllllII * f4);
             this.IIIlllIIIllIllIlIIIIIIlII = true;
         } else if (!this.llIIlllIIIIlllIllIlIlllIl.IIIllIllIlIlllllllIlIlIII() && !this.isMouseInside(f, f2)) {
             this.IIIlllIIIllIllIlIIIIIIlII = false;
@@ -69,7 +73,7 @@ public class AccountList extends AbstractElement {
         if (this.IIIlllIIIllIllIlIIIIIIlII) {
             float f5 = 0.6122449f * 0.81666666f;
             float f6 = this.y + this.height + f5;
-            float f7 = this.y + (float)5 + this.height;
+            float f7 = this.y + (float)5 + this.elementHeight;
             if (f6 > f7) {
                 Ref.modified$drawBoxWithOutLine(this.x + 1.0f, f7, this.x + this.width - 1.0f, f6, f5, 0x4FFFFFFF, 444958085);
             }
@@ -78,8 +82,8 @@ public class AccountList extends AbstractElement {
             RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(
                     (int)this.x,
                     (int)(this.y + this.height),
-                    (int)(this.x + this.width),
-                    (int)(this.y + this.height + (float)7 + (this.height - this.height - (float)6) * f4),
+                    (int)(this.x + this.elementHeight),
+                    (int)(this.y + this.elementHeight + (float)7 + (this.height - this.elementHeight - (float)6) * f4),
                     (float)((int)((float)this.mainMenuBase.getResolution().getScaleFactor() * this.mainMenuBase.getScaleFactor())),
                     (int)this.mainMenuBase.getScaledHeight()
             );
@@ -88,7 +92,7 @@ public class AccountList extends AbstractElement {
             for (Account account : this.mainMenuBase.getAccounts()) {
                 float left = this.x;
                 float right = this.x + this.width;
-                float f10 = this.y + this.height + (float)(n * 16) - (float)8;
+                float f10 = this.y + this.elementHeight + (float)(n * 16) - (float)8;
                 float f11 = f10 + (float)16;
                 boolean hovered = f > left && f < right && f2 - this.scrollableElement.IllIIIIIIIlIlIllllIIllIII() > f10 && f2 - this.scrollableElement.IllIIIIIIIlIlIllllIIllIII() < f11 && bl && !this.scrollableElement.isMouseInside(f, f2) && !this.scrollableElement.isDragClick();
                 GL11.glColor4f(1.0f, 1.0f, 1.0f, hovered ? 1.0f : 0.8148148f * 0.8590909f);
@@ -118,7 +122,7 @@ public class AccountList extends AbstractElement {
                 boolean bl2;
                 float f3 = this.x;
                 float f4 = this.x + this.width;
-                float f5 = this.y + this.height + (float)(n2 * 16) - (float)8;
+                float f5 = this.y + this.elementHeight + (float)(n2 * 16) - (float)8;
                 float f6 = f5 + (float)16;
                 boolean bl3 = bl2 = f > f3 && f < f4 && f2 - this.scrollableElement.IllIIIIIIIlIlIllllIIllIII() > f5 && f2 - this.scrollableElement.IllIIIIIIIlIlIllllIIllIII() < f6 && bl && !this.scrollableElement.isMouseInside(f, f2) && !this.scrollableElement.isDragClick();
                 if (bl2) {
