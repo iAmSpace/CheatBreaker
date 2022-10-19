@@ -55,10 +55,10 @@ public abstract class AbstractGui extends GuiScreen {
     @Override
     protected void mouseMovedOrUp(int mouseX, int mouseY, int mouseButton) {
         final float scaleFactor = getScaleFactor();
-        onmouseMovedOrUp(mouseX / scaleFactor, mouseY / scaleFactor, mouseButton);
+        onMouseMovedOrUp(mouseX / scaleFactor, mouseY / scaleFactor, mouseButton);
     }
 
-    protected abstract void onmouseMovedOrUp(float mouseX, float mouseY, int mouseButton);
+    protected abstract void onMouseMovedOrUp(float mouseX, float mouseY, int mouseButton);
 
     protected void setElementsAndUpdateSize(AbstractElement... elements) {
         this.elements = new ArrayList<>();

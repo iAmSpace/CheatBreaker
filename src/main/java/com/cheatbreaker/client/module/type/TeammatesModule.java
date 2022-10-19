@@ -27,10 +27,10 @@ import java.util.List;
 public class TeammatesModule {
     public FloatBuffer modelViewMatrixBuffer = BufferUtils.createFloatBuffer(16);
     public FloatBuffer projectionMatrixBuffer = BufferUtils.createFloatBuffer(16);
-    private List<Teammate> teammates;
+    private final List<Teammate> teammates;
     private final int[] IIIIllIlIIIllIlllIlllllIl = new int[]{-15007996, -43234, -3603713, -16580641, -8912129, -16601345, -2786, -64828, -15629042, -10744187};
     private boolean IIIIllIIllIIIIllIllIIIlIl = false;
-    private Minecraft minecraft = Minecraft.getMinecraft();
+    private final Minecraft minecraft = Minecraft.getMinecraft();
 
     public TeammatesModule() {
         this.teammates = new ArrayList<>();
@@ -72,7 +72,7 @@ public class TeammatesModule {
                     d5 = d5 / d7 * d3;
                     d6 = d6 / d7 * d3;
                 }
-                this.lIIIIlIIllIIlIIlIIIlIIllI(guiDrawEvent.getResolution(), teammate, (float)d4, (float)d5, (float)d6, intBuffer, vec3, (int)d7);
+                this.lIIIIlIIllIIlIIlIIIlIIllI(guiDrawEvent.getResolution(), teammate, (float)d4, (float)d5, (float)d6, intBuffer, (int)d7);
                 continue;
             }
             if (entityPlayer == this.minecraft.thePlayer) continue;
@@ -80,15 +80,14 @@ public class TeammatesModule {
             float f6 = (float)(entityPlayer.lastTickPosY + (entityPlayer.posY - entityPlayer.lastTickPosY) * Ref.getMinecraft().bridge$getTimer().bridge$getRenderPartialTicks() - (double)f3) + entityPlayer.height + 1.0f;
             float f7 = (float)(entityPlayer.lastTickPosZ + (entityPlayer.posZ - entityPlayer.lastTickPosZ) * Ref.getMinecraft().bridge$getTimer().bridge$getRenderPartialTicks() - (double)f4);
             double d8 = this.getDistance(entityPlayer.posX, entityPlayer.posY, entityPlayer.posZ);
-            this.lIIIIlIIllIIlIIlIIIlIIllI(guiDrawEvent.getResolution(), teammate, f5, f6, f7, intBuffer, vec3, (int)d8);
+            this.lIIIIlIIllIIlIIlIIIlIIllI(guiDrawEvent.getResolution(), teammate, f5, f6, f7, intBuffer, (int)d8);
         }
     }
 
-    private void lIIIIlIIllIIlIIlIIIlIIllI(ScaledResolution scaledResolution, Teammate ilIlllIlIlIIllllIlllIlIII, float f, float f2, float f3, IntBuffer intBuffer, Vec3 lIllIIIIlllllIIlIllIIIIII2, int n) {
+    private void lIIIIlIIllIIlIIlIIIlIIllI(ScaledResolution scaledResolution, Teammate ilIlllIlIlIIllllIlllIlIII, float f, float f2, float f3, IntBuffer intBuffer, int n) {
         Vec3 vec3 = Vec3.createVectorHelper(f, f2, f3);
         double d = vec3.lengthVector();
         if (vec3.dotProduct(vec3 = vec3.normalize()) <= 2.0714285373687744 * 0.009655172572549829) {
-            double d2 = (double)10.2f * 0.15228853561977318;
             double d3 = Math.sin(3.883357527820847 * (double)0.4f);
             double d4 = Math.cos(0.7150309097153498 * 2.1724138259887695);
             Vec3 vec33 = vec3.crossProduct(vec3);
@@ -146,7 +145,7 @@ public class TeammatesModule {
         GL11.glPopMatrix();
     }
 
-    private void drawOffscreenMarker(Teammate ilIlllIlIlIIllllIlllIlIII, IlIlIIlllIIIIIlIlIlIIIllI ilIlIIlllIIIIIlIlIlIIIllI, float f, float f2) {
+    private void drawOffscreenMarker(Teammate ilIlllIlIlIIllllIlllIlIII, IlIlIIlllIIIIIlIlIlIIIllI ilIlIIlllIIIIIlIlIlIIIllI, float translateX, float translateY) {
         TessellatorBridge tessellator = Ref.getTessellator();
         GL11.glEnable(3042);
         GL11.glDisable(3553);
@@ -160,7 +159,7 @@ public class TeammatesModule {
         float f3 = 8;
         float f4 = 10;
         GL11.glPushMatrix();
-        GL11.glTranslatef(f, f2, 0.0f);
+        GL11.glTranslatef(translateX, translateY, 0.0f);
         switch (ilIlIIlllIIIIIlIlIlIIIllI) {
             case lIIIIIIIIIlIllIIllIlIIlIl: {
                 tessellator.bridge$startDrawingQuads();

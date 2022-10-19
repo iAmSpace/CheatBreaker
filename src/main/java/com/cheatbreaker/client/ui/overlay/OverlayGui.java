@@ -198,7 +198,7 @@ public class OverlayGui extends AbstractGui {
     }
 
     @Override
-    public void onmouseMovedOrUp(float f, float f2, int n) {
+    public void onMouseMovedOrUp(float f, float f2, int n) {
         this.handlemouseMovedOrUp(f, f2, n);
     }
 

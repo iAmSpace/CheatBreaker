@@ -18,19 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ColorPickerElement extends AbstractModulesGuiElement {
-    private Setting setting;
-    private List<ColorPickerColorElement> colors;
+    private final Setting setting;
+    private final List<ColorPickerColorElement> colors;
     private boolean lIIIIllIIlIlIllIIIlIllIlI = false;
     private boolean IlllIllIlIIIIlIIlIIllIIIl = false;
     private boolean IlIlllIIIIllIllllIllIIlIl = false;
     private boolean llIIlllIIIIlllIllIlIlllIl = false;
-    private ColorPickerColorElement colorPickerColorElement;
+    private final ColorPickerColorElement colorPickerColorElement;
     private float IIIlllIIIllIllIlIIIIIIlII = 1.0f;
     private float llIlIIIlIIIIlIlllIlIIIIll = 1.0f;
     private float pickerX;
     private float pickerY;
-    private float lIIIIIllllIIIIlIlIIIIlIlI;
-    private float IIIIIIlIlIlIllllllIlllIlI;
     private float pickerWidth;
     private float pickerHeight;
     private int lIIlIIllIIIIIlIllIIIIllII;
@@ -54,11 +52,11 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
         String string;
         this.height = this.lIIIIllIIlIlIllIIIlIllIlI ? 130 : 18;
         this.pickerX = this.x + 56;
-        this.lIIIIIllllIIIIlIlIIIIlIlI = this.x + 176;
+        float lIIIIIllllIIIIlIlIIIIlIlI = this.x + 176;
         this.pickerY = this.y + 25;
-        this.IIIIIIlIlIlIllllllIlllIlI = this.y + 119;
-        this.pickerWidth = this.lIIIIIllllIIIIlIlIIIIlIlI - this.pickerX;
-        this.pickerHeight = this.IIIIIIlIlIlIllllllIlllIlI - this.pickerY;
+        float IIIIIIlIlIlIllllllIlllIlI = this.y + 119;
+        this.pickerWidth = lIIIIIllllIIIIlIlIIIIlIlI - this.pickerX;
+        this.pickerHeight = IIIIIIlIlIlIllllllIlllIlI - this.pickerY;
         CheatBreaker.getInstance().ubuntuMedium16px.drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float)(this.y + 4), -1895825408);
         this.colorPickerColorElement.color = this.setting.getColorValue();
         this.colorPickerColorElement.setDimensions(this.x + 160, this.y + 3, 14, 14);
@@ -91,9 +89,9 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
             GL11.glDisable(3553);
             tessellator.bridge$startDrawingQuads();
             GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-            tessellator.bridge$addVertex(this.pickerX, this.IIIIIIlIlIlIllllllIlllIlI, 0.0);
-            tessellator.bridge$addVertex(this.lIIIIIllllIIIIlIlIIIIlIlI, this.IIIIIIlIlIlIllllllIlllIlI, 0.0);
-            tessellator.bridge$addVertex(this.lIIIIIllllIIIIlIlIIIIlIlI, this.pickerY, 0.0);
+            tessellator.bridge$addVertex(this.pickerX, IIIIIIlIlIlIllllllIlllIlI, 0.0);
+            tessellator.bridge$addVertex(lIIIIIllllIIIIlIlIIIIlIlI, IIIIIIlIlIlIllllllIlllIlI, 0.0);
+            tessellator.bridge$addVertex(lIIIIIllllIIIIlIlIIIIlIlI, this.pickerY, 0.0);
             tessellator.bridge$addVertex(this.pickerX, this.pickerY, 0.0);
             tessellator.bridge$finish();
             int[] arrn = null;
@@ -111,7 +109,7 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
                     boolean bl6 = n3 == 0 && (float) mouseX < this.pickerX * this.scale && bl4;
                     boolean bl7 = n4 == 0 && (float) mouseY < (this.pickerY + (float)this.yOffset) * this.scale && bl3;
                     boolean bl8 = (float)n3 == this.pickerWidth - 1.0f && (float) mouseX > (this.pickerX + this.pickerWidth) * this.scale && bl4;
-                    boolean bl9 = bl2 = (float)n4 == this.pickerHeight - 1.0f && (float) mouseY > (this.pickerY + this.pickerHeight + (float)this.yOffset) * this.scale && bl3;
+                    bl2 = (float)n4 == this.pickerHeight - 1.0f && (float) mouseY > (this.pickerY + this.pickerHeight + (float)this.yOffset) * this.scale && bl3;
                     if (this.IlllIllIlIIIIlIIlIIllIIIl && (bl5 || bl6 || bl7 || bl8 || bl2)) {
                         this.setting.setValue(n5);
                         this.setting.colorArray = new int[]{n3, n4};
@@ -137,13 +135,13 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
                 GL11.glColor4f(0.0f, 0.0f, 0.0f, 3.0f * 0.25f);
                 RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.pickerX + (float)arrn[0] + 1.2205882f * 0.913494f, this.pickerY + (float)arrn[1] + 0.097222224f * 11.468572f, 4);
                 GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-                RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.pickerX + (float)arrn[0] + 0.24193548f * 4.608667f, this.pickerY + (float)arrn[1] + 0.23157895f * 4.8147726f, (double) 2.7f);
+                RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.pickerX + (float)arrn[0] + 0.24193548f * 4.608667f, this.pickerY + (float)arrn[1] + 0.23157895f * 4.8147726f, 2.7f);
                 GL11.glPopMatrix();
             }
             Ref.modified$drawRect(this.pickerX - (float) 51, this.pickerY + 1.0f, this.pickerX - (float) 43, this.pickerY + (float) 9, -16777216);
             Ref.modified$drawRect(this.pickerX - (float)50, this.pickerY + 2.0f, this.pickerX - (float)44, this.pickerY + (float)8, this.setting.rainbow ? -13369549 : -1);
             CheatBreaker.getInstance().playRegular16px.drawString("CHROMA", this.pickerX - (float)40, this.pickerY, -1358954496);
-            this.IlllIIIlIlllIllIlIIlllIlI(mouseX, mouseY);
+            this.IlllIIIlIlllIllIlIIlllIlI(mouseY);
             this.lIIIIIIIIIlIllIIllIlIIlIl(mouseY);
             this.lIIlIIllIIIIIlIllIIIIllII = (int)(this.pickerX + this.pickerWidth + (float)64);
             this.lIIlllIIlIlllllllllIIIIIl = (int)this.pickerY;
@@ -182,7 +180,7 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
         Ref.modified$drawRect(this.pickerX + this.pickerWidth + (float)18, this.pickerY + f + 1.0f, this.pickerX + this.pickerWidth + (float)28, this.pickerY + f + 2.0f, -805306369);
     }
 
-    private void IlllIIIlIlllIllIlIIlllIlI(int n, int n2) {
+    private void IlllIIIlIlllIllIlIIlllIlI(int n2) {
         Ref.modified$drawRect(this.pickerX + this.pickerWidth + (float)4, this.pickerY - 1.0f, this.pickerX + this.pickerWidth + (float)14, this.pickerY + 1.0f + this.pickerHeight, -822083584);
         int n3 = 0;
         while ((float)n3 < this.pickerHeight) {
@@ -289,7 +287,7 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
     public void handleMouseClick(int mouseX, int mouseY, int button) {
         boolean bl;
         boolean bl2 = (float) mouseX > (float)(this.x + this.width - 40) * this.scale && (float) mouseX < (float)(this.x + this.width - 12) * this.scale && (float) mouseY > (float)(this.y + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + 18 + this.yOffset) * this.scale;
-        boolean bl3 = bl = (float) mouseX > (float)this.x * this.scale && (float) mouseX < (float)(this.x + this.width - 40) * this.scale && (float) mouseY > (float)(this.y + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + 18 + this.yOffset) * this.scale;
+        bl = (float) mouseX > (float)this.x * this.scale && (float) mouseX < (float)(this.x + this.width - 40) * this.scale && (float) mouseY > (float)(this.y + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + 18 + this.yOffset) * this.scale;
         if (bl) {
             Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             float[] arrf = Color.RGBtoHSB((Integer)this.setting.getValue() >> 16 & 0xFF, (Integer)this.setting.getValue() >> 8 & 0xFF, (Integer)this.setting.getValue() & 0xFF, null);
@@ -313,7 +311,7 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
             this.lIIIIlIIllIIlIIlIIIlIIllI(this.colors, 0, 0, mouseX, mouseY);
             this.lIIIIlIIllIIlIIlIIIlIIllI(CheatBreaker.getInstance().globalSettings.IlIIlIIlIllIIIIllIIllIlIl, this.lIIlIIllIIIIIlIllIIIIllII, this.lIIlllIIlIlllllllllIIIIIl, mouseX, mouseY);
             this.lIIIIlIIllIIlIIlIIIlIIllI(CheatBreaker.getInstance().globalSettings.favouriteColors, this.lIllIllIlIIllIllIlIlIIlIl, this.llIlIIIllIIIIlllIlIIIIIlI, mouseX, mouseY);
-            boolean bl5 = bl4 = (float) mouseX > (this.pickerX - (float)51) * this.scale && (float) mouseY > (this.pickerY + 1.0f + (float)this.yOffset) * this.scale && (float) mouseX < (this.pickerX - (float)43) * this.scale && (float) mouseY < (this.pickerY + (float)9 + (float)this.yOffset) * this.scale;
+            bl4 = (float) mouseX > (this.pickerX - (float)51) * this.scale && (float) mouseY > (this.pickerY + 1.0f + (float)this.yOffset) * this.scale && (float) mouseX < (this.pickerX - (float)43) * this.scale && (float) mouseY < (this.pickerY + (float)9 + (float)this.yOffset) * this.scale;
             if ((float) mouseX > this.pickerX * this.scale && (float) mouseX < (this.pickerX + this.pickerWidth) * this.scale && (float) mouseY > (this.pickerY + (float)this.yOffset) * this.scale && (float) mouseY < (this.pickerY + this.pickerHeight + (float)this.yOffset) * this.scale) {
                 this.IlllIllIlIIIIlIIlIIllIIIl = true;
             }

@@ -54,8 +54,7 @@ public class WorldBorderManager {
                     double d2;
                     double d3;
                     float f3;
-                    double d4 = 1.0 - iIIlIllIIIlllIIlIIllIlIII.lIIIIlIIllIIlIIlIIIlIIllI(playerMP) / d;
-                    d4 = Math.pow(d4, 4);
+                    iIIlIllIIIlllIIlIIllIlIII.lIIIIlIIllIIlIIlIIIlIIllI(playerMP);
                     double d5 = playerMP.lastTickPosX + (playerMP.posX - playerMP.lastTickPosX) * (double)f;
                     double d6 = playerMP.lastTickPosY + (playerMP.posY - playerMP.lastTickPosY) * (double)f;
                     double d7 = playerMP.lastTickPosZ + (playerMP.posZ - playerMP.lastTickPosZ) * (double)f;
@@ -64,7 +63,6 @@ public class WorldBorderManager {
                     this.minecraft.getTextureManager().bindTexture(forceFieldTexture);
                     GL11.glDepthMask(false);
                     GL11.glPushMatrix();
-                    boolean bl = true;
                     float f4 = (float)(WorldBorder.IlllIIIlIlllIllIlIIlllIlI(iIIlIllIIIlllIIlIIllIlIII).getRed() & 0xFF) / (float)255;
                     float f5 = (float)(WorldBorder.IlllIIIlIlllIllIlIIlllIlI(iIIlIllIIIlllIIlIIllIlIII).getGreen() & 0xFF) / (float)255;
                     float f6 = (float)(WorldBorder.IlllIIIlIlllIllIlIIlllIlI(iIIlIllIIIlllIIlIIllIlIII).getBlue() & 0xFF) / (float)255;

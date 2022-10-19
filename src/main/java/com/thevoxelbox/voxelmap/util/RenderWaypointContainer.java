@@ -13,7 +13,7 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderWaypointContainer
 		extends Render {
-	MapSettingsManager options = null;
+	MapSettingsManager options;
 
 	public RenderWaypointContainer(MapSettingsManager options) {
 		this.options = options;
@@ -24,7 +24,7 @@ public class RenderWaypointContainer
 	}
 
 	public void doRenderWaypoints(EntityWaypointContainer par1EntityWaypointContainer, double baseX, double baseY,
-	                              double baseZ, float par8, float par9) {
+	                              double baseZ) {
 		for (Waypoint pt : par1EntityWaypointContainer.wayPts) {
 			if (pt.isActive()) {
 				int x = pt.getX();
@@ -36,19 +36,18 @@ public class RenderWaypointContainer
 				if ((this.options.showBeacons) &&
 				    (par1EntityWaypointContainer.worldObj.getChunkFromBlockCoords(x, z).isChunkLoaded)) {
 					double bottomOfWorld = 0.0D - RenderManager.renderPosY;
-					renderBeam(pt, x - RenderManager.renderPosX, bottomOfWorld, z - RenderManager.renderPosZ, 64.0F,
+					renderBeam(pt, x - RenderManager.renderPosX, bottomOfWorld, z - RenderManager.renderPosZ,
 							distance);
 				}
 				if ((this.options.showWaypoints) && (!this.options.game.gameSettings.hideGUI)) {
 					String label = pt.name;
-					renderLabel(pt, label, baseX + x, baseY + y + 1.0D, baseZ + z, 64, distance);
+					renderLabel(pt, label, baseX + x, baseY + y + 1.0D, baseZ + z, distance);
 				}
 			}
 		}
 	}
 
-	public void renderBeam(Waypoint par1EntityWaypoint, double baseX, double baseY, double baseZ, float par8,
-	                       double distance) {
+	public void renderBeam(Waypoint par1EntityWaypoint, double baseX, double baseY, double baseZ, double distance) {
 		TessellatorBridge tessellator = Ref.getTessellator();
 		GL11.glDisable(3553);
 		GL11.glDisable(2896);
@@ -108,8 +107,7 @@ public class RenderWaypointContainer
 		GL11.glDepthMask(true);
 	}
 
-	protected void renderLabel(Waypoint par1EntityWaypoint, String par2Str, double par3, double par5, double par7,
-	                           int par9, double distance) {
+	protected void renderLabel(Waypoint par1EntityWaypoint, String par2Str, double par3, double par5, double par7, double distance) {
 		GL11.glAlphaFunc(516, 0.1F);
 		if ((distance <= this.options.maxWaypointDisplayDistance) || (this.options.maxWaypointDisplayDistance < 0)) {
 			par2Str = par2Str + " (" + (int) distance + "m)";
@@ -215,6 +213,6 @@ public class RenderWaypointContainer
 	}
 
 	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
-		doRenderWaypoints((EntityWaypointContainer) par1Entity, par2, par4, par6, par8, par9);
+		doRenderWaypoints((EntityWaypointContainer) par1Entity, par2, par4, par6);
 	}
 }

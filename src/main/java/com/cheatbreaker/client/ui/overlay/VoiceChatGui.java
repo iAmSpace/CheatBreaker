@@ -135,7 +135,7 @@ public class VoiceChatGui extends AbstractGui {
     }
 
     @Override
-    public void onmouseMovedOrUp(float f, float f2, int n) {
+    public void onMouseMovedOrUp(float f, float f2, int n) {
     }
 
     /*

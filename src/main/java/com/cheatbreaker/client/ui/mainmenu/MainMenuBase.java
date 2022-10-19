@@ -148,7 +148,7 @@ public class MainMenuBase extends AbstractGui {
     @Override
     public void drawScreen(int n, int n2, float f) {
         GL11.glDisable(0xbc0);
-        this.renderSkybox(n, n2, 1.0f);
+        this.renderSkybox();
         GL11.glEnable(3008);
         super.drawScreen(n, n2, f);
     }
@@ -175,7 +175,7 @@ public class MainMenuBase extends AbstractGui {
     }
 
     @Override
-    public void onmouseMovedOrUp(float mouseX, float mouseY, int mouseButton) {
+    public void onMouseMovedOrUp(float mouseX, float mouseY, int mouseButton) {
 
     }
 
@@ -196,8 +196,7 @@ public class MainMenuBase extends AbstractGui {
             this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.mc.displayGuiScreen(new GuiCosmetics());
         } else {
-            boolean bl;
-            boolean bl2 = bl = mouseX < this.optionsButton.getX() && mouseY < (float) 30;
+            boolean bl = mouseX < this.optionsButton.getX() && mouseY < (float) 30;
             if (bl && !(this.mc.currentScreen instanceof MainMenu)) {
                 this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                 this.mc.displayGuiScreen(new MainMenu());
@@ -205,7 +204,7 @@ public class MainMenuBase extends AbstractGui {
         }
     }
 
-    private void drawPanorama(int p_73970_1_, int p_73970_2_, float p_73970_3_) {
+    private void drawPanorama(float p_73970_3_) {
         TessellatorBridge tessellator = Ref.getTessellator();
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glPushMatrix();
@@ -286,7 +285,7 @@ public class MainMenuBase extends AbstractGui {
     /**
      * Rotate and blurs the skybox view in the main menu
      */
-    private void rotateAndBlurSkybox(float p_73968_1_) {
+    private void rotateAndBlurSkybox() {
         this.mc.getTextureManager().bindTexture(this.panoramaBackgroundLocation);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
@@ -318,17 +317,18 @@ public class MainMenuBase extends AbstractGui {
     /**
      * Renders the skybox in the main menu
      */
-    private void renderSkybox(int p_73971_1_, int p_73971_2_, float p_73971_3_) {
+    private void renderSkybox() {
+        float p_73971_3_ = 1f;
         this.mc.getFramebuffer().unbindFramebuffer();
         GL11.glViewport(0, 0, 256, 256);
-        this.drawPanorama(p_73971_1_, p_73971_2_, p_73971_3_);
-        this.rotateAndBlurSkybox(p_73971_3_);
-        this.rotateAndBlurSkybox(p_73971_3_);
-        this.rotateAndBlurSkybox(p_73971_3_);
-        this.rotateAndBlurSkybox(p_73971_3_);
-        this.rotateAndBlurSkybox(p_73971_3_);
-        this.rotateAndBlurSkybox(p_73971_3_);
-        this.rotateAndBlurSkybox(p_73971_3_);
+        this.drawPanorama(p_73971_3_);
+        this.rotateAndBlurSkybox();
+        this.rotateAndBlurSkybox();
+        this.rotateAndBlurSkybox();
+        this.rotateAndBlurSkybox();
+        this.rotateAndBlurSkybox();
+        this.rotateAndBlurSkybox();
+        this.rotateAndBlurSkybox();
         this.mc.getFramebuffer().bindFramebuffer(true);
         GL11.glViewport(0, 0, this.mc.displayWidth, this.mc.displayHeight);
         TessellatorBridge tessellator = Ref.getTessellator();

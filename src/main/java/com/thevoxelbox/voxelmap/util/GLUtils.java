@@ -22,7 +22,7 @@ public class GLUtils {
 	                                   (GLContext.getCapabilities().OpenGL14);
 	public static int fboTextureID = 0;
 	public static boolean hasAlphaBits = GL11.glGetInteger(3413) > 0;
-	private static TessellatorBridge tessellator = Ref.getTessellator();
+	private static final TessellatorBridge tessellator = Ref.getTessellator();
 	private static int previousFBOID = 0;
 
 	public static void setupFBO() {

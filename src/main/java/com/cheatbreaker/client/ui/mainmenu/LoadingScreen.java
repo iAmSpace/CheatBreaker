@@ -92,7 +92,7 @@ public class LoadingScreen extends AbstractGui {
     }
 
     @Override
-    public void onmouseMovedOrUp(float mouseX, float mouseY, int button) {
+    public void onMouseMovedOrUp(float mouseX, float mouseY, int button) {
     }
 
 
