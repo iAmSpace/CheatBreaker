@@ -10,29 +10,29 @@ import java.security.PublicKey;
 public class WSPacketJoinServer
         extends WSPacket {
     private PublicKey publicKey;
-    private byte[] IlllIIIlIlllIllIlIIlllIlI;
+    private byte[] encryptedPublicKey;
 
     @Override
-    public void write(ByteBufWrapper lIlIllllllllIlIIIllIIllII2) {
+    public void write(ByteBufWrapper buf) {
     }
 
     @Override
-    public void read(ByteBufWrapper lIlIllllllllIlIIIllIIllII2) {
-        this.publicKey = CryptManager.decodePublicKey(this.readKey(lIlIllllllllIlIIIllIIllII2.buf()));
-        this.IlllIIIlIlllIllIlIIlllIlI = this.readKey(lIlIllllllllIlIIIllIIllII2.buf());
+    public void read(ByteBufWrapper buf) {
+        this.encryptedPublicKey = this.readKey(buf.buf());
+        this.publicKey = CryptManager.decodePublicKey(this.encryptedPublicKey);
     }
 
     @Override
-    public void handle(AssetsWebSocket lIIlllIIlllIlIllIIlIIIIll2) {
-        lIIlllIIlllIlIllIIlIIIIll2.handleJoinServer(this);
+    public void handle(AssetsWebSocket websocket) {
+        websocket.handleJoinServer(this);
     }
 
     public PublicKey getPublicKey() {
         return this.publicKey;
     }
 
-    public byte[] lIIIIIIIIIlIllIIllIlIIlIl() {
-        return this.IlllIIIlIlllIllIlIIlllIlI;
+    public byte[] getEncryptedPublicKey() {
+        return this.encryptedPublicKey;
     }
 }
 

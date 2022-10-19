@@ -151,7 +151,7 @@ public class FriendRequestListElement extends ElementListElement<FriendRequestEl
             this.lIIlIlIllIIlIIIlIIIlllIII();
         }
         if (this.toggleRequests.isMouseInside(f, f2 - this.scrollableElement.IllIIIIIIIlIlIllllIIllIII())) {
-            CheatBreaker.getInstance().getAssetsWebSocket().sentToServer(new WSPacketClientRequestsStatus(!CheatBreaker.getInstance().isAcceptingFriendRequests()));
+            CheatBreaker.getInstance().getAssetsWebSocket().sendToServer(new WSPacketClientRequestsStatus(!CheatBreaker.getInstance().isAcceptingFriendRequests()));
             CheatBreaker.getInstance().setAcceptingFriendRequests(!CheatBreaker.getInstance().isAcceptingFriendRequests());
             return false;
         }
@@ -170,7 +170,7 @@ public class FriendRequestListElement extends ElementListElement<FriendRequestEl
             String string = this.username.getText();
             // sanitizes the name of the friend before sending the packet.
             if (string.matches("([a-zA-Z0-9_]+)") && string.length() <= 16) {
-                CheatBreaker.getInstance().getAssetsWebSocket().sentToServer(new WSPacketFriendRequest("", this.username.getText()));
+                CheatBreaker.getInstance().getAssetsWebSocket().sendToServer(new WSPacketFriendRequest("", this.username.getText()));
                 this.username.setText("");
             } else {
                 Alert.displayMessage(EnumChatFormatting.RED + "Error!", "Incorrect username.");

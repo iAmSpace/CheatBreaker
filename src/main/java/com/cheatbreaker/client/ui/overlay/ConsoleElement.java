@@ -150,7 +150,7 @@ public class ConsoleElement extends DraggableElement {
             CheatBreaker.getInstance().getConsoleLines().clear();
         } else {
             CheatBreaker.getInstance().getConsoleLines().add(EnumChatFormatting.GRAY + "> " + string);
-            CheatBreaker.getInstance().getAssetsWebSocket().sentToServer(new WSPacketConsole(string));
+            CheatBreaker.getInstance().getAssetsWebSocket().sendToServer(new WSPacketConsole(string));
         }
         this.textInputElement.setText("");
         this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));

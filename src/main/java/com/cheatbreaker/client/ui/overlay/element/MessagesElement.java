@@ -221,7 +221,7 @@ public class MessagesElement extends DraggableElement {
     private void sendMessage() {
         String message = this.inputFieldElement.getText();
         CheatBreaker.getInstance().getFriendsManager().addOutgoingMessage(this.friend.getPlayerId(), message);
-        CheatBreaker.getInstance().getAssetsWebSocket().sentToServer(new WSPacketMessage(this.friend.getPlayerId(), message));
+        CheatBreaker.getInstance().getAssetsWebSocket().sendToServer(new WSPacketMessage(this.friend.getPlayerId(), message));
         this.inputFieldElement.setText("");
         this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
     }

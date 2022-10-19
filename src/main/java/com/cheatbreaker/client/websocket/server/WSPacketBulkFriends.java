@@ -34,8 +34,8 @@ public class WSPacketBulkFriends
     }
 
     @Override
-    public void handle(AssetsWebSocket lIIlllIIlllIlIllIIlIIIIll2) {
-        lIIlllIIlllIlIllIIlIIIIll2.handleBulkFriends(this);
+    public void handle(AssetsWebSocket websocket) {
+        websocket.handleBulkFriends(this);
     }
 
     public JsonArray getBulkArray() {

@@ -15,6 +15,7 @@
     "util.MixinTimer"
   ],
   "client": [
+    "client.entity.MixinAbstractClientPlayer",
     "client.gui.MixinGuiIngame",
     "client.network.MixinNetHandlerPlayClient",
     "client.renderer.MixinTessellator"
