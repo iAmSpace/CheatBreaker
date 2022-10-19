@@ -2,6 +2,7 @@ package com.cheatbreaker.client.module.type;
 
 import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import com.cheatbreaker.client.event.type.DisconnectEvent;
 import com.cheatbreaker.client.event.type.GuiDrawEvent;
 import com.cheatbreaker.client.util.teammates.IlIlIIlllIIIIIlIlIlIIIllI;
@@ -9,7 +10,6 @@ import com.cheatbreaker.client.util.teammates.Teammate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
@@ -147,7 +147,7 @@ public class TeammatesModule {
     }
 
     private void drawOffscreenMarker(Teammate ilIlllIlIlIIllllIlllIlIII, IlIlIIlllIIIIIlIlIlIIIllI ilIlIIlllIIIIIlIlIlIIIllI, float f, float f2) {
-        Tessellator tessellator = Tessellator.instance;
+        TessellatorBridge tessellator = Ref.getTessellator();
         GL11.glEnable(3042);
         GL11.glDisable(3553);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
@@ -163,39 +163,39 @@ public class TeammatesModule {
         GL11.glTranslatef(f, f2, 0.0f);
         switch (ilIlIIlllIIIIIlIlIlIIIllI) {
             case lIIIIIIIIIlIllIIllIlIIlIl: {
-                tessellator.startDrawingQuads();
-                tessellator.addVertex(f3 / 2.0f, f4 / 2.0f, 0.0);
-                tessellator.addVertex(-f3 / 2.0f, 0.0, 0.0);
-                tessellator.addVertex(f3 / 2.0f, -f4 / 2.0f, 0.0);
-                tessellator.addVertex(-f3 / 2.0f, 0.0, 0.0);
-                tessellator.draw();
+                tessellator.bridge$startDrawingQuads();
+                tessellator.bridge$addVertex(f3 / 2.0f, f4 / 2.0f, 0.0);
+                tessellator.bridge$addVertex(-f3 / 2.0f, 0.0, 0.0);
+                tessellator.bridge$addVertex(f3 / 2.0f, -f4 / 2.0f, 0.0);
+                tessellator.bridge$addVertex(-f3 / 2.0f, 0.0, 0.0);
+                tessellator.bridge$finish();
                 break;
             }
             case IIIIllIlIIIllIlllIlllllIl: {
-                tessellator.startDrawingQuads();
-                tessellator.addVertex(-f3 / 2.0f, f4 / 2.0f, 0.0);
-                tessellator.addVertex(f3 / 2.0f, 0.0, 0.0);
-                tessellator.addVertex(-f3 / 2.0f, -f4 / 2.0f, 0.0);
-                tessellator.addVertex(f3 / 2.0f, 0.0, 0.0);
-                tessellator.draw();
+                tessellator.bridge$startDrawingQuads();
+                tessellator.bridge$addVertex(-f3 / 2.0f, f4 / 2.0f, 0.0);
+                tessellator.bridge$addVertex(f3 / 2.0f, 0.0, 0.0);
+                tessellator.bridge$addVertex(-f3 / 2.0f, -f4 / 2.0f, 0.0);
+                tessellator.bridge$addVertex(f3 / 2.0f, 0.0, 0.0);
+                tessellator.bridge$finish();
                 break;
             }
             case IlllIIIlIlllIllIlIIlllIlI: {
-                tessellator.startDrawingQuads();
-                tessellator.addVertex(-f3 / 2.0f, -f4 / 2.0f, 0.0);
-                tessellator.addVertex(0.0, f4 / 2.0f, 0.0);
-                tessellator.addVertex(f3 / 2.0f, -f4 / 2.0f, 0.0);
-                tessellator.addVertex(0.0, f4 / 2.0f, 0.0);
-                tessellator.draw();
+                tessellator.bridge$startDrawingQuads();
+                tessellator.bridge$addVertex(-f3 / 2.0f, -f4 / 2.0f, 0.0);
+                tessellator.bridge$addVertex(0.0, f4 / 2.0f, 0.0);
+                tessellator.bridge$addVertex(f3 / 2.0f, -f4 / 2.0f, 0.0);
+                tessellator.bridge$addVertex(0.0, f4 / 2.0f, 0.0);
+                tessellator.bridge$finish();
                 break;
             }
             case lIIIIlIIllIIlIIlIIIlIIllI: {
-                tessellator.startDrawingQuads();
-                tessellator.addVertex(-f3 / 2.0f, f4 / 2.0f, 0.0);
-                tessellator.addVertex(0.0, -f4 / 2.0f, 0.0);
-                tessellator.addVertex(f3 / 2.0f, f4 / 2.0f, 0.0);
-                tessellator.addVertex(0.0, -f4 / 2.0f, 0.0);
-                tessellator.draw();
+                tessellator.bridge$startDrawingQuads();
+                tessellator.bridge$addVertex(-f3 / 2.0f, f4 / 2.0f, 0.0);
+                tessellator.bridge$addVertex(0.0, -f4 / 2.0f, 0.0);
+                tessellator.bridge$addVertex(f3 / 2.0f, f4 / 2.0f, 0.0);
+                tessellator.bridge$addVertex(0.0, -f4 / 2.0f, 0.0);
+                tessellator.bridge$finish();
             }
         }
         GL11.glPopMatrix();
@@ -204,7 +204,7 @@ public class TeammatesModule {
     }
 
     private void drawMarker(Teammate teammate, float f, float f2, float f3) {
-        Tessellator tessellator = Tessellator.instance;
+        TessellatorBridge tessellator = Ref.getTessellator();
         GL11.glEnable(3042);
         GL11.glDisable(3553);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
@@ -219,20 +219,20 @@ public class TeammatesModule {
         GL11.glRotatef(45, 0.0f, 0.0f, 1.0f);
         GL11.glTranslatef(f * 2.0f, 0.0f, 0.0f);
         GL11.glRotatef(90, 0.0f, 0.0f, -1);
-        tessellator.startDrawingQuads();
-        tessellator.addVertex(-f, f2, 0.0);
-        tessellator.addVertex(-f, f2 + f3 / 2.0f, 0.0);
-        tessellator.addVertex(f, f2 + f3 / 2.0f, 0.0);
-        tessellator.addVertex(f, f2, 0.0);
-        tessellator.draw();
+        tessellator.bridge$startDrawingQuads();
+        tessellator.bridge$addVertex(-f, f2, 0.0);
+        tessellator.bridge$addVertex(-f, f2 + f3 / 2.0f, 0.0);
+        tessellator.bridge$addVertex(f, f2 + f3 / 2.0f, 0.0);
+        tessellator.bridge$addVertex(f, f2, 0.0);
+        tessellator.bridge$finish();
         GL11.glRotatef(90, 0.0f, 0.0f, -1);
         GL11.glTranslatef(f * 2.0f + 1.0f, f3 / 2.0f + 1.0f, 0.0f);
-        tessellator.startDrawingQuads();
-        tessellator.addVertex(-f / 2.0f + 1.0f, f2, 0.0);
-        tessellator.addVertex(-f / 2.0f + 1.0f, f2 + f3 / 2.0f, 0.0);
-        tessellator.addVertex(f, f2 + f3 / 2.0f, 0.0);
-        tessellator.addVertex(f, f2, 0.0);
-        tessellator.draw();
+        tessellator.bridge$startDrawingQuads();
+        tessellator.bridge$addVertex(-f / 2.0f + 1.0f, f2, 0.0);
+        tessellator.bridge$addVertex(-f / 2.0f + 1.0f, f2 + f3 / 2.0f, 0.0);
+        tessellator.bridge$addVertex(f, f2 + f3 / 2.0f, 0.0);
+        tessellator.bridge$addVertex(f, f2, 0.0);
+        tessellator.bridge$finish();
         GL11.glPopMatrix();
         GL11.glEnable(3553);
         GL11.glDisable(3042);

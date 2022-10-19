@@ -1,10 +1,11 @@
 package com.thevoxelbox.voxelmap.gui.overridden;
 
+import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
@@ -88,9 +89,9 @@ public abstract class GuiSlotMinimap {
 	protected abstract void drawBackground();
 
 	protected abstract void drawSlot(int paramInt1, int paramInt2, int paramInt3, int paramInt4,
-	                                 Tessellator paramTessellator, int paramInt5, int paramInt6);
+	                                 TessellatorBridge paramTessellator, int paramInt5, int paramInt6);
 
-	protected void drawListHeader(int p_148129_1_, int p_148129_2_, Tessellator p_148129_3_) {
+	protected void drawListHeader(int p_148129_1_, int p_148129_2_, TessellatorBridge p_148129_3_) {
 	}
 
 	protected void func_148132_a(int p_148132_1_, int p_148132_2_) {
@@ -238,27 +239,27 @@ public abstract class GuiSlotMinimap {
 		bindAmountScrolled();
 		GL11.glDisable(2896);
 		GL11.glDisable(2912);
-		Tessellator var17 = Tessellator.instance;
+		TessellatorBridge tessellator = Ref.getTessellator();
 		if (this.showSlotBG) {
 			this.mc.getTextureManager().bindTexture(Gui.optionsBackground);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			float var16 = 32.0F;
-			var17.startDrawingQuads();
-			var17.setColorOpaque_I(2105376);
-			var17.addVertexWithUV(this.left, this.bottom, 0.0D, this.left / var16,
+			tessellator.bridge$startDrawingQuads();
+			tessellator.bridge$setColorOpaque_I(2105376);
+			tessellator.bridge$addVertexWithUV(this.left, this.bottom, 0.0D, this.left / var16,
 					(this.bottom + (int) this.amountScrolled) / var16);
-			var17.addVertexWithUV(this.right, this.bottom, 0.0D, this.right / var16,
+			tessellator.bridge$addVertexWithUV(this.right, this.bottom, 0.0D, this.right / var16,
 					(this.bottom + (int) this.amountScrolled) / var16);
-			var17.addVertexWithUV(this.right, this.top, 0.0D, this.right / var16,
+			tessellator.bridge$addVertexWithUV(this.right, this.top, 0.0D, this.right / var16,
 					(this.top + (int) this.amountScrolled) / var16);
-			var17.addVertexWithUV(this.left, this.top, 0.0D, this.left / var16,
+			tessellator.bridge$addVertexWithUV(this.left, this.top, 0.0D, this.left / var16,
 					(this.top + (int) this.amountScrolled) / var16);
-			var17.draw();
+			tessellator.bridge$finish();
 		}
 		int var9 = this.left + this.width / 2 - getListWidth() / 2 + 2;
 		int var10 = this.top + 4 - (int) this.amountScrolled;
 		if (this.hasListHeader) {
-			drawListHeader(var9, var10, var17);
+			drawListHeader(var9, var10, tessellator);
 		}
 		drawSelectionBox(var9, var10, p_148128_1_, p_148128_2_);
 		GL11.glDisable(2929);
@@ -273,22 +274,23 @@ public abstract class GuiSlotMinimap {
 		GL11.glShadeModel(7425);
 		GL11.glDisable(3553);
 		if (this.showTopBottomBG) {
-			var17.startDrawingQuads();
-			var17.setColorRGBA_I(0, 0);
-			var17.addVertexWithUV(this.left, this.top + var18, 0.0D, 0.0D, 1.0D);
-			var17.addVertexWithUV(this.right, this.top + var18, 0.0D, 1.0D, 1.0D);
-			var17.setColorRGBA_I(0, 255);
-			var17.addVertexWithUV(this.right, this.top, 0.0D, 1.0D, 0.0D);
-			var17.addVertexWithUV(this.left, this.top, 0.0D, 0.0D, 0.0D);
-			var17.draw();
-			var17.startDrawingQuads();
-			var17.setColorRGBA_I(0, 255);
-			var17.addVertexWithUV(this.left, this.bottom, 0.0D, 0.0D, 1.0D);
-			var17.addVertexWithUV(this.right, this.bottom, 0.0D, 1.0D, 1.0D);
-			var17.setColorRGBA_I(0, 0);
-			var17.addVertexWithUV(this.right, this.bottom - var18, 0.0D, 1.0D, 0.0D);
-			var17.addVertexWithUV(this.left, this.bottom - var18, 0.0D, 0.0D, 0.0D);
-			var17.draw();
+			tessellator.bridge$startDrawingQuads();
+			tessellator.bridge$setColorRGBA_I(0, 0);
+			tessellator.bridge$addVertexWithUV(this.left, this.top + var18, 0.0D, 0.0D, 1.0D);
+			tessellator.bridge$addVertexWithUV(this.right, this.top + var18, 0.0D, 1.0D, 1.0D);
+			tessellator.bridge$setColorRGBA_I(0, 255);
+			tessellator.bridge$addVertexWithUV(this.right, this.top, 0.0D, 1.0D, 0.0D);
+			tessellator.bridge$addVertexWithUV(this.left, this.top, 0.0D, 0.0D, 0.0D);
+			tessellator.bridge$finish();
+
+			tessellator.bridge$startDrawingQuads();
+			tessellator.bridge$setColorRGBA_I(0, 255);
+			tessellator.bridge$addVertexWithUV(this.left, this.bottom, 0.0D, 0.0D, 1.0D);
+			tessellator.bridge$addVertexWithUV(this.right, this.bottom, 0.0D, 1.0D, 1.0D);
+			tessellator.bridge$setColorRGBA_I(0, 0);
+			tessellator.bridge$addVertexWithUV(this.right, this.bottom - var18, 0.0D, 1.0D, 0.0D);
+			tessellator.bridge$addVertexWithUV(this.left, this.bottom - var18, 0.0D, 0.0D, 0.0D);
+			tessellator.bridge$finish();
 		}
 		int var19 = func_148135_f();
 		if (var19 > 0) {
@@ -303,27 +305,29 @@ public abstract class GuiSlotMinimap {
 			if (var14 < this.top) {
 				var14 = this.top;
 			}
-			var17.startDrawingQuads();
-			var17.setColorRGBA_I(0, 255);
-			var17.addVertexWithUV(var5, this.bottom, 0.0D, 0.0D, 1.0D);
-			var17.addVertexWithUV(var6, this.bottom, 0.0D, 1.0D, 1.0D);
-			var17.addVertexWithUV(var6, this.top, 0.0D, 1.0D, 0.0D);
-			var17.addVertexWithUV(var5, this.top, 0.0D, 0.0D, 0.0D);
-			var17.draw();
-			var17.startDrawingQuads();
-			var17.setColorRGBA_I(8421504, 255);
-			var17.addVertexWithUV(var5, var14 + var13, 0.0D, 0.0D, 1.0D);
-			var17.addVertexWithUV(var6, var14 + var13, 0.0D, 1.0D, 1.0D);
-			var17.addVertexWithUV(var6, var14, 0.0D, 1.0D, 0.0D);
-			var17.addVertexWithUV(var5, var14, 0.0D, 0.0D, 0.0D);
-			var17.draw();
-			var17.startDrawingQuads();
-			var17.setColorRGBA_I(12632256, 255);
-			var17.addVertexWithUV(var5, var14 + var13 - 1, 0.0D, 0.0D, 1.0D);
-			var17.addVertexWithUV(var6 - 1, var14 + var13 - 1, 0.0D, 1.0D, 1.0D);
-			var17.addVertexWithUV(var6 - 1, var14, 0.0D, 1.0D, 0.0D);
-			var17.addVertexWithUV(var5, var14, 0.0D, 0.0D, 0.0D);
-			var17.draw();
+			tessellator.bridge$startDrawingQuads();
+			tessellator.bridge$setColorRGBA_I(0, 255);
+			tessellator.bridge$addVertexWithUV(var5, this.bottom, 0.0D, 0.0D, 1.0D);
+			tessellator.bridge$addVertexWithUV(var6, this.bottom, 0.0D, 1.0D, 1.0D);
+			tessellator.bridge$addVertexWithUV(var6, this.top, 0.0D, 1.0D, 0.0D);
+			tessellator.bridge$addVertexWithUV(var5, this.top, 0.0D, 0.0D, 0.0D);
+			tessellator.bridge$finish();
+
+			tessellator.bridge$startDrawingQuads();
+			tessellator.bridge$setColorRGBA_I(8421504, 255);
+			tessellator.bridge$addVertexWithUV(var5, var14 + var13, 0.0D, 0.0D, 1.0D);
+			tessellator.bridge$addVertexWithUV(var6, var14 + var13, 0.0D, 1.0D, 1.0D);
+			tessellator.bridge$addVertexWithUV(var6, var14, 0.0D, 1.0D, 0.0D);
+			tessellator.bridge$addVertexWithUV(var5, var14, 0.0D, 0.0D, 0.0D);
+			tessellator.bridge$finish();
+
+			tessellator.bridge$startDrawingQuads();
+			tessellator.bridge$setColorRGBA_I(12632256, 255);
+			tessellator.bridge$addVertexWithUV(var5, var14 + var13 - 1, 0.0D, 0.0D, 1.0D);
+			tessellator.bridge$addVertexWithUV(var6 - 1, var14 + var13 - 1, 0.0D, 1.0D, 1.0D);
+			tessellator.bridge$addVertexWithUV(var6 - 1, var14, 0.0D, 1.0D, 0.0D);
+			tessellator.bridge$addVertexWithUV(var5, var14, 0.0D, 0.0D, 0.0D);
+			tessellator.bridge$finish();
 		}
 		func_148142_b(p_148128_1_, p_148128_2_);
 		GL11.glEnable(3553);
@@ -350,7 +354,7 @@ public abstract class GuiSlotMinimap {
 
 	protected void drawSelectionBox(int p_148120_1_, int p_148120_2_, int p_148120_3_, int p_148120_4_) {
 		int var5 = getSize();
-		Tessellator var6 = Tessellator.instance;
+		TessellatorBridge tessellator = Ref.getTessellator();
 		for (int var7 = 0; var7 < var5; var7++) {
 			int var8 = p_148120_2_ + var7 * this.slotHeight + this.headerPadding;
 			int topFudge = this.showTopBottomBG ? this.slotHeight - 4 : 0;
@@ -361,21 +365,21 @@ public abstract class GuiSlotMinimap {
 					int var11 = this.left + this.width / 2 + getListWidth() / 2;
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					GL11.glDisable(3553);
-					var6.startDrawingQuads();
-					var6.setColorOpaque_I(8421504);
-					var6.addVertexWithUV(var10, var8 + topFudge + 2, 0.0D, 0.0D, 1.0D);
-					var6.addVertexWithUV(var11, var8 + topFudge + 2, 0.0D, 1.0D, 1.0D);
-					var6.addVertexWithUV(var11, var8 - 2, 0.0D, 1.0D, 0.0D);
-					var6.addVertexWithUV(var10, var8 - 2, 0.0D, 0.0D, 0.0D);
-					var6.setColorOpaque_I(0);
-					var6.addVertexWithUV(var10 + 1, var8 + topFudge + 1, 0.0D, 0.0D, 1.0D);
-					var6.addVertexWithUV(var11 - 1, var8 + topFudge + 1, 0.0D, 1.0D, 1.0D);
-					var6.addVertexWithUV(var11 - 1, var8 - 1, 0.0D, 1.0D, 0.0D);
-					var6.addVertexWithUV(var10 + 1, var8 - 1, 0.0D, 0.0D, 0.0D);
-					var6.draw();
+					tessellator.bridge$startDrawingQuads();
+					tessellator.bridge$setColorOpaque_I(8421504);
+					tessellator.bridge$addVertexWithUV(var10, var8 + topFudge + 2, 0.0D, 0.0D, 1.0D);
+					tessellator.bridge$addVertexWithUV(var11, var8 + topFudge + 2, 0.0D, 1.0D, 1.0D);
+					tessellator.bridge$addVertexWithUV(var11, var8 - 2, 0.0D, 1.0D, 0.0D);
+					tessellator.bridge$addVertexWithUV(var10, var8 - 2, 0.0D, 0.0D, 0.0D);
+					tessellator.bridge$setColorOpaque_I(0);
+					tessellator.bridge$addVertexWithUV(var10 + 1, var8 + topFudge + 1, 0.0D, 0.0D, 1.0D);
+					tessellator.bridge$addVertexWithUV(var11 - 1, var8 + topFudge + 1, 0.0D, 1.0D, 1.0D);
+					tessellator.bridge$addVertexWithUV(var11 - 1, var8 - 1, 0.0D, 1.0D, 0.0D);
+					tessellator.bridge$addVertexWithUV(var10 + 1, var8 - 1, 0.0D, 0.0D, 0.0D);
+					tessellator.bridge$finish();
 					GL11.glEnable(3553);
 				}
-				drawSlot(var7, p_148120_1_, var8, topFudge, var6, p_148120_3_, p_148120_4_);
+				drawSlot(var7, p_148120_1_, var8, topFudge, tessellator, p_148120_3_, p_148120_4_);
 			}
 		}
 	}
@@ -385,18 +389,18 @@ public abstract class GuiSlotMinimap {
 	}
 
 	protected void overlayBackground(int p_148136_1_, int p_148136_2_, int p_148136_3_, int p_148136_4_) {
-		Tessellator var5 = Tessellator.instance;
+		TessellatorBridge tessellator = Ref.getTessellator();
 		this.mc.getTextureManager().bindTexture(Gui.optionsBackground);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		float var6 = 32.0F;
-		var5.startDrawingQuads();
-		var5.setColorRGBA_I(4210752, p_148136_4_);
-		var5.addVertexWithUV(this.left, p_148136_2_, 0.0D, 0.0D, p_148136_2_ / var6);
-		var5.addVertexWithUV(this.left + this.width, p_148136_2_, 0.0D, this.width / var6, p_148136_2_ / var6);
-		var5.setColorRGBA_I(4210752, p_148136_3_);
-		var5.addVertexWithUV(this.left + this.width, p_148136_1_, 0.0D, this.width / var6, p_148136_1_ / var6);
-		var5.addVertexWithUV(this.left, p_148136_1_, 0.0D, 0.0D, p_148136_1_ / var6);
-		var5.draw();
+		tessellator.bridge$startDrawingQuads();
+		tessellator.bridge$setColorRGBA_I(4210752, p_148136_4_);
+		tessellator.bridge$addVertexWithUV(this.left, p_148136_2_, 0.0D, 0.0D, p_148136_2_ / var6);
+		tessellator.bridge$addVertexWithUV(this.left + this.width, p_148136_2_, 0.0D, this.width / var6, p_148136_2_ / var6);
+		tessellator.bridge$setColorRGBA_I(4210752, p_148136_3_);
+		tessellator.bridge$addVertexWithUV(this.left + this.width, p_148136_1_, 0.0D, this.width / var6, p_148136_1_ / var6);
+		tessellator.bridge$addVertexWithUV(this.left, p_148136_1_, 0.0D, 0.0D, p_148136_1_ / var6);
+		tessellator.bridge$finish();
 	}
 
 	public void setSlotXBoundsFromLeft(int p_148140_1_) {

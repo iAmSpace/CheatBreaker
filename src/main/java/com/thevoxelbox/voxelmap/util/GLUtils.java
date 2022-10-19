@@ -1,7 +1,8 @@
 package com.thevoxelbox.voxelmap.util;
 
+import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.BufferUtils;
@@ -21,7 +22,7 @@ public class GLUtils {
 	                                   (GLContext.getCapabilities().OpenGL14);
 	public static int fboTextureID = 0;
 	public static boolean hasAlphaBits = GL11.glGetInteger(3413) > 0;
-	private static Tessellator tesselator = Tessellator.instance;
+	private static TessellatorBridge tessellator = Ref.getTessellator();
 	private static int previousFBOID = 0;
 
 	public static void setupFBO() {
@@ -100,11 +101,11 @@ public class GLUtils {
 	}
 
 	public static void drawPre() {
-		tesselator.startDrawingQuads();
+		tessellator.bridge$startDrawingQuads();
 	}
 
 	public static void drawPost() {
-		tesselator.draw();
+		tessellator.bridge$finish();
 	}
 
 	public static void glah(int g) {
@@ -112,14 +113,14 @@ public class GLUtils {
 	}
 
 	public static void ldrawone(int a, int b, double c, double d, double e) {
-		tesselator.addVertexWithUV(a, b, c, d, e);
+		tessellator.bridge$addVertexWithUV(a, b, c, d, e);
 	}
 
 	public static void ldrawtwo(double a, double b, double c) {
-		tesselator.addVertex(a, b, c);
+		tessellator.bridge$addVertex(a, b, c);
 	}
 
 	public static void ldrawthree(double a, double b, double c, double d, double e) {
-		tesselator.addVertexWithUV(a, b, c, d, e);
+		tessellator.bridge$addVertexWithUV(a, b, c, d, e);
 	}
 }

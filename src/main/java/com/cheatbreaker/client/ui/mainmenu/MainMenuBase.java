@@ -2,6 +2,7 @@ package com.cheatbreaker.client.ui.mainmenu;
 
 import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import com.cheatbreaker.client.ui.AbstractGui;
 import com.cheatbreaker.client.ui.fading.ColorFade;
 import com.cheatbreaker.client.ui.mainmenu.cosmetics.GuiCosmetics;
@@ -20,7 +21,6 @@ import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiLanguage;
 import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
@@ -206,7 +206,7 @@ public class MainMenuBase extends AbstractGui {
     }
 
     private void drawPanorama(int p_73970_1_, int p_73970_2_, float p_73970_3_) {
-        Tessellator var4 = Tessellator.instance;
+        TessellatorBridge tessellator = Ref.getTessellator();
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glPushMatrix();
         GL11.glLoadIdentity();
@@ -257,14 +257,14 @@ public class MainMenuBase extends AbstractGui {
                 }
 
                 this.mc.getTextureManager().bindTexture(panoramaImages[var10]);
-                var4.startDrawingQuads();
-                var4.setColorRGBA_I(16777215, 255 / (var6 + 1));
+                tessellator.bridge$startDrawingQuads();
+                tessellator.bridge$setColorRGBA_I(16777215, 255 / (var6 + 1));
                 float var11 = 0.0F;
-                var4.addVertexWithUV(-1.0D, -1.0D, 1.0D, 0.0F + var11, 0.0F + var11);
-                var4.addVertexWithUV(1.0D, -1.0D, 1.0D, 1.0F - var11, 0.0F + var11);
-                var4.addVertexWithUV(1.0D, 1.0D, 1.0D, 1.0F - var11, 1.0F - var11);
-                var4.addVertexWithUV(-1.0D, 1.0D, 1.0D, 0.0F + var11, 1.0F - var11);
-                var4.draw();
+                tessellator.bridge$addVertexWithUV(-1.0D, -1.0D, 1.0D, 0.0F + var11, 0.0F + var11);
+                tessellator.bridge$addVertexWithUV(1.0D, -1.0D, 1.0D, 1.0F - var11, 0.0F + var11);
+                tessellator.bridge$addVertexWithUV(1.0D, 1.0D, 1.0D, 1.0F - var11, 1.0F - var11);
+                tessellator.bridge$addVertexWithUV(-1.0D, 1.0D, 1.0D, 0.0F + var11, 1.0F - var11);
+                tessellator.bridge$finish();
                 GL11.glPopMatrix();
             }
 
@@ -272,7 +272,7 @@ public class MainMenuBase extends AbstractGui {
             GL11.glColorMask(true, true, true, false);
         }
 
-        var4.setTranslation(0.0D, 0.0D, 0.0D);
+        tessellator.bridge$setTranslation(0.0D, 0.0D, 0.0D);
         GL11.glColorMask(true, true, true, true);
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glPopMatrix();
@@ -294,23 +294,23 @@ public class MainMenuBase extends AbstractGui {
         GL11.glEnable(GL11.GL_BLEND);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glColorMask(true, true, true, false);
-        Tessellator var2 = Tessellator.instance;
-        var2.startDrawingQuads();
+        TessellatorBridge tessellator = Ref.getTessellator();
+        tessellator.bridge$startDrawingQuads();
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         byte var3 = 3;
 
         for (int var4 = 0; var4 < var3; ++var4) {
-            var2.setColorRGBA_F(1.0F, 1.0F, 1.0F, 1.0F / (float) (var4 + 1));
+            tessellator.bridge$setColorRGBA_F(1.0F, 1.0F, 1.0F, 1.0F / (float) (var4 + 1));
             int var5 = this.width;
             int var6 = this.height;
             float var7 = (float) (var4 - var3 / 2) / 256.0F;
-            var2.addVertexWithUV(var5, var6, zLevel, 0.0F + var7, 1.0D);
-            var2.addVertexWithUV(var5, 0.0D, zLevel, 1.0F + var7, 1.0D);
-            var2.addVertexWithUV(0.0D, 0.0D, zLevel, 1.0F + var7, 0.0D);
-            var2.addVertexWithUV(0.0D, var6, zLevel, 0.0F + var7, 0.0D);
+            tessellator.bridge$addVertexWithUV(var5, var6, zLevel, 0.0F + var7, 1.0D);
+            tessellator.bridge$addVertexWithUV(var5, 0.0D, zLevel, 1.0F + var7, 1.0D);
+            tessellator.bridge$addVertexWithUV(0.0D, 0.0D, zLevel, 1.0F + var7, 0.0D);
+            tessellator.bridge$addVertexWithUV(0.0D, var6, zLevel, 0.0F + var7, 0.0D);
         }
 
-        var2.draw();
+        tessellator.bridge$finish();
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glColorMask(true, true, true, true);
     }
@@ -331,19 +331,19 @@ public class MainMenuBase extends AbstractGui {
         this.rotateAndBlurSkybox(p_73971_3_);
         this.mc.getFramebuffer().bindFramebuffer(true);
         GL11.glViewport(0, 0, this.mc.displayWidth, this.mc.displayHeight);
-        Tessellator var4 = Tessellator.instance;
-        var4.startDrawingQuads();
+        TessellatorBridge tessellator = Ref.getTessellator();
+        tessellator.bridge$startDrawingQuads();
         float var5 = this.width > this.height ? 120.0F / (float) this.width : 120.0F / (float) this.height;
         float var6 = (float) this.height * var5 / 256.0F;
         float var7 = (float) this.width * var5 / 256.0F;
-        var4.setColorRGBA_F(1.0F, 1.0F, 1.0F, 1.0F);
+        tessellator.bridge$setColorRGBA_F(1.0F, 1.0F, 1.0F, 1.0F);
         int var8 = this.width;
         int var9 = this.height;
-        var4.addVertexWithUV(0.0D, var9, zLevel, 0.5F - var6, 0.5F + var7);
-        var4.addVertexWithUV(var8, var9, zLevel, 0.5F - var6, 0.5F - var7);
-        var4.addVertexWithUV(var8, 0.0D, zLevel, 0.5F + var6, 0.5F - var7);
-        var4.addVertexWithUV(0.0D, 0.0D, zLevel, 0.5F + var6, 0.5F + var7);
-        var4.draw();
+        tessellator.bridge$addVertexWithUV(0.0D, var9, zLevel, 0.5F - var6, 0.5F + var7);
+        tessellator.bridge$addVertexWithUV(var8, var9, zLevel, 0.5F - var6, 0.5F - var7);
+        tessellator.bridge$addVertexWithUV(var8, 0.0D, zLevel, 0.5F + var6, 0.5F - var7);
+        tessellator.bridge$addVertexWithUV(0.0D, 0.0D, zLevel, 0.5F + var6, 0.5F + var7);
+        tessellator.bridge$finish();
     }
 
     public void login(String string) {

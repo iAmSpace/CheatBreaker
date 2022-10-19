@@ -3,12 +3,12 @@ package com.cheatbreaker.client.ui.element.type;
 import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.bridge.Ref;
 import com.cheatbreaker.client.bridge.client.gui.FontRendererBridge;
+import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import com.cheatbreaker.client.config.Setting;
 import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -87,15 +87,15 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
                 this.lIIIIIIIIIlIllIIllIlIIlIl();
             }
             Ref.modified$drawRect(this.x + 55, this.y + 24, this.x + 177, this.y + 120, -822083584);
-            Tessellator tessellator = Tessellator.instance;
+            TessellatorBridge tessellator = Ref.getTessellator();
             GL11.glDisable(3553);
-            tessellator.startDrawingQuads();
+            tessellator.bridge$startDrawingQuads();
             GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-            tessellator.addVertex(this.pickerX, this.IIIIIIlIlIlIllllllIlllIlI, 0.0);
-            tessellator.addVertex(this.lIIIIIllllIIIIlIlIIIIlIlI, this.IIIIIIlIlIlIllllllIlllIlI, 0.0);
-            tessellator.addVertex(this.lIIIIIllllIIIIlIlIIIIlIlI, this.pickerY, 0.0);
-            tessellator.addVertex(this.pickerX, this.pickerY, 0.0);
-            tessellator.draw();
+            tessellator.bridge$addVertex(this.pickerX, this.IIIIIIlIlIlIllllllIlllIlI, 0.0);
+            tessellator.bridge$addVertex(this.lIIIIIllllIIIIlIlIIIIlIlI, this.IIIIIIlIlIlIllllllIlllIlI, 0.0);
+            tessellator.bridge$addVertex(this.lIIIIIllllIIIIlIlIIIIlIlI, this.pickerY, 0.0);
+            tessellator.bridge$addVertex(this.pickerX, this.pickerY, 0.0);
+            tessellator.bridge$finish();
             int[] arrn = null;
             int n3 = 0;
             while ((float)n3 < this.pickerWidth) {
@@ -121,13 +121,13 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
                     } else if (n5 == (Integer)this.setting.getValue()) {
                         arrn = new int[]{n3, n4};
                     }
-                    tessellator.startDrawingQuads();
+                    tessellator.bridge$startDrawingQuads();
                     GL11.glColor4f((float)(n5 >> 16 & 0xFF) / (float)255, (float)(n5 >> 8 & 0xFF) / (float)255, (float)(n5 & 0xFF) / (float)255, 1.0f);
-                    tessellator.addVertex(this.pickerX + (float)n3, this.pickerY + (float)n4 + 1.0f, 0.0);
-                    tessellator.addVertex(this.pickerX + (float)n3 + 1.0f, this.pickerY + (float)n4 + 1.0f, 0.0);
-                    tessellator.addVertex(this.pickerX + (float)n3 + 1.0f, this.pickerY + (float)n4, 0.0);
-                    tessellator.addVertex(this.pickerX + (float)n3, this.pickerY + (float)n4, 0.0);
-                    tessellator.draw();
+                    tessellator.bridge$addVertex(this.pickerX + (float)n3, this.pickerY + (float)n4 + 1.0f, 0.0);
+                    tessellator.bridge$addVertex(this.pickerX + (float)n3 + 1.0f, this.pickerY + (float)n4 + 1.0f, 0.0);
+                    tessellator.bridge$addVertex(this.pickerX + (float)n3 + 1.0f, this.pickerY + (float)n4, 0.0);
+                    tessellator.bridge$addVertex(this.pickerX + (float)n3, this.pickerY + (float)n4, 0.0);
+                    tessellator.bridge$finish();
                     ++n4;
                 }
                 ++n3;

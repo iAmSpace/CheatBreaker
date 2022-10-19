@@ -1,8 +1,8 @@
 package com.cheatbreaker.client.ui.util;
 
 import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -11,13 +11,13 @@ public class RenderUtil {
 
     public static void lIIIIlIIllIIlIIlIIIlIIllI(float f, float f2, float f3, float f4, int n, int n2) {
         float f5 = 3.875f * 0.0010080645f;
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(f, f2 + (float)n2, zLevel, f3 * f5, (f4 + (float)n2) * f5);
-        tessellator.addVertexWithUV(f + (float)n, f2 + (float)n2, zLevel, (f3 + (float)n) * f5, (f4 + (float)n2) * f5);
-        tessellator.addVertexWithUV(f + (float)n, f2, zLevel, (f3 + (float)n) * f5, f4 * f5);
-        tessellator.addVertexWithUV(f, f2, zLevel, f3 * f5, f4 * f5);
-        tessellator.draw();
+        TessellatorBridge tessellator = Ref.getTessellator();
+        tessellator.bridge$startDrawingQuads();
+        tessellator.bridge$addVertexWithUV(f, f2 + (float)n2, zLevel, f3 * f5, (f4 + (float)n2) * f5);
+        tessellator.bridge$addVertexWithUV(f + (float)n, f2 + (float)n2, zLevel, (f3 + (float)n) * f5, (f4 + (float)n2) * f5);
+        tessellator.bridge$addVertexWithUV(f + (float)n, f2, zLevel, (f3 + (float)n) * f5, f4 * f5);
+        tessellator.bridge$addVertexWithUV(f, f2, zLevel, f3 * f5, f4 * f5);
+        tessellator.bridge$finish();
     }
 
     public static void drawIcon(ResourceLocation resourceLocation, float f, float f2, float f3) {
@@ -129,15 +129,15 @@ public class RenderUtil {
         GL11.glEnable(3042);
         GL11.glDisable(3553);
         GL11.glBlendFunc(770, 771);
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawing(6);
-        tessellator.addVertex(d, d2, zLevel);
+        TessellatorBridge tessellator = Ref.getTessellator();
+        tessellator.bridge$startDrawing(6);
+        tessellator.bridge$addVertex(d, d2, zLevel);
         double d4 = 3.0 * 2.0943951023931953;
         double d5 = d4 / (double)30;
         for (double d6 = -d5; d6 < d4; d6 += d5) {
-            tessellator.addVertex(d + d3 * Math.cos(-d6), d2 + d3 * Math.sin(-d6), zLevel);
+            tessellator.bridge$addVertex(d + d3 * Math.cos(-d6), d2 + d3 * Math.sin(-d6), zLevel);
         }
-        tessellator.draw();
+        tessellator.bridge$finish();
         GL11.glEnable(3553);
         GL11.glDisable(3042);
     }
@@ -147,18 +147,18 @@ public class RenderUtil {
         GL11.glDisable(3553);
         GL11.glEnable(2848);
         d5 = (d5 + (double)n) % (double)n;
-        Tessellator tessellator = Tessellator.instance;
+        TessellatorBridge tessellator = Ref.getTessellator();
         for (double d7 = (double)360 / (double)n * d5; d7 < (double)360 / (double)n * (d5 + d6); d7 += 1.0) {
             double d8 = d7 * (0.6976743936538696 * 4.502949631183398) / (double)180;
             double d9 = (d7 - 1.0) * (1.9384295391612096 * 1.6206896305084229) / (double)180;
             double[] arrd = new double[]{Math.cos(d8) * d3, -Math.sin(d8) * d3, Math.cos(d9) * d3, -Math.sin(d9) * d3};
             double[] arrd2 = new double[]{Math.cos(d8) * d4, -Math.sin(d8) * d4, Math.cos(d9) * d4, -Math.sin(d9) * d4};
-            tessellator.startDrawing(7);
-            tessellator.addVertex(d + arrd2[0], d2 + arrd2[1], 0.0);
-            tessellator.addVertex(d + arrd2[2], d2 + arrd2[3], 0.0);
-            tessellator.addVertex(d + arrd[2], d2 + arrd[3], 0.0);
-            tessellator.addVertex(d + arrd[0], d2 + arrd[1], 0.0);
-            tessellator.draw();
+            tessellator.bridge$startDrawing(7);
+            tessellator.bridge$addVertex(d + arrd2[0], d2 + arrd2[1], 0.0);
+            tessellator.bridge$addVertex(d + arrd2[2], d2 + arrd2[3], 0.0);
+            tessellator.bridge$addVertex(d + arrd[2], d2 + arrd[3], 0.0);
+            tessellator.bridge$addVertex(d + arrd[0], d2 + arrd[1], 0.0);
+            tessellator.bridge$finish();
         }
         GL11.glEnable(3553);
         GL11.glDisable(3042);
@@ -198,5 +198,4 @@ public class RenderUtil {
         RenderUtil.drawHorizontalLine(f + 1.0f, f + 1.0f, f4 - 2.0f, n);
         GL11.glScalef(2.0f, 2.0f, 2.0f);
     }
-
 }

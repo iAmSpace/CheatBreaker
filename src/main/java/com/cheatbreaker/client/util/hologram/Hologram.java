@@ -1,9 +1,10 @@
 package com.cheatbreaker.client.util.hologram;
 
+import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.lwjgl.opengl.GL11;
 
@@ -49,17 +50,17 @@ public class Hologram {
                 GL11.glDisable(GL11.GL_DEPTH_TEST);
                 GL11.glEnable(GL11.GL_BLEND);
                 OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-                Tessellator tessellator = Tessellator.instance;
+                TessellatorBridge tessellator = Ref.getTessellator();
                 int n = 0;
                 GL11.glDisable(GL11.GL_TEXTURE_2D);
-                tessellator.startDrawingQuads();
+                tessellator.bridge$startDrawingQuads();
                 int n2 = fontRenderer.getStringWidth(string) / 2;
-                tessellator.setColorRGBA_F(0.0f, 0.0f, 0.0f, 0.6875f * 0.36363637f);
-                tessellator.addVertex(-n2 - 1, -1 + n, 0.0);
-                tessellator.addVertex(-n2 - 1, 8 + n, 0.0);
-                tessellator.addVertex(n2 + 1, 8 + n, 0.0);
-                tessellator.addVertex(n2 + 1, -1 + n, 0.0);
-                tessellator.draw();
+                tessellator.bridge$setColorRGBA_F(0.0f, 0.0f, 0.0f, 0.6875f * 0.36363637f);
+                tessellator.bridge$addVertex(-n2 - 1, -1 + n, 0.0);
+                tessellator.bridge$addVertex(-n2 - 1, 8 + n, 0.0);
+                tessellator.bridge$addVertex(n2 + 1, 8 + n, 0.0);
+                tessellator.bridge$addVertex(n2 + 1, -1 + n, 0.0);
+                tessellator.bridge$finish();
                 GL11.glEnable(GL11.GL_TEXTURE_2D);
                 // lIIIIIIIIIlIllIIllIlIIlIl = drawString
                 fontRenderer.drawString(string, -fontRenderer.getStringWidth(string) / 2, n, 0x20FFFFFF);

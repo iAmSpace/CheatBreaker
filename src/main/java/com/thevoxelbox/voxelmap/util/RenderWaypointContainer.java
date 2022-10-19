@@ -1,8 +1,9 @@
 package com.thevoxelbox.voxelmap.util;
 
+import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import com.thevoxelbox.voxelmap.MapSettingsManager;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.settings.GameSettings;
@@ -48,7 +49,7 @@ public class RenderWaypointContainer
 
 	public void renderBeam(Waypoint par1EntityWaypoint, double baseX, double baseY, double baseZ, float par8,
 	                       double distance) {
-		Tessellator tesselator = Tessellator.instance;
+		TessellatorBridge tessellator = Ref.getTessellator();
 		GL11.glDisable(3553);
 		GL11.glDisable(2896);
 		GL11.glDisable(2912);
@@ -70,8 +71,8 @@ public class RenderWaypointContainer
 		}
 
 		for (int width = 0; width < 4; width++) {
-			tesselator.startDrawing(5);
-			tesselator.setColorRGBA_F(r * brightness, g * brightness, b * brightness, 0.8F * alphaMultiplier);
+			tessellator.bridge$startDrawing(5);
+			tessellator.bridge$setColorRGBA_F(r * brightness, g * brightness, b * brightness, 0.8F * alphaMultiplier);
 
 			double var32 = 0.1D + width * 0.2D;
 			var32 *= topWidthFactor;
@@ -95,10 +96,10 @@ public class RenderWaypointContainer
 				if ((side == 2) || (side == 3)) {
 					vertZ1 += var34 * 2.0D;
 				}
-				tesselator.addVertex(vertX1, baseY + 0.0D, vertZ1);
-				tesselator.addVertex(vertX2, baseY + height, vertZ2);
+				tessellator.bridge$addVertex(vertX1, baseY + 0.0D, vertZ1);
+				tessellator.bridge$addVertex(vertX2, baseY + height, vertZ2);
 			}
-			tesselator.draw();
+			tessellator.bridge$finish();
 		}
 		GL11.glDisable(3042);
 		GL11.glEnable(2912);
@@ -137,7 +138,7 @@ public class RenderWaypointContainer
 			GL11.glDisable(2929);
 			GL11.glEnable(3042);
 			GL11.glBlendFunc(770, 771);
-			Tessellator var15 = Tessellator.instance;
+			TessellatorBridge tessellator = Ref.getTessellator();
 			byte var16 = 0;
 			GL11.glDisable(3553);
 			int var17 = fontRenderer.getStringWidth(par2Str) / 2;
@@ -154,46 +155,46 @@ public class RenderWaypointContainer
 
 			GL11.glEnable(32823);
 			GL11.glPolygonOffset(1.0F, 3.0F);
-			var15.startDrawingQuads();
-			var15.setColorRGBA_F(par1EntityWaypoint.red, par1EntityWaypoint.green, par1EntityWaypoint.blue,
+			tessellator.bridge$startDrawingQuads();
+			tessellator.bridge$setColorRGBA_F(par1EntityWaypoint.red, par1EntityWaypoint.green, par1EntityWaypoint.blue,
 					0.6F * alphaMultiplier);
-			var15.addVertex(-var17 - 2, -2 + var16, 0.0D);
-			var15.addVertex(-var17 - 2, 9 + var16, 0.0D);
-			var15.addVertex(var17 + 2, 9 + var16, 0.0D);
-			var15.addVertex(var17 + 2, -2 + var16, 0.0D);
-			var15.draw();
+			tessellator.bridge$addVertex(-var17 - 2, -2 + var16, 0.0D);
+			tessellator.bridge$addVertex(-var17 - 2, 9 + var16, 0.0D);
+			tessellator.bridge$addVertex(var17 + 2, 9 + var16, 0.0D);
+			tessellator.bridge$addVertex(var17 + 2, -2 + var16, 0.0D);
+			tessellator.bridge$finish();
 			GL11.glPolygonOffset(1.0F, 1.0F);
-			var15.startDrawingQuads();
-			var15.setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.15F);
+			tessellator.bridge$startDrawingQuads();
+			tessellator.bridge$setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.15F);
 
-			var15.addVertex(-var17 - 1, -1 + var16, 0.0D);
-			var15.addVertex(-var17 - 1, 8 + var16, 0.0D);
-			var15.addVertex(var17 + 1, 8 + var16, 0.0D);
-			var15.addVertex(var17 + 1, -1 + var16, 0.0D);
-			var15.draw();
+			tessellator.bridge$addVertex(-var17 - 1, -1 + var16, 0.0D);
+			tessellator.bridge$addVertex(-var17 - 1, 8 + var16, 0.0D);
+			tessellator.bridge$addVertex(var17 + 1, 8 + var16, 0.0D);
+			tessellator.bridge$addVertex(var17 + 1, -1 + var16, 0.0D);
+			tessellator.bridge$finish();
 			GL11.glDisable(2929);
 			GL11.glDepthMask(false);
 			GL11.glPolygonOffset(1.0F, 7.0F);
-			var15.startDrawingQuads();
+			tessellator.bridge$startDrawingQuads();
 
-			var15.setColorRGBA_F(par1EntityWaypoint.red, par1EntityWaypoint.green, par1EntityWaypoint.blue,
+			tessellator.bridge$setColorRGBA_F(par1EntityWaypoint.red, par1EntityWaypoint.green, par1EntityWaypoint.blue,
 					0.15F * alphaMultiplier);
 
-			var15.addVertex(-var17 - 2, -2 + var16, 0.0D);
-			var15.addVertex(-var17 - 2, 9 + var16, 0.0D);
-			var15.addVertex(var17 + 2, 9 + var16, 0.0D);
-			var15.addVertex(var17 + 2, -2 + var16, 0.0D);
-			var15.draw();
+			tessellator.bridge$addVertex(-var17 - 2, -2 + var16, 0.0D);
+			tessellator.bridge$addVertex(-var17 - 2, 9 + var16, 0.0D);
+			tessellator.bridge$addVertex(var17 + 2, 9 + var16, 0.0D);
+			tessellator.bridge$addVertex(var17 + 2, -2 + var16, 0.0D);
+			tessellator.bridge$finish();
 			GL11.glPolygonOffset(1.0F, 5.0F);
 
-			var15.startDrawingQuads();
-			var15.setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.15F * alphaMultiplier);
+			tessellator.bridge$startDrawingQuads();
+			tessellator.bridge$setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.15F * alphaMultiplier);
 
-			var15.addVertex(-var17 - 1, -1 + var16, 0.0D);
-			var15.addVertex(-var17 - 1, 8 + var16, 0.0D);
-			var15.addVertex(var17 + 1, 8 + var16, 0.0D);
-			var15.addVertex(var17 + 1, -1 + var16, 0.0D);
-			var15.draw();
+			tessellator.bridge$addVertex(-var17 - 1, -1 + var16, 0.0D);
+			tessellator.bridge$addVertex(-var17 - 1, 8 + var16, 0.0D);
+			tessellator.bridge$addVertex(var17 + 1, 8 + var16, 0.0D);
+			tessellator.bridge$addVertex(var17 + 1, -1 + var16, 0.0D);
+			tessellator.bridge$finish();
 			GL11.glDisable(32823);
 			GL11.glEnable(3553);
 			int font = -3355444 & 0x00FFFFFF;

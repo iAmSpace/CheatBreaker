@@ -1,11 +1,11 @@
 package com.cheatbreaker.client.ui.overlay.element;
 
 import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import com.cheatbreaker.client.ui.mainmenu.AbstractElement;
 import com.cheatbreaker.client.ui.overlay.StringSanitizer;
 import com.cheatbreaker.client.ui.util.font.CBFontRenderer;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.Tessellator;
 import org.lwjgl.opengl.GL11;
 
 public class InputFieldElement extends AbstractElement {
@@ -360,17 +360,17 @@ public class InputFieldElement extends AbstractElement {
         if (f > this.x + this.width) {
             f = this.x + this.width;
         }
-        Tessellator tessellator = Tessellator.instance;
+        TessellatorBridge tessellator = Ref.getTessellator();
         GL11.glColor4f(0.0f, 0.0f, (float)255, (float)255);
         GL11.glDisable(3553);
         GL11.glEnable(3058);
         GL11.glLogicOp(5387);
-        tessellator.startDrawingQuads();
-        tessellator.addVertex(f, f4, 0.0);
-        tessellator.addVertex(f3, f4, 0.0);
-        tessellator.addVertex(f3, f2, 0.0);
-        tessellator.addVertex(f, f2, 0.0);
-        tessellator.draw();
+        tessellator.bridge$startDrawingQuads();
+        tessellator.bridge$addVertex(f, f4, 0.0);
+        tessellator.bridge$addVertex(f3, f4, 0.0);
+        tessellator.bridge$addVertex(f3, f2, 0.0);
+        tessellator.bridge$addVertex(f, f2, 0.0);
+        tessellator.bridge$finish();
         GL11.glDisable(3058);
         GL11.glEnable(3553);
     }

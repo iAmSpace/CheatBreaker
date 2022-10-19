@@ -1,9 +1,10 @@
 package com.cheatbreaker.client.ui.util;
 
+import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -210,13 +211,13 @@ public final class HudUtil {
     public static void drawTexturedModalRect(int x, int y, int u, int v, int width, int height, float zLevel) {
         float var7 = 0.00390625F;
         float var8 = 0.00390625F;
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV((x + 0), (y + height), zLevel, ((u + 0) * var7), ((v + height) * var8));
-        tessellator.addVertexWithUV((x + width), (y + height), zLevel, ((u + width) * var7), ((v + height) * var8));
-        tessellator.addVertexWithUV((x + width), (y + 0), zLevel, ((u + width) * var7), ((v + 0) * var8));
-        tessellator.addVertexWithUV((x + 0), (y + 0), zLevel, ((u + 0) * var7), ((v + 0) * var8));
-        tessellator.draw();
+        TessellatorBridge tessellator = Ref.getTessellator();
+        tessellator.bridge$startDrawingQuads();
+        tessellator.bridge$addVertexWithUV(x, y + height, zLevel, u * var7, v + height * var8);
+        tessellator.bridge$addVertexWithUV(x + width, y + height, zLevel, u + width * var7, v + height * var8);
+        tessellator.bridge$addVertexWithUV(x + width, y, zLevel, u + width * var7, v * var8);
+        tessellator.bridge$addVertexWithUV(x, y, zLevel, u * var7, v * var8);
+        tessellator.bridge$finish();
     }
 
     /**
@@ -242,12 +243,12 @@ public final class HudUtil {
                 GL11.glDisable(GL11.GL_LIGHTING);
                 GL11.glDisable(GL11.GL_DEPTH_TEST);
                 GL11.glDisable(GL11.GL_TEXTURE_2D);
-                Tessellator var8 = Tessellator.instance;
+                TessellatorBridge tessellator = Ref.getTessellator();
                 int var9 = 255 - var7 << 16 | var7 << 8;
                 int var10 = (255 - var7) / 4 << 16 | 16128;
-                renderQuad(var8, x + 2, y + 13, 13, 2, 0);
-                renderQuad(var8, x + 2, y + 13, 12, 1, var10);
-                renderQuad(var8, x + 2, y + 13, var11, 1, var9);
+                renderQuad(tessellator, x + 2, y + 13, 13, 2, 0);
+                renderQuad(tessellator, x + 2, y + 13, 12, 1, var10);
+                renderQuad(tessellator, x + 2, y + 13, var11, 1, var9);
                 GL11.glEnable(GL11.GL_TEXTURE_2D);
                 GL11.glEnable(GL11.GL_LIGHTING);
                 GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -282,14 +283,14 @@ public final class HudUtil {
      * tesselator, x, y, width,
      * height, color
      */
-    public static void renderQuad(Tessellator tessellator, int x, int y, int width, int height, int color) {
-        tessellator.startDrawingQuads();
-        tessellator.setColorOpaque_I(color);
-        tessellator.addVertex((x + 0), (y + 0), 0.0D);
-        tessellator.addVertex((x + 0), (y + height), 0.0D);
-        tessellator.addVertex((x + width), (y + height), 0.0D);
-        tessellator.addVertex((x + width), (y + 0), 0.0D);
-        tessellator.draw();
+    public static void renderQuad(TessellatorBridge tessellator, int x, int y, int width, int height, int color) {
+        tessellator.bridge$startDrawingQuads();
+        tessellator.bridge$setColorOpaque_I(color);
+        tessellator.bridge$addVertex((x), (y), 0.0D);
+        tessellator.bridge$addVertex((x), (y + height), 0.0D);
+        tessellator.bridge$addVertex((x + width), (y + height), 0.0D);
+        tessellator.bridge$addVertex((x + width), (y), 0.0D);
+        tessellator.bridge$finish();
     }
 
     public static int countInInventory(EntityPlayer player, Item item) {
