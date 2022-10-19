@@ -1,8 +1,10 @@
 package com.cheatbreaker.client.mixin.client.renderer;
 
+import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import net.minecraft.client.renderer.Tessellator;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(Tessellator.class)
@@ -22,6 +24,8 @@ public abstract class MixinTessellator implements TessellatorBridge {
     @Shadow public abstract void setTranslation(double p_78373_1_, double p_78373_3_, double p_78373_5_);
 
     @Shadow public abstract void setColorRGBA_I(int p_78384_1_, int p_78384_2_);
+
+    @Shadow public abstract void setColorRGBA(int p_78370_1_, int p_78370_2_, int p_78370_3_, int p_78370_4_);
 
     public void bridge$startDrawingQuads() {
         this.startDrawingQuads();
@@ -57,5 +61,15 @@ public abstract class MixinTessellator implements TessellatorBridge {
 
     public void bridge$setColorRGBA_I(int color, int alpha) {
         this.setColorRGBA_I(color, alpha);
+    }
+
+    /**
+     * @author iAmSpace
+     * @reason Xray Staff Module functionality
+     */
+    @Overwrite
+    public void setColorOpaque(int r, int g, int b) {
+        CheatBreaker cb = CheatBreaker.getInstance();
+        this.setColorRGBA(r, g, b, cb != null && cb.getModuleManager() != null && cb.getModuleManager().xray.isEnabled() ? (Integer) cb.getModuleManager().xray.opacity.getValue() : 255);
     }
 }
