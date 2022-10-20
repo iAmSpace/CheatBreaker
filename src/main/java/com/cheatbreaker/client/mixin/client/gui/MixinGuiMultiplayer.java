@@ -1,5 +1,6 @@
 package com.cheatbreaker.client.mixin.client.gui;
 
+import com.cheatbreaker.client.ui.mainmenu.MainMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
@@ -16,6 +17,6 @@ public class MixinGuiMultiplayer {
     @Inject(method = "<init>(Lnet/minecraft/client/gui/GuiScreen;)V", at = @At("RETURN"))
     public void impl$init(GuiScreen screen, CallbackInfo callbackInfo) {
         if (screen instanceof GuiMainMenu)
-            this.field_146798_g = new GuiScreen();
+            this.field_146798_g = new MainMenu();
     }
 }
