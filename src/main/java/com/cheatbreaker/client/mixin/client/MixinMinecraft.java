@@ -3,10 +3,13 @@ package com.cheatbreaker.client.mixin.client;
 import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.bridge.client.MinecraftBridge;
 import com.cheatbreaker.client.bridge.client.audio.SoundHandlerBridge;
+import com.cheatbreaker.client.bridge.client.gui.FontRendererBridge;
+import com.cheatbreaker.client.bridge.util.TimerBridge;
 import com.cheatbreaker.client.event.type.ClickEvent;
 import com.cheatbreaker.client.event.type.KeyboardEvent;
 import com.cheatbreaker.client.event.type.LoadWorldEvent;
 import com.cheatbreaker.client.event.type.TickEvent;
+import com.cheatbreaker.client.ui.extended.CustomLoadingScreen;
 import com.cheatbreaker.client.ui.mainmenu.LoadingScreen;
 import com.cheatbreaker.client.ui.mainmenu.MainMenu;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
@@ -169,12 +172,22 @@ public abstract class MixinMinecraft implements MinecraftBridge {
 
     @Shadow public abstract void scheduleResourcesRefresh();
 
+    @Shadow private Timer timer;
+
     public SoundHandlerBridge bridge$getSoundHandler() {
         return (SoundHandlerBridge) this.getSoundHandler();
     }
 
     public int bridge$getDebugFPS() {
         return debugFPS;
+    }
+
+    public TimerBridge bridge$getTimer() {
+        return (TimerBridge) this.timer;
+    }
+
+    public FontRendererBridge bridge$getFontRenderer() {
+        return (FontRendererBridge) this.fontRenderer;
     }
 
     @Inject(method = "displayGuiScreen", at = @At("HEAD"), cancellable = true)

@@ -36,11 +36,11 @@ public class LoadingScreen extends AbstractGui {
         this.drawMenu(0.0f, 0.0f);
     }
 
-    private void drawLogo(double d, double d2) {
-        float f = 27.0f;
-        double d3 = d / 2.0 - (double) f;
-        double d4 = d2 / 2.0 - (double) f;
-        RenderUtil.drawIcon(this.logo, f, (float) d3, (float) d4);
+    private void drawLogo(double width, double height) {
+        float size = 27.0f;
+        double x = width / 2.0 - (double) size;
+        double y = height / 2.0 - (double) size;
+        RenderUtil.drawIcon(this.logo, size, (float) x, (float) y);
     }
 
     private void clearMenu() {

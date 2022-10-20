@@ -46,7 +46,7 @@ public class FriendElement extends AbstractElement {
                 if (!this.IllIIIIIIIlIlIllllIIllIII.IIIIllIlIIIllIlllIlllllIl()) {
                     this.IllIIIIIIIlIlIllllIIllIII.lIIIIIIIIIlIllIIllIlIIlIl();
                 }
-                Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, new Color(0.20185566f * 4.409091f, 0.45f * 1.2f, 0.044696968f * 1.1186441f, 0.8933333f * 0.7276119f * (0.315f * 0.4888889f + this.IllIIIIIIIlIlIllllIIllIII.IllIIIIIIIlIlIllllIIllIII())).getRGB());
+                Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, new Color(0.20185566f * 4.409091f, 0.45f * 1.2f, 0.044696968f * 1.1186441f, 0.8933333f * 0.7276119f * (0.315f * 0.4888889f + this.IllIIIIIIIlIlIllllIIllIII.getCurrentValue())).getRGB());
                 CheatBreaker.getInstance().playRegular16px.drawString(object.size() + "", this.x + this.width - (float)15, this.y + (float)6, -1);
             } else if (this.IllIIIIIIIlIlIllllIIllIII.IIIIllIlIIIllIlllIlllllIl() && this.IllIIIIIIIlIlIllllIIllIII.IIIIllIIllIIIIllIllIIIlIl()) {
                 this.IllIIIIIIIlIlIllllIIllIII.IlIlIIIlllIIIlIlllIlIllIl();

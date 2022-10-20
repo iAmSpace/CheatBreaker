@@ -42,7 +42,7 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
         this.colorPickerColorElement = new ColorPickerColorElement(f, (Integer)setting.getValue());
         this.colors = new ArrayList<>();
         for (int i = 0; i < 16; ++i) {
-            int n = ((FontRendererBridge) Minecraft.getMinecraft().fontRenderer).bridge$getColorCode()[i];
+            int n = Ref.getMinecraft().bridge$getFontRenderer().bridge$getColorCode()[i];
             this.colors.add(new ColorPickerColorElement(f, n));
         }
     }

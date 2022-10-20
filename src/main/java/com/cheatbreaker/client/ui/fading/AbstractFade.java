@@ -79,7 +79,7 @@ public abstract class AbstractFade {
         return this.getValue();
     }
 
-    public float IllIIIIIIIlIlIllllIIllIII() {
+    public float getCurrentValue() {
         if (this.startTime == 0L) {
             return 0.0f;
         }

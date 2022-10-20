@@ -19,8 +19,8 @@ public class MainMenu extends MainMenuBase {
     private GradientTextButton multiplayerButton = new GradientTextButton("MULTIPLAYER");
     private final MinMaxFade lIIIIllIIlIlIllIIIlIllIlI = new MinMaxFade(750L);
     private final CosineFade IlllIllIlIIIIlIIlIIllIIIl;
-    private final MinMaxFade IlIlllIIIIllIllllIllIIlIl = new MinMaxFade(400L);
-    private static int lIllIlIlllIIlIIllIIlIIlII;
+    private final MinMaxFade loadingScreenFade = new MinMaxFade(400L);
+    private static int loadCount;
 
     public MainMenu() {
         this.IlllIllIlIIIIlIIlIIllIIIl = new CosineFade(4000L);
@@ -34,11 +34,11 @@ public class MainMenu extends MainMenuBase {
     @Override
     public void updateScreen() {
         super.updateScreen();
-        if (this.llIlIIIlIIIIlIlllIlIIIIll() && !this.lIIIIllIIlIlIllIIIlIllIlI.IIIIllIlIIIllIlllIlllllIl()) {
+        if (this.isFirstOpened() && !this.lIIIIllIIlIlIllIIIlIllIlI.IIIIllIlIIIllIlllIlllllIl()) {
             this.lIIIIllIIlIlIllIIIlIllIlI.lIIIIIIIIIlIllIIllIlIIlIl();
         }
-        if (!(this.llIlIIIlIIIIlIlllIlIIIIll() && !this.lIIIIllIIlIlIllIIIlIllIlI.IIIIllIIllIIIIllIllIIIlIl() || this.IlllIllIlIIIIlIIlIIllIIIl.IIIIllIlIIIllIlllIlllllIl())) {
-            this.IlIlllIIIIllIllllIllIIlIl.lIIIIIIIIIlIllIIllIlIIlIl();
+        if (!(this.isFirstOpened() && !this.lIIIIllIIlIlIllIIIlIllIlI.IIIIllIIllIIIIllIllIIIlIl() || this.IlllIllIlIIIIlIIlIIllIIIl.IIIIllIlIIIllIlllIlllllIl())) {
+            this.loadingScreenFade.lIIIIIIIIIlIllIIllIlIIlIl();
             this.IlllIllIlIIIIlIIlIIllIIIl.lIIIIIIIIIlIllIIllIlIIlIl();
             this.IlllIllIlIIIIlIIlIIllIIIl.IlllIIIlIlllIllIlIIlllIlI();
         }
@@ -49,7 +49,7 @@ public class MainMenu extends MainMenuBase {
         super.initGui();
         this.singleplayerButton.setElementSize(this.getScaledWidth() / 2.0f - (float)50, this.getScaledHeight() / 2.0f + (float)5, (float)100, 12);
         this.multiplayerButton.setElementSize(this.getScaledWidth() / 2.0f - (float)50, this.getScaledHeight() / 2.0f + (float)24, (float)100, 12);
-        ++lIllIlIlllIIlIIllIIlIIlII;
+        ++loadCount;
     }
 
     @Override
@@ -60,17 +60,17 @@ public class MainMenu extends MainMenuBase {
         this.singleplayerButton.drawElement(f, f2, true);
         this.multiplayerButton.drawElement(f, f2, true);
         Ref.modified$drawRect(this.singleplayerButton.getX() - (float) 20, this.getScaledHeight() / 2.0f - (float) 80, this.singleplayerButton.getX() + this.singleplayerButton.getWidth() + (float) 20, this.multiplayerButton.getY() + this.multiplayerButton.getHeight() + (float) 14, 0x2F000000);
-        float f4 = f3 = this.llIlIIIlIIIIlIlllIlIIIIll() ? this.lIIIIllIIlIlIllIIIlIllIlI.IllIIIIIIIlIlIllllIIllIII() : 1.0f;
-        if (this.llIlIIIlIIIIlIlllIlIIIIll()) {
-            Ref.modified$drawRect(0.0f, 0.0f, this.getScaledWidth(), this.getScaledHeight(), new Color(1.0f, 1.0f, 1.0f, 1.0f - 1.0f * this.IlIlllIIIIllIllllIllIIlIl.IllIIIIIIIlIlIllllIIllIII()).getRGB());
+        f3 = this.isFirstOpened() ? this.lIIIIllIIlIlIllIIIlIllIlI.getCurrentValue() : 1.0f;
+        if (this.isFirstOpened()) {
+            Ref.modified$drawRect(0.0f, 0.0f, this.getScaledWidth(), this.getScaledHeight(), new Color(1.0f, 1.0f, 1.0f, 1.0f - this.loadingScreenFade.getCurrentValue()).getRGB());
         }
-        this.lIIIIlIIllIIlIIlIIIlIIllI((double)this.getScaledWidth(), (double)this.getScaledHeight(), f3);
+        this.drawCheatBreakerLogo(this.getScaledWidth(), this.getScaledHeight(), f3);
         float f5 = this.getScaledWidth() / 2.0f - (float)80;
         float f6 = this.getScaledHeight() - (float)40;
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double)f5, (double)f6, (double)(f5 + (float)160), (double)(f6 + (float)10), (double)8, new Color(218, 66, 83, (int)((float)255 * (1.0f - f3))).getRGB());
     }
 
-    private void lIIIIlIIllIIlIIlIIIlIIllI(double d, double d2, float f) {
+    private void drawCheatBreakerLogo(double d, double d2, float f) {
         float f2 = 27;
         double d3 = d / (double)2 - (double)f2;
         double d4 = d2 / (double)2 - (double)f2 - (double)((float)35 * f);
@@ -78,11 +78,11 @@ public class MainMenu extends MainMenuBase {
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glTranslatef((float)d3, (float)d4, 1.0f);
         GL11.glTranslatef(f2, f2, f2);
-        GL11.glRotatef((float)180 * this.IlllIllIlIIIIlIIlIIllIIIl.IllIIIIIIIlIlIllllIIllIII(), 0.0f, 0.0f, 1.0f);
+        GL11.glRotatef((float)180 * this.IlllIllIlIIIIlIIlIIllIIIl.getCurrentValue(), 0.0f, 0.0f, 1.0f);
         GL11.glTranslatef(-f2, -f2, -f2);
-        RenderUtil.lIIIIIIIIIlIllIIllIlIIlIl(this.outerLogo, f2, 0.0f, 0.0f);
+        RenderUtil.drawIcon(this.outerLogo, f2, 0.0f, 0.0f);
         GL11.glPopMatrix();
-        RenderUtil.lIIIIIIIIIlIllIIllIlIIlIl(this.innerLogo, f2, (float)d3, (float)d4);
+        RenderUtil.drawIcon(this.innerLogo, f2, (float)d3, (float)d4);
     }
 
     @Override
@@ -99,11 +99,11 @@ public class MainMenu extends MainMenuBase {
         }
     }
 
-    public boolean llIlIIIlIIIIlIlllIlIIIIll() {
-        return lIllIlIlllIIlIIllIIlIIlII == 1;
+    public boolean isFirstOpened() {
+        return loadCount == 1;
     }
 
     public MinMaxFade IIIlIIllllIIllllllIlIIIll() {
-        return this.IlIlllIIIIllIllllIllIIlIl;
+        return this.loadingScreenFade;
     }
 }

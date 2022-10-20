@@ -28,7 +28,7 @@ public class Alert {
     }
 
     public void drawAlert() {
-        float f = this.IlIlIIIlllIIIlIlllIlIllIl - (this.IlIlIIIlllIIIlIlllIlIllIl - this.IIIllIllIlIlllllllIlIlIII) * this.fade.IllIIIIIIIlIlIllllIIllIII();
+        float f = this.IlIlIIIlllIIIlIlllIlIllIl - (this.IlIlIIIlllIIIlIlllIlIllIl - this.IIIllIllIlIlllllllIlIlIII) * this.fade.getCurrentValue();
         if (this.IIIIllIlIIIllIlllIlllllIl) {
             Ref.modified$drawGradientRect(this.x, f, this.x + (float)140, f + (float)55, -819057106, -822083584);
             for (int i = 0; i < this.lines.length && i <= 3; ++i) {

@@ -3,6 +3,7 @@ package com.cheatbreaker.client.bridge;
 import com.cheatbreaker.client.bridge.client.MinecraftBridge;
 import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import org.lwjgl.opengl.GL11;
@@ -97,5 +98,9 @@ public class Ref {
         modified$drawRect(f3 - f5, f2 + f5, f3, f4 - f5, n);
         modified$drawRect(f, f2, f3, f2 + f5, n);
         modified$drawRect(f, f4 - f5, f3, f4, n);
+    }
+
+    public static ScaledResolution createScaledResolution() {
+        return new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
     }
 }

@@ -32,7 +32,7 @@ public class AliasesElement
     }
 
     private float IlIlllIIIIllIllllIllIIlIl() {
-        return this.cosineFade.IllIIIIIIIlIlIllllIIllIII() * 2.0f - 1.0f;
+        return this.cosineFade.getCurrentValue() * 2.0f - 1.0f;
     }
 
     @Override

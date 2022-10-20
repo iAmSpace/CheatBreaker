@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 def getCommitVersion(){
 	try {
-		def commitHashProc = "python3 ${projectDir}/get_version.py".execute()
+		def commitHashProc = "python ${projectDir}/get_version.py".execute()
 		commitHashProc.waitFor()
 		if(commitHashProc.exitValue() == 0){
 			def commitHash = commitHashProc.text.trim()

@@ -33,7 +33,7 @@ public class ColorFade extends ExponentialFade {
             this.lIIIIIIIIIlIllIIllIlIIlIl();
         }
         if (this.IIIllIllIlIlllllllIlIlIII()) {
-            float f = super.IllIIIIIIIlIlIllllIIllIII();
+            float f = super.getCurrentValue();
             int red = (int)Math.abs(f * (float)this.awtEndColor.getRed() + (1.0f - f) * (float)this.awtStartColor.getRed());
             int green = (int)Math.abs(f * (float)this.awtEndColor.getGreen() + (1.0f - f) * (float)this.awtStartColor.getGreen());
             int blue = (int)Math.abs(f * (float)this.awtEndColor.getBlue() + (1.0f - f) * (float)this.awtStartColor.getBlue());

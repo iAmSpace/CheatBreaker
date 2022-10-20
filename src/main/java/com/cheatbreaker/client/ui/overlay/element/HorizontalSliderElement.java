@@ -29,7 +29,7 @@ public class HorizontalSliderElement
         float f4 = this.IIIllIllIlIlllllllIlIlIII.getMinimumValue().floatValue();
         float f5 = this.IIIllIllIlIlllllllIlIlIII.getMaximumValue().floatValue();
         float f6 = f3 - this.lIIIIllIIlIlIllIIIlIllIlI.floatValue();
-        float f7 = (float)100 * ((this.lIIIIllIIlIlIllIIIlIllIlI.floatValue() + f6 * this.IllIIIIIIIlIlIllllIIllIII.IllIIIIIIIlIlIllllIIllIII() - f4) / (f5 - f4));
+        float f7 = (float)100 * ((this.lIIIIllIIlIlIllIIIlIllIlI.floatValue() + f6 * this.IllIIIIIIIlIlIllllIIllIII.getCurrentValue() - f4) / (f5 - f4));
         Ref.modified$drawRect(this.x, this.y, this.x + this.width / (float)100 * f7, this.y + this.height, -52429);
     }
 
