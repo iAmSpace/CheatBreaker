@@ -17,8 +17,8 @@ No, in all seriousness though, I think making CheatBreaker a Forge mod and open 
 0. Install [Java](https://www.java.com/en/download/manual.jsp) + [Minecraft Launcher](https://minecraft.net/download)
 1. Install Forge for 1.7.10 from [here](https://github.com/iAmSpace/Installers/raw/main/forge/forge-1.7.10-10.13.4.1614-1.7.10-installer.jar)
 2. Add [CheatBreaker.jar] to your `mods` folder located in your `.minecraft` directory (if it isn't there, just create it)
-2.5. (Repeat) Add [OptiFine.jar] to your `mods` folder located in your `.minecraft` directory
-3. Launch Forge 1.7.10 from the Minecraft Launcher
+3. (Optional) Add [OptiFine.jar] to your `mods` folder located in your `.minecraft` directory
+4. Launch Forge 1.7.10 from the Minecraft Launcher
 
 ### MultiMC
 
@@ -27,8 +27,8 @@ No, in all seriousness though, I think making CheatBreaker a Forge mod and open 
 2. Edit the instance and click '`Install Forge`' on the right
 3. On the left, click '`Loader Mods`' then on the right, click '`Add`'
 4. Download [CheatBreaker.jar] and locate it - once found, double click
-4.5. (Repeat) Download [OptiFine.jar] and locate it - once found, double click
-5. Launch Forge 1.7.10 from MultiMC
+5. (Optional) Download [OptiFine.jar] and locate it - once found, double click
+6. Launch Forge 1.7.10 from MultiMC
 
 ---
 #### *Don't worry, links to CheatBreaker.jar coming soon*
