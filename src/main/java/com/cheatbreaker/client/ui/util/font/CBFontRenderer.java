@@ -35,6 +35,11 @@ import java.util.List;
 		return Math.max(shadowWidth, drawString(text, x, y, color, false));
 	}
 
+	public float drawRightAlignedStringWithShadow(String text, double x, double y, int color) {
+		double newX = x - this.getStringWidth(text);
+		return this.drawStringWithShadow(text, newX, y, color);
+	}
+
 	public float drawString(String text, float x, float y, int color) {
 		return drawString(text, x, y, color, false);
 	}

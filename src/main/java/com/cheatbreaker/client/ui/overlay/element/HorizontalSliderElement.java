@@ -22,7 +22,7 @@ public class HorizontalSliderElement
     @Override
     protected void handleElementDraw(float f, float f2, boolean bl) {
         Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, -13158601);
-        if (!this.IllIIIIIIIlIlIllllIIllIII.IIIIllIlIIIllIlllIlllllIl()) {
+        if (!this.IllIIIIIIIlIlIllllIIllIII.hasStartTime()) {
             this.lIIIIllIIlIlIllIIIlIllIlI = (Number)this.IIIllIllIlIlllllllIlIlIII.getValue();
         }
         float f3 = ((Number)this.IIIllIllIlIlllllllIlIlIII.getValue()).floatValue();
@@ -39,7 +39,7 @@ public class HorizontalSliderElement
             return false;
         }
         if (Mouse.isButtonDown((int)0) && this.isMouseInside(f, f2)) {
-            this.IllIIIIIIIlIlIllllIIllIII.lIIIIIIIIIlIllIIllIlIIlIl();
+            this.IllIIIIIIIlIlIllllIIllIII.reset();
             this.lIIIIllIIlIlIllIIIlIllIlI = (Number)this.IIIllIllIlIlllllllIlIlIII.getValue();
             float f3 = ((Number)this.IIIllIllIlIlllllllIlIlIII.getMinimumValue()).floatValue();
             float f4 = ((Number)this.IIIllIllIlIlllllllIlIlIII.getMaximumValue()).floatValue();

@@ -50,11 +50,11 @@ public class Alert {
     public void lIIIIlIIllIIlIIlIIIlIIllI(float f) {
         this.IlIlIIIlllIIIlIlllIlIllIl = this.IIIllIllIlIlllllllIlIlIII;
         this.IIIllIllIlIlllllllIlIlIII = f;
-        this.fade.lIIIIIIIIIlIllIIllIlIIlIl();
+        this.fade.reset();
     }
 
     public boolean lIIIIIIIIIlIllIIllIlIIlIl() {
-        return !this.fade.IIIIllIlIIIllIlllIlllllIl() || this.fade.IIIIllIIllIIIIllIllIIIlIl();
+        return !this.fade.hasStartTime() || this.fade.IIIIllIIllIIIIllIllIIIlIl();
     }
 
     public boolean IlllIIIlIlllIllIlIIlllIlI() {

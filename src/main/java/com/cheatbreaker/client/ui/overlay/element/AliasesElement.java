@@ -26,8 +26,8 @@ public class AliasesElement
         this.friend = friend;
         this.closeButton = new FlatButtonElement("X");
         this.cosineFade = new CosineFade(1500L);
-        this.cosineFade.lIIIIIIIIIlIllIIllIlIIlIl();
-        this.cosineFade.IlllIIIlIlllIllIlIIlllIlI();
+        this.cosineFade.reset();
+        this.cosineFade.enableShouldResetOnceCalled();
         new AliasesThread(this).start();
     }
 

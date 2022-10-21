@@ -17,30 +17,25 @@ public class MainMenu extends MainMenuBase {
     private final ResourceLocation innerLogo = new ResourceLocation("client/logo_108_inner.png");
     private GradientTextButton singleplayerButton = new GradientTextButton("SINGLEPLAYER");
     private GradientTextButton multiplayerButton = new GradientTextButton("MULTIPLAYER");
-    private final MinMaxFade lIIIIllIIlIlIllIIIlIllIlI = new MinMaxFade(750L);
-    private final CosineFade IlllIllIlIIIIlIIlIIllIIIl;
-    private final MinMaxFade loadingScreenFade = new MinMaxFade(400L);
+    private final MinMaxFade logoPositionFade = new MinMaxFade(750L);
+    private final CosineFade logoTurnAmount;
+    private final MinMaxFade loadingScreenBackgroundFade = new MinMaxFade(400L);
     private static int loadCount;
 
     public MainMenu() {
-        this.IlllIllIlIIIIlIIlIIllIIIl = new CosineFade(4000L);
-    }
-
-    @Override
-    public void handleMouseInput() {
-        super.handleMouseInput();
+        this.logoTurnAmount = new CosineFade(4000L);
     }
 
     @Override
     public void updateScreen() {
         super.updateScreen();
-        if (this.isFirstOpened() && !this.lIIIIllIIlIlIllIIIlIllIlI.IIIIllIlIIIllIlllIlllllIl()) {
-            this.lIIIIllIIlIlIllIIIlIllIlI.lIIIIIIIIIlIllIIllIlIIlIl();
+        if (this.isFirstOpened() && !this.logoPositionFade.hasStartTime()) {
+            this.logoPositionFade.reset();
         }
-        if (!(this.isFirstOpened() && !this.lIIIIllIIlIlIllIIIlIllIlI.IIIIllIIllIIIIllIllIIIlIl() || this.IlllIllIlIIIIlIIlIIllIIIl.IIIIllIlIIIllIlllIlllllIl())) {
-            this.loadingScreenFade.lIIIIIIIIIlIllIIllIlIIlIl();
-            this.IlllIllIlIIIIlIIlIIllIIIl.lIIIIIIIIIlIllIIllIlIIlIl();
-            this.IlllIllIlIIIIlIIlIIllIIIl.IlllIIIlIlllIllIlIIlllIlI();
+        if (!(this.isFirstOpened() && !this.logoPositionFade.IIIIllIIllIIIIllIllIIIlIl() || this.logoTurnAmount.hasStartTime())) {
+            this.loadingScreenBackgroundFade.reset();
+            this.logoTurnAmount.reset();
+            this.logoTurnAmount.enableShouldResetOnceCalled();
         }
     }
 
@@ -53,36 +48,38 @@ public class MainMenu extends MainMenuBase {
     }
 
     @Override
-    public void drawMenu(float f, float f2) {
-        float f3;
-        super.drawMenu(f, f2);
+    public void drawMenu(float mouseX, float mouseY) {
+        float logoY = this.isFirstOpened() ? this.logoPositionFade.getCurrentValue() : 1.0f;
+        super.drawMenu(mouseX, mouseY);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        this.singleplayerButton.drawElement(f, f2, true);
-        this.multiplayerButton.drawElement(f, f2, true);
+        this.singleplayerButton.drawElement(mouseX, mouseY, true);
+        this.multiplayerButton.drawElement(mouseX, mouseY, true);
+
         Ref.modified$drawRect(this.singleplayerButton.getX() - (float) 20, this.getScaledHeight() / 2.0f - (float) 80, this.singleplayerButton.getX() + this.singleplayerButton.getWidth() + (float) 20, this.multiplayerButton.getY() + this.multiplayerButton.getHeight() + (float) 14, 0x2F000000);
-        f3 = this.isFirstOpened() ? this.lIIIIllIIlIlIllIIIlIllIlI.getCurrentValue() : 1.0f;
-        if (this.isFirstOpened()) {
-            Ref.modified$drawRect(0.0f, 0.0f, this.getScaledWidth(), this.getScaledHeight(), new Color(1.0f, 1.0f, 1.0f, 1.0f - this.loadingScreenFade.getCurrentValue()).getRGB());
+        if (this.isFirstOpened() && this.loadingScreenBackgroundFade.getCurrentValue() != 1f) {
+            Ref.modified$drawRect(0.0f, 0.0f, this.getScaledWidth(), this.getScaledHeight(), new Color(1f, 1f, 1f, 1f - this.loadingScreenBackgroundFade.getCurrentValue()).getRGB());
         }
-        this.drawCheatBreakerLogo(this.getScaledWidth(), this.getScaledHeight(), f3);
+
+        this.drawCheatBreakerLogo(this.getScaledWidth(), this.getScaledHeight(), logoY);
+
         float f5 = this.getScaledWidth() / 2.0f - (float)80;
         float f6 = this.getScaledHeight() - (float)40;
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double)f5, (double)f6, (double)(f5 + (float)160), (double)(f6 + (float)10), (double)8, new Color(218, 66, 83, (int)((float)255 * (1.0f - f3))).getRGB());
+        RenderUtil.drawTexturedModalRect(f5, f6, f5 + 160f, f6 + 10f, 8, new Color(218, 66, 83, (int)((float)255 * (1.0f - logoY))).getRGB());
     }
 
-    private void drawCheatBreakerLogo(double d, double d2, float f) {
-        float f2 = 27;
-        double d3 = d / (double)2 - (double)f2;
-        double d4 = d2 / (double)2 - (double)f2 - (double)((float)35 * f);
+    private void drawCheatBreakerLogo(double dispWidth, double dispHeight, float f) {
+        float halfSize = 27;
+        double x = dispWidth / (double)2 - (double)halfSize;
+        double y = dispHeight / (double)2 - (double)halfSize - (double)((float)35 * f);
         GL11.glPushMatrix();
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        GL11.glTranslatef((float)d3, (float)d4, 1.0f);
-        GL11.glTranslatef(f2, f2, f2);
-        GL11.glRotatef((float)180 * this.IlllIllIlIIIIlIIlIIllIIIl.getCurrentValue(), 0.0f, 0.0f, 1.0f);
-        GL11.glTranslatef(-f2, -f2, -f2);
-        RenderUtil.drawIcon(this.outerLogo, f2, 0.0f, 0.0f);
+        GL11.glTranslatef((float)x, (float)y, 1.0f);
+        GL11.glTranslatef(halfSize, halfSize, halfSize);
+        GL11.glRotatef((float)180 * this.logoTurnAmount.getCurrentValue(), 0.0f, 0.0f, 1.0f);
+        GL11.glTranslatef(-halfSize, -halfSize, -halfSize);
+        RenderUtil.drawIcon(this.outerLogo, halfSize, 0.0f, 0.0f);
         GL11.glPopMatrix();
-        RenderUtil.drawIcon(this.innerLogo, f2, (float)d3, (float)d4);
+        RenderUtil.drawIcon(this.innerLogo, halfSize, (float)x, (float)y);
     }
 
     @Override
@@ -101,9 +98,5 @@ public class MainMenu extends MainMenuBase {
 
     public boolean isFirstOpened() {
         return loadCount == 1;
-    }
-
-    public MinMaxFade IIIlIIllllIIllllllIlIIIll() {
-        return this.loadingScreenFade;
     }
 }

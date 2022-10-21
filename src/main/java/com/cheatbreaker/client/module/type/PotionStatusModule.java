@@ -112,11 +112,11 @@ public class PotionStatusModule extends AbstractModule {
                     this.minecraft.getTextureManager().bindTexture(this.location);
                     int n6 = potion.getStatusIconIndex();
                     if (position == CBPositionEnum.RIGHT) {
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(width - (float) 20, (float) n, (float) (n6 % 8 * 18), (float) (198 + n6 / 8 * 18), 18, 18);
+                        RenderUtil.drawTexturedModalRect(width - (float) 20, (float) n, (float) (n6 % 8 * 18), (float) (198 + n6 / 8 * 18), 18, 18);
                     } else if (position == CBPositionEnum.LEFT) {
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(0.0f, (float) n, (float) (n6 % 8 * 18), (float) (198 + n6 / 8 * 18), 18, 18);
+                        RenderUtil.drawTexturedModalRect(0.0f, (float) n, (float) (n6 % 8 * 18), (float) (198 + n6 / 8 * 18), 18, 18);
                     } else if (position == CBPositionEnum.CENTER) {
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(width / 2.0f - (float) (n4 / 2), (float) n, (float) (n6 % 8 * 18), (float) (198 + n6 / 8 * 18), 18, 18);
+                        RenderUtil.drawTexturedModalRect(width / 2.0f - (float) (n4 / 2), (float) n, (float) (n6 % 8 * 18), (float) (198 + n6 / 8 * 18), 18, 18);
                     }
                 }
                 if (n5 > n2) {
@@ -184,11 +184,11 @@ public class PotionStatusModule extends AbstractModule {
                     this.minecraft.getTextureManager().bindTexture(this.location);
                     int n6 = potion.getStatusIconIndex();
                     if (position == CBPositionEnum.RIGHT) {
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(width - (float) 20, (float) n, (float) (n6 % 8 * 18), (float) (198 + n6 / 8 * 18), 18, 18);
+                        RenderUtil.drawTexturedModalRect(width - (float) 20, (float) n, (float) (n6 % 8 * 18), (float) (198 + n6 / 8 * 18), 18, 18);
                     } else if (position == CBPositionEnum.LEFT) {
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(0.0f, (float) n, (float) (n6 % 8 * 18), (float) (198 + n6 / 8 * 18), 18, 18);
+                        RenderUtil.drawTexturedModalRect(0.0f, (float) n, (float) (n6 % 8 * 18), (float) (198 + n6 / 8 * 18), 18, 18);
                     } else if (position == CBPositionEnum.CENTER) {
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(width / 2.0f - (float) (n4 / 2), (float) n, (float) (n6 % 8 * 18), (float) (198 + n6 / 8 * 18), 18, 18);
+                        RenderUtil.drawTexturedModalRect(width / 2.0f - (float) (n4 / 2), (float) n, (float) (n6 % 8 * 18), (float) (198 + n6 / 8 * 18), 18, 18);
                     }
                 }
                 if (n5 > n2) {

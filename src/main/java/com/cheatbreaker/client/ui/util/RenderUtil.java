@@ -9,14 +9,14 @@ import org.lwjgl.opengl.GL11;
 public class RenderUtil {
     protected static float zLevel = 0.0f;
 
-    public static void lIIIIlIIllIIlIIlIIIlIIllI(float f, float f2, float f3, float f4, int n, int n2) {
-        float f5 = 3.875f * 0.0010080645f;
+    public static void drawTexturedModalRect(float left, float top, float right, float bottom, int u, int v) {
+        float multiplier = 0.00390625f;
         TessellatorBridge tessellator = Ref.getTessellator();
         tessellator.bridge$startDrawingQuads();
-        tessellator.bridge$addVertexWithUV(f, f2 + (float)n2, zLevel, f3 * f5, (f4 + (float)n2) * f5);
-        tessellator.bridge$addVertexWithUV(f + (float)n, f2 + (float)n2, zLevel, (f3 + (float)n) * f5, (f4 + (float)n2) * f5);
-        tessellator.bridge$addVertexWithUV(f + (float)n, f2, zLevel, (f3 + (float)n) * f5, f4 * f5);
-        tessellator.bridge$addVertexWithUV(f, f2, zLevel, f3 * f5, f4 * f5);
+        tessellator.bridge$addVertexWithUV(left, top + (float)v, zLevel, right * multiplier, (bottom + (float)v) * multiplier);
+        tessellator.bridge$addVertexWithUV(left + (float)u, top + (float)v, zLevel, (right + (float)u) * multiplier, (bottom + (float)v) * multiplier);
+        tessellator.bridge$addVertexWithUV(left + (float)u, top, zLevel, (right + (float)u) * multiplier, bottom * multiplier);
+        tessellator.bridge$addVertexWithUV(left, top, zLevel, right * multiplier, bottom * multiplier);
         tessellator.bridge$finish();
     }
 

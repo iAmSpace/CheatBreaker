@@ -9,6 +9,7 @@ import com.cheatbreaker.client.ui.mainmenu.cosmetics.GuiCosmetics;
 import com.cheatbreaker.client.ui.mainmenu.element.IconButtonElement;
 import com.cheatbreaker.client.ui.mainmenu.element.TextButtonElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.CBFontRenderer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -102,8 +103,8 @@ public class MainMenuBase extends AbstractGui {
                         }
                         if (minecraft.getSession() == null || !finalAccount.getUsername().equalsIgnoreCase(minecraft.getSession().getUsername()))
                             continue;
-                        this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(finalAccount.getDisplayName());
-                        this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(CheatBreaker.getInstance().getHeadLocation(finalAccount.getDisplayName(), finalAccount.getDisplayName()));
+                        this.accountList.setDisplayName(finalAccount.getDisplayName());
+                        this.accountList.setHeadLocation(CheatBreaker.getInstance().getHeadLocation(finalAccount.getDisplayName(), finalAccount.getDisplayName()));
                         this.updateAccountButtonSize();
                     } else {
                         System.err.println("[CB] userName is null.");
@@ -132,8 +133,8 @@ public class MainMenuBase extends AbstractGui {
     @Override
     public void initGui() {
         super.initGui();
-        DynamicTexture IIIIllIIllIIIIllIllIIIlIl = new DynamicTexture(256, 256);
-        this.panoramaBackgroundLocation = this.mc.getTextureManager().getDynamicTextureLocation("background", IIIIllIIllIIIIllIllIIIlIl);
+        DynamicTexture texture = new DynamicTexture(256, 256);
+        this.panoramaBackgroundLocation = this.mc.getTextureManager().getDynamicTextureLocation("background", texture);
         this.optionsButton.setElementSize((float) 124, (float) 6, (float) 42, 20);
         this.cosmeticsButton.setElementSize((float) 167, (float) 6, (float) 48, 20);
         this.exitButton.setElementSize(this.getScaledWidth() - (float) 30, (float) 7, (float) 23, 17);
@@ -142,7 +143,7 @@ public class MainMenuBase extends AbstractGui {
     }
 
     public void updateAccountButtonSize() {
-        this.accountList.setElementSize(this.getScaledWidth() - (float) 35 - this.accountList.IIIIllIIllIIIIllIllIIIlIl(this.accountButtonWidth), (float) 7, this.accountList.IIIIllIIllIIIIllIllIIIlIl(this.accountButtonWidth), 17);
+        this.accountList.setElementSize(this.getScaledWidth() - (float) 35 - this.accountList.getMaxWidthFor(this.accountButtonWidth), (float) 7, this.accountList.getMaxWidthFor(this.accountButtonWidth), 17);
     }
 
     @Override
@@ -154,24 +155,44 @@ public class MainMenuBase extends AbstractGui {
     }
 
     @Override
-    public void drawMenu(float f, float f2) {
-        Ref.modified$drawGradientRect(0.0f, 0.0f, this.getScaledWidth(), this.getScaledHeight(), 0x5FFFFFFF, 0x2FFFFFFF);
-        Ref.modified$drawGradientRect(0.0f, 0.0f, this.getScaledWidth(), 160, -553648128, 0);
-        boolean bl = f < this.optionsButton.getX() && f2 < (float) 30;
-        Color color = this.cbTextShadowFade.get(bl);
-        CheatBreaker.getInstance().robotoRegular24px.drawCenteredString("CheatBreaker", 37, (float) 9, color.getRGB());
+    public void drawMenu(float mouseX, float mouseY) {
+        CheatBreaker cb = CheatBreaker.getInstance();
+        CBFontRenderer font = cb.robotoRegular24px;
+
+        Ref.modified$drawGradientRect(0f, 0f, this.getScaledWidth(), this.getScaledHeight(), 0x5FFFFFFF, 0x2FFFFFFF);
+        Ref.modified$drawGradientRect(0f, 0f, this.getScaledWidth(), 160, -553648128, 0);
+
+        // CheatBreaker text in top corner
+        boolean isOverCheatBreakerText =
+                mouseX > 36 && mouseX < this.optionsButton.getX() &&
+                mouseY > 8 && mouseY < 30;
+
+        Color cheatBreakerTextColor = this.cbTextShadowFade.get(isOverCheatBreakerText);
+
+        font.drawString("CheatBreaker", 37, 9, cheatBreakerTextColor.getRGB());
+        font.drawString("CheatBreaker", 36, 8, -1);
+
+        // CheatBreaker icon in top corner
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        RenderUtil.drawIcon(this.logo, (float) 10, (float) 8, (float) 6);
-        CheatBreaker.getInstance().robotoRegular24px.drawString("CheatBreaker", 36, (float) 8, -1);
-        String string = "CheatBreaker Dev (" + CheatBreaker.getInstance().getGitCommit() + "/" + CheatBreaker.getInstance().getGitBranch() + ")";
-        CheatBreaker.getInstance().playRegular18px.drawStringWithShadow(string, (float) 5, this.getScaledHeight() - (float) 14, -1879048193);
-        String string2 = "Copyright Mojang AB. Do not distribute!";
-        CheatBreaker.getInstance().playRegular18px.drawStringWithShadow(string2, this.getScaledWidth() - (float) CheatBreaker.getInstance().playRegular18px.getStringWidth(string2) - 5f, this.getScaledHeight() - 14f, -1879048193);
-        this.exitButton.drawElement(f, f2, true);
-        if (!(mc.currentScreen instanceof GuiCosmetics)) this.languageButton.drawElement(f, f2, true);
-        this.accountList.drawElement(f, f2, true);
-        this.optionsButton.drawElement(f, f2, true);
-        this.cosmeticsButton.drawElement(f, f2, true);
+        RenderUtil.drawIcon(this.logo, 10, 8, 6);
+
+        // Render text at bottom
+        font = cb.playRegular18px;
+
+        int textColor = new Color(255, 255, 255, 143).getRGB();
+
+        String version = "CheatBreaker (" + cb.getGitCommit() + "/" + cb.getGitBranch() + ")";
+        String copyright = "Copyright Mojang AB. Do not distribute!";
+
+        font.drawStringWithShadow(version, 5f, this.getScaledHeight() - 14f, textColor);
+        font.drawRightAlignedStringWithShadow(copyright, this.getScaledWidth() - 5f, this.getScaledHeight() - 14f, textColor);
+
+        // Render buttons
+        this.exitButton.drawElement(mouseX, mouseY, true);
+        if (!(mc.currentScreen instanceof GuiCosmetics)) this.languageButton.drawElement(mouseX, mouseY, true);
+        this.accountList.drawElement(mouseX, mouseY, true);
+        this.optionsButton.drawElement(mouseX, mouseY, true);
+        this.cosmeticsButton.drawElement(mouseX, mouseY, true);
     }
 
     @Override
@@ -365,8 +386,8 @@ public class MainMenuBase extends AbstractGui {
                     if (!object2.func_148256_e().getId().toString().replaceAll("-", "").equalsIgnoreCase(selectedAccount.getUUID().replaceAll("-", "")))
                         continue;
 //                    Minecraft.getMinecraft().setSession(object2);
-                    this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getDisplayName());
-                    this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getHeadLocation());
+                    this.accountList.setDisplayName(selectedAccount.getDisplayName());
+                    this.accountList.setHeadLocation(selectedAccount.getHeadLocation());
                     this.updateAccountButtonSize();
                     return;
                 }
@@ -386,8 +407,8 @@ public class MainMenuBase extends AbstractGui {
                     return;
                 }
                 System.out.println("Updated accessToken and logged user in.");
-                this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getDisplayName());
-                this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getHeadLocation());
+                this.accountList.setDisplayName(selectedAccount.getDisplayName());
+                this.accountList.setHeadLocation(selectedAccount.getHeadLocation());
                 this.updateAccountButtonSize();
                 CheatBreaker.getInstance().sessions.add(session);
 //                Minecraft.getMinecraft().setSession(session);

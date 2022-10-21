@@ -8,7 +8,7 @@ public abstract class AbstractFade {
     protected float IIIIllIIllIIIIllIllIIIlIl;
     protected long timeElapsed;
     protected final float IIIllIllIlIlllllllIlIlIII;
-    private boolean IllIIIIIIIlIlIllllIIllIII;
+    private boolean shouldResetOnceCalled;
     private int lIIIIllIIlIlIllIIIlIllIlI = 1;
     private int IlllIllIlIIIIlIIlIIllIIIl = 1;
     private long IlIlllIIIIllIllllIllIIlIl;
@@ -21,7 +21,7 @@ public abstract class AbstractFade {
 
     protected abstract float getValue();
 
-    public void lIIIIIIIIIlIllIIllIlIIlIl() {
+    public void reset() {
         this.startTime = System.currentTimeMillis();
         this.IIIIllIlIIIllIlllIlllllIl = true;
         this.IlIlllIIIIllIllllIllIIlIl = 0L;
@@ -33,11 +33,11 @@ public abstract class AbstractFade {
         this.IIIIllIlIIIllIlllIlllllIl = true;
     }
 
-    public void IlllIIIlIlllIllIlIIlllIlI() {
-        this.IllIIIIIIIlIlIllllIIllIII = true;
+    public void enableShouldResetOnceCalled() {
+        this.shouldResetOnceCalled = true;
     }
 
-    public boolean IIIIllIlIIIllIlllIlllllIl() {
+    public boolean hasStartTime() {
         return this.startTime != 0L;
     }
 
@@ -84,8 +84,8 @@ public abstract class AbstractFade {
             return 0.0f;
         }
         if (this.IIIIllIIllIIIIllIllIIIlIl()) {
-            if (this.IllIIIIIIIlIlIllllIIllIII || this.IlllIllIlIIIIlIIlIIllIIIl >= 1 && this.lIIIIllIIlIlIllIIIlIllIlI < this.IlllIllIlIIIIlIIlIIllIIIl) {
-                this.lIIIIIIIIIlIllIIllIlIIlIl();
+            if (this.shouldResetOnceCalled || this.IlllIllIlIIIIlIIlIIllIIIl >= 1 && this.lIIIIllIIlIlIllIIIlIllIlI < this.IlllIllIlIIIIlIIlIIllIIIl) {
+                this.reset();
                 ++this.lIIIIllIIlIlIllIIIlIllIlI;
             }
             return this.IIIllIllIlIlllllllIlIlIII;

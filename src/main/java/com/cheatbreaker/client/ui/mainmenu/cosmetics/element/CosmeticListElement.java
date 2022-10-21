@@ -33,7 +33,7 @@ public class CosmeticListElement extends AbstractModulesGuiElement {
             GL11.glPushMatrix();
             GL11.glTranslatef(this.x + 20, this.y + 7, 0.0f);
             GL11.glScalef(0.29591838f * 0.8448276f, 8.571428f * 0.015166666f, 0.22222222f * 1.125f);
-            RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(0.0f, 0.0f, 2.0f, (float)7, 44, 120);
+            RenderUtil.drawTexturedModalRect(0.0f, 0.0f, 2.0f, (float)7, 44, 120);
             GL11.glPopMatrix();
         } else {
             RenderUtil.drawIcon(this.cosmetic.getPreviewLocation(), (float)8, (float)(this.x + 20), (float)(this.y + 7));

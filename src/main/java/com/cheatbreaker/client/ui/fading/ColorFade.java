@@ -25,12 +25,12 @@ public class ColorFade extends ExponentialFade {
             this.switched = true;
             this.awtStartColor = new Color(this.startColor, true);
             this.awtEndColor = new Color(this.endColor, true);
-            this.lIIIIIIIIIlIllIIllIlIIlIl();
+            this.reset();
         } else if (this.switched && !shouldSwitch) {
             this.switched = false;
             this.awtStartColor = new Color(this.endColor, true);
             this.awtEndColor = new Color(this.startColor, true);
-            this.lIIIIIIIIIlIllIIllIlIIlIl();
+            this.reset();
         }
         if (this.IIIllIllIlIlllllllIlIlIII()) {
             float f = super.getCurrentValue();

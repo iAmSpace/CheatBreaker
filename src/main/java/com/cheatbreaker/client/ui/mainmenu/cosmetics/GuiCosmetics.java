@@ -30,17 +30,17 @@ public class GuiCosmetics extends MainMenuBase {
     }
 
     @Override
-    public void drawMenu(float f, float f2) {
-        super.drawMenu(f, f2);
+    public void drawMenu(float mouseX, float mouseY) {
+        super.drawMenu(mouseX, mouseY);
         if (false) {
             CheatBreaker.getInstance().playRegular16px.drawCenteredString("Unable to connect to the server.", this.getScaledWidth() / 2.0f, this.getScaledHeight() / 2.0f - (float)10, -1);
             CheatBreaker.getInstance().playRegular16px.drawCenteredString("Please try again later.", this.getScaledWidth() / 2.0f, this.getScaledHeight() / 2.0f + (float)4, -1);
             this.backButton.setElementSize(this.getScaledWidth() / 2.0f - (float)30, this.getScaledHeight() / 2.0f + (float)28, (float)60, 12);
-            this.backButton.drawElement(f, f2, true);
+            this.backButton.drawElement(mouseX, mouseY, true);
         } else {
             Ref.modified$drawRect(this.getScaledWidth() / 2.0f - (float)80, this.getScaledHeight() / 2.0f - (float)78, this.getScaledWidth() / 2.0f + (float)80, this.getScaledHeight() / 2.0f + (float)100, 0x2F000000);
             this.backButton.setElementSize(this.getScaledWidth() / 2.0f - (float)30, this.getScaledHeight() / 2.0f + (float)105, (float)60, 12);
-            this.backButton.drawElement(f, f2, true);
+            this.backButton.drawElement(mouseX, mouseY, true);
             if (this.IIIIllIlIIIllIlllIlllllIl.isEmpty()) {
                 CheatBreaker.getInstance().playRegular16px.drawCenteredString("You don't own any cosmetics.", this.getScaledWidth() / 2.0f, this.getScaledHeight() / 2.0f + (float)4, -6381922);
             } else {
@@ -54,14 +54,14 @@ public class GuiCosmetics extends MainMenuBase {
                 for (CosmeticListElement llIlIlIllIlIIlIlllIllIIlI2 : this.IIIIllIlIIIllIlllIlllllIl) {
                     if (++n - 1 < this.IllIIIIIIIlIlIllllIIllIII * 5 || n - 1 >= (this.IllIIIIIIIlIlIllllIIllIII + 1) * 5) continue;
                     llIlIlIllIlIIlIlllIllIIlI2.setDimensions((int)this.getScaledWidth() / 2 - 76, (int)(this.getScaledHeight() / 2.0f - (float)72 + f7), 152, llIlIlIllIlIIlIlllIllIIlI2.getHeight());
-                    llIlIlIllIlIIlIlllIllIIlI2.handleDrawElement((int)f, (int)f2, 1.0f);
+                    llIlIlIllIlIIlIlllIllIIlI2.handleDrawElement((int) mouseX, (int) mouseY, 1.0f);
                     f7 += (float)llIlIlIllIlIIlIlllIllIIlI2.getHeight();
                 }
                 if (this.IIIIllIlIIIllIlllIlllllIl.size() > 5) {
-                    boolean bl = f > this.getScaledWidth() / 2.0f - (float)40 && f < this.getScaledWidth() / 2.0f - 1.0f && f2 > this.getScaledHeight() / 2.0f + (float)80 && f2 < this.getScaledHeight() / 2.0f + (float)100;
+                    boolean bl = mouseX > this.getScaledWidth() / 2.0f - (float)40 && mouseX < this.getScaledWidth() / 2.0f - 1.0f && mouseY > this.getScaledHeight() / 2.0f + (float)80 && mouseY < this.getScaledHeight() / 2.0f + (float)100;
                     GL11.glColor4f(0.0f, 0.0f, 0.0f, bl ? 0.37499997f * 1.2f : 0.8958333f * 0.27906978f);
                     RenderUtil.drawIcon(this.leftIcon, (float)4, this.getScaledWidth() / 2.0f - (float)10, this.getScaledHeight() / 2.0f + (float)84);
-                    boolean bl2 = f > this.getScaledWidth() / 2.0f + 1.0f && f < this.getScaledWidth() / 2.0f + (float)40 && f2 > this.getScaledHeight() / 2.0f + (float)80 && f2 < this.getScaledHeight() / 2.0f + (float)100;
+                    boolean bl2 = mouseX > this.getScaledWidth() / 2.0f + 1.0f && mouseX < this.getScaledWidth() / 2.0f + (float)40 && mouseY > this.getScaledHeight() / 2.0f + (float)80 && mouseY < this.getScaledHeight() / 2.0f + (float)100;
                     GL11.glColor4f(0.0f, 0.0f, 0.0f, bl2 ? 0.012658228f * 35.55f : 0.7083333f * 0.3529412f);
                     RenderUtil.drawIcon(this.rightIcon, (float)4, this.getScaledWidth() / 2.0f + (float)10, this.getScaledHeight() / 2.0f + (float)84);
                 }

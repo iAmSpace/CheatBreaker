@@ -6,13 +6,16 @@ import com.cheatbreaker.client.ui.fading.ColorFade;
 import com.cheatbreaker.client.ui.fading.MinMaxFade;
 import com.cheatbreaker.client.ui.mainmenu.element.ScrollableElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class AccountList extends AbstractElement {
+    @Setter
     private ResourceLocation headLocation;
+    @Setter
     private String displayName;
     private final ColorFade lIIIIllIIlIlIllIIIlIllIlI;
     private final ColorFade IlllIllIlIIIIlIIlIIllIIIl;
@@ -106,7 +109,7 @@ public class AccountList extends AbstractElement {
         }
     }
 
-    public float IIIIllIIllIIIIllIllIIIlIl(float f) {
+    public float getMaxWidthFor(float f) {
         return (float)22 + f + (float)10;
     }
 
@@ -134,13 +137,4 @@ public class AccountList extends AbstractElement {
         }
         return false;
     }
-
-    public void lIIIIlIIllIIlIIlIIIlIIllI(ResourceLocation resourceLocation) {
-        this.headLocation = resourceLocation;
-    }
-
-    public void lIIIIlIIllIIlIIlIIIlIIllI(String string) {
-        this.displayName = string;
-    }
-
 }
