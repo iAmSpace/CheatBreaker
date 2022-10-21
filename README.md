@@ -31,3 +31,7 @@ No, in all seriousness though, I think making CheatBreaker a Forge mod and open 
 6. Launch Forge 1.7.10 from MultiMC
 
 #### *The latest version of CheatBreaker Forge is v0.0.1-prototype*
+
+## Read also:
+
+[Importing the Gradle Project](https://github.com/iAmSpace/CheatBreaker/wiki/Importing)
