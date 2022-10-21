@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GlobalSettings {
-
+    public Setting miscellaneousOptionsLabel;
+    public Setting mainMenuTopGradient;
+    public Setting mainMenuLightGradient;
     public KeyBinding openMenu;
     public KeyBinding openVoiceMenu;
     public KeyBinding pushToTalk;
@@ -92,6 +94,7 @@ public class GlobalSettings {
 
     public GlobalSettings() {
         String[] audioDevices = CheatBreaker.getInstance().getAudioDeviceList();
+
         this.audioSettingsLabel = (new Setting(this.settingsList, "label")).setValue("Audio Settings");
         if (audioDevices.length > 0) {
             this.microphone = (new Setting(this.settingsList, "Microphone")).setValue(audioDevices[0]).acceptedValues(audioDevices).onChange((var0) -> {
@@ -137,20 +140,24 @@ public class GlobalSettings {
             }
         }).setValue(85).setMinMax(0, 100);
         this.attenuation = (new Setting(this.settingsList, "Attenuation")).setValue(0).setMinMax(0, 100);
+
         this.fpsBoostLabel = new Setting(this.settingsList, "label").setValue("FPS Boost");
         this.enableFpsBoost = new Setting(this.settingsList, "Enable FPS Boost").setValue(true);
         this.slowChunkLoading = new Setting(this.settingsList, "Slow chunk loading (%)").setMinMax(5, 100).setValue(30);
         this.fullBright = new Setting(this.settingsList, "Fullbright").setValue(true);
         this.enchantmentGlint = new Setting(this.settingsList, "Enchantment Glint").setValue(true);
+
         this.teamViewLabel = new Setting(this.settingsList, "label").setValue("Team View Settings");
         this.enableTeamView = new Setting(this.settingsList, "Enable Team View").setValue(true);
         this.showOffScreenMarker = new Setting(this.settingsList, "Show off-screen marker").setValue(true);
         this.showDistance = new Setting(this.settingsList, "Show distance").setValue(true);
+
         this.generalSettingsLabel = new Setting(this.settingsList, "label").setValue("General Settings");
         this.guiBlur = new Setting(this.settingsList, "GUI Blur").setValue(false);
         this.worldTime = new Setting(this.settingsList, "World Time").setValue(-14490).setMinMax(-22880, -6100);
         this.lookView = new Setting(this.settingsList, "Look View").setValue("Third").acceptedValues("Third", "Reverse", "First");
         this.snapModules = new Setting(this.settingsList, "Snap mods to other mods (GUI)").setValue(true);
+
         this.renderSettingsLabel = new Setting(this.settingsList, "label").setValue("Render Settings");
         this.showPotionInfo = new Setting(this.settingsList, "Show Potion info in inventory").setValue(true);
         this.showChatBackground = new Setting(this.settingsList, "Show chat background").setValue(true);
@@ -159,6 +166,7 @@ public class GlobalSettings {
         this.clearGlass = new Setting(this.settingsList, "Clear Glass").setValue("OFF").acceptedValues("OFF", "REGULAR", "ALL");
         this.redString = new Setting(this.settingsList, "Red String").setValue(false);
         this.transparentBackground = new Setting(this.settingsList, "Transparent background").setValue(false);
+
         this.crosshairSettingsLabel = new Setting(this.settingsList, "label").setValue("Crosshair Settings");
         this.customCrosshair = new Setting(this.settingsList, "Custom crosshair").setValue(false);
         this.crosshairOutline = new Setting(this.settingsList, "Outline").setValue(false);
@@ -166,8 +174,14 @@ public class GlobalSettings {
         this.crosshairThickness = new Setting(this.settingsList, "Thickness").setValue(2.0F).setMinMax(1.0F, 1.8478261F * 1.3529412F);
         this.crosshairSize = new Setting(this.settingsList, "Size").setValue((float)4).setMinMax(1.0F, (float)10);
         this.crosshairGap = new Setting(this.settingsList, "Gap").setValue(4.4722223F * 0.39130434F).setMinMax(0.0F, 1.0493827F * 7.147059F);
+
         this.colorOptionsLabel = new Setting(this.settingsList, "label").setValue("Color Options");
         this.defaultColor = new Setting(this.settingsList, "Default color").setValue(-1).setMinMax(Integer.MIN_VALUE, Integer.MAX_VALUE);
+
+        this.miscellaneousOptionsLabel = new Setting(this.settingsList, "label").setValue("Miscellaneous Options");
+        this.mainMenuTopGradient = new Setting(this.settingsList, "Main menu top gradient").setValue(false);
+        this.mainMenuLightGradient = new Setting(this.settingsList, "Main menu light gradient").setValue(false);
+
         this.pinnedServers = new ArrayList<>();
         this.pinnedServers.add(new String[]{"MineHQ Network", "minehq.com"});
         this.pinnedServers.add(new String[]{"VeltPvP", "veltpvp.com"});

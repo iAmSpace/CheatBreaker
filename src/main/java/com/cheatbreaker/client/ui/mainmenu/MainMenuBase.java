@@ -39,7 +39,7 @@ import java.util.List;
 import java.util.*;
 
 public class MainMenuBase extends AbstractGui {
-    private static int IIIllIllIlIlllllllIlIlIII = 4100;
+    private static int panoramaTimer = 4100;
     private final ResourceLocation logo = new ResourceLocation("client/logo_42.png");
     private final IconButtonElement exitButton;
     private final IconButtonElement languageButton;
@@ -127,7 +127,7 @@ public class MainMenuBase extends AbstractGui {
     @Override
     public void updateScreen() {
         super.updateScreen();
-        ++IIIllIllIlIlllllllIlIlIII;
+        ++panoramaTimer;
     }
 
     @Override
@@ -143,15 +143,15 @@ public class MainMenuBase extends AbstractGui {
     }
 
     public void updateAccountButtonSize() {
-        this.accountList.setElementSize(this.getScaledWidth() - (float) 35 - this.accountList.getMaxWidthFor(this.accountButtonWidth), (float) 7, this.accountList.getMaxWidthFor(this.accountButtonWidth), 17);
+        this.accountList.setElementSize(this.getScaledWidth() - 35f - this.accountList.getMaxWidthFor(this.accountButtonWidth), 7f, this.accountList.getMaxWidthFor(this.accountButtonWidth), 17);
     }
 
     @Override
-    public void drawScreen(int n, int n2, float f) {
-        GL11.glDisable(0xbc0);
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        GL11.glDisable(3008);
         this.renderSkybox();
         GL11.glEnable(3008);
-        super.drawScreen(n, n2, f);
+        super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
     @Override
@@ -159,8 +159,10 @@ public class MainMenuBase extends AbstractGui {
         CheatBreaker cb = CheatBreaker.getInstance();
         CBFontRenderer font = cb.robotoRegular24px;
 
-        Ref.modified$drawGradientRect(0f, 0f, this.getScaledWidth(), this.getScaledHeight(), 0x5FFFFFFF, 0x2FFFFFFF);
-        Ref.modified$drawGradientRect(0f, 0f, this.getScaledWidth(), 160, -553648128, 0);
+        if ((Boolean)cb.globalSettings.mainMenuLightGradient.getValue())
+            Ref.modified$drawGradientRect(0f, 0f, this.getScaledWidth(), this.getScaledHeight(), 0x5FFFFFFF, 0x2FFFFFFF);
+        if ((Boolean)cb.globalSettings.mainMenuTopGradient.getValue())
+            Ref.modified$drawGradientRect(0f, 0f, this.getScaledWidth(), 160, -553648128, 0);
 
         // CheatBreaker text in top corner
         boolean isOverCheatBreakerText =
@@ -181,7 +183,7 @@ public class MainMenuBase extends AbstractGui {
 
         int textColor = new Color(255, 255, 255, 143).getRGB();
 
-        String version = "CheatBreaker (" + cb.getGitCommit() + "/" + cb.getGitBranch() + ")";
+        String version = "CheatBreaker Forge (" + cb.getGitCommit() + "/" + cb.getGitBranch() + ")";
         String copyright = "Copyright Mojang AB. Do not distribute!";
 
         font.drawStringWithShadow(version, 5f, this.getScaledHeight() - 14f, textColor);
@@ -225,7 +227,7 @@ public class MainMenuBase extends AbstractGui {
         }
     }
 
-    private void drawPanorama(float p_73970_3_) {
+    private void drawPanorama(float speed) {
         TessellatorBridge tessellator = Ref.getTessellator();
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glPushMatrix();
@@ -250,8 +252,8 @@ public class MainMenuBase extends AbstractGui {
             float var8 = ((float) (var6 / var5) / (float) var5 - 0.5F) / 64.0F;
             float var9 = 0.0F;
             GL11.glTranslatef(var7, var8, var9);
-            GL11.glRotatef(MathHelper.sin(((float) IIIllIllIlIlllllllIlIlIII + p_73970_3_) / 400.0F) * 25.0F + 20.0F, 1.0F, 0.0F, 0.0F);
-            GL11.glRotatef(-((float) IIIllIllIlIlllllllIlIlIII + p_73970_3_) * 0.1F, 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef(MathHelper.sin(((float) panoramaTimer + speed) / 400.0F) * 25.0F + 20.0F, 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(-((float) panoramaTimer + speed) * 0.1F, 0.0F, 1.0F, 0.0F);
 
             for (int var10 = 0; var10 < 6; ++var10) {
                 GL11.glPushMatrix();
