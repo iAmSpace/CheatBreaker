@@ -8,6 +8,7 @@ import com.cheatbreaker.client.ui.element.AbstractScrollableElement;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
 import com.cheatbreaker.client.ui.module.CBProfileCreateGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.ResourceLocation;
@@ -96,12 +97,12 @@ public class ProfileElement
             RenderUtil.drawIcon(this.arrowIcon, 6.6666665f * 0.375f, (float)(this.x + 4), (float)this.y + (float)6);
         }
         if (CheatBreaker.getInstance().activeProfile == this.profile) {
-            CheatBreaker.getInstance().playBold18px.drawString(this.profile.getName().toUpperCase(), (float)this.x + (float)16, (float)(this.y + 4), -818991313);
+            FontRegistry.getPlayBold18px().drawString(this.profile.getName().toUpperCase(), (float)this.x + (float)16, (float)(this.y + 4), -818991313);
         } else {
-            CheatBreaker.getInstance().playRegular16px.drawString(this.profile.getName().toUpperCase(), (float)this.x + (float)16, (float)this.y + 4, -818991313);
+            FontRegistry.getPlayRegular16px().drawString(this.profile.getName().toUpperCase(), (float)this.x + (float)16, (float)this.y + 4, -818991313);
         }
         if (CheatBreaker.getInstance().activeProfile == this.profile) {
-            CheatBreaker.getInstance().playRegular14px.drawString(" (Active)", (float)this.x + (float)17 + (float) CheatBreaker.getInstance().playBold18px.getStringWidth(this.profile.getName().toUpperCase()), (float)this.y + (float)7, 0x6F2F2F2F);
+            FontRegistry.getPlayRegular14px().drawString(" (Active)", (float)this.x + (float)17 + (float) FontRegistry.getPlayBold18px().getStringWidth(this.profile.getName().toUpperCase()), (float)this.y + (float)7, 0x6F2F2F2F);
         }
         if (this.profile.isEditable()) {
             bl2 = (float) mouseX > (float)(this.x + this.width - 30) * this.scale && (float) mouseX < (float)(this.x + this.width - 13) * this.scale && (float) mouseY > (float)(this.y + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + this.height + this.yOffset) * this.scale;

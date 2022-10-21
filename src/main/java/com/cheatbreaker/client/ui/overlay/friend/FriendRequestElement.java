@@ -5,6 +5,7 @@ import com.cheatbreaker.client.bridge.Ref;
 import com.cheatbreaker.client.ui.mainmenu.AbstractElement;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.websocket.shared.WSPacketClientFriendRequestUpdate;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.EnumChatFormatting;
@@ -27,15 +28,15 @@ public class FriendRequestElement extends AbstractElement {
         Ref.modified$drawRect(this.x, this.y - 1.2982457f * 0.3851351f, this.x + this.width, this.y, -1357572843);
         Ref.modified$drawRect(this.x, this.y + this.height, this.x + this.width, this.y + this.height + 0.5f, -1357572843);
         Ref.modified$drawRect(this.x + (float)4, this.y + (float)3, this.x + (float)20, this.y + (float)19, -16747106);
-        CheatBreaker.getInstance().playRegular16px.drawString(this.friendRequest.getUsername(), this.x + (float)24, this.y + 2.0f, -1);
+        FontRegistry.getPlayRegular16px().drawString(this.friendRequest.getUsername(), this.x + (float)24, this.y + 2.0f, -1);
         if (this.friendRequest.isFriend()) {
             boolean cancelHovered = mouseX > this.x + (float)24 && mouseX < this.x + (float)52 && mouseY < this.y + this.height && mouseY > this.y + (float)10 && bl;
-            CheatBreaker.getInstance().playRegular14px.drawString("CANCEL", this.x + (float)24, this.y + (float)11, cancelHovered ? -52429 : 0x7FFF3333);
+            FontRegistry.getPlayRegular14px().drawString("CANCEL", this.x + (float)24, this.y + (float)11, cancelHovered ? -52429 : 0x7FFF3333);
         } else {
             boolean acceptHovered = mouseX > this.x + (float)24 && mouseX < this.x + (float)52 && mouseY < this.y + this.height && mouseY > this.y + (float)10 && bl;
             boolean denyHovered = mouseX > this.x + (float)52 && mouseX < this.x + (float)84 && mouseY < this.y + this.height && mouseY > this.y + (float)10 && bl;
-            CheatBreaker.getInstance().playRegular16px.drawString("ACCEPT", this.x + (float)24, this.y + (float)11, acceptHovered ? -13369549 : 0x7F33FF33);
-            CheatBreaker.getInstance().playRegular16px.drawString("DENY", this.x + (float)56, this.y + (float)11, denyHovered ? -52429 : 0x7FFF3333);
+            FontRegistry.getPlayRegular16px().drawString("ACCEPT", this.x + (float)24, this.y + (float)11, acceptHovered ? -13369549 : 0x7F33FF33);
+            FontRegistry.getPlayRegular16px().drawString("DENY", this.x + (float)56, this.y + (float)11, denyHovered ? -52429 : 0x7FFF3333);
         }
         GL11.glColor4f((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
         ResourceLocation resourceLocation = CheatBreaker.getInstance().getHeadLocation(EnumChatFormatting.getTextWithoutFormattingCodes(this.friendRequest.getUsername()), this.friendRequest.getPlayerId());

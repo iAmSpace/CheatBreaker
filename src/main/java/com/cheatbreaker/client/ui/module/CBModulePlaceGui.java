@@ -4,6 +4,7 @@ import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.bridge.Ref;
 import com.cheatbreaker.client.module.AbstractModule;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiScreen;
@@ -31,7 +32,7 @@ public class CBModulePlaceGui extends GuiScreen {
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.width / 3f * 2, 0.0, (float)(this.width / 3 * 2) + 0.28070176f * 1.78125f, this.height, 0.0, 0x6F000000);
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.width / 3f + this.width / 6f, this.height / 3f * 2, (float)(this.width / 3 + this.width / 6) + 6.7000003f * 0.07462686f, this.height, 0.0, 0x6F000000);
         float f2 = 1.0f / CheatBreaker.getInstance().getScaleFactor();
-        float f3 = (float)(CheatBreaker.getInstance().ubuntuMedium16px.getStringWidth(this.module.getName()) + 6) * f2;
+        float f3 = (float)(FontRegistry.getUbuntuMedium16px().getStringWidth(this.module.getName()) + 6) * f2;
         if (this.module.width < f3) {
             this.module.width = (int)f3;
         }
@@ -74,7 +75,7 @@ public class CBModulePlaceGui extends GuiScreen {
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(-2, -2, this.module.width + 2.0f, this.module.height + 2.0f, (double)4, 551805923);
         GL11.glPushMatrix();
         GL11.glScalef(f2, f2, f2);
-        CheatBreaker.getInstance().ubuntuMedium16px.drawString(this.module.getName(), 0.0f, -1f, 0x6F000000); // 0x6F000000
+        FontRegistry.getUbuntuMedium16px().drawString(this.module.getName(), 0.0f, -1f, 0x6F000000); // 0x6F000000
         GL11.glPopMatrix();
         GL11.glPopMatrix();
     }

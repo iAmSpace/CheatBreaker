@@ -5,6 +5,7 @@ import com.cheatbreaker.client.bridge.Ref;
 import com.cheatbreaker.client.config.Profile;
 import com.cheatbreaker.client.ui.element.profile.ProfileElement;
 import com.cheatbreaker.client.ui.element.profile.ProfilesListElement;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
@@ -75,8 +76,8 @@ public class CBProfileCreateGui
         GL11.glScalef(this.IlllIIIlIlllIllIlIIlllIlI, this.IlllIIIlIlllIllIlIIlllIlI, this.IlllIIIlIlllIllIlIIlllIlI);
         int n3 = (int) ((float) this.width / this.IlllIIIlIlllIllIlIIlllIlI);
         int n4 = (int) ((float) this.height / this.IlllIIIlIlllIllIlIIlllIlI);
-        CheatBreaker.getInstance().ubuntuMedium16px.drawString("Profile Name: ", (float) (n3 / 2) - (float) 70 / this.IlllIIIlIlllIllIlIIlllIlI, (float) (n4 / 2) - (float) 17 / this.IlllIIIlIlllIllIlIIlllIlI, 0x6F000000);
-        CheatBreaker.getInstance().ubuntuMedium16px.drawString(this.IlIlIIIlllIIIlIlllIlIllIl, (float) (n3 / 2) - (float) 72 / this.IlllIIIlIlllIllIlIIlllIlI, (float) (n4 / 2) + (float) 8 / this.IlllIIIlIlllIllIlIIlllIlI, -1358954496);
+        FontRegistry.getUbuntuMedium16px().drawString("Profile Name: ", (float) (n3 / 2) - (float) 70 / this.IlllIIIlIlllIllIlIIlllIlI, (float) (n4 / 2) - (float) 17 / this.IlllIIIlIlllIllIlIIlllIlI, 0x6F000000);
+        FontRegistry.getUbuntuMedium16px().drawString(this.IlIlIIIlllIIIlIlllIlIllIl, (float) (n3 / 2) - (float) 72 / this.IlllIIIlIlllIllIlIIlllIlI, (float) (n4 / 2) + (float) 8 / this.IlllIIIlIlllIllIlIIlllIlI, -1358954496);
         GL11.glPopMatrix();
         this.lIIIIIIIIIlIllIIllIlIIlIl.drawTextBox();
     }

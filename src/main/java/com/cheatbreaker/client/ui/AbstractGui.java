@@ -1,5 +1,6 @@
 package com.cheatbreaker.client.ui;
 
+import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.ui.mainmenu.AbstractElement;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -150,6 +151,10 @@ public abstract class AbstractGui extends GuiScreen {
     }
 
     public float getScaleFactor() {
+        if ((Boolean) CheatBreaker.getInstance().globalSettings.followMinecraftScale.getValue()) {
+            return 1f;
+        }
+
         float n;
         switch (resolution.getScaleFactor()) {
             case 1: {

@@ -1,5 +1,9 @@
 package com.cheatbreaker.client.ui.util.font;
 
+import com.cheatbreaker.client.CheatBreaker;
+import com.cheatbreaker.client.bridge.Ref;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
@@ -55,6 +59,25 @@ import java.util.List;
 
 	@SuppressWarnings("ConstantConditions")
 	public float drawString(String text, double x, double y, int color, boolean shadow) {
+		// START SCALE FIX
+		float scaleFactor = Ref.createScaledResolution().getScaleFactor();
+		float scale = (2.0f / scaleFactor);
+
+		boolean followMinecraftScale = false;
+
+		try {
+			followMinecraftScale = (Boolean) CheatBreaker.getInstance().globalSettings.followMinecraftScale.getValue();
+		} catch (Exception ignored) {
+
+		}
+
+		if (followMinecraftScale) {
+			GL11.glScalef(scale, scale, scale);
+			x *= (scaleFactor / 2.0f);
+			y *= (scaleFactor / 2.0f);
+		}
+		// END SCALE FIX
+
 		x -= 1;
 		//y -= 0.5D;
 
@@ -198,6 +221,12 @@ import java.util.List;
 			GL11.glPopMatrix();
 		}
 
+		// START SCALE FIX
+		if (followMinecraftScale) {
+			GL11.glScalef(scaleFactor / 2.0f, scaleFactor / 2.0f, scaleFactor / 2.0f);
+		}
+		// END SCALE FIX
+
 		return (float) x / 2.0F;
 	}
 
@@ -250,7 +279,20 @@ import java.util.List;
 			}
 		}
 
-		return width / 2;
+
+		boolean followMinecraftScale = false;
+
+		try {
+			followMinecraftScale = (Boolean) CheatBreaker.getInstance().globalSettings.followMinecraftScale.getValue();
+		} catch (Exception ignored) {
+
+		}
+
+		if (followMinecraftScale) {
+			return (int) ((width / 2) * (2.0f / Ref.createScaledResolution().getScaleFactor()));
+		} else {
+			return width / 2;
+		}
 	}
 
 	public String lIIIIlIIllIIlIIlIIIlIIllI(String string, double d) {

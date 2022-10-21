@@ -7,6 +7,7 @@ import com.cheatbreaker.client.ui.fading.FloatFade;
 import com.cheatbreaker.client.ui.mainmenu.AbstractElement;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.util.friend.Friend;
 import com.cheatbreaker.client.util.friend.FriendsManager;
 import com.cheatbreaker.client.websocket.client.WSPacketClientFriendRemove;
@@ -47,7 +48,7 @@ public class FriendElement extends AbstractElement {
                     this.IllIIIIIIIlIlIllllIIllIII.reset();
                 }
                 Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, new Color(0.20185566f * 4.409091f, 0.45f * 1.2f, 0.044696968f * 1.1186441f, 0.8933333f * 0.7276119f * (0.315f * 0.4888889f + this.IllIIIIIIIlIlIllllIIllIII.getCurrentValue())).getRGB());
-                CheatBreaker.getInstance().playRegular16px.drawString(object.size() + "", this.x + this.width - (float)15, this.y + (float)6, -1);
+                FontRegistry.getPlayRegular16px().drawString(object.size() + "", this.x + this.width - (float)15, this.y + (float)6, -1);
             } else if (this.IllIIIIIIIlIlIllllIIllIII.hasStartTime() && this.IllIIIIIIIlIlIllllIIllIII.IIIIllIIllIIIIllIllIIIlIl()) {
                 this.IllIIIIIIIlIlIllllIIllIII.IlIlIIIlllIIIlIlllIlIllIl();
             }
@@ -58,11 +59,11 @@ public class FriendElement extends AbstractElement {
         if (this.friend.getName().startsWith(EnumChatFormatting.RED.toString())) {
             GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
             RenderUtil.drawIcon(cheatBreakerIcon, 6.5f, this.x + (float)24, this.y + (float)4);
-            CheatBreaker.getInstance().playRegular16px.drawString(this.friend.getName(), this.x + (float)40, this.y + 2.0f, -1);
-            CheatBreaker.getInstance().playRegular16px.drawString(this.friend.getStatusString(), this.x + (float)40, this.y + (float)11, -5460820);
+            FontRegistry.getPlayRegular16px().drawString(this.friend.getName(), this.x + (float)40, this.y + 2.0f, -1);
+            FontRegistry.getPlayRegular16px().drawString(this.friend.getStatusString(), this.x + (float)40, this.y + (float)11, -5460820);
         } else {
-            CheatBreaker.getInstance().playRegular16px.drawString(this.friend.getName(), this.x + (float)24, this.y + 2.0f, -1);
-            CheatBreaker.getInstance().playRegular16px.drawString(this.friend.getStatusString(), this.x + (float)24, this.y + (float)11, -5460820);
+            FontRegistry.getPlayRegular16px().drawString(this.friend.getName(), this.x + (float)24, this.y + 2.0f, -1);
+            FontRegistry.getPlayRegular16px().drawString(this.friend.getStatusString(), this.x + (float)24, this.y + (float)11, -5460820);
         }
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         ResourceLocation headLocation = CheatBreaker.getInstance().getHeadLocation(EnumChatFormatting.getTextWithoutFormattingCodes(this.friend.getName()), this.friend.getPlayerId());

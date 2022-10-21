@@ -6,6 +6,7 @@ import com.cheatbreaker.client.config.Setting;
 import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.ResourceLocation;
@@ -30,7 +31,7 @@ public class ChoiceElement
     public void handleDrawElement(int mouseX, int mouseY, float partialTicks) {
         boolean leftHovered = (float) mouseX > (float)(this.x + this.width - 92) * this.scale && (float) mouseX < (float)(this.x + this.width - 48) * this.scale && (float) mouseY > (float)(this.y + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + 14 + this.yOffset) * this.scale;
         boolean rightHovered = (float) mouseX > (float)(this.x + this.width - 48) * this.scale && (float) mouseX < (float)(this.x + this.width - 10) * this.scale && (float) mouseY > (float)(this.y + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + 14 + this.yOffset) * this.scale;
-        CheatBreaker.getInstance().ubuntuMedium16px.drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float)(this.y + 4), leftHovered || rightHovered ? -1090519040 : -1895825408);
+        FontRegistry.getUbuntuMedium16px().drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float)(this.y + 4), leftHovered || rightHovered ? -1090519040 : -1895825408);
         boolean bl3 = this.setting.getLabel().toLowerCase().endsWith("color");
         String value = this.setting.getValue().toString();
         String[] split;
@@ -39,14 +40,14 @@ public class ChoiceElement
         }
         if (!bl3) {
             if (this.IlllIllIlIIIIlIIlIIllIIIl == 0) {
-                CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString(value, this.x + this.width - 48, this.y + 4, -1895825408);
+                FontRegistry.getUbuntuMedium16px().drawCenteredString(value, this.x + this.width - 48, this.y + 4, -1895825408);
             } else {
                 boolean bl4 = this.IlllIllIlIIIIlIIlIIllIIIl == 1;
-                CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString(value, (float)(this.x + this.width - 48) - (bl4 ? -this.IlIlllIIIIllIllllIllIIlIl : this.IlIlllIIIIllIllllIllIIlIl), this.y + 4, -1895825408);
+                FontRegistry.getUbuntuMedium16px().drawCenteredString(value, (float)(this.x + this.width - 48) - (bl4 ? -this.IlIlllIIIIllIllllIllIIlIl : this.IlIlllIIIIllIllllIllIIlIl), this.y + 4, -1895825408);
                 if (bl4) {
-                    CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString(value, (float)(this.x + this.width - 98) + this.IlIlllIIIIllIllllIllIIlIl, this.y + 4, -1895825408);
+                    FontRegistry.getUbuntuMedium16px().drawCenteredString(value, (float)(this.x + this.width - 98) + this.IlIlllIIIIllIllllIllIIlIl, this.y + 4, -1895825408);
                 } else {
-                    CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString(value, (float)(this.x + this.width + 2) - this.IlIlllIIIIllIllllIllIIlIl, this.y + 4, -1895825408);
+                    FontRegistry.getUbuntuMedium16px().drawCenteredString(value, (float)(this.x + this.width + 2) - this.IlIlllIIIIllIllllIllIIlIl, this.y + 4, -1895825408);
                 }
                 if (this.IlIlllIIIIllIllllIllIIlIl >= (float)50) {
                     this.IlllIllIlIIIIlIIlIIllIIIl = 0;
@@ -59,19 +60,19 @@ public class ChoiceElement
                 Ref.modified$drawRect(this.x + this.width - 22, this.y + 2, this.x + this.width + 4, this.y + 12, -723724); // -723724
             }
         } else if (this.IlllIllIlIIIIlIIlIIllIIIl == 0) {
-            float f3 = CheatBreaker.getInstance().ubuntuMedium16px.getStringWidth(value);
-            CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString(value, (float)(this.x + this.width) - 44.738373f * 1.0617284f - f3 / 2.0f, (float)this.y + 4, -16777216);
-            CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString("\u00a7" + value + value, (float)(this.x + this.width - 48) - f3 / 2.0f, (float)(this.y + 4), -16777216);
+            float f3 = FontRegistry.getUbuntuMedium16px().getStringWidth(value);
+            FontRegistry.getUbuntuMedium16px().drawCenteredString(value, (float)(this.x + this.width) - 44.738373f * 1.0617284f - f3 / 2.0f, (float)this.y + 4, -16777216);
+            FontRegistry.getUbuntuMedium16px().drawCenteredString("\u00a7" + value + value, (float)(this.x + this.width - 48) - f3 / 2.0f, (float)(this.y + 4), -16777216);
         } else {
             boolean bl5 = this.IlllIllIlIIIIlIIlIIllIIIl == 1;
-            CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString(this.llIIlllIIIIlllIllIlIlllIl, (float)(this.x + this.width - 48) - (bl5 ? -this.IlIlllIIIIllIllllIllIIlIl : this.IlIlllIIIIllIllllIllIIlIl), this.y + 4, -1895825408);
-            float f4 = CheatBreaker.getInstance().ubuntuMedium16px.getStringWidth(value);
+            FontRegistry.getUbuntuMedium16px().drawCenteredString(this.llIIlllIIIIlllIllIlIlllIl, (float)(this.x + this.width - 48) - (bl5 ? -this.IlIlllIIIIllIllllIllIIlIl : this.IlIlllIIIIllIllllIllIIlIl), this.y + 4, -1895825408);
+            float f4 = FontRegistry.getUbuntuMedium16px().getStringWidth(value);
             if (bl5) {
-                CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString(value, (float)(this.x + this.width) - 110.21739f * 0.88461536f - f4 / 2.0f + this.IlIlllIIIIllIllllIllIIlIl, (float)this.y + 4, -16777216);
-                CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString("\u00a7" + value + value, (float)(this.x + this.width - 98) - f4 / 2.0f + this.IlIlllIIIIllIllllIllIIlIl, (float)(this.y + 4), -16777216);
+                FontRegistry.getUbuntuMedium16px().drawCenteredString(value, (float)(this.x + this.width) - 110.21739f * 0.88461536f - f4 / 2.0f + this.IlIlllIIIIllIllllIllIIlIl, (float)this.y + 4, -16777216);
+                FontRegistry.getUbuntuMedium16px().drawCenteredString("\u00a7" + value + value, (float)(this.x + this.width - 98) - f4 / 2.0f + this.IlIlllIIIIllIllllIllIIlIl, (float)(this.y + 4), -16777216);
             } else {
-                CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString(value, (float)(this.x + this.width) - 2.6296296f * 0.57042253f - f4 / 2.0f - this.IlIlllIIIIllIllllIllIIlIl, (float)this.y + 4, -16777216);
-                CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString("\u00a7" + value + value, (float)(this.x + this.width - 2) - f4 / 2.0f - this.IlIlllIIIIllIllllIllIIlIl, (float)(this.y + 4), -16777216);
+                FontRegistry.getUbuntuMedium16px().drawCenteredString(value, (float)(this.x + this.width) - 2.6296296f * 0.57042253f - f4 / 2.0f - this.IlIlllIIIIllIllllIllIIlIl, (float)this.y + 4, -16777216);
+                FontRegistry.getUbuntuMedium16px().drawCenteredString("\u00a7" + value + value, (float)(this.x + this.width - 2) - f4 / 2.0f - this.IlIlllIIIIllIllllIllIIlIl, (float)(this.y + 4), -16777216);
             }
             if (this.IlIlllIIIIllIllllIllIIlIl >= (float)50) {
                 this.IlllIllIlIIIIlIIlIIllIIIl = 0;

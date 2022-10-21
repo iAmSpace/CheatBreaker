@@ -7,6 +7,7 @@ import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
 import com.cheatbreaker.client.config.Setting;
 import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.ResourceLocation;
@@ -57,20 +58,20 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
         float IIIIIIlIlIlIllllllIlllIlI = this.y + 119;
         this.pickerWidth = lIIIIIllllIIIIlIlIIIIlIlI - this.pickerX;
         this.pickerHeight = IIIIIIlIlIlIllllllIlllIlI - this.pickerY;
-        CheatBreaker.getInstance().ubuntuMedium16px.drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float)(this.y + 4), -1895825408);
+        FontRegistry.getUbuntuMedium16px().drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float)(this.y + 4), -1895825408);
         this.colorPickerColorElement.color = this.setting.getColorValue();
         this.colorPickerColorElement.setDimensions(this.x + 160, this.y + 3, 14, 14);
         this.colorPickerColorElement.yOffset = this.yOffset;
         this.colorPickerColorElement.handleDrawElement(mouseX, mouseY, partialTicks);
         Ref.modified$drawRect(this.x + 186, this.y + 16, this.x + this.width - 16, this.y + 17, 0x7F000000);
-        CheatBreaker.getInstance().playBold18px.drawString("#", this.x + 188, (float)(this.y + 4), -1358954496);
-        CheatBreaker.getInstance().playBold18px.drawString(Integer.toHexString(this.setting.getColorValue()), this.x + 194, (float)(this.y + 4), -1358954496);
+        FontRegistry.getPlayBold18px().drawString("#", this.x + 188, (float)(this.y + 4), -1358954496);
+        FontRegistry.getPlayBold18px().drawString(Integer.toHexString(this.setting.getColorValue()), this.x + 194, (float)(this.y + 4), -1358954496);
         boolean bl = (float) mouseX > (float)(this.x + this.width - 40) * this.scale && (float) mouseX < (float)(this.x + this.width - 12) * this.scale && (float) mouseY > (float)(this.y + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + 18 + this.yOffset) * this.scale;
         string = bl ? "(Favorite)" : "(+)";
         if (CheatBreaker.getInstance().globalSettings.isFavouriteColor((Integer)this.setting.getValue())) {
             string = bl ? "(Un-favorite)" : "(-)";
         }
-        CheatBreaker.getInstance().playBold18px.drawString(string, this.x + this.width - 16 - CheatBreaker.getInstance().playBold18px.getStringWidth(string), (float)(this.y + 4), bl ? -822083584 : -1358954496);
+        FontRegistry.getPlayBold18px().drawString(string, this.x + this.width - 16 - FontRegistry.getPlayBold18px().getStringWidth(string), (float)(this.y + 4), bl ? -822083584 : -1358954496);
         if (this.lIIIIllIIlIlIllIIIlIllIlI) {
             if (this.IlllIllIlIIIIlIIlIIllIIIl && !Mouse.isButtonDown(0)) {
                 this.IlllIllIlIIIIlIIlIIllIIIl = false;
@@ -140,7 +141,7 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
             }
             Ref.modified$drawRect(this.pickerX - (float) 51, this.pickerY + 1.0f, this.pickerX - (float) 43, this.pickerY + (float) 9, -16777216);
             Ref.modified$drawRect(this.pickerX - (float)50, this.pickerY + 2.0f, this.pickerX - (float)44, this.pickerY + (float)8, this.setting.rainbow ? -13369549 : -1);
-            CheatBreaker.getInstance().playRegular16px.drawString("CHROMA", this.pickerX - (float)40, this.pickerY, -1358954496);
+            FontRegistry.getPlayRegular16px().drawString("CHROMA", this.pickerX - (float)40, this.pickerY, -1358954496);
             this.IlllIIIlIlllIllIlIIlllIlI(mouseY);
             this.lIIIIIIIIIlIllIIllIlIIlIl(mouseY);
             this.lIIlIIllIIIIIlIllIIIIllII = (int)(this.pickerX + this.pickerWidth + (float)64);
@@ -236,7 +237,7 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
                 String string2 = string.substring(n10, n10 + 1);
                 if (colorPickerColorElement.isMouseInside(n3, n4)) {
                     Ref.modified$drawRect(var12_12 + 12, var13_13 - 1, var12_12 + 26, var13_13 + 11, -1087492562);
-                    CheatBreaker.getInstance().ubuntuMedium16px.drawString("&" + string2, (float) (var12_12 + 14), (float)var13_13, -1);
+                    FontRegistry.getUbuntuMedium16px().drawString("&" + string2, (float) (var12_12 + 14), (float)var13_13, -1);
                 }
             } else {
                 int var12_12 = n + n7 * 12;

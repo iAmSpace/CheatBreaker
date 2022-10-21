@@ -6,6 +6,7 @@ import com.cheatbreaker.client.ui.mainmenu.AbstractElement;
 import com.cheatbreaker.client.ui.mainmenu.element.ScrollableElement;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.util.friend.Friend;
 import com.cheatbreaker.client.websocket.shared.WSPacketMessage;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -35,7 +36,7 @@ public class MessagesElement extends DraggableElement {
 
     public MessagesElement(Friend friend) {
         this.friend = friend;
-        this.inputFieldElement = new InputFieldElement(CheatBreaker.getInstance().playRegular16px, "Message", 0x2FFFFFFF, 0x6FFFFFFF);
+        this.inputFieldElement = new InputFieldElement(FontRegistry.getPlayRegular16px(), "Message", 0x2FFFFFFF, 0x6FFFFFFF);
         this.inputFieldElement.trimToLength(256);
         this.sendButton = new FlatButtonElement("SEND");
         this.messageListScrollable = new ScrollableElement(this);
@@ -72,8 +73,8 @@ public class MessagesElement extends DraggableElement {
         Ref.modified$drawRect(this.x + (float)25, this.y - 1.9285715f * 0.25925925f, this.x + this.width, this.y, -1357572843);
         Ref.modified$drawRect(this.x + (float)25, this.y + this.height, this.x + this.width, this.y + this.height + 0.25f * 2.0f, -1357572843);
         Ref.modified$drawRect(this.x + (float)27, this.y + (float)3, this.x + (float)43, this.y + (float)19, this.friend.isOnline() ? Friend.getStatusColor(this.friend.getOnlineStatus()) : -13158601);
-        CheatBreaker.getInstance().playRegular16px.drawString(this.friend.getName(), this.x + (float)52, this.y + 2.0f, -1);
-        CheatBreaker.getInstance().playRegular16px.drawString(this.friend.getStatusString(), this.x + (float)52, this.y + (float)11, -5460820);
+        FontRegistry.getPlayRegular16px().drawString(this.friend.getName(), this.x + (float)52, this.y + 2.0f, -1);
+        FontRegistry.getPlayRegular16px().drawString(this.friend.getStatusString(), this.x + (float)52, this.y + (float)11, -5460820);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         ResourceLocation resourceLocation = CheatBreaker.getInstance().getHeadLocation(EnumChatFormatting.getTextWithoutFormattingCodes(this.friend.getName()), this.friend.getPlayerId());
         RenderUtil.drawIcon(resourceLocation, (float)7, this.x + (float)28, this.y + (float)4);
@@ -118,11 +119,11 @@ public class MessagesElement extends DraggableElement {
                 int n3 = 0;
                 for (int messageIndex = messages.size() - 1; messageIndex >= 0; --messageIndex) {
                     String message = messages.get(messageIndex);
-                    restring = CheatBreaker.getInstance().playRegular16px.lIIIIIIIIIlIllIIllIlIIlIl(message, this.width - (float)25).split("\n");
+                    restring = FontRegistry.getPlayRegular16px().lIIIIIIIIIlIllIIllIlIIlIl(message, this.width - (float)25).split("\n");
                     n3 += restring.length * 10;
                     int n4 = 0;
                     for (String string2 : restring) {
-                        CheatBreaker.getInstance().playRegular16px.drawString(string2, this.x + (float)31, this.y + this.height - (float)19 - (float)n3 + (float)(n4 * 10), -1);
+                        FontRegistry.getPlayRegular16px().drawString(string2, this.x + (float)31, this.y + this.height - (float)19 - (float)n3 + (float)(n4 * 10), -1);
                         ++n4;
                     }
                 }

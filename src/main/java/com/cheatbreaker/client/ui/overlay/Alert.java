@@ -4,6 +4,7 @@ import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.bridge.Ref;
 import com.cheatbreaker.client.ui.fading.AbstractFade;
 import com.cheatbreaker.client.ui.fading.FloatFade;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 
 public class Alert {
@@ -32,18 +33,18 @@ public class Alert {
         if (this.IIIIllIlIIIllIlllIlllllIl) {
             Ref.modified$drawGradientRect(this.x, f, this.x + (float)140, f + (float)55, -819057106, -822083584);
             for (int i = 0; i < this.lines.length && i <= 3; ++i) {
-                CheatBreaker.getInstance().playRegular16px.drawString(this.lines[i], this.x + (float)4, f + (float)4 + (float)(i * 10), -1);
+                FontRegistry.getPlayRegular16px().drawString(this.lines[i], this.x + (float)4, f + (float)4 + (float)(i * 10), -1);
             }
         } else {
             Ref.modified$drawGradientRect(this.x, f, this.x + (float)140, f + (float)55, -819057106, -822083584);
-            CheatBreaker.getInstance().playRegular16px.drawString(this.IllIIIIIIIlIlIllllIIllIII, this.x + (float)4, f + (float)4, -1);
+            FontRegistry.getPlayRegular16px().drawString(this.IllIIIIIIIlIlIllllIIllIII, this.x + (float)4, f + (float)4, -1);
             Ref.modified$drawRect(this.x + (float)4, f + 14.5f, this.x + (float)140 - (float)5, f + (float)15, 0x2E5E5E5E);
             for (int i = 0; i < this.lines.length && i <= 2; ++i) {
-                CheatBreaker.getInstance().playRegular16px.drawString(this.lines[i], this.x + (float)4, f + (float)17 + (float)(i * 10), -1);
+                FontRegistry.getPlayRegular16px().drawString(this.lines[i], this.x + (float)4, f + (float)17 + (float)(i * 10), -1);
             }
         }
         if (!(Minecraft.getMinecraft().currentScreen instanceof OverlayGui)) {
-            CheatBreaker.getInstance().playRegular16px.drawString("Press Shift + Tab", this.x + (float)4, f + (float) Alert.IIIIllIIllIIIIllIllIIIlIl() - (float)12, 0x6FFFFFFF);
+            FontRegistry.getPlayRegular16px().drawString("Press Shift + Tab", this.x + (float)4, f + (float) Alert.IIIIllIIllIIIIllIllIIIlIl() - (float)12, 0x6FFFFFFF);
         }
     }
 

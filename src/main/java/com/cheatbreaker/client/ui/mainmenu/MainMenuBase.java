@@ -10,6 +10,7 @@ import com.cheatbreaker.client.ui.mainmenu.element.IconButtonElement;
 import com.cheatbreaker.client.ui.mainmenu.element.TextButtonElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
 import com.cheatbreaker.client.ui.util.font.CBFontRenderer;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -70,7 +71,7 @@ public class MainMenuBase extends AbstractGui {
         this.cbTextShadowFade = new ColorFade(0xF000000, -16777216);
         this.exitButton = new IconButtonElement(new ResourceLocation("client/icons/delete-64.png"));
         this.languageButton = new IconButtonElement(6, new ResourceLocation("client/icons/globe-24.png"));
-        this.accountButtonWidth = CheatBreaker.getInstance().robotoRegular13px.getStringWidth(Minecraft.getMinecraft().getSession().getUsername());
+        this.accountButtonWidth = FontRegistry.getRobotoRegular13px().getStringWidth(Minecraft.getMinecraft().getSession().getUsername());
         this.accountList = new AccountList(this, Minecraft.getMinecraft().getSession().getUsername(), CheatBreaker.getInstance().getHeadLocation(Minecraft.getMinecraft().getSession().getUsername(), Minecraft.getMinecraft().getSession().getPlayerID()));
         //this.loadAccounts();
     }
@@ -97,7 +98,7 @@ public class MainMenuBase extends AbstractGui {
                         Account finalAccount = new Account(userName, clientToken,accessToken, displayName, uuid);
                         accountsList.add(finalAccount);
                         System.out.println("[CB] added account " + finalAccount.getUsername() + ".");
-                        float f = CheatBreaker.getInstance().robotoRegular13px.getStringWidth(finalAccount.getDisplayName());
+                        float f = FontRegistry.getRobotoRegular13px().getStringWidth(finalAccount.getDisplayName());
                         if (f > this.accountButtonWidth) {
                             this.accountButtonWidth = f;
                         }
@@ -157,7 +158,7 @@ public class MainMenuBase extends AbstractGui {
     @Override
     public void drawMenu(float mouseX, float mouseY) {
         CheatBreaker cb = CheatBreaker.getInstance();
-        CBFontRenderer font = cb.robotoRegular24px;
+        CBFontRenderer font = FontRegistry.getRobotoRegular24px();
 
         if ((Boolean)cb.globalSettings.mainMenuLightGradient.getValue())
             Ref.modified$drawGradientRect(0f, 0f, this.getScaledWidth(), this.getScaledHeight(), 0x5FFFFFFF, 0x2FFFFFFF);
@@ -179,7 +180,7 @@ public class MainMenuBase extends AbstractGui {
         RenderUtil.drawIcon(this.logo, 10, 8, 6);
 
         // Render text at bottom
-        font = cb.playRegular18px;
+        font = FontRegistry.getPlayRegular18px();
 
         int textColor = new Color(255, 255, 255, 143).getRGB();
 

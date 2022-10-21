@@ -6,6 +6,7 @@ import com.cheatbreaker.client.ui.fading.ColorFade;
 import com.cheatbreaker.client.ui.fading.MinMaxFade;
 import com.cheatbreaker.client.ui.mainmenu.element.ScrollableElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -65,7 +66,7 @@ public class AccountList extends AbstractElement {
         float f3 = 6;
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         RenderUtil.drawIcon(this.headLocation, f3, this.x + (float)4, this.y + this.elementHeight / 2.0f - f3);
-        CheatBreaker.getInstance().robotoRegular13px.drawString(this.displayName, this.x + (float)22, this.y + 1.56f * 2.8846154f, -1342177281);
+        FontRegistry.getRobotoRegular13px().drawString(this.displayName, this.x + (float)22, this.y + 1.56f * 2.8846154f, -1342177281);
         float f4 = this.llIIlllIIIIlllIllIlIlllIl.lIIIIlIIllIIlIIlIIIlIIllI(this.isMouseInside(f, f2) && bl);
         if (this.llIIlllIIIIlllIllIlIlllIl.IIIllIllIlIlllllllIlIlIII()) {
             this.setElementSize(this.x, this.y, this.width, this.elementHeight + this.lllIIIIIlIllIlIIIllllllII * f4);
@@ -100,7 +101,7 @@ public class AccountList extends AbstractElement {
                 boolean hovered = f > left && f < right && f2 - this.scrollableElement.IllIIIIIIIlIlIllllIIllIII() > f10 && f2 - this.scrollableElement.IllIIIIIIIlIlIllllIIllIII() < f11 && bl && !this.scrollableElement.isMouseInside(f, f2) && !this.scrollableElement.isDragClick();
                 GL11.glColor4f(1.0f, 1.0f, 1.0f, hovered ? 1.0f : 0.8148148f * 0.8590909f);
                 RenderUtil.drawIcon(account.getHeadLocation(), f3, this.x + (float)4, f10 + (float)8 - f3);
-                CheatBreaker.getInstance().robotoRegular13px.drawString(account.getDisplayName(), this.x + (float)22, f10 + (float)4, hovered ? -1 : -1342177281);
+                FontRegistry.getRobotoRegular13px().drawString(account.getDisplayName(), this.x + (float)22, f10 + (float)4, hovered ? -1 : -1342177281);
                 ++n;
             }
             this.scrollableElement.handleElementDraw(f, f2, bl);

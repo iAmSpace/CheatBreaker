@@ -5,6 +5,7 @@ import com.cheatbreaker.client.bridge.Ref;
 import com.cheatbreaker.client.config.Setting;
 import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
@@ -40,11 +41,11 @@ public class WorldTimeElement extends AbstractModulesGuiElement {
         float f2;
         float f3;
         int n3 = 148;
-        CheatBreaker.getInstance().ubuntuMedium16px.drawString(this.setting.getLabel().toUpperCase(), this.x + 8, (float)(this.y + 8), -1895825408);
+        FontRegistry.getUbuntuMedium16px().drawString(this.setting.getLabel().toUpperCase(), this.x + 8, (float)(this.y + 8), -1895825408);
         if (this.IlllIllIlIIIIlIIlIIllIIIl && !Mouse.isButtonDown(0)) {
             this.IlllIllIlIIIIlIIlIIllIIIl = false;
         }
-        CheatBreaker.getInstance().ubuntuMedium16px.drawString("SERVER", this.x + 172 + n3 / 2f, this.y - 2, -1895825408);
+        FontRegistry.getUbuntuMedium16px().drawString("SERVER", this.x + 172 + n3 / 2f, this.y - 2, -1895825408);
         Ref.modified$drawRect((float) (this.x + 172 + n3 / 2) - 1.2580645f * 0.3974359f, this.y + 8, (float) (this.x + 172 + n3 / 2) + 0.33333334f * 1.5f, this.y + 14, 0x6F000000);
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.moonIcon, (float)(this.x + 180) - 1.3170732f * 2.4675925f, (float)(this.y + 3), 6.346154f * 1.1818181f, 47.307693f * 0.15853658f);
         Ref.modified$drawRect((float)(this.x + 180) - 0.4509804f * 1.1086956f, this.y + 12, (float)(this.x + 180) + 0.45652175f * 1.0952381f, this.y + 14, 0x6F000000);

@@ -6,6 +6,7 @@ import com.cheatbreaker.client.ui.mainmenu.GradientTextButton;
 import com.cheatbreaker.client.ui.mainmenu.MainMenuBase;
 import com.cheatbreaker.client.ui.mainmenu.cosmetics.element.CosmeticListElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.util.cosmetic.Cosmetic;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -33,8 +34,8 @@ public class GuiCosmetics extends MainMenuBase {
     public void drawMenu(float mouseX, float mouseY) {
         super.drawMenu(mouseX, mouseY);
         if (false) {
-            CheatBreaker.getInstance().playRegular16px.drawCenteredString("Unable to connect to the server.", this.getScaledWidth() / 2.0f, this.getScaledHeight() / 2.0f - (float)10, -1);
-            CheatBreaker.getInstance().playRegular16px.drawCenteredString("Please try again later.", this.getScaledWidth() / 2.0f, this.getScaledHeight() / 2.0f + (float)4, -1);
+            FontRegistry.getPlayRegular16px().drawCenteredString("Unable to connect to the server.", this.getScaledWidth() / 2.0f, this.getScaledHeight() / 2.0f - (float)10, -1);
+            FontRegistry.getPlayRegular16px().drawCenteredString("Please try again later.", this.getScaledWidth() / 2.0f, this.getScaledHeight() / 2.0f + (float)4, -1);
             this.backButton.setElementSize(this.getScaledWidth() / 2.0f - (float)30, this.getScaledHeight() / 2.0f + (float)28, (float)60, 12);
             this.backButton.drawElement(mouseX, mouseY, true);
         } else {
@@ -42,13 +43,13 @@ public class GuiCosmetics extends MainMenuBase {
             this.backButton.setElementSize(this.getScaledWidth() / 2.0f - (float)30, this.getScaledHeight() / 2.0f + (float)105, (float)60, 12);
             this.backButton.drawElement(mouseX, mouseY, true);
             if (this.IIIIllIlIIIllIlllIlllllIl.isEmpty()) {
-                CheatBreaker.getInstance().playRegular16px.drawCenteredString("You don't own any cosmetics.", this.getScaledWidth() / 2.0f, this.getScaledHeight() / 2.0f + (float)4, -6381922);
+                FontRegistry.getPlayRegular16px().drawCenteredString("You don't own any cosmetics.", this.getScaledWidth() / 2.0f, this.getScaledHeight() / 2.0f + (float)4, -6381922);
             } else {
                 float f3 = this.getScaledHeight() / 2.0f - (float)68;
                 float f4 = this.getScaledHeight() / 2.0f + (float)92;
                 float f5 = this.getScaledWidth() / 2.0f + (float)68;
                 float f6 = this.getScaledWidth() / 2.0f + (float)74;
-                CheatBreaker.getInstance().playBold18px.drawCenteredString("Cosmetics (" + this.IIIIllIlIIIllIlllIlllllIl.size() + ")", this.getScaledWidth() / 2.0f, this.getScaledHeight() / 2.0f - (float)90, -1);
+                FontRegistry.getPlayBold18px().drawCenteredString("Cosmetics (" + this.IIIIllIlIIIllIlllIlllllIl.size() + ")", this.getScaledWidth() / 2.0f, this.getScaledHeight() / 2.0f - (float)90, -1);
                 int n = 0;
                 float f7 = 0.0f;
                 for (CosmeticListElement llIlIlIllIlIIlIlllIllIIlI2 : this.IIIIllIlIIIllIlllIlllllIl) {

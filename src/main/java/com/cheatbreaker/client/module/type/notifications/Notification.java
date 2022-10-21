@@ -4,6 +4,7 @@ import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.bridge.Ref;
 import com.cheatbreaker.client.ui.util.RenderUtil;
 import com.cheatbreaker.client.ui.util.font.CBFontRenderer;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -54,7 +55,7 @@ class Notification {
     }
 
     public void lIIIIlIIllIIlIIlIIIlIIllI(int n) {
-        CBFontRenderer lIlIllIlIlIIIllllIlIllIll2 = CheatBreaker.getInstance().playRegular16px;
+        CBFontRenderer lIlIllIlIlIIIllllIlIllIll2 = FontRegistry.getPlayRegular16px();
         int n2 = this.IIIIllIIllIIIIllIllIIIlIl;
         float f = lIlIllIlIlIIIllllIlIllIll2.getStringWidth(this.lIIIIIIIIIlIllIIllIlIIlIl);
         int n3 = (int)(this.type == CBNotificationType.DEFAULT ? f + (float)10 : f + (float)30);

@@ -8,6 +8,7 @@ import com.cheatbreaker.client.ui.overlay.element.ElementListElement;
 import com.cheatbreaker.client.ui.overlay.element.FlatButtonElement;
 import com.cheatbreaker.client.ui.overlay.element.InputFieldElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.websocket.client.WSPacketClientRequestsStatus;
 import com.cheatbreaker.client.websocket.shared.WSPacketFriendRequest;
 import com.google.common.collect.ImmutableList;
@@ -29,8 +30,8 @@ public class FriendRequestListElement extends ElementListElement<FriendRequestEl
 
     public FriendRequestListElement(List<FriendRequestElement> list) {
         super(list);
-        this.filter = new InputFieldElement(CheatBreaker.getInstance().playRegular16px, "Filter", 0x2FFFFFFF, 0x6FFFFFFF);
-        this.username = new InputFieldElement(CheatBreaker.getInstance().playRegular16px, "Username", 0x2FFFFFFF, 0x6FFFFFFF);
+        this.filter = new InputFieldElement(FontRegistry.getPlayRegular16px(), "Filter", 0x2FFFFFFF, 0x6FFFFFFF);
+        this.username = new InputFieldElement(FontRegistry.getPlayRegular16px(), "Username", 0x2FFFFFFF, 0x6FFFFFFF);
         this.addButton = new FlatButtonElement("ADD");
         this.toggleRequests = new FlatButtonElement("");
         this.scrollableElement = new ScrollableElement(this);
@@ -74,8 +75,8 @@ public class FriendRequestListElement extends ElementListElement<FriendRequestEl
             this.friendRequestElements.clear();
         }
         if (!CheatBreaker.getInstance().getAssetsWebSocket().isOpen()) {
-            CheatBreaker.getInstance().playRegular16px.drawCenteredString("Connection lost", this.x + this.width / 2.0f, this.y + (float)10, -1);
-            CheatBreaker.getInstance().playRegular16px.drawCenteredString("Please try again later.", this.x + this.width / 2.0f, this.y + (float)22, -1);
+            FontRegistry.getPlayRegular16px().drawCenteredString("Connection lost", this.x + this.width / 2.0f, this.y + (float)10, -1);
+            FontRegistry.getPlayRegular16px().drawCenteredString("Please try again later.", this.x + this.width / 2.0f, this.y + (float)22, -1);
         } else {
             GL11.glPushMatrix();
             GL11.glEnable((int)3089);
@@ -88,7 +89,7 @@ public class FriendRequestListElement extends ElementListElement<FriendRequestEl
                 friendRequestElement.drawElement(f, f2 - this.scrollableElement.IllIIIIIIIlIlIllllIIllIII(), bl);
             }
             if (immutableList.isEmpty()) {
-                CheatBreaker.getInstance().playRegular16px.drawCenteredString("No friend requests", this.x + this.width / 2.0f, this.y + (float)30, -1);
+                FontRegistry.getPlayRegular16px().drawCenteredString("No friend requests", this.x + this.width / 2.0f, this.y + (float)30, -1);
             }
             this.filter.drawElement(f, f2 - this.scrollableElement.IllIIIIIIIlIlIllllIIllIII(), true);
             this.username.drawElement(f, f2, true);

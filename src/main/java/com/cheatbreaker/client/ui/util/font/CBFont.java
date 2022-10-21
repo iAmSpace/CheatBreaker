@@ -1,6 +1,9 @@
 package com.cheatbreaker.client.ui.util.font;
 
+import com.cheatbreaker.client.CheatBreaker;
+import com.cheatbreaker.client.bridge.Ref;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -26,7 +29,10 @@ import java.io.InputStream;
 
 	private float imgSize = 1048;
 
+	public float dbg_fontSize;
+
 	public CBFont(ResourceLocation resourceLocation, float size) {
+		this.dbg_fontSize = size;
 		Font tmp;
 		try {
 			InputStream is = Minecraft.getMinecraft().getResourceManager().getResource(resourceLocation)
@@ -157,6 +163,18 @@ import java.io.InputStream;
 	}
 
 	public int getHeight() {
+		boolean followMinecraftScale = false;
+
+		try {
+			followMinecraftScale = (Boolean) CheatBreaker.getInstance().globalSettings.followMinecraftScale.getValue();
+		} catch (Exception ignored) {
+
+		}
+
+		if (followMinecraftScale) {
+			return (int) (((this.fontHeight * (2f / Ref.createScaledResolution().getScaleFactor())) - 8) / 2);
+		}
+
 		return (this.fontHeight - 8) / 2;
 	}
 

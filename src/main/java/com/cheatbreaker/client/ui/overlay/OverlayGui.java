@@ -10,6 +10,7 @@ import com.cheatbreaker.client.ui.overlay.element.MessagesElement;
 import com.cheatbreaker.client.ui.overlay.element.RadioElement;
 import com.cheatbreaker.client.ui.overlay.friend.*;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.util.dash.DashUtil;
 import com.cheatbreaker.client.util.friend.Friend;
 import com.cheatbreaker.client.util.friend.Status;
@@ -111,8 +112,8 @@ public class OverlayGui extends AbstractGui {
         ResourceLocation headLocation = CheatBreaker.getInstance().getHeadLocation(this.mc.getSession().getUsername(), this.mc.getSession().getPlayerID());
         RenderUtil.drawIcon(headLocation, 7f, 7f, 7f);
         String username = this.mc.getSession().getUsername();
-        CheatBreaker.getInstance().playRegular16px.drawString(username, 28, 6f, -1);
-        CheatBreaker.getInstance().playRegular16px.drawString(CheatBreaker.getInstance().getStatusString(), 28, (float)15, -5460820);
+        FontRegistry.getPlayRegular16px().drawString(username, 28, 6f, -1);
+        FontRegistry.getPlayRegular16px().drawString(CheatBreaker.getInstance().getStatusString(), 28, (float)15, -5460820);
         boolean statusHovered = f > 6f && f < 94f && f2 > 6f && f2 < 22f;
         if (this.isMouseHovered(this.friendsButton, f, f2) && statusHovered && CheatBreaker.getInstance().getAssetsWebSocket().isOpen()) {
             Ref.modified$drawRect(22, 0.0f, 140, 28, -15395563);
@@ -277,7 +278,7 @@ public class OverlayGui extends AbstractGui {
 
     public void queueAlert(String string, String string2) {
         int n = Alert.IIIIllIlIIIllIlllIlllllIl();
-        string2 = CheatBreaker.getInstance().playRegular16px.lIIIIIIIIIlIllIIllIlIIlIl(string2, n - 10);
+        string2 = FontRegistry.getPlayRegular16px().lIIIIIIIIIlIllIIllIlIIlIl(string2, n - 10);
         Alert alert = new Alert(string, string2.split("\n"), this.getScaledWidth() - (float)n, this.getScaledHeight());
         alert.lIIIIlIIllIIlIIlIIIlIIllI(string.equals(""));
         this.alertQueue.add(alert);

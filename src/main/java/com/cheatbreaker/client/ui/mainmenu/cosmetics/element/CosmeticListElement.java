@@ -4,6 +4,7 @@ import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.bridge.Ref;
 import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.util.cosmetic.Cosmetic;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -38,7 +39,7 @@ public class CosmeticListElement extends AbstractModulesGuiElement {
         } else {
             RenderUtil.drawIcon(this.cosmetic.getPreviewLocation(), (float)8, (float)(this.x + 20), (float)(this.y + 7));
         }
-        CheatBreaker.getInstance().playRegular14px.drawString(this.cosmetic.getName().replace("_", " ").toUpperCase(), this.x + 42, (float)(this.y + this.height / 2 - 5), -1342177281);
+        FontRegistry.getPlayRegular14px().drawString(this.cosmetic.getName().replace("_", " ").toUpperCase(), this.x + 42, (float)(this.y + this.height / 2 - 5), -1342177281);
         if (this.cosmetic.isEquipped()) {
             GL11.glColor4f(0.0f, 0.65542173f * 1.2205882f, 0.0f, 0.48423913f * 0.9292929f);
         } else {

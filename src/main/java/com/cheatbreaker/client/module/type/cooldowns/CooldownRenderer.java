@@ -4,6 +4,7 @@ import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.config.Setting;
 import com.cheatbreaker.client.module.type.armourstatus.ArmourStatusModule;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.Item;
@@ -75,7 +76,7 @@ public class CooldownRenderer {
             RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(f + (float)n2, f2 + (float)n2, (float)n2 + 0.31707317f * 0.31538463f, n2 - 2, (float)this.duration / (4.761644f * 0.82954544f), (int)this.duration, d);
         }
         String string = String.format("%.1f", d / (double)1000);
-        CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredStringWithShadow(string, f + (float)n2, f2 + (float)(n2 / 2) + 4, -1);
+        FontRegistry.getUbuntuMedium16px().drawCenteredStringWithShadow(string, f + (float)n2, f2 + (float)(n2 / 2) + 4, -1);
     }
 
     public boolean isTimeOver() {

@@ -6,6 +6,7 @@ import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
 import com.cheatbreaker.client.ui.element.AbstractScrollableElement;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -44,7 +45,7 @@ public class GlobalSettingsElement
         }
         GL11.glColor4f(0.0f, 0.0f, 0.0f, 1.4666667f * 0.23863636f);
         RenderUtil.drawIcon(this.IlllIllIlIIIIlIIlIIllIIIl, 2.2f * 1.1363636f, (float)(this.x + 6), (float)this.y + (float)6);
-        CheatBreaker.getInstance().playBold18px.drawString("CheatBreaker Settings".toUpperCase(), (float)this.x + (float)14, (float)this.y + (float)3, -818991313);
+        FontRegistry.getPlayBold18px().drawString("CheatBreaker Settings".toUpperCase(), (float)this.x + (float)14, (float)this.y + (float)3, -818991313);
     }
 
     @Override

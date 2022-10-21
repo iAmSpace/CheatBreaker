@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GlobalSettings {
+    public Setting followMinecraftScale;
     public Setting miscellaneousOptionsLabel;
     public Setting mainMenuTopGradient;
     public Setting mainMenuLightGradient;
@@ -181,6 +182,7 @@ public class GlobalSettings {
         this.miscellaneousOptionsLabel = new Setting(this.settingsList, "label").setValue("Miscellaneous Options");
         this.mainMenuTopGradient = new Setting(this.settingsList, "Main menu top gradient").setValue(false);
         this.mainMenuLightGradient = new Setting(this.settingsList, "Main menu light gradient").setValue(false);
+        this.followMinecraftScale = new Setting(this.settingsList, "Follow Minecraft GUI Scale").setValue(true);
 
         this.pinnedServers = new ArrayList<>();
         this.pinnedServers.add(new String[]{"MineHQ Network", "minehq.com"});

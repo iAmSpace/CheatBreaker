@@ -3,6 +3,7 @@ package com.cheatbreaker.client.ui.mainmenu;
 import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.ui.fading.ColorFade;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 
 public class GradientTextButton extends AbstractElement {
     private String IIIllIllIlIlllllllIlIlIII;
@@ -48,7 +49,7 @@ public class GradientTextButton extends AbstractElement {
             this.IlIlllIIIIllIllllIllIIlIl = null;
         }
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.x, this.y, this.x + this.width, this.y + this.height, this.IllIIIIIIIlIlIllllIIllIII.get(bl2).getRGB(), this.lIIIIllIIlIlIllIIIlIllIlI.get(bl2).getRGB(), this.IlllIllIlIIIIlIIlIIllIIIl.get(bl2).getRGB());
-        CheatBreaker.getInstance().robotoRegular13px.drawCenteredString(this.IIIllIllIlIlllllllIlIlIII, this.x + this.width / 2.0f, this.y + 2.0f, -1);
+        FontRegistry.getRobotoRegular13px().drawCenteredString(this.IIIllIllIlIlllllllIlIlIII, this.x + this.width / 2.0f, this.y + 2.0f, -1);
     }
 
     public void IlllIIIlIlllIllIlIIlllIlI(float f, float f2, boolean bl) {

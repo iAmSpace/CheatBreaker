@@ -11,6 +11,7 @@ import com.cheatbreaker.client.ui.element.module.ModulesGuiButtonElement;
 import com.cheatbreaker.client.ui.element.profile.ProfilesListElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
 import com.cheatbreaker.client.ui.util.font.CBFontRenderer;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiScreen;
@@ -308,8 +309,8 @@ public class CBModulesGui extends GuiScreen {
         }
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(new ResourceLocation("client/logo_white.png"), (float)(n5 / 2 - 14), (float)(n6 / 2 - 47 - (CheatBreaker.getInstance().isUsingStaffModules() ? 22 : 0)), (float)28, 15);
         if (f13 > 2.0f) {
-            CheatBreaker.getInstance().playBold18px.drawString("| CHEAT", n5 / 2 + 18, (float)(n6 / 2 - 42 - (CheatBreaker.getInstance().isUsingStaffModules() ? 22 : 0)), n7);
-            CheatBreaker.getInstance().playRegular18px.drawString("BREAKER", n5 / 2 + 53, (float)(n6 / 2 - 42 - (CheatBreaker.getInstance().isUsingStaffModules() ? 22 : 0)), n7);
+            FontRegistry.getPlayBold18px().drawString("| CHEAT", n5 / 2 + 18, (float)(n6 / 2 - 42 - (CheatBreaker.getInstance().isUsingStaffModules() ? 22 : 0)), n7);
+            FontRegistry.getPlayRegular18px().drawString("BREAKER", n5 / 2 + 53, (float)(n6 / 2 - 42 - (CheatBreaker.getInstance().isUsingStaffModules() ? 22 : 0)), n7);
         }
         GL11.glPopMatrix();
         for (ModulesGuiButtonElement llllIIIIIlIlIlIlIllIIIIII2 : this.buttons) {
@@ -364,40 +365,40 @@ public class CBModulesGui extends GuiScreen {
         GL11.glTranslatef(4, (float)this.height - (float)185 * f, 0.0f);
         GL11.glScalef(f, f, f);
         Ref.modified$drawRect(0.0f, 0.0f, 240, 140, -1895825408);
-        CheatBreaker.getInstance().ubuntuMedium16px.drawString("Shortcuts & Movement", 4, 2.0f, -1);
+        FontRegistry.getUbuntuMedium16px().drawString("Shortcuts & Movement", 4, 2.0f, -1);
         Ref.modified$drawRect(4, 12, 234, 2.5815217f * 4.8421054f, 0x4FFFFFFF);
         int n = 16;
         this.renderRoundButton("Mouse1", 6, n);
-        CheatBreaker.getInstance().playRegular14px.drawString("| " + EnumChatFormatting.LIGHT_PURPLE + "HOLD" + EnumChatFormatting.LIGHT_PURPLE + " Add mods to selected region", 80, (float)n+3, -1);
+        FontRegistry.getPlayRegular14px().drawString("| " + EnumChatFormatting.LIGHT_PURPLE + "HOLD" + EnumChatFormatting.LIGHT_PURPLE + " Add mods to selected region", 80, (float)n+3, -1);
         this.renderRoundButton("Mouse1", 6, n += 12);
-        CheatBreaker.getInstance().playRegular14px.drawString("| " + EnumChatFormatting.LIGHT_PURPLE + "HOLD" + EnumChatFormatting.LIGHT_PURPLE + " Select & drag mods", 80, (float)n+3, -1);
+        FontRegistry.getPlayRegular14px().drawString("| " + EnumChatFormatting.LIGHT_PURPLE + "HOLD" + EnumChatFormatting.LIGHT_PURPLE + " Select & drag mods", 80, (float)n+3, -1);
         this.renderRoundButton("Mouse2", 6, n += 12);
-        CheatBreaker.getInstance().playRegular14px.drawString("| " + EnumChatFormatting.LIGHT_PURPLE + "CLICK" + EnumChatFormatting.LIGHT_PURPLE + " Reset mod to closest position", 80, (float)n+3, -1);
+        FontRegistry.getPlayRegular14px().drawString("| " + EnumChatFormatting.LIGHT_PURPLE + "CLICK" + EnumChatFormatting.LIGHT_PURPLE + " Reset mod to closest position", 80, (float)n+3, -1);
         this.renderRoundButton("Mouse2", 6, n += 12);
-        CheatBreaker.getInstance().playRegular14px.drawString("| " + EnumChatFormatting.LIGHT_PURPLE + "HOLD" + EnumChatFormatting.LIGHT_PURPLE + " Don't lock mods while dragging", 80, (float)n+3, -1);
+        FontRegistry.getPlayRegular14px().drawString("| " + EnumChatFormatting.LIGHT_PURPLE + "HOLD" + EnumChatFormatting.LIGHT_PURPLE + " Don't lock mods while dragging", 80, (float)n+3, -1);
         this.renderRoundButton("CTRL", 6, n += 12);
-        CheatBreaker.getInstance().playRegular14px.drawString("+", 30, (float)n+3, -1);
+        FontRegistry.getPlayRegular14px().drawString("+", 30, (float)n+3, -1);
         this.renderRoundButton("Mouse1", 36, n);
-        CheatBreaker.getInstance().playRegular14px.drawString("| Toggle (multiple) mod selection", 80, (float)n+3, -1);
+        FontRegistry.getPlayRegular14px().drawString("| Toggle (multiple) mod selection", 80, (float)n+3, -1);
         this.renderRoundButton("CTRL", 6, n += 12);
-        CheatBreaker.getInstance().playRegular14px.drawString("+", 30, (float)n+3, -1);
+        FontRegistry.getPlayRegular14px().drawString("+", 30, (float)n+3, -1);
         this.renderRoundButton("Z", 36, n);
-        CheatBreaker.getInstance().playRegular14px.drawString("| Undo mod movements", 80, (float)n+3, -1);
+        FontRegistry.getPlayRegular14px().drawString("| Undo mod movements", 80, (float)n+3, -1);
         this.renderRoundButton("CTRL", 6, n += 12);
-        CheatBreaker.getInstance().playRegular14px.drawString("+", 30, (float)n+3, -1);
+        FontRegistry.getPlayRegular14px().drawString("+", 30, (float)n+3, -1);
         this.renderRoundButton("Y", 36, n);
-        CheatBreaker.getInstance().playRegular14px.drawString("| Redo mod movements", 80, (float)n+3, -1);
+        FontRegistry.getPlayRegular14px().drawString("| Redo mod movements", 80, (float)n+3, -1);
         n = 112;
         this.renderRoundButton("Up", 31, n);
         this.renderRoundButton("Left", 6, n += 12);
         this.renderRoundButton("Down", 26, n);
         this.renderRoundButton("Right", 51, n);
-        CheatBreaker.getInstance().playRegular14px.drawString("| Move selected mod with precision", 80, (float)n, -1);
+        FontRegistry.getPlayRegular14px().drawString("| Move selected mod with precision", 80, (float)n, -1);
         GL11.glPopMatrix();
     }
 
     private void renderRoundButton(String string, int n, int n2) {
-        CBFontRenderer lIlIllIlIlIIIllllIlIllIll2 = CheatBreaker.getInstance().playRegular14px;
+        CBFontRenderer lIlIllIlIlIIIllllIlIllIll2 = FontRegistry.getPlayRegular14px();
         float f = lIlIllIlIlIIIllllIlIllIll2.getStringWidth(string);
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(n, n2, (float)n + f + (float)4, n2 + 10, (double)2, -1073741825);
         lIlIllIlIlIIIllllIlIllIll2.drawString(string, n + 2, (float)n2+ 3, -16777216);
@@ -800,22 +801,22 @@ public class CBModulesGui extends GuiScreen {
             GL11.glPopMatrix();
             bl3 = this.someMouseX == -1 && (bl5 || n4 != 0 || n3 != 0 || bl6);
         }
-        n4 = arrf[1] - CheatBreaker.getInstance().ubuntuMedium16px.getHeight() - (float)6 < 0.0f ? 1 : 0;
-        float f5 = n4 != 0 ? cBModule.height * (Float) cBModule.scale.getValue() / f : (float)(-CheatBreaker.getInstance().ubuntuMedium16px.getHeight() - 4);
+        n4 = arrf[1] - FontRegistry.getUbuntuMedium16px().getHeight() - (float)6 < 0.0f ? 1 : 0;
+        float f5 = n4 != 0 ? cBModule.height * (Float) cBModule.scale.getValue() / f : (float)(-FontRegistry.getUbuntuMedium16px().getHeight() - 4);
         switch (cBModule.getPosition()) {
             case LEFT: {
                 float f6 = 0.0f;
-                CheatBreaker.getInstance().ubuntuMedium16px.drawString(cBModule.getName(), f6, f5, -1);
+                FontRegistry.getUbuntuMedium16px().drawString(cBModule.getName(), f6, f5, -1);
                 break;
             }
             case CENTER: {
                 float f7 = cBModule.width * (Float) cBModule.scale.getValue() / f / 2.0f;
-                CheatBreaker.getInstance().ubuntuMedium16px.drawString(cBModule.getName(), f7, f5, -1);
+                FontRegistry.getUbuntuMedium16px().drawString(cBModule.getName(), f7, f5, -1);
                 break;
             }
             case RIGHT: {
-                float f8 = cBModule.width * (Float) cBModule.scale.getValue() / f - (float) CheatBreaker.getInstance().ubuntuMedium16px.getStringWidth(cBModule.getName());
-                CheatBreaker.getInstance().ubuntuMedium16px.drawString(cBModule.getName(), f8, f5, -1);
+                float f8 = cBModule.width * (Float) cBModule.scale.getValue() / f - (float) FontRegistry.getUbuntuMedium16px().getStringWidth(cBModule.getName());
+                FontRegistry.getUbuntuMedium16px().drawString(cBModule.getName(), f8, f5, -1);
             }
         }
         GL11.glPopMatrix();

@@ -4,6 +4,7 @@ import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.bridge.Ref;
 import com.cheatbreaker.client.ui.mainmenu.AbstractElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.util.dash.DashUtil;
 import com.cheatbreaker.client.util.dash.Station;
 import net.minecraft.util.ResourceLocation;
@@ -36,8 +37,8 @@ public class RadioStationElement
         }
         boolean bl3 = CheatBreaker.getInstance().getRadioManager().getCurrentStation() == this.station;
         RenderUtil.drawIcon(bl2 ? this.startFilledIcon : this.starIcon, (float)5, this.width + (float)6, this.height + (float)5);
-        CheatBreaker.getInstance().playRegular14px.drawString(this.station.getName(), this.x + (float)24, this.y + 0.627451f * 2.390625f, bl3 ? -13369549 : -1);
-        CheatBreaker.getInstance().playRegular12px.drawString(this.station.getGenre(), this.x + (float)24, this.y + 2.375f * 4.0f, -1342177281);
+        FontRegistry.getPlayRegular14px().drawString(this.station.getName(), this.x + (float)24, this.y + 0.627451f * 2.390625f, bl3 ? -13369549 : -1);
+        FontRegistry.getPlayRegular12px().drawString(this.station.getGenre(), this.x + (float)24, this.y + 2.375f * 4.0f, -1342177281);
     }
 
     private boolean isMouseInsideElement(float f, float f2) {

@@ -7,6 +7,7 @@ import com.cheatbreaker.client.ui.element.AbstractScrollableElement;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
 import com.cheatbreaker.client.ui.util.font.CBFontRenderer;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -29,7 +30,7 @@ public class ModulesGuiButtonElement
     }
 
     public ModulesGuiButtonElement(AbstractScrollableElement lllIllIllIlIllIlIIllllIIl2, String string, int n, int n2, int n3, int n4, int n5, float f) {
-        this(CheatBreaker.getInstance().playBold22px, lllIllIllIlIllIlIIllllIIl2, string, n, n2, n3, n4, n5, f);
+        this(FontRegistry.getPlayBold22px(), lllIllIllIlIllIlIIllllIIl2, string, n, n2, n3, n4, n5, f);
     }
 
     @Override
@@ -61,7 +62,7 @@ public class ModulesGuiButtonElement
             GL11.glPopMatrix();
         } else {
             // IIIllIllIlIlllllllIlIlIII = Fontrenderer
-            f2 = this.fontRenderer == CheatBreaker.getInstance().playBold22px ? 2.0f : 0.54545456f * 0.9166667f;
+            f2 = this.fontRenderer == FontRegistry.getPlayBold22px() ? 2.0f : 0.5f;
             this.fontRenderer.drawCenteredString(this.displayString.toUpperCase(), this.x + this.width / 2, (float)(this.y + this.height / 2 - this.fontRenderer.getHeight()) + f2, 0x6F000000);
         }
     }

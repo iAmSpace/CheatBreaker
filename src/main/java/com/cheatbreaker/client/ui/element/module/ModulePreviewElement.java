@@ -11,6 +11,7 @@ import com.cheatbreaker.client.ui.module.CBModulePlaceGui;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
 import com.cheatbreaker.client.ui.util.font.CBFontRenderer;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.EnumChatFormatting;
@@ -30,8 +31,8 @@ public class ModulePreviewElement extends AbstractModulesGuiElement {
         super(f);
         this.module = module;
         this.IlIlllIIIIllIllllIllIIlIl = parent;
-        CBFontRenderer optionsFontRenderer = CheatBreaker.getInstance().playBold18px;
-        CBFontRenderer hideOrToggleFontRenderer = CheatBreaker.getInstance().playRegular14px;
+        CBFontRenderer optionsFontRenderer = FontRegistry.getPlayBold18px();
+        CBFontRenderer hideOrToggleFontRenderer = FontRegistry.getPlayRegular14px();
         this.optionsButton = new ModulesGuiButtonElement(optionsFontRenderer, null, "Options", this.x + 4, this.y + this.height - 20, this.x + this.width - 4, this.y + this.height - 6, -12418828, f);
         this.toggleOrHideFromHud = new ModulesGuiButtonElement(hideOrToggleFontRenderer, null, module.getGuiAnchor() == null ? (module.isRenderHud() ? "Disable" : "Enable") : (module.isRenderHud() ? "Hide from HUD" : "Add to HUD"), this.x + 4, this.y + this.height - 38, this.x + this.width / 2 - 2, this.y + this.height - 24, module.isRenderHud() ? -5756117 : -13916106, f);
         this.toggleOrHideFromHud.lIIIIlIIllIIlIIlIIIlIIllI(module != CheatBreaker.getInstance().moduleManager.minmap && module != CheatBreaker.getInstance().moduleManager.notifications);
@@ -47,7 +48,7 @@ public class ModulePreviewElement extends AbstractModulesGuiElement {
         } else {
             Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, -1347374928);
         }
-        CBFontRenderer playBold18px = CheatBreaker.getInstance().playBold18px;
+        CBFontRenderer playBold18px = FontRegistry.getPlayBold18px();
         GL11.glPushMatrix();
         int n3 = 0;
         int n4 = 0;

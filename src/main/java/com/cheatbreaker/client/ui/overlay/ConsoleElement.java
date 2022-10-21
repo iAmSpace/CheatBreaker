@@ -7,6 +7,7 @@ import com.cheatbreaker.client.ui.overlay.element.DraggableElement;
 import com.cheatbreaker.client.ui.overlay.element.FlatButtonElement;
 import com.cheatbreaker.client.ui.overlay.element.InputFieldElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.websocket.shared.WSPacketConsole;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.EnumChatFormatting;
@@ -22,7 +23,7 @@ public class ConsoleElement extends DraggableElement {
     private final FlatButtonElement closeButton;
 
     public ConsoleElement() {
-        this.textInputElement = new InputFieldElement(CheatBreaker.getInstance().playRegular16px, "", 0x2FFFFFFF, 0x6FFFFFFF);
+        this.textInputElement = new InputFieldElement(FontRegistry.getPlayRegular16px(), "", 0x2FFFFFFF, 0x6FFFFFFF);
         this.textInputElement.trimToLength(256);
         this.sentButton = new FlatButtonElement("SEND");
         this.scrollableElement = new ScrollableElement(this);
@@ -45,7 +46,7 @@ public class ConsoleElement extends DraggableElement {
         GL11.glPushMatrix();
         Ref.modified$drawRect(this.x, this.y - 0.25f * 2.0f, this.x + this.width, this.y, -1357572843);
         Ref.modified$drawRect(this.x, this.y + this.height, this.x + this.height, this.y + this.height + 0.8961039f * 0.557971f, -1357572843);
-        CheatBreaker.getInstance().playRegular16px.drawString("Console", this.x + (float)4, this.y + (float)3, -1);
+        FontRegistry.getPlayRegular16px().drawString("Console", this.x + (float)4, this.y + (float)3, -1);
         GL11.glColor4f((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
         Ref.modified$drawRect(this.x + 2.0f, this.y + (float)12 + (float)3, this.x + this.width - 2.0f, this.y + this.height - (float)17, -1356783327);
         this.scrollableElement.handleScrollableMouseClicked(mouseX, mouseY, bl);
@@ -59,11 +60,11 @@ public class ConsoleElement extends DraggableElement {
                 int n = 0;
                 for (int i = list.size() - 1; i >= 0; --i) {
                     String string = list.get(i);
-                    String[] arrstring = CheatBreaker.getInstance().playRegular16px.lIIIIIIIIIlIllIIllIlIIlIl(string, this.width - (float)10).split("\n");
+                    String[] arrstring = FontRegistry.getPlayRegular16px().lIIIIIIIIIlIllIIllIlIIlIl(string, this.width - (float)10).split("\n");
                     n += arrstring.length * 10;
                     int n2 = 0;
                     for (String string2 : arrstring) {
-                        CheatBreaker.getInstance().playRegular16px.drawString(string2, this.x + (float)6, this.y + this.height - (float)19 - (float)n + (float)(n2 * 10), -1);
+                        FontRegistry.getPlayRegular16px().drawString(string2, this.x + (float)6, this.y + this.height - (float)19 - (float)n + (float)(n2 * 10), -1);
                         ++n2;
                     }
                 }

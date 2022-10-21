@@ -11,6 +11,7 @@ import com.cheatbreaker.client.ui.element.type.*;
 import com.cheatbreaker.client.ui.element.type.custom.*;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.ResourceLocation;
@@ -124,7 +125,7 @@ public class ModuleListElement extends AbstractScrollableElement {
         for (Object object2 : this.elementsList) {
             n5 += ((AbstractModulesGuiElement)object2).getHeight();
         }
-        this.applyToAllTextButton = new ModulesGuiButtonElement(CheatBreaker.getInstance().playBold18px, null, "Apply to all text", this.x + n3 - 120, this.y + n5 + 4, 110, 28, -12418828, f);
+        this.applyToAllTextButton = new ModulesGuiButtonElement(FontRegistry.getPlayBold18px(), null, "Apply to all text", this.x + n3 - 120, this.y + n5 + 4, 110, 28, -12418828, f);
     }
 
     @Override
@@ -151,7 +152,7 @@ public class ModuleListElement extends AbstractScrollableElement {
             this.backButton.setDimensions(this.x + 2, this.y + 2, 28, 28);
             this.backButton.yOffset = this.lIIIIllIIlIlIllIIIlIllIlI;
             this.backButton.handleDrawElement(mouseX, mouseY, partialTicks);
-            CheatBreaker.getInstance().ubuntuMedium16px.drawString("CheatBreaker Settings".toUpperCase(), this.x + 38, (float)(this.y + 9), -1358954496);
+            FontRegistry.getUbuntuMedium16px().drawString("CheatBreaker Settings".toUpperCase(), this.x + 38, (float)(this.y + 9), -1358954496);
             Ref.modified$drawRect(this.x + 38, this.y + 17, this.x + this.width - 6, this.y + 18, 0x2F2F2F2F);
             int n3 = 0;
             for (AbstractModulesGuiElement abstractElement : this.elementsList) {
@@ -171,21 +172,21 @@ public class ModuleListElement extends AbstractScrollableElement {
             this.backButton.setDimensions(this.x + 2, this.y + 2, 28, 28);
             this.backButton.yOffset = this.lIIIIllIIlIlIllIIIlIllIlI;
             this.backButton.handleDrawElement(mouseX, mouseY, partialTicks);
-            CheatBreaker.getInstance().ubuntuMedium16px.drawString((this.module.getName() + " Settings").toUpperCase(), this.x + 38, (float)(this.y + 6), -1358954496);
+            FontRegistry.getUbuntuMedium16px().drawString((this.module.getName() + " Settings").toUpperCase(), this.x + 38, (float)(this.y + 6), -1358954496);
             Ref.modified$drawRect(this.x + 38, this.y + 17, this.x + this.width - 12, this.y + 18, 0x2F2F2F2F);
             if (this.module == CheatBreaker.getInstance().moduleManager.minmap) {
                 try {
                     String string = Keyboard.getKeyName(CheatBreaker.getInstance().moduleManager.minmap.getVoxelMap().getMapOptions().keyBindMenu.getKeyCode());
-                    CheatBreaker.getInstance().ubuntuMedium16px.drawString(("PRESS '" + string + "' INGAME FOR ZAN'S MINIMAP OPTIONS.").toUpperCase(), this.x + 38, (float)(this.y + 22), -1895825408);
+                    FontRegistry.getUbuntuMedium16px().drawString(("PRESS '" + string + "' INGAME FOR ZAN'S MINIMAP OPTIONS.").toUpperCase(), this.x + 38, (float)(this.y + 22), -1895825408);
                 }
                 catch (Exception exception) {
-                    CheatBreaker.getInstance().ubuntuMedium16px.drawString("PRESS 'M' INGAME FOR ZAN'S MINIMAP OPTIONS.".toUpperCase(), this.x + 38, (float)(this.y + 22), -1895825408);
+                    FontRegistry.getUbuntuMedium16px().drawString("PRESS 'M' INGAME FOR ZAN'S MINIMAP OPTIONS.".toUpperCase(), this.x + 38, (float)(this.y + 22), -1895825408);
                 }
                 this.postDraw(mouseX, mouseY);
                 return;
             }
             if (this.module.getSettingsList().isEmpty()) {
-                CheatBreaker.getInstance().ubuntuMedium16px.drawString((this.module.getName().toUpperCase() + " DOES NOT HAVE ANY OPTIONS.").toUpperCase(), this.x + 38, (float)(this.y + 22), -1895825408);
+                FontRegistry.getUbuntuMedium16px().drawString((this.module.getName().toUpperCase() + " DOES NOT HAVE ANY OPTIONS.").toUpperCase(), this.x + 38, (float)(this.y + 22), -1895825408);
             }
             int n4 = 0;
             // fixed gay zans minimap crash shid

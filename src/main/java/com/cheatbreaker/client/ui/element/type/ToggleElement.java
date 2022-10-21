@@ -6,6 +6,7 @@ import com.cheatbreaker.client.config.Setting;
 import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.ResourceLocation;
@@ -30,16 +31,16 @@ public class ToggleElement
     public void handleDrawElement(int mouseX, int mouseY, float partialTicks) {
         boolean bl = (float) mouseX > (float) (this.x + this.width - 48) * this.scale && (float) mouseX < (float) (this.x + this.width - 10) * this.scale && (float) mouseY > (float) (this.y + this.yOffset) * this.scale && (float) mouseY < (float) (this.y + 10 + this.yOffset) * this.scale;
         boolean bl2 = (float) mouseX > (float) (this.x + this.width - 92) * this.scale && (float) mouseX < (float) (this.x + this.width - 48) * this.scale && (float) mouseY > (float) (this.y + this.yOffset) * this.scale && (float) mouseY < (float) (this.y + 10 + this.yOffset) * this.scale;
-        CheatBreaker.getInstance().ubuntuMedium16px.drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float) (this.y + 2), bl2 || bl ? -1090519040 : -1895825408);
+        FontRegistry.getUbuntuMedium16px().drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float) (this.y + 2), bl2 || bl ? -1090519040 : -1895825408);
         if (this.IlllIllIlIIIIlIIlIIllIIIl == 0) {
-            CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString((Boolean) this.setting.getValue() ? "ON" : "OFF", this.x + this.width - 48, this.y + 2, -1895825408);
+            FontRegistry.getUbuntuMedium16px().drawCenteredString((Boolean) this.setting.getValue() ? "ON" : "OFF", this.x + this.width - 48, this.y + 2, -1895825408);
         } else {
             boolean bl3 = this.IlllIllIlIIIIlIIlIIllIIIl == 1;
-            CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString(this.displayString, (float) (this.x + this.width - 48) - (bl3 ? -this.IlIlllIIIIllIllllIllIIlIl : this.IlIlllIIIIllIllllIllIIlIl), this.y + 2, -1895825408);
+            FontRegistry.getUbuntuMedium16px().drawCenteredString(this.displayString, (float) (this.x + this.width - 48) - (bl3 ? -this.IlIlllIIIIllIllllIllIIlIl : this.IlIlllIIIIllIllllIllIIlIl), this.y + 2, -1895825408);
             if (bl3) {
-                CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString((Boolean) this.setting.getValue() ? "ON" : "OFF", (float) (this.x + this.width - 98) + this.IlIlllIIIIllIllllIllIIlIl, this.y + 2, -1895825408);
+                FontRegistry.getUbuntuMedium16px().drawCenteredString((Boolean) this.setting.getValue() ? "ON" : "OFF", (float) (this.x + this.width - 98) + this.IlIlllIIIIllIllllIllIIlIl, this.y + 2, -1895825408);
             } else {
-                CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString((Boolean) this.setting.getValue() ? "ON" : "OFF", (float) (this.x + this.width + 2) - this.IlIlllIIIIllIllllIllIIlIl, this.y + 2, -1895825408);
+                FontRegistry.getUbuntuMedium16px().drawCenteredString((Boolean) this.setting.getValue() ? "ON" : "OFF", (float) (this.x + this.width + 2) - this.IlIlllIIIIllIllllIllIIlIl, this.y + 2, -1895825408);
             }
             if (this.IlIlllIIIIllIllllIllIIlIl >= (float) 50) {
                 this.IlllIllIlIIIIlIIlIIllIIIl = 0;

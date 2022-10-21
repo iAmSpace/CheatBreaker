@@ -6,6 +6,7 @@ import com.cheatbreaker.client.ui.fading.MinMaxFade;
 import com.cheatbreaker.client.ui.mainmenu.element.ScrollableElement;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.util.dash.DashUtil;
 import com.cheatbreaker.client.util.dash.Station;
 import net.minecraft.client.Minecraft;
@@ -106,8 +107,8 @@ public class RadioElement extends DraggableElement {
                 f3 = this.x + (float)34;
             }
             String string = station.getName();
-            CheatBreaker.getInstance().playRegular16px.drawString(string, f3, this.y + (float)4, -1);
-            CheatBreaker.getInstance().playRegular12px.drawString(station.getArtist(), f3, this.y + (float)14, -1342177281);
+            FontRegistry.getPlayRegular16px().drawString(string, f3, this.y + (float)4, -1);
+            FontRegistry.getPlayRegular12px().drawString(station.getArtist(), f3, this.y + (float)14, -1342177281);
         }
         float f4 = this.fade.lIIIIlIIllIIlIIlIIIlIIllI(this.isMouseInside(f, f2) && bl);
         if (this.fade.IIIllIllIlIlllllllIlIlIII()) {

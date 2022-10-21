@@ -5,6 +5,7 @@ import com.cheatbreaker.client.bridge.Ref;
 import com.cheatbreaker.client.ui.fading.CosineFade;
 import com.cheatbreaker.client.ui.mainmenu.element.ScrollableElement;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.util.friend.Friend;
 import com.cheatbreaker.client.util.thread.AliasesThread;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -48,7 +49,7 @@ public class AliasesElement
         this.drag(f, f2);
         this.scrollContainer.drawScrollable(f, f2, bl);
         Ref.modified$drawBoxWithOutLine(this.x, this.y, this.x + this.width, this.y + this.height, 0.06666667f * 7.5f, -16777216, -14869219);
-        CheatBreaker.getInstance().playRegular16px.drawString(this.friend.getName(), this.x + (float)4, this.y + (float)4, -1);
+        FontRegistry.getPlayRegular16px().drawString(this.friend.getName(), this.x + (float)4, this.y + (float)4, -1);
         Ref.modified$drawRect(this.x + (float)3, this.y + (float)15, this.x + this.width - (float)3, this.y + 0.9791667f * 15.829787f, 0x2FFFFFFF);
         if (this.aliases.isEmpty()) {
             Ref.modified$drawRect(this.x + (float)4, this.y + this.height - (float)9, this.x + this.width - (float)4, this.y + this.height - (float)5, -13158601);
@@ -57,7 +58,7 @@ public class AliasesElement
         }
         int n = 0;
         for (String string : this.aliases) {
-            CheatBreaker.getInstance().playRegular16px.drawString(string, this.x + (float)4, this.y + (float)18 + (float)(n * 10), -1);
+            FontRegistry.getPlayRegular16px().drawString(string, this.x + (float)4, this.y + (float)18 + (float)(n * 10), -1);
             ++n;
         }
         this.scrollContainer.handleElementDraw(f, f2, bl);

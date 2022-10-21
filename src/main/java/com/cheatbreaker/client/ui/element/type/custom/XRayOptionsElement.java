@@ -3,6 +3,7 @@ package com.cheatbreaker.client.ui.element.type.custom;
 import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.bridge.Ref;
 import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -30,7 +31,7 @@ public class XRayOptionsElement
 
     @Override
     public void handleDrawElement(int mouseX, int mouseY, float partialTicks) {
-        CheatBreaker.getInstance().ubuntuMedium16px.drawString(this.lIIIIlIIllIIlIIlIIIlIIllI.toUpperCase(), this.x + 10, (float)(this.y + 2), -1895825408);
+        FontRegistry.getUbuntuMedium16px().drawString(this.lIIIIlIIllIIlIIlIIIlIIllI.toUpperCase(), this.x + 10, (float)(this.y + 2), -1895825408);
         Minecraft minecraft = Minecraft.getMinecraft();
         List<Integer> list = CheatBreaker.getInstance().moduleManager.xray.lIllIllIlIIllIllIlIlIIlIl();
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
