@@ -164,10 +164,10 @@ public class CBModulesGui extends GuiScreen {
         float scale = 1.0f / CheatBreaker.getInstance().getScaleFactor();
         if (draggingModule != null) {
             if (!Mouse.isButtonDown(1)) {
-                RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(2, 0.0, 2.916666637692187 * 0.8571428656578064, this.height, 0.0, -15599126);
-                RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((float)this.width - 5.0f * 0.5f, 0.0, this.width - 2, this.height, 0.0, -15599126);
-                RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(0.0, 2, this.width, 1.1547619104385376 * 2.164948442965692, 0.0, -15599126);
-                RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(0.0, (float)this.height - 1.3529412f * 2.5869565f, this.width, this.height - 3, 0.0, -15599126);
+                RenderUtil.drawRoundedRect(2, 0.0, 2.916666637692187 * 0.8571428656578064, this.height, 0.0, -15599126);
+                RenderUtil.drawRoundedRect((float)this.width - 5.0f * 0.5f, 0.0, this.width - 2, this.height, 0.0, -15599126);
+                RenderUtil.drawRoundedRect(0.0, 2, this.width, 1.1547619104385376 * 2.164948442965692, 0.0, -15599126);
+                RenderUtil.drawRoundedRect(0.0, (float)this.height - 1.3529412f * 2.5869565f, this.width, this.height - 3, 0.0, -15599126);
             }
             this.modules.sort((cBModule, cBModule2) -> {
                 if (cBModule == draggingModule || cBModule2 == draggingModule || cBModule.getGuiAnchor() == null || cBModule2.getGuiAnchor() == null) {
@@ -400,7 +400,7 @@ public class CBModulesGui extends GuiScreen {
     private void renderRoundButton(String string, int n, int n2) {
         CBFontRenderer lIlIllIlIlIIIllllIlIllIll2 = FontRegistry.getPlayRegular14px();
         float f = lIlIllIlIlIIIllllIlIllIll2.getStringWidth(string);
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(n, n2, (float)n + f + (float)4, n2 + 10, (double)2, -1073741825);
+        RenderUtil.drawRoundedRect(n, n2, (float)n + f + (float)4, n2 + 10, (double)2, -1073741825);
         lIlIllIlIlIIIllllIlIllIll2.drawString(string, n + 2, (float)n2+ 3, -16777216);
     }
 
@@ -858,35 +858,35 @@ public class CBModulesGui extends GuiScreen {
                     int n = 2;
                     if (f2 >= (float)(-n) && f2 <= (float)n) {
                         bl = true;
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(arrf[0] * (Float) cBModule.scale.getValue() - 0.6666667f * 0.75f, 0.0, arrf[0] * (Float) cBModule.scale.getValue(), this.height, 0.0, -3596854);
+                        RenderUtil.drawRoundedRect(arrf[0] * (Float) cBModule.scale.getValue() - 0.6666667f * 0.75f, 0.0, arrf[0] * (Float) cBModule.scale.getValue(), this.height, 0.0, -3596854);
                     }
                     if (f3 >= (float)(-n) && f3 <= (float)n) {
                         bl = true;
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((arrf[0] + cBModule.width) * (Float) cBModule.scale.getValue(), 0.0, (arrf[0] + cBModule.width) * (Float) cBModule.scale.getValue() + 1.7272727f * 0.28947368f, this.height, 0.0, -3596854);
+                        RenderUtil.drawRoundedRect((arrf[0] + cBModule.width) * (Float) cBModule.scale.getValue(), 0.0, (arrf[0] + cBModule.width) * (Float) cBModule.scale.getValue() + 1.7272727f * 0.28947368f, this.height, 0.0, -3596854);
                     }
                     if (f5 >= (float)(-n) && f5 <= (float)n) {
                         bl = true;
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(arrf[0] * (Float) cBModule.scale.getValue(), 0.0, arrf[0] * (Float) cBModule.scale.getValue() + 0.29775283f * 1.6792452f, this.height, 0.0, -3596854);
+                        RenderUtil.drawRoundedRect(arrf[0] * (Float) cBModule.scale.getValue(), 0.0, arrf[0] * (Float) cBModule.scale.getValue() + 0.29775283f * 1.6792452f, this.height, 0.0, -3596854);
                     }
                     if (f4 >= (float)(-n) && f4 <= (float)n) {
                         bl = true;
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((arrf[0] + cBModule.width) * (Float) cBModule.scale.getValue(), 0.0, (arrf[0] + cBModule.width) * (Float) cBModule.scale.getValue() + 1.5238096f * 0.328125f, this.height, 0.0, -3596854);
+                        RenderUtil.drawRoundedRect((arrf[0] + cBModule.width) * (Float) cBModule.scale.getValue(), 0.0, (arrf[0] + cBModule.width) * (Float) cBModule.scale.getValue() + 1.5238096f * 0.328125f, this.height, 0.0, -3596854);
                     }
                     if (f6 >= (float)(-n) && f6 <= (float)n) {
                         bl = true;
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(0.0, arrf[1] * (Float) cBModule.scale.getValue(), this.width, arrf[1] * (Float) cBModule.scale.getValue() + 0.3888889f * 1.2857143f, 0.0, -3596854);
+                        RenderUtil.drawRoundedRect(0.0, arrf[1] * (Float) cBModule.scale.getValue(), this.width, arrf[1] * (Float) cBModule.scale.getValue() + 0.3888889f * 1.2857143f, 0.0, -3596854);
                     }
                     if (f7 >= (float)(-n) && f7 <= (float)n) {
                         bl = true;
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(0.0, (arrf[1] + cBModule.height) * (Float) cBModule.scale.getValue(), this.width, (arrf[1] + cBModule.height) * (Float) cBModule.scale.getValue() + 0.51724136f * 0.9666667f, 0.0, -3596854);
+                        RenderUtil.drawRoundedRect(0.0, (arrf[1] + cBModule.height) * (Float) cBModule.scale.getValue(), this.width, (arrf[1] + cBModule.height) * (Float) cBModule.scale.getValue() + 0.51724136f * 0.9666667f, 0.0, -3596854);
                     }
                     if (f9 >= (float)(-n) && f9 <= (float)n) {
                         bl = true;
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(0.0, arrf[1] * (Float) cBModule.scale.getValue(), this.width, arrf[1] * (Float) cBModule.scale.getValue() + 0.16666667f * 3.0f, 0.0, -3596854);
+                        RenderUtil.drawRoundedRect(0.0, arrf[1] * (Float) cBModule.scale.getValue(), this.width, arrf[1] * (Float) cBModule.scale.getValue() + 0.16666667f * 3.0f, 0.0, -3596854);
                     }
                     if (f8 >= (float)(-n) && f8 <= (float)n) {
                         bl = true;
-                        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(0.0, (arrf[1] + cBModule.height) * ((Float)cBModule.scale.getValue()).floatValue() - 0.5810811f * 0.8604651f, this.width, (arrf[1] + cBModule.height) * ((Float)cBModule.scale.getValue()).floatValue(), 0.0, -3596854);
+                        RenderUtil.drawRoundedRect(0.0, (arrf[1] + cBModule.height) * ((Float)cBModule.scale.getValue()).floatValue() - 0.5810811f * 0.8604651f, this.width, (arrf[1] + cBModule.height) * ((Float)cBModule.scale.getValue()).floatValue(), 0.0, -3596854);
                     }
                     if (!bl) continue;
                     GL11.glPushMatrix();

@@ -77,14 +77,14 @@ public class LoadingScreen extends AbstractGui {
         float height = 10.0F; // height of the progressbar
         float x = (float) scaledWidth / 2.0f - 80.0f; // x position of the progressbar
         float y = (float) scaledHeight - 40.0f; // y position of the progressbar
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(x, y, x + width, y + height, 8.0, new Color(-657931).getRGB());
+        RenderUtil.drawRoundedRect(x, y, x + width, y + height, 8.0, new Color(245, 245, 245, 255).getRGB());
         float loadedWidth = width * ((float) amountOfCallsDone / (float) amountOfCalls);
         if (message != null) {
             font.drawCenteredString(message.toLowerCase(), (float) scaledWidth / 2.0f, y - 11.0f, -3092272);
         }
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(x, y, x + loadedWidth, y + height, 8.0, new Color(-2473389).getRGB());
+        RenderUtil.drawRoundedRect(x, y, x + loadedWidth, y + height, 8.0, new Color(218, 66, 83, 255).getRGB());
         this.getMenuReady();
-        this.mc.func_147120_f();
+        this.mc.func_147120_f(); // resetSize
     }
 
     @Override

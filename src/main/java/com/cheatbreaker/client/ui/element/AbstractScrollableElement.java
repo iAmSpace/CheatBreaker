@@ -98,8 +98,8 @@ public abstract class AbstractScrollableElement extends AbstractModulesGuiElemen
                 this.lIIIIllIIlIlIllIIIlIllIlI = 0;
                 this.IllIIIIIIIlIlIllllIIllIII = 0.0;
             }
-            RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double) (this.x + this.width - 6), (double) (this.y + 11), (double) (this.x + this.width - 4), (double) (this.y + 6) + d - (double) 3, (double) 2, bl3 && !bl4 ? 0x6F000000 : 0x3F000000);
-            RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double) (this.x + this.width - 7), (double) (this.y + 11) - d5, (double) (this.x + this.width - 3), (double) (this.y + 8) + d4 - d5, (double) 4, bl4 || this.hovered ? -16629505 : -12418828);
+            RenderUtil.drawRoundedRect((double) (this.x + this.width - 6), (double) (this.y + 11), (double) (this.x + this.width - 4), (double) (this.y + 6) + d - (double) 3, (double) 2, bl3 && !bl4 ? 0x6F000000 : 0x3F000000);
+            RenderUtil.drawRoundedRect((double) (this.x + this.width - 7), (double) (this.y + 11) - d5, (double) (this.x + this.width - 3), (double) (this.y + 8) + d4 - d5, (double) 4, bl4 || this.hovered ? -16629505 : -12418828);
         }
         if (!bl && this.lIIIIllIIlIlIllIIIlIllIlI != 0) {
             this.lIIIIllIIlIlIllIIIlIllIlI = 0;

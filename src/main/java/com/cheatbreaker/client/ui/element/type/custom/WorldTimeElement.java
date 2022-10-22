@@ -52,7 +52,7 @@ public class WorldTimeElement extends AbstractModulesGuiElement {
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.sunIcon, (float)(this.x + 170 + n3 - 10) - (float)5, (float)(this.y + 2), (float)10, 10);
         Ref.modified$drawRect((float)(this.x + 170 + n3 - 10) - 1.1875f * 0.42105263f, this.y + 12, (float)(this.x + 170 + n3 - 10) + 0.4673913f * 1.0697675f, this.y + 14, 0x6F000000);
         boolean bl = (float) mouseX > (float)(this.x + 170) * this.scale && (float) mouseX < (float)(this.x + 170 + n3 - 2) * this.scale && (float) mouseY > (float)(this.y + 4 + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + 20 + this.yOffset) * this.scale;
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double)(this.x + 174), (double)(this.y + 16), (double)(this.x + 170 + n3 - 4), (double)(this.y + 18), 1.0, bl ? -1895825408 : 0x6F000000);
+        RenderUtil.drawRoundedRect((double)(this.x + 174), (double)(this.y + 16), (double)(this.x + 170 + n3 - 4), (double)(this.y + 18), 1.0, bl ? -1895825408 : 0x6F000000);
         double d = n3 - 18;
         float f4 = Float.parseFloat("" + this.setting.getMinimumValue());
         float f5 = Float.parseFloat("" + this.setting.getMaximumValue());
@@ -95,7 +95,7 @@ public class WorldTimeElement extends AbstractModulesGuiElement {
             this.time = this.time - f6 >= f2 ? (this.time -= f6) : f2;
         }
         double d2 = (float)100 * ((this.time - f4) / (f5 - f4));
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double)(this.x + 174), (double)(this.y + 16), (double)(this.x + 180) + d * d2 / (double)100, (double)(this.y + 18), (double)4, -12418828);
+        RenderUtil.drawRoundedRect((double)(this.x + 174), (double)(this.y + 16), (double)(this.x + 180) + d * d2 / (double)100, (double)(this.y + 18), (double)4, -12418828);
         GL11.glColor4f(0.6666667f * 0.375f, 0.45f, 1.0f, 1.0f);
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double)((float)this.x + 1359.3749f * 0.13333334f) + d * d2 / (double)100, (float)this.y + 18.818182f * 0.9166667f, 31.125001159496648 * 0.14457830786705017);
         if (this.time == (float)-14490) {

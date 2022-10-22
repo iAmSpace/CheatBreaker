@@ -33,7 +33,7 @@ public class ModulePreviewContainer
     @Override
     public void handleDrawElement(int mouseX, int mouseY, float partialTicks) {
         super.handleDrawElement(mouseX, mouseY, partialTicks);
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.x, this.y, this.x + this.width, this.y + this.height + 2, (double)8, -657931);
+        RenderUtil.drawRoundedRect(this.x, this.y, this.x + this.width, this.y + this.height + 2, (double)8, -657931);
         this.preDraw(mouseX, mouseY);
         int n3 = 0;
         int n4 = 0;

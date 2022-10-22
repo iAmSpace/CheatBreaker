@@ -70,34 +70,37 @@ public class RenderUtil {
         GL11.glScissor((int)((float)x * f), (int)((float)n8 * f), (int)((float)n7 * f), (int)((float)n6 * f));
     }
 
-    public static void lIIIIlIIllIIlIIlIIIlIIllI(double d, double d2, double d3, double d4, double d5, int n) {
-        int n2;
-        float f = (float)(n >> 24 & 0xFF) / (float)255;
-        float f2 = (float)(n >> 16 & 0xFF) / (float)255;
-        float f3 = (float)(n >> 8 & 0xFF) / (float)255;
-        float f4 = (float)(n & 0xFF) / (float)255;
+    public static void drawRoundedRect(double left, double top, double right, double bottom, double rounding, int color) {
+        int i;
+        float a = (float)(color >> 24 & 0xFF) / (float)255;
+        float r = (float)(color >> 16 & 0xFF) / (float)255;
+        float g = (float)(color >> 8 & 0xFF) / (float)255;
+        float b = (float)(color & 0xFF) / (float)255;
+
         GL11.glPushAttrib(0);
         GL11.glScaled(0.5, 0.5, 0.5);
-        d *= 2;
-        d2 *= 2;
-        d3 *= 2;
-        d4 *= 2;
+
+        left *= 2;
+        top *= 2;
+        right *= 2;
+        bottom *= 2;
+
         GL11.glEnable(3042);
         GL11.glDisable(3553);
-        GL11.glColor4f(f2, f3, f4, f);
+        GL11.glColor4f(r, g, b, a);
         GL11.glEnable(2848);
         GL11.glBegin(9);
-        for (n2 = 0; n2 <= 90; n2 += 3) {
-            GL11.glVertex2d(d + d5 + Math.sin((double)n2 * (Math.PI) / 180) * (d5 * -1), d2 + d5 + Math.cos((double)n2 * (Math.PI) / 180) * (d5 * -1));
+        for (i = 0; i <= 90; i += 3) {
+            GL11.glVertex2d(left + rounding + Math.sin((double)i * (Math.PI) / 180) * (rounding * -1), top + rounding + Math.cos((double)i * (Math.PI) / 180) * (rounding * -1));
         }
-        for (n2 = 90; n2 <= 180; n2 += 3) {
-            GL11.glVertex2d(d + d5 + Math.sin((double)n2 * (Math.PI) / 180) * (d5 * -1), d4 - d5 + Math.cos((double)n2 * (Math.PI) / 180) * (d5 * -1));
+        for (i = 90; i <= 180; i += 3) {
+            GL11.glVertex2d(left + rounding + Math.sin((double)i * (Math.PI) / 180) * (rounding * -1), bottom - rounding + Math.cos((double)i * (Math.PI) / 180) * (rounding * -1));
         }
-        for (n2 = 0; n2 <= 90; n2 += 3) {
-            GL11.glVertex2d(d3 - d5 + Math.sin((double)n2 * (Math.PI) / 180) * d5, d4 - d5 + Math.cos((double)n2 * (Math.PI) / 180) * d5);
+        for (i = 0; i <= 90; i += 3) {
+            GL11.glVertex2d(right - rounding + Math.sin((double)i * (Math.PI) / 180) * rounding, bottom - rounding + Math.cos((double)i * (Math.PI) / 180) * rounding);
         }
-        for (n2 = 90; n2 <= 180; n2 += 3) {
-            GL11.glVertex2d(d3 - d5 + Math.sin((double)n2 * (Math.PI) / 180) * d5, d2 + d5 + Math.cos((double)n2 * (Math.PI) / 180) * d5);
+        for (i = 90; i <= 180; i += 3) {
+            GL11.glVertex2d(right - rounding + Math.sin((double)i * (Math.PI) / 180) * rounding, top + rounding + Math.cos((double)i * (Math.PI) / 180) * rounding);
         }
         GL11.glEnd();
         GL11.glEnable(3553);

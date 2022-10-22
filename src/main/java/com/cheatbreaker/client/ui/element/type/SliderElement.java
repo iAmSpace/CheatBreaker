@@ -44,7 +44,7 @@ public class SliderElement extends AbstractModulesGuiElement {
         String string = this.setting.getValue() + "";
         FontRegistry.getUbuntuMedium16px().drawCenteredString(string, this.x + 154, (float)(this.y + 2), -1895825408);
         boolean bl = (float) mouseX > (float)(this.x + 172) * this.scale && (float) mouseX < (float)(this.x + 172 + n3 - 2) * this.scale && (float) mouseY > (float)(this.y + 4 + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + 10 + this.yOffset) * this.scale;
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double)(this.x + 174), (double)(this.y + 6), (double)(this.x + 170 + n3 - 4), (double)(this.y + 8), 1.0, bl ? -1895825408 : 0x6F000000);
+        RenderUtil.drawRoundedRect((double)(this.x + 174), (double)(this.y + 6), (double)(this.x + 170 + n3 - 4), (double)(this.y + 8), 1.0, bl ? -1895825408 : 0x6F000000);
         double d = n3 - 18;
         float minVal = Float.parseFloat("" + this.setting.getMinimumValue());
         float maxVal = Float.parseFloat("" + this.setting.getMaximumValue());
@@ -84,7 +84,7 @@ public class SliderElement extends AbstractModulesGuiElement {
             this.IllIIIIIIIlIlIllllIIllIII = this.IllIIIIIIIlIlIllllIIllIII - f6 >= f2 ? (this.IllIIIIIIIlIlIllllIIllIII -= f6) : f2;
         }
         double d2 = (float)100 * ((this.IllIIIIIIIlIlIllllIIllIII - minVal) / (maxVal - minVal));
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double)(this.x + 174), (double)(this.y + 6), (double)(this.x + 180) + d * d2 / (double)100, (double)(this.y + 8), (double)4, -12418828);
+        RenderUtil.drawRoundedRect((double)(this.x + 174), (double)(this.y + 6), (double)(this.x + 180) + d * d2 / (double)100, (double)(this.y + 8), (double)4, -12418828);
         GL11.glColor4f(0.5714286f * 0.4375f, 0.45849055f * 0.9814815f, 1.0f, 1.0f);
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double)((float)this.x + 543.75f * 0.33333334f) + d * d2 / (double)100, (float)this.y + 0.6666667f * 10.875f, 2.531249981140718 * 1.7777777910232544);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);

@@ -96,7 +96,7 @@ public class MessagesElement extends DraggableElement {
             RenderUtil.drawIcon(location, (float)7, this.x + (float)4, this.y + (float)4 + (float)n2);
             if (bl2) {
                 float f4 = this.client.playRegular16px.getStringWidth(EnumChatFormatting.getTextWithoutFormattingCodes(friend.getName()));
-                RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.x - (float)10 - f4, f3 + 2.0f, this.x - 2.0f, f3 + (float)14, (double)6, -1895825408);
+                RenderUtil.drawRoundedRect(this.x - (float)10 - f4, f3 + 2.0f, this.x - 2.0f, f3 + (float)14, (double)6, -1895825408);
                 this.client.playRegular16px.drawString(friend.getName(), this.x - (float)6 - f4, f3 + (float)4, -1);
                 if (Mouse.isButtonDown(0) && this.friend != friend) {
                     this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));

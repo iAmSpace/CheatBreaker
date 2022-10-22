@@ -34,7 +34,7 @@ public class ProfilesListElement extends AbstractScrollableElement {
     public void handleDrawElement(int mouseX, int mouseY, float partialTicks) {
         Object object;
         int n3;
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double)this.x, (double)this.y, (double)(this.x + this.width), (double)(this.y + this.height + 2), (double)8, -657931);
+        RenderUtil.drawRoundedRect((double)this.x, (double)this.y, (double)(this.x + this.width), (double)(this.y + this.height + 2), (double)8, -657931);
         this.preDraw(mouseX, mouseY);
         this.IlllIllIlIIIIlIIlIIllIIIl = 15;
         for (n3 = 0; n3 < this.lIIIIlIIllIIlIIlIIIlIIllI.size(); ++n3) {

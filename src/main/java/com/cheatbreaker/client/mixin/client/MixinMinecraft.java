@@ -1040,4 +1040,14 @@ public abstract class MixinMinecraft implements MinecraftBridge {
         System.gc();
         this.systemTime = 0L;
     }
+
+    /**
+     * @author iAmSpace
+     * @reason better
+     */
+    @Overwrite
+    public int getLimitFramerate() {
+//        return this.theWorld == null && this.currentScreen != null ? 60 : this.gameSettings.limitFramerate;
+        return this.gameSettings.limitFramerate;
+    }
 }
