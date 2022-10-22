@@ -11,6 +11,8 @@ import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
+
 public class ModulesGuiButtonElement
         extends AbstractModulesGuiElement {
     public int lIIIIlIIllIIlIIlIIIlIIllI;
@@ -47,9 +49,9 @@ public class ModulesGuiButtonElement
             this.llIIlllIIIIlllIllIlIlllIl = (float)this.llIIlllIIIIlllIllIlIlllIl - f2 < 0.0f ? 0 : (int)((float)this.llIIlllIIIIlllIllIlIlllIl - f2);
         }
         if (this.IlllIllIlIIIIlIIlIIllIIIl) {
-            Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, -723724);
+            Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -13619151 : -723723);
         } else {
-            Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, -1611336460);
+            Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -1624231887 : -1611336459);
         }
         if (this.llIIlllIIIIlllIllIlIlllIl > 0) {
             f2 = (float)this.llIIlllIIIIlllIllIlIlllIl / (float)n3 * (float)100;
@@ -57,13 +59,13 @@ public class ModulesGuiButtonElement
         }
         if (this.displayString.contains(".png")) {
             GL11.glPushMatrix();
-            GL11.glColor4f(0.0f, 0.0f, 0.0f, 0.47368422f * 0.9499999f);
-            RenderUtil.drawIcon(new ResourceLocation("client/icons/" + this.displayString), (float)8, (float)(this.x + 6), (float)(this.y + 6));
+            float var1 = CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 1.0f : 0.0f;
+            GL11.glColor4f(var1, var1, var1, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 1.0f : 0.45f);
+            RenderUtil.drawIcon(new ResourceLocation("client/icons/" + this.displayString), 8f, (float)(this.x + 6), (float)(this.y + 6));
             GL11.glPopMatrix();
         } else {
-            // IIIllIllIlIlllllllIlIlIII = Fontrenderer
             f2 = this.fontRenderer == FontRegistry.getPlayBold22px() ? 2.0f : 0.5f;
-            this.fontRenderer.drawCenteredString(this.displayString.toUpperCase(), this.x + this.width / 2, (float)(this.y + this.height / 2 - this.fontRenderer.getHeight()) + f2, 0x6F000000);
+            this.fontRenderer.drawCenteredString(this.displayString.toUpperCase(), this.x + this.width / 2, (float)(this.y + this.height / 2 - this.fontRenderer.getHeight()) + f2, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -1 : 1862270976);
         }
     }
 

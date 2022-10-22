@@ -33,6 +33,8 @@ public class GlobalSettings {
     public String mojangStatusURL = "https://status.mojang.com/check";
     public int reconnectTime = 60;
     public boolean IIIlllIIIllIllIlIIIIIIlII = true;
+
+    public Setting theme;
     private Setting audioSettingsLabel;
     public Setting microphone;
     public Setting radioVolume;
@@ -94,6 +96,8 @@ public class GlobalSettings {
     }
 
     public GlobalSettings() {
+        this.theme = new Setting(this.settingsList, "Theme").setValue("Light").acceptedValues("Light", "Dark");
+
         String[] audioDevices = CheatBreaker.getInstance().getAudioDeviceList();
 
         this.audioSettingsLabel = (new Setting(this.settingsList, "label")).setValue("Audio Settings");
@@ -173,22 +177,23 @@ public class GlobalSettings {
         this.crosshairOutline = new Setting(this.settingsList, "Outline").setValue(false);
         this.crosshairColor = new Setting(this.settingsList, "Color").setValue(-1).setMinMax(Integer.MIN_VALUE, Integer.MAX_VALUE);
         this.crosshairThickness = new Setting(this.settingsList, "Thickness").setValue(2.0F).setMinMax(1.0F, 1.8478261F * 1.3529412F);
-        this.crosshairSize = new Setting(this.settingsList, "Size").setValue((float)4).setMinMax(1.0F, (float)10);
-        this.crosshairGap = new Setting(this.settingsList, "Gap").setValue(4.4722223F * 0.39130434F).setMinMax(0.0F, 1.0493827F * 7.147059F);
+        this.crosshairSize = new Setting(this.settingsList, "Size").setValue(4f).setMinMax(1.0F, 10f);
+        this.crosshairGap = new Setting(this.settingsList, "Gap").setValue(1.75f).setMinMax(0f, 7.5f);
 
         this.colorOptionsLabel = new Setting(this.settingsList, "label").setValue("Color Options");
         this.defaultColor = new Setting(this.settingsList, "Default color").setValue(-1).setMinMax(Integer.MIN_VALUE, Integer.MAX_VALUE);
 
         this.miscellaneousOptionsLabel = new Setting(this.settingsList, "label").setValue("Miscellaneous Options");
-        this.mainMenuTopGradient = new Setting(this.settingsList, "Main menu top gradient").setValue(false);
+        this.mainMenuTopGradient = new Setting(this.settingsList, "Main menu top gradient").setValue(true);
         this.mainMenuLightGradient = new Setting(this.settingsList, "Main menu light gradient").setValue(false);
         this.followMinecraftScale = new Setting(this.settingsList, "Follow Minecraft GUI Scale").setValue(true);
 
         this.pinnedServers = new ArrayList<>();
-        this.pinnedServers.add(new String[]{"MineHQ Network", "minehq.com"});
-        this.pinnedServers.add(new String[]{"VeltPvP", "veltpvp.com"});
+        this.pinnedServers.add(new String[] { "MineHQ Network", "minehq.com" });
+        this.pinnedServers.add(new String[] { "VeltPvP", "veltpvp.com" });
         this.warnedServers = new ArrayList<>();
         this.warnedServers.add("xyz.com");
+
         GameSettings var2 = Minecraft.getMinecraft().gameSettings;
         this.pushToTalk = new KeyBinding("Voice Chat", 47, "CheatBreaker Client");
         this.openMenu = new KeyBinding("Open Menu", 54, "CheatBreaker Client");

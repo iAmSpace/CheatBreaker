@@ -47,7 +47,7 @@ public class ToggleSprintModule extends AbstractModule {
         showWhileTyping = new Setting(this, "Show While Typing").setValue(true);
         this.flyBoostLabel = new Setting(this, "label").setValue("Fly Boost");
         flyBoost = new Setting(this, "Fly Boost").setValue(true);
-        flyBoostAmount = new Setting(this, "Fly Boost Amount").setValue(4).setMinMax(2, 8).setParent(flyBoost);
+        flyBoostAmount = new Setting(this, "Fly Boost Amount").setValue(4f).setMinMax(2f, 8f).setParent(flyBoost);
 
         this.flyBoostString = new Setting(this, "Fly Boost String").setValue("[Flying (%BOOST%x boost)]");
         this.flyString = new Setting(this, "Fly String").setValue("[Flying]");

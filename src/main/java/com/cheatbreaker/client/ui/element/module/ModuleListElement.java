@@ -130,7 +130,7 @@ public class ModuleListElement extends AbstractScrollableElement {
 
     @Override
     public void handleDrawElement(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRoundedRect(this.x, this.y, this.x + this.width, this.y + this.height + 2, (double)8, -657931);
+        RenderUtil.drawRoundedRect(this.x, this.y, this.x + this.width, this.y + this.height + 2, 8, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -13619151 : -657930);
         this.preDraw(mouseX, mouseY);
         if (this.module == null && !this.llIlIIIlIIIIlIlllIlIIIIll) {
             this.IlllIllIlIIIIlIIlIIllIIIl = 52;
@@ -147,13 +147,13 @@ public class ModuleListElement extends AbstractScrollableElement {
                 this.IlllIllIlIIIIlIIlIIllIIIl += moduleSettingsElement.getHeight();
             }
         } else if (this.llIlIIIlIIIIlIlllIlIIIIll && !this.lIIIIIllllIIIIlIlIIIIlIlI) {
-            Ref.modified$drawRect(this.x + 32, this.y + 4, this.x + 33, this.y + this.height - 4, 0x2F2F2F2F);
+            Ref.modified$drawRect(this.x + 32, this.y + 4, this.x + 33, this.y + this.height - 4, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 267547250 : 791621423);
             this.IlllIllIlIIIIlIIlIIllIIIl = 25;
             this.backButton.setDimensions(this.x + 2, this.y + 2, 28, 28);
             this.backButton.yOffset = this.lIIIIllIIlIlIllIIIlIllIlI;
             this.backButton.handleDrawElement(mouseX, mouseY, partialTicks);
-            FontRegistry.getUbuntuMedium16px().drawString("CheatBreaker Settings".toUpperCase(), this.x + 38, (float)(this.y + 9), -1358954496);
-            Ref.modified$drawRect(this.x + 38, this.y + 17, this.x + this.width - 6, this.y + 18, 0x2F2F2F2F);
+            FontRegistry.getUbuntuMedium16px().drawString("CheatBreaker Settings".toUpperCase(), this.x + 38, (float)(this.y + 9), CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 0xFFFFFFFF : -1358954495);
+            Ref.modified$drawRect(this.x + 38, this.y + 17, this.x + this.width - 6, this.y + 18, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -14211288 : 791621423);
             int n3 = 0;
             for (AbstractModulesGuiElement abstractElement : this.elementsList) {
                 abstractElement.setDimensions(this.x + 38, this.y + 22 + n3, this.width - 40, abstractElement.getHeight());
@@ -167,26 +167,26 @@ public class ModuleListElement extends AbstractScrollableElement {
             this.applyToAllTextButton.handleDrawElement(mouseX, mouseY, partialTicks);
             this.IlllIllIlIIIIlIIlIIllIIIl += 24;
         } else {
-            Ref.modified$drawRect(this.x + 32, this.y + 4, this.x + 33, this.y + (Math.max(this.height, this.IlllIllIlIIIIlIIlIIllIIIl)) - 4, 0x2F2F2F2F);
+            Ref.modified$drawRect(this.x + 32, this.y + 4, this.x + 33, this.y + (Math.max(this.height, this.IlllIllIlIIIIlIIlIIllIIIl)) - 4, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -14211288 : 791621423);
             this.IlllIllIlIIIIlIIlIIllIIIl = 37;
             this.backButton.setDimensions(this.x + 2, this.y + 2, 28, 28);
             this.backButton.yOffset = this.lIIIIllIIlIlIllIIIlIllIlI;
             this.backButton.handleDrawElement(mouseX, mouseY, partialTicks);
-            FontRegistry.getUbuntuMedium16px().drawString((this.module.getName() + " Settings").toUpperCase(), this.x + 38, (float)(this.y + 6), -1358954496);
-            Ref.modified$drawRect(this.x + 38, this.y + 17, this.x + this.width - 12, this.y + 18, 0x2F2F2F2F);
+            FontRegistry.getUbuntuMedium16px().drawString((this.module.getName() + " Settings").toUpperCase(), this.x + 38, (float)(this.y + 6), CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -1 : -1358954495);
+            Ref.modified$drawRect(this.x + 38, this.y + 17, this.x + this.width - 12, this.y + 18, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -14211288 : 791621423);
             if (this.module == CheatBreaker.getInstance().moduleManager.minmap) {
                 try {
                     String string = Keyboard.getKeyName(CheatBreaker.getInstance().moduleManager.minmap.getVoxelMap().getMapOptions().keyBindMenu.getKeyCode());
-                    FontRegistry.getUbuntuMedium16px().drawString(("PRESS '" + string + "' INGAME FOR ZAN'S MINIMAP OPTIONS.").toUpperCase(), this.x + 38, (float)(this.y + 22), -1895825408);
+                    FontRegistry.getUbuntuMedium16px().drawString(("PRESS '" + string + "' INGAME FOR ZAN'S MINIMAP OPTIONS.").toUpperCase(), this.x + 38, (float)(this.y + 22), CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 0xFFFFFFFF : -1895825407);
                 }
                 catch (Exception exception) {
-                    FontRegistry.getUbuntuMedium16px().drawString("PRESS 'M' INGAME FOR ZAN'S MINIMAP OPTIONS.".toUpperCase(), this.x + 38, (float)(this.y + 22), -1895825408);
+                    FontRegistry.getUbuntuMedium16px().drawString("PRESS 'M' INGAME FOR ZAN'S MINIMAP OPTIONS.".toUpperCase(), this.x + 38, (float)(this.y + 22), CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 0xFFFFFFFF : -1895825407);
                 }
                 this.postDraw(mouseX, mouseY);
                 return;
             }
             if (this.module.getSettingsList().isEmpty()) {
-                FontRegistry.getUbuntuMedium16px().drawString((this.module.getName().toUpperCase() + " DOES NOT HAVE ANY OPTIONS.").toUpperCase(), this.x + 38, (float)(this.y + 22), -1895825408);
+                FontRegistry.getUbuntuMedium16px().drawString((this.module.getName().toUpperCase() + " DOES NOT HAVE ANY OPTIONS.").toUpperCase(), this.x + 38, (float)(this.y + 22), CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 0xFFFFFFFF : -1895825407);
             }
             int n4 = 0;
             // fixed gay zans minimap crash shid

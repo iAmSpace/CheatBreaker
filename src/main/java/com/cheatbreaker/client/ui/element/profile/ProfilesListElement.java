@@ -34,7 +34,8 @@ public class ProfilesListElement extends AbstractScrollableElement {
     public void handleDrawElement(int mouseX, int mouseY, float partialTicks) {
         Object object;
         int n3;
-        RenderUtil.drawRoundedRect((double)this.x, (double)this.y, (double)(this.x + this.width), (double)(this.y + this.height + 2), (double)8, -657931);
+        RenderUtil.drawRoundedRect(this.x, this.y, this.x + this.width, this.y + this.height + 2, 8,
+                CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -13619152 : -657931);
         this.preDraw(mouseX, mouseY);
         this.IlllIllIlIIIIlIIlIIllIIIl = 15;
         for (n3 = 0; n3 < this.lIIIIlIIllIIlIIlIIIlIIllI.size(); ++n3) {
@@ -45,10 +46,20 @@ public class ProfilesListElement extends AbstractScrollableElement {
             this.IlllIllIlIIIIlIIlIIllIIIl += ((AbstractModulesGuiElement)object).getHeight();
         }
         n3 = (float) mouseX > (float)(this.x + this.width - 92) * this.scale && (float) mouseX < (float)(this.x + this.width - 6) * this.scale && (float) mouseY > (float)(this.y + this.IlllIllIlIIIIlIIlIIllIIIl - 10 + this.lIIIIllIIlIlIllIIIlIllIlI) * this.scale && (float) mouseY < (float)(this.y + this.IlllIllIlIIIIlIIlIIllIIIl + 3 + this.lIIIIllIIlIlIllIIIlIllIlI) * this.scale ? 1 : 0;
-        GL11.glColor4f(n3 != 0 ? 0.0f : 0.22590362f * 1.1066667f, n3 != 0 ? 1.4117647f * 0.56666666f : 1.3333334f * 0.1875f, n3 != 0 ? 0.0f : 0.14423077f * 1.7333333f, 1.7058823f * 0.38103446f);
+
+        if (CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark")) {
+            GL11.glColor4f(n3 != 0 ? 0.0f : 1.0f, n3 != 0 ? 0.8f : 1.0f, n3 != 0 ? 0.0f : 1.0f, 1.0f);
+        } else {
+            GL11.glColor4f(n3 != 0 ? 0.0f : 0.25f, n3 != 0 ? 0.8f : 0.25f, n3 != 0 ? 0.0f : 0.25f, 0.65f);
+        }
+
         RenderUtil.drawIcon(this.plusIcon, 3.4435484f * 1.0163934f, (float)(this.x + this.width - 15), (float)(this.y + this.IlllIllIlIIIIlIIlIIllIIIl) - 0.6506024f * 9.990741f);
         object = (n3 != 0 ? "(COPIES CURRENT PROFILE) " : "") + "ADD NEW PROFILE";
-        FontRegistry.getUbuntuMedium16px().drawString((String)object, this.x + this.width - 17 - FontRegistry.getUbuntuMedium16px().getStringWidth((String)object), (float)(this.y + this.IlllIllIlIIIIlIIlIIllIIIl) - 64.28571f * 0.11666667f, n3 != 0 ? 0x7F007F00 : 0x7F000000);
+        FontRegistry.getUbuntuMedium16px().drawString(
+                (String)object,
+                this.x + this.width - 17 - FontRegistry.getUbuntuMedium16px().getStringWidth((String)object),
+                (float)(this.y + this.IlllIllIlIIIIlIIlIIllIIIl) - 64.28571f * 0.11666667f,
+                n3 != 0 ? 2130738944 : (CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 0xFFFFFFFF : 2130706432));
         this.IlllIllIlIIIIlIIlIIllIIIl += 10;
         this.postDraw(mouseX, mouseY);
     }
