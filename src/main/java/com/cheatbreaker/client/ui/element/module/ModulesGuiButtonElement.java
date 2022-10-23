@@ -1,7 +1,7 @@
 package com.cheatbreaker.client.ui.element.module;
 
 import com.cheatbreaker.client.CheatBreaker;
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
 import com.cheatbreaker.client.ui.element.AbstractScrollableElement;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
@@ -10,8 +10,6 @@ import com.cheatbreaker.client.ui.util.font.CBFontRenderer;
 import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-
-import java.awt.*;
 
 public class ModulesGuiButtonElement
         extends AbstractModulesGuiElement {

@@ -1,7 +1,7 @@
 package com.cheatbreaker.client.ui.overlay.friend;
 
 import com.cheatbreaker.client.CheatBreaker;
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.ui.mainmenu.AbstractElement;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;

@@ -1,6 +1,6 @@
 package com.cheatbreaker.client.module.type;
 
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.config.Setting;
 import com.cheatbreaker.client.event.type.ClickEvent;
 import com.cheatbreaker.client.event.type.GuiDrawEvent;

@@ -1,8 +1,8 @@
 package com.cheatbreaker.client.ui.mainmenu;
 
 import com.cheatbreaker.client.CheatBreaker;
-import com.cheatbreaker.client.bridge.Ref;
-import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
+import com.cheatbreaker.bridge.Ref;
+import com.cheatbreaker.bridge.client.renderer.TessellatorBridge;
 import com.cheatbreaker.client.ui.AbstractGui;
 import com.cheatbreaker.client.ui.fading.ColorFade;
 import com.cheatbreaker.client.ui.mainmenu.cosmetics.GuiCosmetics;

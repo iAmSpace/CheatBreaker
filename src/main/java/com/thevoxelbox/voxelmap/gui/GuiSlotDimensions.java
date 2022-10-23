@@ -1,13 +1,12 @@
 package com.thevoxelbox.voxelmap.gui;
 
-import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
+import com.cheatbreaker.bridge.client.renderer.TessellatorBridge;
 import com.thevoxelbox.voxelmap.gui.overridden.GuiSlotMinimap;
 import com.thevoxelbox.voxelmap.interfaces.IDimensionManager;
 import com.thevoxelbox.voxelmap.util.Dimension;
 import com.thevoxelbox.voxelmap.util.GLUtils;
 import com.thevoxelbox.voxelmap.util.I18nUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 

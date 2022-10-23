@@ -1,6 +1,6 @@
 package com.cheatbreaker.client.ui.serverlist;
 
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.ui.util.RenderUtil;
 import com.google.common.base.Charsets;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;

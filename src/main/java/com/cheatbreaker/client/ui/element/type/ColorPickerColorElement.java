@@ -1,6 +1,6 @@
 package com.cheatbreaker.client.ui.element.type;
 
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
 
 public class ColorPickerColorElement

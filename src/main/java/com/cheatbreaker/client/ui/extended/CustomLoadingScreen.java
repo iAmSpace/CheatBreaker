@@ -1,6 +1,6 @@
 package com.cheatbreaker.client.ui.extended;
 
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.ui.util.RenderUtil;
 import lombok.Setter;
 import net.minecraft.client.gui.GuiScreen;

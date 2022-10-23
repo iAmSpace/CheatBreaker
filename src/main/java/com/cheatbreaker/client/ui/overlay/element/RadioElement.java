@@ -1,7 +1,7 @@
 package com.cheatbreaker.client.ui.overlay.element;
 
 import com.cheatbreaker.client.CheatBreaker;
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.ui.fading.MinMaxFade;
 import com.cheatbreaker.client.ui.mainmenu.element.ScrollableElement;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;

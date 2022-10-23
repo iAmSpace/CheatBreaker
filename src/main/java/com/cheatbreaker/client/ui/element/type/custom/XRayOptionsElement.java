@@ -1,7 +1,7 @@
 package com.cheatbreaker.client.ui.element.type.custom;
 
 import com.cheatbreaker.client.CheatBreaker;
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
 import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.block.Block;

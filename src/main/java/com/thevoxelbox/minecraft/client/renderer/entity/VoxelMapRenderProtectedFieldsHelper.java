@@ -1,7 +1,7 @@
 package com.thevoxelbox.minecraft.client.renderer.entity;
 
-import com.cheatbreaker.client.bridge.client.renderer.entity.RenderBridge;
-import com.cheatbreaker.client.bridge.client.renderer.entity.RendererLivingEntityBridge;
+import com.cheatbreaker.bridge.client.renderer.entity.RenderBridge;
+import com.cheatbreaker.bridge.client.renderer.entity.RendererLivingEntityBridge;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;

@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.6",
-  "package": "com.cheatbreaker.client.mixin",
+  "package": "com.cheatbreaker.mixin",
   "refmap": "mixins.cheatbreaker.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "mixins": [

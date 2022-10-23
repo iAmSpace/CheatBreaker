@@ -1,9 +1,8 @@
 package com.cheatbreaker.client.ui.element.type;
 
 import com.cheatbreaker.client.CheatBreaker;
-import com.cheatbreaker.client.bridge.Ref;
-import com.cheatbreaker.client.bridge.client.gui.FontRendererBridge;
-import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
+import com.cheatbreaker.bridge.Ref;
+import com.cheatbreaker.bridge.client.renderer.TessellatorBridge;
 import com.cheatbreaker.client.config.Setting;
 import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
 import com.cheatbreaker.client.ui.util.RenderUtil;

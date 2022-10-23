@@ -1,7 +1,7 @@
 package com.cheatbreaker.client.ui.overlay;
 
 import com.cheatbreaker.client.CheatBreaker;
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.nethandler.client.PacketVoiceMute;
 import com.cheatbreaker.client.ui.AbstractGui;
 import com.cheatbreaker.client.ui.mainmenu.GradientTextButton;

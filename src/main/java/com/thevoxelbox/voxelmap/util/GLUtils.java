@@ -1,7 +1,7 @@
 package com.thevoxelbox.voxelmap.util;
 
-import com.cheatbreaker.client.bridge.Ref;
-import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
+import com.cheatbreaker.bridge.Ref;
+import com.cheatbreaker.bridge.client.renderer.TessellatorBridge;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;

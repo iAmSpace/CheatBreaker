@@ -1,7 +1,7 @@
 package com.cheatbreaker.client.ui.util;
 
-import com.cheatbreaker.client.bridge.Ref;
-import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
+import com.cheatbreaker.bridge.Ref;
+import com.cheatbreaker.bridge.client.renderer.TessellatorBridge;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;

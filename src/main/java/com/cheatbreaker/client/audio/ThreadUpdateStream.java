@@ -1,7 +1,7 @@
 package com.cheatbreaker.client.audio;
 
 import com.cheatbreaker.client.CheatBreaker;
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.util.voicechat.VoiceChatManager;
 import net.minecraft.client.Minecraft;
 import paulscode.sound.SoundSystem;

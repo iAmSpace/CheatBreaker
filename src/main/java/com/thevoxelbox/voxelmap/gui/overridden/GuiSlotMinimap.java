@@ -1,7 +1,7 @@
 package com.thevoxelbox.voxelmap.gui.overridden;
 
-import com.cheatbreaker.client.bridge.Ref;
-import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
+import com.cheatbreaker.bridge.Ref;
+import com.cheatbreaker.bridge.client.renderer.TessellatorBridge;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;

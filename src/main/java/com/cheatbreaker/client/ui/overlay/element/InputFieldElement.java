@@ -1,7 +1,7 @@
 package com.cheatbreaker.client.ui.overlay.element;
 
-import com.cheatbreaker.client.bridge.Ref;
-import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
+import com.cheatbreaker.bridge.Ref;
+import com.cheatbreaker.bridge.client.renderer.TessellatorBridge;
 import com.cheatbreaker.client.ui.mainmenu.AbstractElement;
 import com.cheatbreaker.client.ui.overlay.StringSanitizer;
 import com.cheatbreaker.client.ui.util.font.CBFontRenderer;

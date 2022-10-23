@@ -1,6 +1,6 @@
 package com.cheatbreaker.client.ui.mainmenu;
 
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.ui.fading.CosineFade;
 import com.cheatbreaker.client.ui.fading.MinMaxFade;
 import com.cheatbreaker.client.ui.util.RenderUtil;

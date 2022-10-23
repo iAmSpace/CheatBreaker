@@ -2,7 +2,7 @@ package com.cheatbreaker.client.util.voicechat;
 
 import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.audio.*;
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.nethandler.server.PacketVoice;
 import lombok.Getter;
 import net.minecraft.client.Minecraft;

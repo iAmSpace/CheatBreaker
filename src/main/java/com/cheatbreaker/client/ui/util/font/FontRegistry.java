@@ -1,7 +1,7 @@
 package com.cheatbreaker.client.ui.util.font;
 
 import com.cheatbreaker.client.CheatBreaker;
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import net.minecraft.util.ResourceLocation;
 
 public class FontRegistry {

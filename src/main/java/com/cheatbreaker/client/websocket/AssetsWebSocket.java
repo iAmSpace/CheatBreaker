@@ -1,7 +1,7 @@
 package com.cheatbreaker.client.websocket;
 
 import com.cheatbreaker.client.CheatBreaker;
-import com.cheatbreaker.client.bridge.client.entity.AbstractClientPlayerBridge;
+import com.cheatbreaker.bridge.client.entity.AbstractClientPlayerBridge;
 import com.cheatbreaker.client.config.Profile;
 import com.cheatbreaker.client.nethandler.ByteBufWrapper;
 import com.cheatbreaker.client.ui.overlay.*;

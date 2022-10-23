@@ -1,7 +1,7 @@
 package com.cheatbreaker.client;
 
 import com.cheatbreaker.client.audio.AudioDevice;
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.config.ConfigManager;
 import com.cheatbreaker.client.config.GlobalSettings;
 import com.cheatbreaker.client.config.Profile;

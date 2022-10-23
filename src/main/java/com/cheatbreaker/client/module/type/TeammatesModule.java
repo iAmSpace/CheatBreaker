@@ -1,8 +1,8 @@
 package com.cheatbreaker.client.module.type;
 
 import com.cheatbreaker.client.CheatBreaker;
-import com.cheatbreaker.client.bridge.Ref;
-import com.cheatbreaker.client.bridge.client.renderer.TessellatorBridge;
+import com.cheatbreaker.bridge.Ref;
+import com.cheatbreaker.bridge.client.renderer.TessellatorBridge;
 import com.cheatbreaker.client.event.type.DisconnectEvent;
 import com.cheatbreaker.client.event.type.GuiDrawEvent;
 import com.cheatbreaker.client.util.teammates.IlIlIIlllIIIIIlIlIlIIIllI;

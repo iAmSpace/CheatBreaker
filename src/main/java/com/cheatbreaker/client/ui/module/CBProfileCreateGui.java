@@ -1,7 +1,7 @@
 package com.cheatbreaker.client.ui.module;
 
 import com.cheatbreaker.client.CheatBreaker;
-import com.cheatbreaker.client.bridge.Ref;
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.config.Profile;
 import com.cheatbreaker.client.ui.element.profile.ProfileElement;
 import com.cheatbreaker.client.ui.element.profile.ProfilesListElement;
