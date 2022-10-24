@@ -19,7 +19,7 @@ public class WSReconnectThread extends Thread {
             }
         }
         catch (InterruptedException exception) {
-            exception.printStackTrace();
+            System.out.println("[CB WS] [ERR] " + exception.getMessage());
         }
     }
 

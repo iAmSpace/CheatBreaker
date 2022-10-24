@@ -5,13 +5,16 @@ import net.minecraft.client.audio.SoundManager;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import paulscode.sound.SoundSystem;
 
 import java.net.URL;
 import java.util.UUID;
 
 @Mixin(SoundManager.class)
-public class MixinSoundManager implements SoundManagerBridge {
+public abstract class MixinSoundManager implements SoundManagerBridge {
 //    @Shadow private SoundManager.SoundSystemStarterThread sndSystem;
     @Shadow private boolean loaded;
 
@@ -19,6 +22,8 @@ public class MixinSoundManager implements SoundManagerBridge {
     private static URL getURLForSoundResource(ResourceLocation p_148612_0_) {
         return null;
     }
+
+    @Shadow protected abstract void loadSoundSystem();
 
     public void playSound(String sound, float volume) {
         if (this.loaded) {
@@ -43,5 +48,22 @@ public class MixinSoundManager implements SoundManagerBridge {
             throwable.printStackTrace();
         }*/
         return returnable;
+    }
+
+    int timesLoaded = 0;
+    boolean cheatBreaker = false;
+
+    @Inject(method = "loadSoundSystem", at = @At("HEAD"), cancellable = true)
+    private synchronized void impl$loadSoundSystem(CallbackInfo callbackInfo) {
+        if (timesLoaded > 0 && !cheatBreaker) {
+            callbackInfo.cancel();
+        }
+        timesLoaded++;
+    }
+
+    public synchronized void bridge$loadSoundSystem() {
+        this.cheatBreaker = true;
+        this.loadSoundSystem();
+        this.cheatBreaker = false;
     }
 }

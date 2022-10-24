@@ -1,5 +1,6 @@
 package com.cheatbreaker.mixin.client;
 
+import com.cheatbreaker.bridge.client.MinecraftAnonStatStringFormat;
 import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.bridge.client.MinecraftBridge;
 import com.cheatbreaker.bridge.client.audio.SoundHandlerBridge;
@@ -337,24 +338,7 @@ public abstract class MixinMinecraft implements MinecraftBridge {
 //        bar.step("Loading Entity Renderer");
         this.entityRenderer = new EntityRenderer(Minecraft.getMinecraft(), this.mcResourceManager);
         this.mcResourceManager.registerReloadListener(this.entityRenderer);
-        AchievementList.openInventory.setStatStringFormatter(new IStatStringFormat()
-        {
-            private static final String __OBFID = "CL_00000639";
-            /**
-             * Formats the strings based on 'IStatStringFormat' interface.
-             */
-            public String formatString(String p_74535_1_)
-            {
-                try
-                {
-                    return String.format(p_74535_1_, GameSettings.getKeyDisplayString(Minecraft.getMinecraft().gameSettings.keyBindInventory.getKeyCode()));
-                }
-                catch (Exception exception)
-                {
-                    return "Error: " + exception.getLocalizedMessage();
-                }
-            }
-        });
+        AchievementList.openInventory.setStatStringFormatter(new MinecraftAnonStatStringFormat());
 //        bar.step("Loading GL properties");
         this.mouseHelper = new MouseHelper();
         this.checkGLError("Pre startup");

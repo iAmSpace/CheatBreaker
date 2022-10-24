@@ -161,6 +161,8 @@ public class CheatBreaker {
         System.out.println("[CB] Created default configuration presets");
         this.initAudioDevices();
         this.voiceChatManager = new VoiceChatManager(audioDevices.get(0));
+        Ref.getMinecraft().bridge$getSoundHandler().bridge$getSoundManager().bridge$loadSoundSystem();
+        System.out.println("[CB] Loaded SoundSystem manually");
         this.globalSettings = new GlobalSettings();
         System.out.println("[CB] Created settings");
         this.eventBus = new EventBus();
@@ -412,8 +414,9 @@ public class CheatBreaker {
     }
 
     @SubscribeEvent
-    public void onRenderGameOverlay(RenderGameOverlayEvent event) {
-        if (event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE) {
+    public void onRenderGameOverlay(RenderGameOverlayEvent.Post event) {
+        if (event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE)
+        {
             Minecraft mc = Minecraft.getMinecraft();
             ScaledResolution scaledresolution = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
 
