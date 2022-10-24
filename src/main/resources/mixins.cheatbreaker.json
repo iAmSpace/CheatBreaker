@@ -19,7 +19,9 @@
   "client": [
     "client.entity.MixinAbstractClientPlayer",
     "client.gui.MixinGuiIngame",
+    "client.gui.MixinGuiIngameMenu",
     "client.gui.MixinGuiMultiplayer",
+    "client.gui.MixinGuiScreen",
     "client.network.MixinNetHandlerPlayClient",
     "client.renderer.MixinTessellator"
   ]
