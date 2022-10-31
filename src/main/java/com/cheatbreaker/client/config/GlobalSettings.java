@@ -129,7 +129,7 @@ public class GlobalSettings {
             if (DashUtil.isPlayerNotNull()) {
                 DashUtil.getDashPlayer().setFloatControlValue((float)var0);
             }
-        }).setValue(85f).setMinMax(55f, 100f);
+        }).setValue(85f).setMinMax(55f, 100f);1
         this.microphoneVolume = (new Setting(this.settingsList, "Microphone Volume")).onChange(volume -> {
             CheatBreaker.getInstance().getVoiceChatManager().getRecorder().microphoneVolume = ((Integer) volume)/100f;
             if (CheatBreaker.getInstance().getModuleManager() != null) {

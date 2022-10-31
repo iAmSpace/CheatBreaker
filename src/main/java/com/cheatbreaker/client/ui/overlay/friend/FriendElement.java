@@ -66,7 +66,7 @@ public class FriendElement extends AbstractElement {
             FontRegistry.getPlayRegular16px().drawString(this.friend.getStatusString(), this.x + (float)24, this.y + (float)11, -5460820);
         }
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        ResourceLocation headLocation = CheatBreaker.getInstance().getHeadLocation(EnumChatFormatting.getTextWithoutFormattingCodes(this.friend.getName()), this.friend.getPlayerId());
+        ResourceLocation headLocation = CheatBreaker.getInstance().getHeadLocation(EnumChatFormatting.getTextWithoutFormattingCodes(this.friend.getName()));
         RenderUtil.drawIcon(headLocation, (float)7, this.x + (float)5, this.y + (float)4);
         boolean bl2 = bl && this.isMouseInside(f, f2) && f > this.x + this.width - (float)20;
         float f3 = this.lIIIIllIIlIlIllIIIlIllIlI.lIIIIlIIllIIlIIlIIIlIIllI(bl2);

@@ -1,5 +1,6 @@
 package com.cheatbreaker.client;
 
+import com.cheatbreaker.bridge.client.audio.SoundManagerBridge;
 import com.cheatbreaker.client.audio.AudioDevice;
 import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.config.ConfigManager;
@@ -69,35 +70,9 @@ public class CheatBreaker {
     public List<SessionServer> statusServers;
     public List<ResourceLocation> presetLocations;
 
-    public CBFontRenderer playBold22px;
-    public CBFontRenderer playRegular22px;
-    public CBFontRenderer ubuntuMedium16px;
-    public CBFontRenderer playBold18px;
-    public CBFontRenderer robotoRegular24px;
-    public CBFontRenderer playRegular18px;
-    public CBFontRenderer playRegular14px;
-    public CBFontRenderer playRegular16px;
-    public CBFontRenderer robotoRegular13px;
-    public CBFontRenderer robotoBold14px;
-    public CBFontRenderer playRegular12px;
-
-    private static final ResourceLocation playRegular;
-    private static final ResourceLocation playBold;
-    private static final ResourceLocation robotoRegular;
-    private static final ResourceLocation robotoBold;
-    private static final ResourceLocation ubuntuMedium;
-
     public NetHandler netHandler;
     public TitleManager titleManager;
     public WorldBorderManager borderManager;
-
-    static {
-        playRegular = new ResourceLocation("client/font/Play-Regular.ttf");
-        playBold = new ResourceLocation("client/font/Play-Bold.ttf");
-        robotoRegular = new ResourceLocation("client/font/Roboto-Regular.ttf");
-        robotoBold = new ResourceLocation("client/font/Roboto-Bold.ttf");
-        ubuntuMedium = new ResourceLocation("client/font/Ubuntu-M.ttf");
-    }
 
     public long startTime;
 
@@ -143,79 +118,85 @@ public class CheatBreaker {
 
     public <T> void reverse(Queue<T> queue) {
         Stack<T> stack = new Stack<>();
-        while(!queue.isEmpty()) stack.push(queue.poll());
-        while(!stack.isEmpty()) queue.add(stack.pop());
+
+        while (!queue.isEmpty())
+            stack.push(queue.poll());
+
+        while (!stack.isEmpty())
+            queue.add(stack.pop());
+    }
+
+    public void cbInfo(String msg) {
+        System.out.println("[CB] " + msg);
+    }
+
+    public void cbInfo(String msg, Class<?> loadedClass) {
+        this.cbInfo(msg + " (" + loadedClass.getCanonicalName() + ")");
     }
 
     public void initialize() {
         this.audioDevices = new ArrayList<>();
         this.presetLocations = new ArrayList<>();
-        cosmetics = new ArrayList<>();
-        sessions = new ArrayList<>();
-        statusServers = new ArrayList<>();
+        this.cosmetics = new ArrayList<>();
+        this.sessions = new ArrayList<>();
+        this.statusServers = new ArrayList<>();
         this.profiles = new ArrayList<>();
         this.consoleLines = new ArrayList<>();
         this.startTime = System.currentTimeMillis();
-        System.out.println("[CB] Starting CheatBreaker setup");
+        this.cbInfo("Starting CheatBreaker setup...");
         this.createDefaultConfigPresets();
-        System.out.println("[CB] Created default configuration presets");
+        this.cbInfo("Created default configuration presets.");
         this.initAudioDevices();
+        this.cbInfo("Initialized all audio devices.");
         this.voiceChatManager = new VoiceChatManager(audioDevices.get(0));
+        this.cbInfo("Created Voice Chat Manager", VoiceChatManager.class);
         Ref.getMinecraft().bridge$getSoundHandler().bridge$getSoundManager().bridge$loadSoundSystem();
-        System.out.println("[CB] Loaded SoundSystem manually");
+        this.cbInfo("Loaded SoundSystem manually (Using Bridge method " + SoundManagerBridge.class.getCanonicalName() + ".bridge$loadSoundSystem())");
         this.globalSettings = new GlobalSettings();
-        System.out.println("[CB] Created settings");
+        this.cbInfo("Created Settings Manager", GlobalSettings.class);
         this.eventBus = new EventBus();
-        System.out.println("[CB] Created EventBus");
+        this.cbInfo("Created Event Bus", EventBus.class);
         this.moduleManager = new ModuleManager();
-        System.out.println("[CB] Created Mod Manager");
+        this.cbInfo("Created Module Manager", ModuleManager.class);
         this.netHandler = new NetHandler();
-        System.out.println("[CB] Created Net Handler");
+        this.cbInfo("Created Network Handler", NetHandler.class);
         this.titleManager = new TitleManager();
-        cosmetics.add(new Cosmetic("Steve", "CheatBreaker Cape", 1.0f, true, "client/defaults/cb.png"));
-        cosmetics.add(new Cosmetic("Steve", "CheatBreaker Black Cape", 1.0f, false, "client/defaults/cb_black.png"));
+        this.cbInfo("Created Title Manager", TitleManager.class);
+        this.cosmetics.add(new Cosmetic("Steve", "CheatBreaker Cape", 1.0f, true, "client/defaults/cb.png"));
+        this.cosmetics.add(new Cosmetic("Steve", "CheatBreaker Black Cape", 1.0f, false, "client/defaults/cb_black.png"));
         this.status = Status.AWAY;
         this.radioManager = new CBDashManager();
-        this.loadFonts();
-        System.out.println("[CB] Loaded all fonts");
+        this.cbInfo("Created Radio Manager", CBDashManager.class);
         this.loadProfiles();
-        System.out.println("[CB] Loaded " + this.profiles.size() + " custom profiles");
+        this.cbInfo("Loaded " + this.profiles.size() + " custom profiles.");
         (this.configManager = new ConfigManager()).read();
+        this.cbInfo("Created Configuration Manager", ConfigManager.class);
 
+        this.cbInfo("Connecting to websocket server...");
         connectToAssetsServer();
         this.friendsManager = new FriendsManager();
+        this.cbInfo("Created Friends Manager", FriendsManager.class);
         OverlayGui.setInstance(new OverlayGui());
+        this.cbInfo("Created Overlay UI", OverlayGui.class);
 
         this.eventBus.addEvent(PluginMessageEvent.class, this.netHandler::onPluginMessage);
-
         this.eventBus.addEvent(KeyboardEvent.class, (e) -> {
             if (e.getKeyboardKey() == Keyboard.KEY_H) {
                 Alert.displayMessage("Hello", "Hello, World\nNew Line");
             }
             if (e.getKeyboardKey() == Keyboard.KEY_RSHIFT) {
-                if (Minecraft.getMinecraft().currentScreen == null) {
-                    Minecraft.getMinecraft().displayGuiScreen(new CBModulesGui());
+                if (Ref.getMinecraft().bridge$getCurrentScreen() == null) {
+                    Ref.getMinecraft().bridge$displayGuiScreen(new CBModulesGui());
                 }
             }
         });
+        this.cbInfo("Registered main events.");
 
         new ServerStatusThread().start();
-        loadVersionData();
+        this.loadVersionData();
+        this.cbInfo("Loaded version data.");
         this.borderManager = new WorldBorderManager();
-    }
-
-    private void loadFonts() {
-        playBold22px = new CBFontRenderer(playBold, 22);
-        playRegular22px = new CBFontRenderer(playRegular, 22);
-        playRegular18px = new CBFontRenderer(playRegular, 18);
-        playRegular14px = new CBFontRenderer(playRegular, 14);
-        playRegular12px = new CBFontRenderer(playRegular, 12);
-        playRegular16px = new CBFontRenderer(playRegular, 16);
-        playBold18px = new CBFontRenderer(playBold, 18);
-        ubuntuMedium16px = new CBFontRenderer(ubuntuMedium, 16);
-        robotoRegular13px = new CBFontRenderer(robotoRegular, 13);
-        robotoBold14px = new CBFontRenderer(robotoBold, 14);
-        robotoRegular24px = new CBFontRenderer(robotoRegular, 24);
+        this.cbInfo("Created World Border Manager", WorldBorderManager.class);
     }
 
     private void createDefaultConfigPresets() {
@@ -288,7 +269,7 @@ public class CheatBreaker {
     public String[] getAudioDeviceList() {
         final String[] audioDevices = new String[this.audioDevices.size()];
         int var1 = 0;
-        for(final Iterator<AudioDevice> var2 = this.audioDevices.iterator(); var2.hasNext(); ++var1) {
+        for (final Iterator<AudioDevice> var2 = this.audioDevices.iterator(); var2.hasNext(); ++var1) {
             final AudioDevice var3 = var2.next();
             audioDevices[var1] = var3.getDescriptor();
         }
@@ -330,7 +311,7 @@ public class CheatBreaker {
             Ref.getMinecraft().bridge$getSoundHandler().bridge$getSoundManager().playSound(sound, volume);
     }
 
-    public ResourceLocation getHeadLocation(String displayName, String uuid) {
+    public ResourceLocation getHeadLocation(String displayName) {
         ResourceLocation playerSkin = this.playerSkins.getOrDefault(displayName, new ResourceLocation("client/heads/" + displayName + ".png"));
         if (!this.playerSkins.containsKey(displayName)) {
             ThreadDownloadImageData skinData = new ThreadDownloadImageData(null, "https://minotar.net/helm/" + displayName + "/32.png", new ResourceLocation("client/defaults/steve.png"), null);
@@ -354,6 +335,7 @@ public class CheatBreaker {
         hashMap.put("playerId", Minecraft.getMinecraft().getSession().getPlayerID());
         hashMap.put("version", getGitCommit());
         try {
+            // TODO: Host websocket
             (this.websocket = new AssetsWebSocket(new URI("ws://localhost:80"), hashMap)).connect();
         } catch (URISyntaxException e) {
             e.printStackTrace();

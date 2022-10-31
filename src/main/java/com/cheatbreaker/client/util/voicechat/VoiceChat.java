@@ -4,6 +4,7 @@ import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.event.type.GuiDrawEvent;
 import com.cheatbreaker.client.event.type.TickEvent;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
@@ -43,27 +44,27 @@ public class VoiceChat {
             float[] arrf = new float[]{10};
 
             if (this.isTalking) {
-                this.renderHeadAndName(this.minecraft.thePlayer.getDisplayName(), this.minecraft.getSession().getPlayerID(), f2, arrf[0], true);
+                this.renderHeadAndName(this.minecraft.thePlayer.getDisplayName(), f2, arrf[0], true);
                 arrf[0] = arrf[0] + f;
             }
 
             this.userLastSpoken.forEach((voiceUser, l) -> {
-                this.renderHeadAndName(voiceUser.getUsername(), voiceUser.getUUID().toString(), f2, arrf[0], false);
+                this.renderHeadAndName(voiceUser.getUsername(), f2, arrf[0], false);
                 arrf[0] = arrf[0] + f;
             });
         }
     }
 
-    private void renderHeadAndName(String string, String string2, float f, float f2, boolean isSelf) {
+    private void renderHeadAndName(String string, float f, float f2, boolean isSelf) {
         if (isSelf) {
             RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(f, f2, f + (float)110, f2 + (float)18, -11493284, -10176146, -11164318);
         } else {
             RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(f, f2, f + (float)110, f2 + (float)18, -1356454362, -1355664846, -1356191190);
         }
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        ResourceLocation resourceLocation = CheatBreaker.getInstance().getHeadLocation(string, string2);
+        ResourceLocation resourceLocation = CheatBreaker.getInstance().getHeadLocation(string);
         RenderUtil.drawIcon(resourceLocation, (float)7, f + 2.0f, f2 + 2.0f);
-        this.cheatbreaker.playRegular16px.drawString(string, f + (float)22, f2 + (float)4, -1);
+        FontRegistry.getPlayRegular16px().drawString(string, f + (float)22, f2 + (float)4, -1);
     }
 
     public void onTick(TickEvent cBTickEvent) {

@@ -6,6 +6,7 @@ import com.cheatbreaker.client.ui.fading.CosineFade;
 import com.cheatbreaker.client.ui.mainmenu.MainMenu;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.util.SessionServer;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.achievement.GuiAchievements;
@@ -118,7 +119,7 @@ public class MixinGuiIngameMenu extends GuiScreen {
 
             Ref.modified$drawRect(this.width / 2f - 100, this.height / 4f + 128, this.width / 2f + 100, this.height / 4f + 142, 0x6F000000);
             Ref.modified$drawRect(this.width / 2f - 100, this.height / 4f + 128, this.width / 2f + 100, this.height / 4f + 142, new Color(1.0f, 0.15f, 0.15f, 0.65f * this.errorMsgFade.getCurrentValue()).getRGB());
-            CheatBreaker.getInstance().ubuntuMedium16px.drawCenteredString("Some login services might be offline".toUpperCase(), this.width / 2f, this.height / 4f + 130, -1);
+            FontRegistry.getUbuntuMedium16px().drawCenteredString("Some login services might be offline".toUpperCase(), this.width / 2f, this.height / 4f + 130, -1);
         }
         super.drawScreen(mouseX, mouseY, partialTicks);
     }

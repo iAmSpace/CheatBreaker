@@ -34,7 +34,7 @@ public class RadioElement extends DraggableElement {
     public RadioElement() {
         this.slider = new HorizontalSliderElement(CheatBreaker.getInstance().getGlobalSettings().radioVolume);
         this.scrollableContainer = new ScrollableElement(this);
-        this.filter = new InputFieldElement(this.client.playRegular16px, "Filter", -11842741, -11842741);
+        this.filter = new InputFieldElement(FontRegistry.getPlayRegular16px(), "Filter", -11842741, -11842741);
         this.pin = new FlatButtonElement((Boolean) this.client.getGlobalSettings().pinRadio.getValue() ? "Unpin" : "Pin");
         this.radioStationElements = new ArrayList<>();
         for (Station station : CheatBreaker.getInstance().getRadioManager().getStations()) {

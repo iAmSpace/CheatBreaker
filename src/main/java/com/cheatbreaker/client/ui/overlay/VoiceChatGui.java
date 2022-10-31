@@ -6,6 +6,7 @@ import com.cheatbreaker.client.nethandler.client.PacketVoiceMute;
 import com.cheatbreaker.client.ui.AbstractGui;
 import com.cheatbreaker.client.ui.mainmenu.GradientTextButton;
 import com.cheatbreaker.client.ui.util.RenderUtil;
+import com.cheatbreaker.client.ui.util.font.FontRegistry;
 import com.cheatbreaker.client.util.voicechat.VoiceChannel;
 import com.cheatbreaker.client.util.voicechat.VoiceUser;
 import com.google.common.collect.Lists;
@@ -67,7 +68,7 @@ public class VoiceChatGui extends AbstractGui {
         if (cheatBreaker.getNetHandler().voiceChatEnabled && cheatBreaker.getNetHandler().getVoiceChannel() != null) {
             float f4 = 16;
             float f5 = this.getScaleFactor() / 2.0f - (float)8 - f4 * (float)cheatBreaker.getNetHandler().getVoiceChannels().size() / 2.0f;
-            VoiceChatGui.cheatBreaker.playBold18px.drawCenteredString("VOICE CHAT", f3, f5 - (float)4, -1);
+            FontRegistry.getPlayBold18px().drawCenteredString("VOICE CHAT", f3, f5 - (float)4, -1);
             this.undeafenButton.setElementSize(f3 + (float)60, f5 - (float)4, (float)50, 12);
             this.undeafenButton.drawElement(f, f2, true);
             this.someRandomAssButtons.forEach(randomAssButton -> {
@@ -87,7 +88,7 @@ public class VoiceChatGui extends AbstractGui {
             }
         } else {
             float f6 = this.getScaleFactor() / 2.0f - (float)8;
-            VoiceChatGui.cheatBreaker.playBold18px.drawCenteredString("VOICE CHAT IS NOT SUPPORTED", f3, f6, -1);
+            FontRegistry.getPlayBold18px().drawCenteredString("VOICE CHAT IS NOT SUPPORTED", f3, f6, -1);
         }
     }
 
@@ -144,7 +145,7 @@ public class VoiceChatGui extends AbstractGui {
     private void lIIIIlIIllIIlIIlIIIlIIllI(float f, float f2, float f3, float f4) {
         float f5 = 14;
         float f6 = (float)this.voiceChannel.getUsers().size() * f5;
-        VoiceChatGui.cheatBreaker.playBold18px.drawCenteredString(this.voiceChannel.lIIIIIIIIIlIllIIllIlIIlIl(), f3, (f4 -= f6 / 2.0f) - (float)14, -1);
+        FontRegistry.getPlayBold18px().drawCenteredString(this.voiceChannel.lIIIIIIIIIlIllIIllIlIIlIl(), f3, (f4 -= f6 / 2.0f) - (float)14, -1);
         if (!this.lIIlIlIllIIlIIIlIIIlllIII()) {
             this.joinChannelButton.setElementSize(f3 + (float)125, f4 - (float)14, (float)50, 12);
             this.joinChannelButton.drawElement(f, f2, true);
@@ -183,7 +184,7 @@ public class VoiceChatGui extends AbstractGui {
                     RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.speakerImage, f3 + (float)162, f7 + (float)3, (float)8, 8);
                 }
             }
-            VoiceChatGui.cheatBreaker.playBold18px.drawCenteredString(voiceUser3.getUsername().toUpperCase(), f8 + (float)6, f7 + 2.0f, bl ? -1 : 0x6FFFFFFF);
+            FontRegistry.getPlayBold18px().drawCenteredString(voiceUser3.getUsername().toUpperCase(), f8 + (float)6, f7 + 2.0f, bl ? -1 : 0x6FFFFFFF);
             ++n;
         }
     }

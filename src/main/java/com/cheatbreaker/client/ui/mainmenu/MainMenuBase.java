@@ -72,7 +72,7 @@ public class MainMenuBase extends AbstractGui {
         this.exitButton = new IconButtonElement(new ResourceLocation("client/icons/delete-64.png"));
         this.languageButton = new IconButtonElement(6, new ResourceLocation("client/icons/globe-24.png"));
         this.accountButtonWidth = FontRegistry.getRobotoRegular13px().getStringWidth(Minecraft.getMinecraft().getSession().getUsername());
-        this.accountList = new AccountList(this, Minecraft.getMinecraft().getSession().getUsername(), CheatBreaker.getInstance().getHeadLocation(Minecraft.getMinecraft().getSession().getUsername(), Minecraft.getMinecraft().getSession().getPlayerID()));
+        this.accountList = new AccountList(this, Minecraft.getMinecraft().getSession().getUsername(), CheatBreaker.getInstance().getHeadLocation(Minecraft.getMinecraft().getSession().getUsername()));
         //this.loadAccounts();
     }
 
@@ -105,7 +105,7 @@ public class MainMenuBase extends AbstractGui {
                         if (minecraft.getSession() == null || !finalAccount.getUsername().equalsIgnoreCase(minecraft.getSession().getUsername()))
                             continue;
                         this.accountList.setDisplayName(finalAccount.getDisplayName());
-                        this.accountList.setHeadLocation(CheatBreaker.getInstance().getHeadLocation(finalAccount.getDisplayName(), finalAccount.getDisplayName()));
+                        this.accountList.setHeadLocation(CheatBreaker.getInstance().getHeadLocation(finalAccount.getDisplayName()));
                         this.updateAccountButtonSize();
                     } else {
                         System.err.println("[CB] userName is null.");

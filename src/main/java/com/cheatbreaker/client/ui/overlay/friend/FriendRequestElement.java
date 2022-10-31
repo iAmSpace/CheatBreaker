@@ -39,7 +39,7 @@ public class FriendRequestElement extends AbstractElement {
             FontRegistry.getPlayRegular16px().drawString("DENY", this.x + (float)56, this.y + (float)11, denyHovered ? -52429 : 0x7FFF3333);
         }
         GL11.glColor4f((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        ResourceLocation resourceLocation = CheatBreaker.getInstance().getHeadLocation(EnumChatFormatting.getTextWithoutFormattingCodes(this.friendRequest.getUsername()), this.friendRequest.getPlayerId());
+        ResourceLocation resourceLocation = CheatBreaker.getInstance().getHeadLocation(EnumChatFormatting.getTextWithoutFormattingCodes(this.friendRequest.getUsername()));
         RenderUtil.drawIcon(resourceLocation, (float)7, this.x + (float)5, this.y + (float)4);
         GL11.glPopMatrix();
     }

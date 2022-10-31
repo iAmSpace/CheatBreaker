@@ -109,7 +109,7 @@ public class OverlayGui extends AbstractGui {
         Ref.modified$drawRect(0.0f, 0.0f, 140, 28, -15395563);
         Ref.modified$drawRect(6, 6, 22, 22, Friend.getStatusColor(CheatBreaker.getInstance().getStatus()));
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        ResourceLocation headLocation = CheatBreaker.getInstance().getHeadLocation(this.mc.getSession().getUsername(), this.mc.getSession().getPlayerID());
+        ResourceLocation headLocation = CheatBreaker.getInstance().getHeadLocation(this.mc.getSession().getUsername());
         RenderUtil.drawIcon(headLocation, 7f, 7f, 7f);
         String username = this.mc.getSession().getUsername();
         FontRegistry.getPlayRegular16px().drawString(username, 28, 6f, -1);

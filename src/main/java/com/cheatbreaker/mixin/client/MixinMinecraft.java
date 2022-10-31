@@ -1,6 +1,7 @@
 package com.cheatbreaker.mixin.client;
 
 import com.cheatbreaker.bridge.client.MinecraftAnonStatStringFormat;
+import com.cheatbreaker.bridge.client.gui.GuiScreenBridge;
 import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.bridge.client.MinecraftBridge;
 import com.cheatbreaker.bridge.client.audio.SoundHandlerBridge;
@@ -187,6 +188,14 @@ public abstract class MixinMinecraft implements MinecraftBridge {
 
     public FontRendererBridge bridge$getFontRenderer() {
         return (FontRendererBridge) this.fontRenderer;
+    }
+
+    public GuiScreenBridge bridge$getCurrentScreen() {
+        return (GuiScreenBridge) this.currentScreen;
+    }
+
+    public void bridge$displayGuiScreen(GuiScreen screen) {
+        this.displayGuiScreen(screen);
     }
 
     @Inject(method = "displayGuiScreen", at = @At("HEAD"), cancellable = true)

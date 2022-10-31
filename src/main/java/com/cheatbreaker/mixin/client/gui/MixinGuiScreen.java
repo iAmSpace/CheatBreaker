@@ -1,5 +1,6 @@
 package com.cheatbreaker.mixin.client.gui;
 
+import com.cheatbreaker.bridge.client.gui.GuiScreenBridge;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -13,11 +14,9 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.awt.*;
 
 @Mixin(GuiScreen.class)
-public class MixinGuiScreen extends Gui {
+public class MixinGuiScreen extends Gui implements GuiScreenBridge {
     @Shadow public Minecraft mc;
-
     @Shadow public int height;
-
     @Shadow public int width;
 
     /**

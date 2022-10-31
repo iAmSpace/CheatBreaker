@@ -17,7 +17,7 @@ public class Account {
         this.accessToken = accessToken;
         this.displayName = displayName;
         this.uuid = uuid;
-        this.headLocation = CheatBreaker.getInstance().getHeadLocation(displayName, uuid);
+        this.headLocation = CheatBreaker.getInstance().getHeadLocation(displayName);
     }
 
     public String getClientToken() {

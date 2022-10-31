@@ -76,7 +76,7 @@ public class MessagesElement extends DraggableElement {
         FontRegistry.getPlayRegular16px().drawString(this.friend.getName(), this.x + (float)52, this.y + 2.0f, -1);
         FontRegistry.getPlayRegular16px().drawString(this.friend.getStatusString(), this.x + (float)52, this.y + (float)11, -5460820);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        ResourceLocation resourceLocation = CheatBreaker.getInstance().getHeadLocation(EnumChatFormatting.getTextWithoutFormattingCodes(this.friend.getName()), this.friend.getPlayerId());
+        ResourceLocation resourceLocation = CheatBreaker.getInstance().getHeadLocation(EnumChatFormatting.getTextWithoutFormattingCodes(this.friend.getName()));
         RenderUtil.drawIcon(resourceLocation, (float)7, this.x + (float)28, this.y + (float)4);
         Ref.modified$drawRect(this.x + (float) 27, this.y + (float) 22, this.x + this.width - 2.0f, this.y + this.height - (float) 17, -1356783327);
         this.recentsScrollable.drawScrollable(mouseX, mouseY, bl);
@@ -92,12 +92,12 @@ public class MessagesElement extends DraggableElement {
             boolean bl2 = mouseX > this.x && mouseX < this.x + (float)25 && mouseY > f3 - this.recentsScrollable.IllIIIIIIIlIlIllllIIllIII() && mouseY < f3 + (float)16 - this.recentsScrollable.IllIIIIIIIlIlIllllIIllIII() && mouseY > this.y && mouseY < this.y + this.height;
             Ref.modified$drawRect(this.x + (float)3, f3, this.x + (float)19, f3 + (float)16, friend.isOnline() ? Friend.getStatusColor(friend.getOnlineStatus()) : -13158601);
             GL11.glColor4f(1.0f, 1.0f, 1.0f, bl2 ? 1.0f : 0.6016854f * 1.4126984f);
-            ResourceLocation location = CheatBreaker.getInstance().getHeadLocation(EnumChatFormatting.getTextWithoutFormattingCodes(friend.getName()), friend.getPlayerId());
+            ResourceLocation location = CheatBreaker.getInstance().getHeadLocation(EnumChatFormatting.getTextWithoutFormattingCodes(friend.getName()));
             RenderUtil.drawIcon(location, (float)7, this.x + (float)4, this.y + (float)4 + (float)n2);
             if (bl2) {
-                float f4 = this.client.playRegular16px.getStringWidth(EnumChatFormatting.getTextWithoutFormattingCodes(friend.getName()));
+                float f4 = FontRegistry.getPlayRegular16px().getStringWidth(EnumChatFormatting.getTextWithoutFormattingCodes(friend.getName()));
                 RenderUtil.drawRoundedRect(this.x - (float)10 - f4, f3 + 2.0f, this.x - 2.0f, f3 + (float)14, (double)6, -1895825408);
-                this.client.playRegular16px.drawString(friend.getName(), this.x - (float)6 - f4, f3 + (float)4, -1);
+                FontRegistry.getPlayRegular16px().drawString(friend.getName(), this.x - (float)6 - f4, f3 + (float)4, -1);
                 if (Mouse.isButtonDown(0) && this.friend != friend) {
                     this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
                     this.friend = friend;
