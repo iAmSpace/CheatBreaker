@@ -129,7 +129,7 @@ public class GlobalSettings {
             if (DashUtil.isPlayerNotNull()) {
                 DashUtil.getDashPlayer().setFloatControlValue((float)var0);
             }
-        }).setValue(85f).setMinMax(55f, 100f);1
+        }).setValue(85f).setMinMax(55f, 100f);
         this.microphoneVolume = (new Setting(this.settingsList, "Microphone Volume")).onChange(volume -> {
             CheatBreaker.getInstance().getVoiceChatManager().getRecorder().microphoneVolume = ((Integer) volume)/100f;
             if (CheatBreaker.getInstance().getModuleManager() != null) {
@@ -201,5 +201,9 @@ public class GlobalSettings {
         this.dragLook = new KeyBinding("Drag to look", 56, "CheatBreaker Client");
         this.hideNames = new KeyBinding("Hide name plates", 0, "CheatBreaker Client");
         var2.keyBindings = ArrayUtils.addAll(var2.keyBindings, this.pushToTalk, this.openMenu, this.openVoiceMenu, this.dragLook, this.hideNames);
+    }
+
+    public boolean isDarkMode() {
+        return this.theme.getValue().equals("Dark");
     }
 }

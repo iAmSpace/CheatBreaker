@@ -31,7 +31,7 @@ public class XRayOptionsElement
 
     @Override
     public void handleDrawElement(int mouseX, int mouseY, float partialTicks) {
-        FontRegistry.getUbuntuMedium16px().drawString(this.lIIIIlIIllIIlIIlIIIlIIllI.toUpperCase(), this.x + 10, (float)(this.y + 2), CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 0xFFFFFFFF : -1895825407);
+        FontRegistry.getUbuntuMedium16px().drawString(this.lIIIIlIIllIIlIIlIIIlIIllI.toUpperCase(), this.x + 10, (float)(this.y + 2), CheatBreaker.getInstance().globalSettings.isDarkMode() ? 0xFFFFFFFF : -1895825407);
         Minecraft minecraft = Minecraft.getMinecraft();
         List<Integer> list = CheatBreaker.getInstance().moduleManager.xray.lIllIllIlIIllIllIlIlIIlIl();
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);

@@ -35,7 +35,7 @@ public class ProfilesListElement extends AbstractScrollableElement {
         Object object;
         int n3;
         RenderUtil.drawRoundedRect(this.x, this.y, this.x + this.width, this.y + this.height + 2, 8,
-                CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -13619152 : -657931);
+                CheatBreaker.getInstance().globalSettings.isDarkMode() ? -13619152 : -657931);
         this.preDraw(mouseX, mouseY);
         this.IlllIllIlIIIIlIIlIIllIIIl = 15;
         for (n3 = 0; n3 < this.lIIIIlIIllIIlIIlIIIlIIllI.size(); ++n3) {
@@ -47,7 +47,7 @@ public class ProfilesListElement extends AbstractScrollableElement {
         }
         n3 = (float) mouseX > (float)(this.x + this.width - 92) * this.scale && (float) mouseX < (float)(this.x + this.width - 6) * this.scale && (float) mouseY > (float)(this.y + this.IlllIllIlIIIIlIIlIIllIIIl - 10 + this.lIIIIllIIlIlIllIIIlIllIlI) * this.scale && (float) mouseY < (float)(this.y + this.IlllIllIlIIIIlIIlIIllIIIl + 3 + this.lIIIIllIIlIlIllIIIlIllIlI) * this.scale ? 1 : 0;
 
-        if (CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark")) {
+        if (CheatBreaker.getInstance().globalSettings.isDarkMode()) {
             GL11.glColor4f(n3 != 0 ? 0.0f : 1.0f, n3 != 0 ? 0.8f : 1.0f, n3 != 0 ? 0.0f : 1.0f, 1.0f);
         } else {
             GL11.glColor4f(n3 != 0 ? 0.0f : 0.25f, n3 != 0 ? 0.8f : 0.25f, n3 != 0 ? 0.0f : 0.25f, 0.65f);
@@ -59,7 +59,7 @@ public class ProfilesListElement extends AbstractScrollableElement {
                 (String)object,
                 this.x + this.width - 17 - FontRegistry.getUbuntuMedium16px().getStringWidth((String)object),
                 (float)(this.y + this.IlllIllIlIIIIlIIlIIllIIIl) - 64.28571f * 0.11666667f,
-                n3 != 0 ? 2130738944 : (CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 0xFFFFFFFF : 2130706432));
+                n3 != 0 ? 2130738944 : (CheatBreaker.getInstance().globalSettings.isDarkMode() ? 0xFFFFFFFF : 2130706432));
         this.IlllIllIlIIIIlIIlIIllIIIl += 10;
         this.postDraw(mouseX, mouseY);
     }

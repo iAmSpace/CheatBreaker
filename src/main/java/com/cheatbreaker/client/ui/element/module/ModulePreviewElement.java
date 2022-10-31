@@ -46,7 +46,7 @@ public class ModulePreviewElement extends AbstractModulesGuiElement {
         if (this.module.isEnabled()) {
             Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, -13916106);
         } else {
-            Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -14211289 : -1347374928);
+            Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, CheatBreaker.getInstance().globalSettings.isDarkMode() ? -14211289 : -1347374928);
         }
         CBFontRenderer playBold18px = FontRegistry.getPlayBold18px();
         GL11.glPushMatrix();

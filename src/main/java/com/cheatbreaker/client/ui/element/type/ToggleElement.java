@@ -31,16 +31,17 @@ public class ToggleElement
     public void handleDrawElement(int mouseX, int mouseY, float partialTicks) {
         boolean bl = (float) mouseX > (float) (this.x + this.width - 48) * this.scale && (float) mouseX < (float) (this.x + this.width - 10) * this.scale && (float) mouseY > (float) (this.y + this.yOffset) * this.scale && (float) mouseY < (float) (this.y + 10 + this.yOffset) * this.scale;
         boolean bl2 = (float) mouseX > (float) (this.x + this.width - 92) * this.scale && (float) mouseX < (float) (this.x + this.width - 48) * this.scale && (float) mouseY > (float) (this.y + this.yOffset) * this.scale && (float) mouseY < (float) (this.y + 10 + this.yOffset) * this.scale;
-        FontRegistry.getUbuntuMedium16px().drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float) (this.y + 2), bl2 || bl ? -1090519040 : -1895825408);
+        boolean dark = CheatBreaker.getInstance().globalSettings.isDarkMode();
+        FontRegistry.getUbuntuMedium16px().drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float) (this.y + 2), dark ? -1 : (bl2 || bl ? -1090519040 : -1895825408));
         if (this.IlllIllIlIIIIlIIlIIllIIIl == 0) {
-            FontRegistry.getUbuntuMedium16px().drawCenteredString((Boolean) this.setting.getValue() ? "ON" : "OFF", this.x + this.width - 48, this.y + 2, -1895825408);
+            FontRegistry.getUbuntuMedium16px().drawCenteredString((Boolean) this.setting.getValue() ? "ON" : "OFF", this.x + this.width - 48, this.y + 2, dark ? -1 : -1895825408);
         } else {
             boolean bl3 = this.IlllIllIlIIIIlIIlIIllIIIl == 1;
-            FontRegistry.getUbuntuMedium16px().drawCenteredString(this.displayString, (float) (this.x + this.width - 48) - (bl3 ? -this.IlIlllIIIIllIllllIllIIlIl : this.IlIlllIIIIllIllllIllIIlIl), this.y + 2, -1895825408);
+            FontRegistry.getUbuntuMedium16px().drawCenteredString(this.displayString, (float) (this.x + this.width - 48) - (bl3 ? -this.IlIlllIIIIllIllllIllIIlIl : this.IlIlllIIIIllIllllIllIIlIl), this.y + 2, dark ? -1 : -1895825408);
             if (bl3) {
-                FontRegistry.getUbuntuMedium16px().drawCenteredString((Boolean) this.setting.getValue() ? "ON" : "OFF", (float) (this.x + this.width - 98) + this.IlIlllIIIIllIllllIllIIlIl, this.y + 2, -1895825408);
+                FontRegistry.getUbuntuMedium16px().drawCenteredString((Boolean) this.setting.getValue() ? "ON" : "OFF", (float) (this.x + this.width - 98) + this.IlIlllIIIIllIllllIllIIlIl, this.y + 2, dark ? -1 : -1895825408);
             } else {
-                FontRegistry.getUbuntuMedium16px().drawCenteredString((Boolean) this.setting.getValue() ? "ON" : "OFF", (float) (this.x + this.width + 2) - this.IlIlllIIIIllIllllIllIIlIl, this.y + 2, -1895825408);
+                FontRegistry.getUbuntuMedium16px().drawCenteredString((Boolean) this.setting.getValue() ? "ON" : "OFF", (float) (this.x + this.width + 2) - this.IlIlllIIIIllIllllIllIIlIl, this.y + 2, dark ? -1 : -1895825408);
             }
             if (this.IlIlllIIIIllIllllIllIIlIl >= (float) 50) {
                 this.IlllIllIlIIIIlIIlIIllIIIl = 0;
@@ -49,12 +50,13 @@ public class ToggleElement
                 float f2 = CBModulesGui.getSmoothFloat((float) 50 + this.IlIlllIIIIllIllllIllIIlIl * (float) 15);
                 this.IlIlllIIIIllIllllIllIIlIl = this.IlIlllIIIIllIllllIllIIlIl + f2 >= (float) 50 ? (float) 50 : (this.IlIlllIIIIllIllllIllIIlIl += f2);
             }
-            Ref.modified$drawRect(this.x + this.width - 130, this.y + 2, this.x + this.width - 72, this.y + 12, -723724);
-            Ref.modified$drawRect(this.x + this.width - 22, this.y + 2, this.x + this.width + 4, this.y + 12, -723724);
+            Ref.modified$drawRect(this.x + this.width - 130, this.y + 2, this.x + this.width - 72, this.y + 12, dark ? -13619151 : -723724);
+            Ref.modified$drawRect(this.x + this.width - 22, this.y + 2, this.x + this.width + 4, this.y + 12, dark ? -13619151 : -723724);
         }
-        GL11.glColor4f(0.0f, 0.0f, 0.0f, bl2 ? 0.74000007f * 1.081081f : 0.288f * 1.5625f);
+        float alpha = dark ? (bl2 ? 0.7174193f : 1.0f) : (bl2 ? 0.74000007f * 1.081081f : 0.288f * 1.5625f);
+        GL11.glColor4f(dark ? 1f : 0f, dark ? 1f : 0f, dark ? 1f : 0f, alpha);
         RenderUtil.drawIcon(this.IllIIIIIIIlIlIllllIIllIII, (float) 4, (float) (this.x + this.width - 82), (float) (this.y + 3));
-        GL11.glColor4f(0.0f, 0.0f, 0.0f, bl ? 0.4244898f * 1.8846154f : 0.64285713f * 0.7f);
+        GL11.glColor4f(dark ? 1f : 0f, dark ? 1f : 0f, dark ? 1f : 0f, alpha);
         RenderUtil.drawIcon(this.lIIIIllIIlIlIllIIIlIllIlI, (float) 4, (float) (this.x + this.width - 22), (float) (this.y + 3));
     }
 

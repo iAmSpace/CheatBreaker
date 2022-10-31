@@ -41,7 +41,7 @@ public class ProfileElement extends AbstractModulesGuiElement {
         float f2;
         boolean bl3 = mouseX > this.x + 12 && this.isMouseInside(mouseX, mouseY);
         int n3 = 75;
-        Ref.modified$drawRect(this.x, this.y + this.height - 1, this.x + this.width, this.y + this.height, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -14211289 : 791621423);
+        Ref.modified$drawRect(this.x, this.y + this.height - 1, this.x + this.width, this.y + this.height, CheatBreaker.getInstance().globalSettings.isDarkMode() ? -14211289 : 791621423);
         if (bl3) {
             if (this.IlllIllIlIIIIlIIlIIllIIIl < n3) {
                 f2 = CBModulesGui.getSmoothFloat(790);
@@ -96,17 +96,17 @@ public class ProfileElement extends AbstractModulesGuiElement {
             RenderUtil.drawIcon(this.arrowIcon, 6.6666665f * 0.375f, (float)(this.x + 4), (float)this.y + (float)6);
         }
         if (CheatBreaker.getInstance().activeProfile == this.profile) {
-            FontRegistry.getPlayBold18px().drawString(this.profile.getName().toUpperCase(), (float)this.x + (float)16, (float)(this.y + 4), CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 0xFFFFFFFF : -818991312);
+            FontRegistry.getPlayBold18px().drawString(this.profile.getName().toUpperCase(), (float)this.x + (float)16, (float)(this.y + 4), CheatBreaker.getInstance().globalSettings.isDarkMode() ? 0xFFFFFFFF : -818991312);
         } else {
-            FontRegistry.getPlayRegular16px().drawString(this.profile.getName().toUpperCase(), (float)this.x + (float)16, (float)this.y + 4, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 0xFFFFFFFF : -818991312);
+            FontRegistry.getPlayRegular16px().drawString(this.profile.getName().toUpperCase(), (float)this.x + (float)16, (float)this.y + 4, CheatBreaker.getInstance().globalSettings.isDarkMode() ? 0xFFFFFFFF : -818991312);
         }
         if (CheatBreaker.getInstance().activeProfile == this.profile) {
-            FontRegistry.getPlayRegular14px().drawString(" (Active)", (float)this.x + (float)17 + (float) FontRegistry.getPlayBold18px().getStringWidth(this.profile.getName().toUpperCase()), (float)this.y + (float)7, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? 0xFFFFFFFF : 1865363247);
+            FontRegistry.getPlayRegular14px().drawString(" (Active)", (float)this.x + (float)17 + (float) FontRegistry.getPlayBold18px().getStringWidth(this.profile.getName().toUpperCase()), (float)this.y + (float)7, CheatBreaker.getInstance().globalSettings.isDarkMode() ? 0xFFFFFFFF : 1865363247);
         }
         if (this.profile.isEditable()) {
             bl2 = (float) mouseX > (float)(this.x + this.width - 30) * this.scale && (float) mouseX < (float)(this.x + this.width - 13) * this.scale && (float) mouseY > (float)(this.y + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + this.height + this.yOffset) * this.scale;
             //GL11.glColor4f(bl2 ? 0.0f : 1.1707317f * 0.21354167f, bl2 ? 0.0f : 0.101648346f * 2.4594595f, bl2 ? 0.48876402f * 1.0229886f : 0.5647059f * 0.4427083f, 0.5675676f * 1.145238f);
-            if (CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark")) {
+            if (CheatBreaker.getInstance().globalSettings.isDarkMode()) {
                 GL11.glColor4f(bl2 ? 0.0f : 1.0f, bl2 ? 0.0f : 1.0f, bl2 ? 0.5f : 1.0f, 1.0f);
             } else {
                 GL11.glColor4f(bl2 ? 0.0f : 0.25f, bl2 ? 0.0f : 0.25f, bl2 ? 0.5f : 0.25f, 0.65f);
@@ -115,7 +115,7 @@ public class ProfileElement extends AbstractModulesGuiElement {
             bl = (float) mouseX > (float)(this.x + this.width - 17) * this.scale && (float) mouseX < (float)(this.x + this.width - 2) * this.scale && (float) mouseY > (float)(this.y + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + this.height + this.yOffset) * this.scale;
             //GL11.glColor4f(bl ? 0.8f : 0.96875f * 0.2580645f, bl ? 0.0f : 0.17553192f * 1.4242424f, bl ? 0.0f : 15.250001f * 0.016393442f, 0.44444445f * 1.4625f);
 
-            if (CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark")) {
+            if (CheatBreaker.getInstance().globalSettings.isDarkMode()) {
                 GL11.glColor4f(bl ? 0.8f : 1.0f, bl ? 0.0f : 1.0f, bl ? 0.0f : 1.0f, 1.0f);
             } else {
                 GL11.glColor4f(bl ? 0.8f : 0.25f, bl ? 0.0f : 0.25f, bl ? 0.0f : 0.25f, 0.65f);

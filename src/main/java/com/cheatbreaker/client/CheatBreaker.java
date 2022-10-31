@@ -1,8 +1,8 @@
 package com.cheatbreaker.client;
 
+import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.bridge.client.audio.SoundManagerBridge;
 import com.cheatbreaker.client.audio.AudioDevice;
-import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.client.config.ConfigManager;
 import com.cheatbreaker.client.config.GlobalSettings;
 import com.cheatbreaker.client.config.Profile;
@@ -19,7 +19,6 @@ import com.cheatbreaker.client.ui.module.CBModulePlaceGui;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
 import com.cheatbreaker.client.ui.overlay.Alert;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
-import com.cheatbreaker.client.ui.util.font.CBFontRenderer;
 import com.cheatbreaker.client.util.SessionServer;
 import com.cheatbreaker.client.util.cosmetic.Cosmetic;
 import com.cheatbreaker.client.util.dash.CBDashManager;

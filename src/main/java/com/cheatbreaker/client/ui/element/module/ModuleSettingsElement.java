@@ -30,7 +30,7 @@ public class ModuleSettingsElement extends AbstractModulesGuiElement {
     public void handleDrawElement(int mouseX, int mouseY, float partialTicks) {
         boolean bl = this.isMouseInside(mouseX, mouseY);
         int n3 = 75;
-        Ref.modified$drawRect(this.x, this.y + this.height - 1, this.x + this.width, this.y + this.height, CheatBreaker.getInstance().globalSettings.theme.getValue().equals("Dark") ? -14211288 : 791621423);
+        Ref.modified$drawRect(this.x, this.y + this.height - 1, this.x + this.width, this.y + this.height, CheatBreaker.getInstance().globalSettings.isDarkMode() ? -14211288 : 791621423);
         if (this.parent.lIIIIlIIllIIlIIlIIIlIIllI(this.module)) {
             float f2;
             if (bl) {
