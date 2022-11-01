@@ -1,6 +1,7 @@
 package com.cheatbreaker.client.ui.mainmenu;
 
 import com.cheatbreaker.bridge.Ref;
+import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.ui.fading.CosineFade;
 import com.cheatbreaker.client.ui.fading.MinMaxFade;
 import com.cheatbreaker.client.ui.util.RenderUtil;
@@ -64,7 +65,13 @@ public class MainMenu extends MainMenuBase {
 
         float f5 = this.getScaledWidth() / 2.0f - (float)80;
         float f6 = this.getScaledHeight() - (float)40;
-        RenderUtil.drawTexturedModalRect(f5, f6, f5 + 160f, f6 + 10f, 8, new Color(218, 66, 83, (int)((float)255 * (1.0f - logoY))).getRGB());
+        //RenderUtil.drawTexturedModalRect(f5, f6, f5 + 160f, f6 + 10f, 8, new Color(218, 66, 83, (int)((float)255 * (1.0f - logoY))).getRGB());
+
+        if (CheatBreaker.getInstance().isInDebugMode()) {
+            this.fontRendererObj.drawString("[p] " + RenderUtil.getTimeAccurateFrameRate() + " FPS (" + RenderUtil.getFrameTimeAsMs() + "ms/frame) ", 5, 55, -1);
+            this.fontRendererObj.drawString("[p] Min/Max FPS: " + RenderUtil.minFps + "/" + RenderUtil.maxFps, 5, 65, -1);
+            this.fontRendererObj.drawString("[i] Press \u00a7cF9 \u00a7fto reset the Min/Max values.", 5, 75, -1);
+        }
     }
 
     private void drawCheatBreakerLogo(double dispWidth, double dispHeight, float f) {

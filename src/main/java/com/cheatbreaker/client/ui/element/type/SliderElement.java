@@ -37,12 +37,12 @@ public class SliderElement extends AbstractModulesGuiElement {
         float f2;
         float f3;
         int n3 = 148;
-        FontRegistry.getUbuntuMedium16px().drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float)(this.y + 2), -1895825408);
+        FontRegistry.getUbuntuMedium16px().drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float)(this.y + 2), CheatBreaker.getInstance().globalSettings.isDarkMode() ? -1 : -1895825408);
         if (this.IlllIllIlIIIIlIIlIIllIIIl && !Mouse.isButtonDown(0)) {
             this.IlllIllIlIIIIlIIlIIllIIIl = false;
         }
         String string = this.setting.getValue() + "";
-        FontRegistry.getUbuntuMedium16px().drawCenteredString(string, this.x + 154, (float)(this.y + 2), -1895825408);
+        FontRegistry.getUbuntuMedium16px().drawCenteredString(string, this.x + 154, (float)(this.y + 2), CheatBreaker.getInstance().globalSettings.isDarkMode() ? -1 : -1895825408);
         boolean bl = (float) mouseX > (float)(this.x + 172) * this.scale && (float) mouseX < (float)(this.x + 172 + n3 - 2) * this.scale && (float) mouseY > (float)(this.y + 4 + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + 10 + this.yOffset) * this.scale;
         RenderUtil.drawRoundedRect((double)(this.x + 174), (double)(this.y + 6), (double)(this.x + 170 + n3 - 4), (double)(this.y + 8), 1.0, bl ? -1895825408 : 0x6F000000);
         double d = n3 - 18;

@@ -1,6 +1,7 @@
 package com.cheatbreaker.client.ui.element.type.custom;
 
 import com.cheatbreaker.bridge.Ref;
+import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.ui.element.AbstractModulesGuiElement;
 import com.cheatbreaker.client.ui.element.AbstractScrollableElement;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
@@ -44,7 +45,7 @@ public class GlobalSettingsElement
         }
         GL11.glColor4f(0.0f, 0.0f, 0.0f, 1.4666667f * 0.23863636f);
         RenderUtil.drawIcon(this.IlllIllIlIIIIlIIlIIllIIIl, 2.2f * 1.1363636f, (float)(this.x + 6), (float)this.y + (float)6);
-        FontRegistry.getPlayBold18px().drawString("CheatBreaker Settings".toUpperCase(), (float)this.x + 14f, (float)this.y + 3f, -818991313);
+        FontRegistry.getPlayBold18px().drawString("CheatBreaker Settings".toUpperCase(), (float)this.x + 14f, (float)this.y + 3f, CheatBreaker.getInstance().globalSettings.isDarkMode() ? -1 : -818991313);
     }
 
     @Override

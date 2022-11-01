@@ -10,7 +10,7 @@ import javax.sound.sampled.TargetDataLine;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-public class MicrophoneRecroder implements Runnable
+public class MicrophoneRecorder implements Runnable
 {
     private boolean recording;
     private Thread thread;
@@ -18,7 +18,7 @@ public class MicrophoneRecroder implements Runnable
     byte[] buffer;
     public float microphoneVolume;
 
-    public MicrophoneRecroder(AudioDevice audioDevice) {
+    public MicrophoneRecorder(AudioDevice audioDevice) {
         this.audioDevice = audioDevice;
     }
 

@@ -3,6 +3,7 @@ package com.cheatbreaker.client.config;
 import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.ui.element.type.ColorPickerColorElement;
 import com.cheatbreaker.client.util.dash.DashUtil;
+import com.cheatbreaker.client.util.voicechat.VoiceChatManager;
 import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
@@ -104,23 +105,13 @@ public class GlobalSettings {
         if (audioDevices.length > 0) {
             this.microphone = (new Setting(this.settingsList, "Microphone")).setValue(audioDevices[0]).acceptedValues(audioDevices).onChange((var0) -> {
                 try {
-                    //Message.h(CBClient.getAudioDevice((String) var0));
                     System.out.println("[CB] Updated audio device!");
                 } catch (UnsatisfiedLinkError var2) {
                     System.err.println("[CB] CBAgent.dll is not attached.");
-
                 }
-
             });
         } else {
-            this.microphone = (new Setting(this.settingsList, "Microphone")).setValue("Unknown").acceptedValues("Unknown").onChange((var0) -> {
-                try {
-                    //Message.h(CBClient.getAudioDevice((String) var0));
-                    System.out.println("[CB] Updated audio device!");
-                } catch (UnsatisfiedLinkError var2) {
-                    System.err.println("[CB] CBAgent.dll is not attached.");
-                }
-            });
+            this.microphone = (new Setting(this.settingsList, "Microphone")).setValue("Unknown").acceptedValues("Unknown");
         }
 
         this.muteCheatBreakerSounds = (new Setting(this.settingsList, "Mute CheatBreaker sounds")).setValue(false);
@@ -131,9 +122,11 @@ public class GlobalSettings {
             }
         }).setValue(85f).setMinMax(55f, 100f);
         this.microphoneVolume = (new Setting(this.settingsList, "Microphone Volume")).onChange(volume -> {
-            CheatBreaker.getInstance().getVoiceChatManager().getRecorder().microphoneVolume = ((Integer) volume)/100f;
-            if (CheatBreaker.getInstance().getModuleManager() != null) {
-                CheatBreaker.getInstance().getModuleManager().voiceChat.checkMicVolume = true;
+            if (VoiceChatManager.isExistent()) {
+                CheatBreaker.getInstance().getVoiceChatManager().getRecorder().microphoneVolume = ((Integer) volume) / 100f;
+                if (CheatBreaker.getInstance().getModuleManager() != null) {
+                    CheatBreaker.getInstance().getModuleManager().voiceChat.checkMicVolume = true;
+                }
             }
         }).setValue(50).setMinMax(0, 100);
         this.speakerVolume = (new Setting(this.settingsList, "Speaker Volume")).onChange((var0) -> {

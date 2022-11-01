@@ -1,8 +1,11 @@
 package com.cheatbreaker.mixin.client.gui;
 
 import com.cheatbreaker.bridge.client.gui.GuiScreenBridge;
+import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
+import com.cheatbreaker.client.ui.util.RenderUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
@@ -10,6 +13,9 @@ import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.awt.*;
 
@@ -18,6 +24,8 @@ public class MixinGuiScreen extends Gui implements GuiScreenBridge {
     @Shadow public Minecraft mc;
     @Shadow public int height;
     @Shadow public int width;
+
+    @Shadow protected FontRenderer fontRendererObj;
 
     /**
      * @author iAmSpace

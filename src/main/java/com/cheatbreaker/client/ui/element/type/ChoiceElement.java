@@ -40,14 +40,14 @@ public class ChoiceElement
         }
         if (!bl3) {
             if (this.IlllIllIlIIIIlIIlIIllIIIl == 0) {
-                FontRegistry.getUbuntuMedium16px().drawCenteredString(value, this.x + this.width - 48, this.y + 4, -1895825408);
+                FontRegistry.getUbuntuMedium16px().drawCenteredString(value, this.x + this.width - 48, this.y + 4, CheatBreaker.getInstance().globalSettings.isDarkMode() ? -1 : -1895825408);
             } else {
                 boolean bl4 = this.IlllIllIlIIIIlIIlIIllIIIl == 1;
-                FontRegistry.getUbuntuMedium16px().drawCenteredString(value, (float)(this.x + this.width - 48) - (bl4 ? -this.IlIlllIIIIllIllllIllIIlIl : this.IlIlllIIIIllIllllIllIIlIl), this.y + 4, -1895825408);
+                FontRegistry.getUbuntuMedium16px().drawCenteredString(value, (float)(this.x + this.width - 48) - (bl4 ? -this.IlIlllIIIIllIllllIllIIlIl : this.IlIlllIIIIllIllllIllIIlIl), this.y + 4, CheatBreaker.getInstance().globalSettings.isDarkMode() ? -1 : -1895825408);
                 if (bl4) {
-                    FontRegistry.getUbuntuMedium16px().drawCenteredString(value, (float)(this.x + this.width - 98) + this.IlIlllIIIIllIllllIllIIlIl, this.y + 4, -1895825408);
+                    FontRegistry.getUbuntuMedium16px().drawCenteredString(value, (float)(this.x + this.width - 98) + this.IlIlllIIIIllIllllIllIIlIl, this.y + 4, CheatBreaker.getInstance().globalSettings.isDarkMode() ? -1 : -1895825408);
                 } else {
-                    FontRegistry.getUbuntuMedium16px().drawCenteredString(value, (float)(this.x + this.width + 2) - this.IlIlllIIIIllIllllIllIIlIl, this.y + 4, -1895825408);
+                    FontRegistry.getUbuntuMedium16px().drawCenteredString(value, (float)(this.x + this.width + 2) - this.IlIlllIIIIllIllllIllIIlIl, this.y + 4, CheatBreaker.getInstance().globalSettings.isDarkMode() ? -1 : -1895825408);
                 }
                 if (this.IlIlllIIIIllIllllIllIIlIl >= (float)50) {
                     this.IlllIllIlIIIIlIIlIIllIIIl = 0;

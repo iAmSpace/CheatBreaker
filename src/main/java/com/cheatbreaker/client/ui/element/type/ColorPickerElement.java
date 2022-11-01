@@ -57,7 +57,7 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
         float IIIIIIlIlIlIllllllIlllIlI = this.y + 119;
         this.pickerWidth = lIIIIIllllIIIIlIlIIIIlIlI - this.pickerX;
         this.pickerHeight = IIIIIIlIlIlIllllllIlllIlI - this.pickerY;
-        FontRegistry.getUbuntuMedium16px().drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float)(this.y + 4), -1895825408);
+        FontRegistry.getUbuntuMedium16px().drawString(this.setting.getLabel().toUpperCase(), this.x + 10, (float)(this.y + 4), CheatBreaker.getInstance().globalSettings.isDarkMode() ? -1 : -1895825408);
         this.colorPickerColorElement.color = this.setting.getColorValue();
         this.colorPickerColorElement.setDimensions(this.x + 160, this.y + 3, 14, 14);
         this.colorPickerColorElement.yOffset = this.yOffset;

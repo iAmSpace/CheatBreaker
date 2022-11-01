@@ -7,10 +7,7 @@ import com.cheatbreaker.client.config.ConfigManager;
 import com.cheatbreaker.client.config.GlobalSettings;
 import com.cheatbreaker.client.config.Profile;
 import com.cheatbreaker.client.event.EventBus;
-import com.cheatbreaker.client.event.type.GuiDrawEvent;
-import com.cheatbreaker.client.event.type.KeyboardEvent;
-import com.cheatbreaker.client.event.type.PluginMessageEvent;
-import com.cheatbreaker.client.event.type.RenderPreviewEvent;
+import com.cheatbreaker.client.event.type.*;
 import com.cheatbreaker.client.module.AbstractModule;
 import com.cheatbreaker.client.module.ModuleManager;
 import com.cheatbreaker.client.nethandler.NetHandler;
@@ -19,6 +16,7 @@ import com.cheatbreaker.client.ui.module.CBModulePlaceGui;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
 import com.cheatbreaker.client.ui.overlay.Alert;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
+import com.cheatbreaker.client.ui.util.RenderUtil;
 import com.cheatbreaker.client.util.SessionServer;
 import com.cheatbreaker.client.util.cosmetic.Cosmetic;
 import com.cheatbreaker.client.util.dash.CBDashManager;
@@ -146,9 +144,16 @@ public class CheatBreaker {
         this.createDefaultConfigPresets();
         this.cbInfo("Created default configuration presets.");
         this.initAudioDevices();
-        this.cbInfo("Initialized all audio devices.");
-        this.voiceChatManager = new VoiceChatManager(audioDevices.get(0));
-        this.cbInfo("Created Voice Chat Manager", VoiceChatManager.class);
+        if (audioDevices.size() != 0) {
+            this.cbInfo("Initialized all audio devices.");
+            this.voiceChatManager = new VoiceChatManager(audioDevices.get(0));
+            this.cbInfo("Created Voice Chat Manager", VoiceChatManager.class);
+        } else {
+            this.voiceChatManager = new VoiceChatManager(); // No microphone / device passed through, it is hypothetically non-existent.
+            this.cbInfo("Couldn't load audio devices. This could be because there is no available microphone, or you are using PojavLauncher.");
+            this.cbInfo("Solution: Connect an audio device");
+            this.cbInfo("(For Pojav users I don't know your solution, sorry!)");
+        }
         Ref.getMinecraft().bridge$getSoundHandler().bridge$getSoundManager().bridge$loadSoundSystem();
         this.cbInfo("Loaded SoundSystem manually (Using Bridge method " + SoundManagerBridge.class.getCanonicalName() + ".bridge$loadSoundSystem())");
         this.globalSettings = new GlobalSettings();
@@ -187,6 +192,10 @@ public class CheatBreaker {
                 if (Ref.getMinecraft().bridge$getCurrentScreen() == null) {
                     Ref.getMinecraft().bridge$displayGuiScreen(new CBModulesGui());
                 }
+            }
+            if (e.getKeyboardKey() == Keyboard.KEY_F9) {
+                RenderUtil.minFps = 2147483647;
+                RenderUtil.maxFps = 0;
             }
         });
         this.cbInfo("Registered main events.");
@@ -256,7 +265,7 @@ public class CheatBreaker {
             try {
                 TargetDataLine dataLine = (TargetDataLine) mixer.getLine(new DataLine.Info(TargetDataLine.class, CheatBreaker.universalAudioFormat));
                 if (info != null) {
-                    System.out.println("[CB] Added mic option : " + info.getName());
+                    this.cbInfo("Added microphone to input devices: " + info.getName());
                     this.audioDevices.add(new AudioDevice(info.getDescription(), info.getName(), dataLine));
                 }
             } catch (final IllegalArgumentException | LineUnavailableException ignored) {
@@ -413,5 +422,9 @@ public class CheatBreaker {
                 OverlayGui.getInstance().renderGameOverlay();
             }
         }
+    }
+
+    public boolean isInDebugMode() {
+        return true;
     }
 }

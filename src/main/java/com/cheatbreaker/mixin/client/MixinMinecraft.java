@@ -13,6 +13,7 @@ import com.cheatbreaker.client.event.type.LoadWorldEvent;
 import com.cheatbreaker.client.event.type.TickEvent;
 import com.cheatbreaker.client.ui.mainmenu.MainMenu;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
+import com.cheatbreaker.client.ui.util.RenderUtil;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimap;
 import com.mojang.authlib.minecraft.MinecraftSessionService;
@@ -1041,5 +1042,13 @@ public abstract class MixinMinecraft implements MinecraftBridge {
     public int getLimitFramerate() {
 //        return this.theWorld == null && this.currentScreen != null ? 60 : this.gameSettings.limitFramerate;
         return this.gameSettings.limitFramerate;
+    }
+
+    private long previousFrameOccurringTime = 0L;
+
+    @Inject(method = "runGameLoop", at = @At(value = "INVOKE_STRING", target = "Lnet/minecraft/client/Minecraft;checkGLError(Ljava/lang/String;)V", args = "ldc=Post render"))
+    public void impl$runGameLoop(CallbackInfo callbackInfo) {
+        RenderUtil.updateFrameTime(previousFrameOccurringTime);
+        previousFrameOccurringTime = System.nanoTime();
     }
 }

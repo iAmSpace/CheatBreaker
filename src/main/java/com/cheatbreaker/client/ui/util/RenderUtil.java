@@ -185,4 +185,33 @@ public class RenderUtil {
         RenderUtil.drawHorizontalLine(f + 1.0f, f + 1.0f, f4 - 2.0f, n);
         GL11.glScalef(2.0f, 2.0f, 2.0f);
     }
+
+    public static long timeOfPreviousFrame = 0L;
+    public static long timeOfCurrentFrame = 0L;
+    public static long frameTimeNs = 0L;
+
+    public static int minFps = 2147483647;
+    public static int maxFps = 0;
+
+    public static void updateFrameTime(long previous) {
+        timeOfPreviousFrame = previous;
+        timeOfCurrentFrame = System.nanoTime();
+        frameTimeNs = timeOfCurrentFrame - timeOfPreviousFrame;
+    }
+
+    public static int getTimeAccurateFrameRate() {
+        float frameRateAsFloat = 1000000000f / (frameTimeNs < 1 ? 1 : frameTimeNs);
+        int frameRateAsInt = (int) frameRateAsFloat;
+        if (frameRateAsInt > maxFps) {
+            maxFps = frameRateAsInt;
+        }
+        if (frameRateAsInt < minFps) {
+            minFps = frameRateAsInt;
+        }
+        return frameRateAsInt;
+    }
+
+    public static float getFrameTimeAsMs() {
+        return (frameTimeNs < 1 ? 1 : frameTimeNs) / 1000000f;
+    }
 }
