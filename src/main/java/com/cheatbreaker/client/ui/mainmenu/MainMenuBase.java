@@ -3,6 +3,7 @@ package com.cheatbreaker.client.ui.mainmenu;
 import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.bridge.Ref;
 import com.cheatbreaker.bridge.client.renderer.TessellatorBridge;
+import com.cheatbreaker.client.remote.GitCommitProperties;
 import com.cheatbreaker.client.ui.AbstractGui;
 import com.cheatbreaker.client.ui.fading.ColorFade;
 import com.cheatbreaker.client.ui.mainmenu.cosmetics.GuiCosmetics;
@@ -184,7 +185,7 @@ public class MainMenuBase extends AbstractGui {
 
         int textColor = new Color(255, 255, 255, 143).getRGB();
 
-        String version = "CheatBreaker Forge (" + cb.getGitCommit() + "/" + cb.getGitBranch() + ")";
+        String version = "CheatBreaker Forge (" + GitCommitProperties.getGitCommit() + "/" + GitCommitProperties.getGitBranch() + ")";
         String copyright = "Copyright Mojang AB. Do not distribute!";
 
         font.drawStringWithShadow(version, 5f, this.getScaledHeight() - 14f, textColor);

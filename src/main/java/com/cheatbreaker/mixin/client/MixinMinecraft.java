@@ -11,6 +11,7 @@ import com.cheatbreaker.client.event.type.ClickEvent;
 import com.cheatbreaker.client.event.type.KeyboardEvent;
 import com.cheatbreaker.client.event.type.LoadWorldEvent;
 import com.cheatbreaker.client.event.type.TickEvent;
+import com.cheatbreaker.client.remote.GitCommitProperties;
 import com.cheatbreaker.client.ui.mainmenu.MainMenu;
 import com.cheatbreaker.client.ui.overlay.OverlayGui;
 import com.cheatbreaker.client.ui.util.RenderUtil;
@@ -249,7 +250,7 @@ public abstract class MixinMinecraft implements MinecraftBridge {
         }
 
         Display.setResizable(true);
-        Display.setTitle("CheatBreaker 1.7.10");
+        Display.setTitle("CheatBreaker 1.7.10 (Initializing...)");
         logger.info("LWJGL Version: " + Sys.getVersion());
         Util.EnumOS enumos = Util.getOSType();
 
@@ -328,6 +329,8 @@ public abstract class MixinMinecraft implements MinecraftBridge {
         this.mcMusicTicker = new MusicTicker(Minecraft.getMinecraft());
         CheatBreaker.cbLoadingScreen.newMessage("Font Renderers"); // CB
         this.fontRenderer = new FontRenderer(this.gameSettings, new ResourceLocation("textures/font/ascii.png"), this.renderEngine, false);
+        GitCommitProperties.loadProperties();
+        Display.setTitle("CheatBreaker 1.7.10 (" + GitCommitProperties.getGitCommit() + "/" + GitCommitProperties.getGitBranch() + ")");
 
         if (this.gameSettings.language != null)
         {

@@ -12,6 +12,7 @@
     "client.gui.MixinFontRenderer",
     "client.renderer.entity.MixinRender",
     "client.renderer.entity.MixinRendererLivingEntity",
+    "client.scoreboard.MixinScoreboard",
     "forge.MixinFMLClientHandler",
     "forge.MixinSplashProgress",
     "util.MixinTimer"

@@ -29,7 +29,7 @@ public class CosmeticListElement extends AbstractModulesGuiElement {
             Ref.modified$drawRect(this.x, this.y, this.x + this.width, this.y + this.height, 0x2F000000);
         }
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        if (this.cosmetic.getName().equals("cape")) {
+        if (this.cosmetic.getType().equals("cape")) {
             Minecraft.getMinecraft().getTextureManager().bindTexture(this.cosmetic.getLocation());
             GL11.glPushMatrix();
             GL11.glTranslatef(this.x + 20, this.y + 7, 0.0f);
@@ -71,7 +71,7 @@ public class CosmeticListElement extends AbstractModulesGuiElement {
                 }
                 this.cosmetic.setEquipped(true);
             }
-            //CBClient.getInstance().lIllIllIlIIllIllIlIlIIlIl().updateTick();
+            CheatBreaker.getInstance().getAssetsWebSocket().sendClientCosmetics();
         }
     }
 }

@@ -25,10 +25,12 @@ import com.mojang.authlib.exceptions.AuthenticationUnavailableException;
 import com.mojang.authlib.exceptions.InvalidCredentialsException;
 import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
+import com.mojang.util.UUIDTypeAdapter;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.CryptManager;
 import net.minecraft.util.EnumChatFormatting;
 import org.java_websocket.client.WebSocketClient;
@@ -81,6 +83,8 @@ public class AssetsWebSocket extends WebSocketClient {
             }
             packet.read(buf);
             packet.handle(this);
+
+            Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("Handling incoming packet from websocket: " + packetClass.getCanonicalName()));
         }
         catch (Exception exception) {
             System.out.println("Error from: " + packetClass);
@@ -261,6 +265,18 @@ public class AssetsWebSocket extends WebSocketClient {
         }
     }
 
+    public EntityPlayer theWorld$getPlayerFromUUID(String uuid) {
+        for (int i = 0; i < this.minecraft.theWorld.playerEntities.size(); ++i) {
+            EntityPlayer entityplayer = (EntityPlayer)this.minecraft.theWorld.playerEntities.get(i);
+
+            if (uuid.replaceAll("-", "").equals(entityplayer.getUniqueID().toString().replaceAll("-", ""))) {
+                return entityplayer;
+            }
+        }
+
+        return null;
+    }
+
     public void handleCosmetics(WSPacketCosmetics packetCosmetics) {
         String string = packetCosmetics.getPlayerId();
         CheatBreaker.getInstance().getCosmetics().removeIf(cosmetic -> cosmetic.getPlayerId().equals(string));
@@ -268,13 +284,32 @@ public class AssetsWebSocket extends WebSocketClient {
         for (Cosmetic cosmetic : packetCosmetics.getCosmetics()) {
             try {
                 CheatBreaker.getInstance().getCosmetics().add(cosmetic);
-                EntityPlayer player = this.minecraft.theWorld == null ? null : this.minecraft.theWorld.getPlayerEntityByName(string);
+                EntityPlayer player = theWorld$getPlayerFromUUID(string);
 
-                if (!cosmetic.isEquipped() || !(player instanceof AbstractClientPlayer))
+//                if (!cosmetic.isEquipped() || !(player instanceof AbstractClientPlayer))
+//                    continue;
+                if (!(player instanceof AbstractClientPlayer)) {
+                    CheatBreaker.getInstance().cbInfo("Player " + string + " (str) is not instance of AbstractClientPlayer!");
+                    Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("Player " + string + " (str) is not instance of AbstractClientPlayer!"));
                     continue;
+                }
 
-                if (cosmetic.getName().equals("cape"))
-                    ((AbstractClientPlayerBridge)((AbstractClientPlayer)player)).bridge$setLocationCape(cosmetic.getLocation());
+                if (!cosmetic.isEquipped()) {
+                    CheatBreaker.getInstance().cbInfo("System tried to apply cape to " + player.getDisplayName() + "\u00a7r using " + cosmetic.getLocation() + " but failed as it is not equipped.");
+                    Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("System tried to apply cape to " + player.getDisplayName() + "\u00a7r using " + cosmetic.getLocation() + " but failed as it is not equipped."));
+                    continue;
+                }
+
+                CheatBreaker.getInstance().cbInfo("Player " + string + " passed checks!");
+                Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("Player " + string + " passed checks!"));
+
+                if (cosmetic.getType().equals("cape")) {
+                    ((AbstractClientPlayerBridge) ((AbstractClientPlayer) player)).bridge$setLocationCape(cosmetic.getLocation());
+                    Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("Set cape location for " + player.getDisplayName() + "\u00a7r to " + cosmetic.getLocation()));
+                } else {
+                    CheatBreaker.getInstance().cbInfo("Type is not cape!");
+                    Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("Type is not cape!"));
+                }
             }
             catch (Exception exception) {
                 exception.printStackTrace();

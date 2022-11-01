@@ -11,6 +11,7 @@ import com.cheatbreaker.client.event.type.*;
 import com.cheatbreaker.client.module.AbstractModule;
 import com.cheatbreaker.client.module.ModuleManager;
 import com.cheatbreaker.client.nethandler.NetHandler;
+import com.cheatbreaker.client.remote.GitCommitProperties;
 import com.cheatbreaker.client.ui.mainmenu.LoadingScreen;
 import com.cheatbreaker.client.ui.module.CBModulePlaceGui;
 import com.cheatbreaker.client.ui.module.CBModulesGui;
@@ -82,10 +83,6 @@ public class CheatBreaker {
 
     private List<Cosmetic> cosmetics = new ArrayList<>();
     private AssetsWebSocket websocket;
-
-    private String gitCommit = "?";
-    private String gitCommitId = "?";
-    private String gitBranch = "?";
 
     private FriendsManager friendsManager;
     @Getter
@@ -177,7 +174,7 @@ public class CheatBreaker {
         this.cbInfo("Created Configuration Manager", ConfigManager.class);
 
         this.cbInfo("Connecting to websocket server...");
-        connectToAssetsServer();
+        this.connectToAssetsServer();
         this.friendsManager = new FriendsManager();
         this.cbInfo("Created Friends Manager", FriendsManager.class);
         OverlayGui.setInstance(new OverlayGui());
@@ -201,7 +198,6 @@ public class CheatBreaker {
         this.cbInfo("Registered main events.");
 
         new ServerStatusThread().start();
-        this.loadVersionData();
         this.cbInfo("Loaded version data.");
         this.borderManager = new WorldBorderManager();
         this.cbInfo("Created World Border Manager", WorldBorderManager.class);
@@ -341,33 +337,11 @@ public class CheatBreaker {
         final Map<String, String> hashMap = new HashMap<>();
         hashMap.put("username", Minecraft.getMinecraft().getSession().getUsername());
         hashMap.put("playerId", Minecraft.getMinecraft().getSession().getPlayerID());
-        hashMap.put("version", getGitCommit());
+        hashMap.put("version", GitCommitProperties.getGitCommit());
         try {
             // TODO: Host websocket
             (this.websocket = new AssetsWebSocket(new URI("ws://localhost:80"), hashMap)).connect();
         } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void loadVersionData() {
-        try {
-            final ResourceLocation resourceLocation = new ResourceLocation("client/properties/app.properties");
-            final Properties properties = new Properties();
-            InputStream inputStream = Minecraft.getMinecraft().getResourceManager().getResource(resourceLocation).getInputStream();
-
-            if (inputStream == null) {
-                this.gitCommit = "?";
-                this.gitCommitId = "?";
-                this.gitBranch = "?";
-                return;
-            }
-
-            properties.load(inputStream);
-            this.gitCommit = properties.getProperty("git.commit.id.abbrev");
-            this.gitCommitId = properties.getProperty("git.commit.id");
-            this.gitBranch = properties.getProperty("git.branch");
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }

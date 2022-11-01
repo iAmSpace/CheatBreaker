@@ -35,15 +35,17 @@ public class WSPacketCosmetics
 
     @Override
     public void read(ByteBufWrapper buf) throws IOException {
-        this.playerId = buf.readStringFromBuffer(52);
-        int n = buf.buf().readInt();
+        this.playerId = buf.readString();
         this.cosmetics = new ArrayList<>();
-        for (int i = 0; i < n; ++i) {
+        int totalCosmetics = buf.buf().readInt();
+        for (int x = 0; x < totalCosmetics; x++) {
+            buf.buf().readLong();
             float scale = buf.buf().readFloat();
-            boolean bl = buf.buf().readBoolean();
-            String string = buf.readStringFromBuffer(512);
-            String string2 = buf.readStringFromBuffer(128);
-            this.cosmetics.add(new Cosmetic(this.playerId, string2, scale, bl, string));
+            boolean equipped = buf.buf().readBoolean();
+            String location = buf.readString();
+            String name = buf.readString();
+            String type = buf.readString();
+            this.cosmetics.add(new Cosmetic(this.playerId, name, type, scale, equipped, location));
         }
     }
 
