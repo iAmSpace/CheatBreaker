@@ -4,6 +4,8 @@ https://github.com/CheatBreakerX
 
 Forge 1.7.10 is no longer downloadable through AWS and therefore development cannot continue of this sole 1.7.10 repository. If you have any questions or inquiries, message me on Discord, iAmSpace#0777 (`201022516506918912`)
 
+*Though, I am still finding ways to make Forge 1.7.10 work.*
+
 ---
 
 # [iAmSpace/CheatBreaker](https://github.com/iAmSpace/CheatBreaker)
