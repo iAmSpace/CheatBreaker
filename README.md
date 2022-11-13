@@ -1,3 +1,11 @@
+# This repo has moved.
+
+https://github.com/CheatBreakerX
+
+Forge 1.7.10 is no longer downloadable through AWS and therefore development cannot continue of this sole 1.7.10 repository. If you have any questions or inquiries, message me on Discord, iAmSpace#0777 (`201022516506918912`)
+
+---
+
 # [iAmSpace/CheatBreaker](https://github.com/iAmSpace/CheatBreaker)
 
 You can view the base of this [here](https://github.com/Decencies/CheatBreaker).
